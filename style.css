@@ -1,5 +1,37 @@
 #title-bar {
+    border: 1px dashed green;
+}
+
+#main-container{
+    position: relative;
+    border: 2px dashed hotpink;
+    box-sizing: border-box;
+    max-height: calc(100vh - 72px - 54px);
+    /* margin-bottom: 200px; */
+}
+
+#persona-card {
+    position: relative;
     border: 1px solid blue;
+    border-radius: 25px;
+    margin-top: 5vh;
+    /* margin-bottom: 10vh; */
+    margin-right: 8vw;
+    margin-left: 8vw;
+    min-height: 68vh;
+}
+
+#persona-data-holder{
+    position: absolute;
+    top: 50%;
+    transform: translate(24%, -50%) 
+}
+
+#persona-image{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
 }
 
 #main-container{
@@ -11,10 +43,12 @@
 
 #action-bar {
     border: 1px solid green;
+    /* margin-top: 50px; */
     padding-top: 10px;
     padding-bottom: 10px;
     bottom: 0;
     position: absolute;
+    /* height: 3.25rem; */
     width: 100vw;
 }
 
