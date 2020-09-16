@@ -32,32 +32,36 @@
 <div id="main-container">
 <div id="persona-card">
     <div id="persona-data-holder">
+        <div id="target-container"></div>
+        <!-- ================ -->
+        <!-- THIS IS THE FORM -->
+        <h1>Generate New Persona</h1>
         <form action="#" id="target-form">
-
             <!-- interests drop down -->
-            <label for="sex-type">Sex Type</label>
+            <label for="sex-type">Gender</label>
             <select id="sex-type" name="sex-type">
-                <option value="sex-random">Random</option>
+                <option value="0">Random</option>
                 <option value="male">Male</option>
-              <option value="female">Female</option>
-              <option value="nonconform">Non-Conforming</option>
+                <option value="female">Female</option>
+                <option value="nonconform">Non-Conforming</option>
             </select>
             <br>
-           
-            <label for="quote-type">Quote Type</label>
+            <label for="quote-type">Quotes</label>
             <select id="quote-type" name="quote-type">
-              <option value="corporate">Corporate Quote</option>
-              <option value="inspirational">Inspirational Quote</option>
+                <option value="0">Random</option>
+                <option value="corporate">Corporate Quote</option>
+                <option value="inspirational">Inspirational Quote</option>
             </select>
             <br>
-            <label for="interest">Choose an Interest</label>
-            <select id="persona-interests" name="cars">
-              <option value="fighting">Fighting</option>
-              <option value="movies">Movies</option>
-              <option value="horticulture">Horticulture</option>
-              <option value="Puppies">Puppies</option>
+            <label for="interest">Interests</label>
+            <select id="persona-interests" name="interests">
+                <option value="0">Random</option>
+                <option value="fighting">Fighting</option>
+                <option value="movies">Movies</option>
+                <option value="horticulture">Horticulture</option>
+                <option value="Puppies">Puppies</option>
             </select>
-
+            <br>
             <input id="submit-generate" type="submit">
         </form>
 
