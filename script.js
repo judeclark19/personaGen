@@ -1,7 +1,40 @@
+// GLOBAL VARIABLES
+// ================
+
+// ICON VARIABLES
+var genNewIcon =  $("#gen-new-psa-icon");
+var saveIcon = $("#save-icon")
+var storageIcon = $("#storage-icon")
+var trashIcon = $("#trash-icon")
+
+// PAGE TARGETTING VARIABLES
+var personaCard = $("#persona-card")
+
+// ==============================
+// FORM VARIABLES & EVENT LISTENER
+var targetForm = $("#target-form");
+var ageSelectLow = $("#age-low")
+var ageSelectHigh = $("#age-high")
+var sexSelect = $("#sex-type")
+var quoteSelect = $("#quote-type");
+var interestSelect = $("#persona-interests");
+var submitGenerate = $("#submit-generate"); //SUBMIT BUTTON
+// EVENT LISTENER FOR FORM 
+submitGenerate.on("click", function(event) {
+    var personaGender = (sexSelect.val())
+    var personaInterests = (interestSelect.val());
+    var personaQuote = (quoteSelect.val());
+    event.preventDefault();});
+// LEAVE HERE PLEASE
+// =======================
+
+// JOSEPH HARDCODE VARIABLES
 var specificCategory = "meteorology";
 var userQuoteSelection = "Inspirational";
 
-// text generation
+ 
+// ==============
+// Text Generation
 function autoBiography(name, location, category, quote) {
   sentenceStructure = {
     starter: ["Hi my name is ", "Hello my name is ", "Whats up it's "],
@@ -20,7 +53,6 @@ function autoBiography(name, location, category, quote) {
   var randomWords = Math.floor(
     Math.random() * sentenceStructure.starter.length
   );
-
   var finalText =
     sentenceStructure.starter[randomWords] +
     name +
@@ -34,100 +66,35 @@ function autoBiography(name, location, category, quote) {
   return finalText;
 }
 
+
+// FUNCTION
 $(document).ready(function () {
-  // GLOBAL VARS
-  // =================================================================
-  var personaDataTypesArr = ["Name", "Age", "Location", "Bio"];
-  var storedPersonas = [
-    // "John Lennon"
-    // "Paul McCartney"
-    // "George Harrison"
-    // "Ringo Starr"
-    {
-      personaIdentifier: "JL", // perhaps the api spits back something like an ID number for the face idk
-      personaData: [
-        {
-          name: "John Lennon",
-          age: 80,
-          location: "New York City",
-          bio: "had a weird life and died young",
-        },
-      ],
-    },
-    {
-      personaIdentifier: "PM", // perhaps the api spits back something like an ID number for the face idk
-      personaData: [
-        {
-          name: "Paul McCartney",
-          age: 78,
-          location: "London, UK",
-          bio: "his wife looks 30 years younger than she actually is",
-        },
-      ],
-    },
-    {
-      personaIdentifier: "GH", // perhaps the api spits back something like an ID number for the face idk
-      personaData: [
-        {
-          name: "George Harrison",
-          age: 77,
-          location: "Friar Park, England",
-          bio: "has a son that is obviously a clone",
-        },
-      ],
-    },
-    {
-      personaIdentifier: "GH", // perhaps the api spits back something like an ID number for the face idk
-      personaData: [
-        {
-          name: "Ringo Starr",
-          age: 80,
-          location: "Los Angeles",
-          bio: "peace and love, peace and love",
-        },
-      ],
-    },
-  ];
-
   // =====================================================================
-
   // EVENT LISTENERS
   // =====================================================================
-  // $("#save-icon").on("click", saveFunc())
-  $("#gen-new-psa-icon").on("click", function () {
+  genNewIcon.on("click", function () {
     generateNewPersona();
   });
 
-  $("#save-icon").on("click", function () {
+  saveIcon.on("click", function () {
     saveFunc();
   });
 
-  $("#storage-icon").on("click", function () {
+  storageIcon.on("click", function () {
     viewStoredPersonas();
   });
 
-  $("#trash-icon").on("click", function () {
+ trashIcon.on("click", function () {
     clearStorage();
   });
-  // =====================================================================
 
+  // =====================================================================
   // UI Functions
   // =====================================================================
   function generateNewPersona() {
     console.log("I clicked the generate new button");
-    $("#persona-card").empty();
-    var personaImgSrc = "https://via.placeholder.com/200x200.png";
-    var personaImage = $("<img id='persona-image'>").attr("src", personaImgSrc);
-
-    var personaInfoDiv = $("<div id='persona-info'>");
-
-    var psaNameEl = $("<p id='#psa-name'>").text("Persona Name");
-    var psaAgeEl = $("<p id='#psa-age'>").text("Persona age");
-    var psaLocationEl = $("<p id='#psa-location'>").text("Persona location");
-    var psaBioEl = $("<p id='#psa-bio'>").text("Persona bio");
-    personaInfoDiv.append(psaNameEl, psaAgeEl, psaLocationEl, psaBioEl);
-
-    $("#persona-card").append(personaImage, personaInfoDiv);
+    personaCard.empty();
+    newUserCall();
   }
 
   function saveFunc() {
@@ -144,35 +111,58 @@ $(document).ready(function () {
   }
 
   function clearStorage() {
-    console.log("I clicked the clear storage button");
+    storage.clear()
+    console.log("THIS CURRENTLY DELETES LOCAL STORAGE");
   }
   // =====================================================================
 
   // Traversing the DOM
   // =====================================================================
 
-  // =====================================================================
 
-  // random user api
+  
+// ================================
+// ================================
+//                  NEW USER CALL 
+// THIS IS THE PRIMARY FUNCTION USERS WILL RELY ON
+// ===============================
+// ================================
+
+ function newUserCall() {
+     console.log("NEW USER CALL, CALLED")
   $.ajax({
     url: "https://randomuser.me/api/",
     dataType: "json",
     success: function (data) {
-      // console.log(data);
+      // ===========================================
+      // ASSIGNING PERSONA VARIABLES WITHIN FUNCTION BASED ON RESPONSE FROM API
+      // =========================================
       var randomGen = data.results[0];
-      var personaImg = randomGen.picture.thumbnail;
+      var personaImg = randomGen.picture.thumbnail;    // thumbnail IMAGE
+      var personaImgLarge = randomGen.picture.large; //large IMAGE
       var personaName = randomGen.name.first + " " + randomGen.name.last;
+      var personaAge = randomGen.dob.age;               // PERSONA AGE
       var personaLocation =
         randomGen.location.city + ", " + randomGen.location.country;
       var personaEmail = randomGen.email;
       var personaGender = randomGen.gender;
+    
+    // ===========================================
+    //   DYNAMICALLY GENERATING NEW PERSONA CONTENT USING ABOVE VARIABLES
+    // ===========================================
+      var personaImage = $("<img id='persona-image'>").attr("src", personaImgLarge);
+      var personaInfoDiv = $("<div id='persona-info'>");
+      var psaNameEl = $("<p id='#psa-name'>").text(personaName);
+      var psaAgeEl = $("<p id='#psa-age'>").text(personaAge);
+      var psaGenderEl = $("<p id='#psa-gender'>").text(personaGender);
+      var psaLocationEl = $("<p id='#psa-location'>").text(personaLocation);
+      var psaBioEl = $("<p id='#psa-bio'>").text("Loading Bio");  // << we receive this information in  a later API CALL
+      personaInfoDiv.append(psaNameEl, psaGenderEl, psaAgeEl, psaLocationEl, psaBioEl);
+      personaCard.append(personaImage, personaInfoDiv);
 
-      console.log("image link: " + personaImg);
-      console.log("name: " + personaName);
-      console.log("location: " + personaLocation);
-      console.log("email: " + personaEmail);
-      console.log("gender: " + personaGender);
-
+    // ========================
+    // VARIABLE BIO GENERATION
+    // ========================
       if (userQuoteSelection === "Inspirational") {
         var settingsOne = {
           async: true,
@@ -188,19 +178,14 @@ $(document).ready(function () {
         };
 
         $.ajax(settingsOne).done(function (responseOne) {
-          // console.log(responseOne);
+        // INSPIRATIONAL BIO CREATION
           var inspireQuote = responseOne.content;
           inspireQuote = inspireQuote.toLowerCase();
-          console.log(
-            autoBiography(
-              personaName,
-              personaLocation,
-              specificCategory,
-              inspireQuote
-            )
-          );
+          psaBioEl.text(autoBiography(personaName, personaLocation, specificCategory, inspireQuote));
         });
-      } else if (userQuoteSelection === "Corporate") {
+      } 
+        // CORPORATE BIO CREATION 
+        else if (userQuoteSelection === "Corporate") {
         var settingsTwo = {
           async: true,
           crossDomain: true,
@@ -218,17 +203,19 @@ $(document).ready(function () {
           // console.log(responseTwo);
           var corporateQuote = responseTwo.phrase;
           corporateQuote = corporateQuote.toLowerCase();
-
-          console.log(
+          
+          console.log( "IS THIS EVEN WORKING?   " +
             autoBiography(
               personaName,
               personaLocation,
               specificCategory,
               corporateQuote
-            )
-          );
-        });
-      }
-    },
-  });
-});
+                 )
+             );
+          
+            });
+         }
+         },
+     });
+    } // END NEW USER CALL
+});// END READY DOCUMENT
