@@ -1,6 +1,7 @@
 $(document).ready(function(){
     console.log("hello cruel world")
 
+    var target = $("#target-container")
     // $("#persona-gen").on("click", function() {
               
     
@@ -10,21 +11,20 @@ $(document).ready(function(){
         success: function(data) {
           console.log(data);
           console.log(data.results);
-          console.log(data.results[0].gender);
-          console.log(data.results[0].dob.age);
-          console.log(data.results[0].location.city);
-          console.log(data.results[0].location.state);
-          console.log(data.results[0].nat);
-          console.log(data.results[0].name.title);
-          console.log(data.results[0].name.first);
-          console.log(data.results[0].name.last);
-          console.log(data.results[0].login.username);
-          console.log(data.results[0].picture.large);
-          console.log(data.results[0].picture.medium);
+          var gender =(data.results[0].gender);
+          var age = (data.results[0].dob.age);
+          var city = (data.results[0].location.city);
+          var state = (data.results[0].location.state);
+          var nationality = (data.results[0].nat);
+          var fullName = (data.results[0].name.title) + " " + (data.results[0].name.first) + " " + (data.results[0].name.last);
+          var userName = (data.results[0].login.username);
+          var largeProfile = (data.results[0].picture.large)
           
           var personaImg = $("<img>");
-          personaImg.attr("src", data.results[0].picture.large);
-          $("#persona-gen").append(personaImg);
+          personaImg.attr("src", largeProfile);
+          target.append(personaImg);
+
+          
 
         }
       });
