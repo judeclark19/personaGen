@@ -4,6 +4,9 @@ $.ajax({
   dataType: "json",
   success: function (data) {
     console.log(data);
+    var randomGen = data.results[0]
+    var genThumbnail = randomGen.picture.thumbnail;
+    var genName = randomGen.name.first + " " + randomGen.name.last;
   },
 });
 
