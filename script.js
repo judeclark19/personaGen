@@ -1,13 +1,28 @@
 // text generation api
-function autoBiography(textInput, name, location) {
+function autoBiography(textInput, name, location, category) {
   var sentences = textInput.split("<p>");
   for (var i = 0; i < sentences.length; i++) {
     sentences[i] = sentences[i].replace("</p>", "");
   }
   sentences.splice(0, 1);
 
+  sentenceStructure = {
+    starter: ["Hi my name is ", "Hello my name is ", "Whats up it's "],
+    where: [". I am from ", ". I am originally from ", ". I come from "],
+    interests: [". I am very interested in ", ". I work in ", ". My biggest passion is "]
+  };
+  var randomWords = Math.floor(Math.random() * sentenceStructure.starter.length);
   var randomSentence = Math.floor(Math.random() * sentences.length);
-  var finalText = "Hi my name is " + name + ". I am from " + location + "." + sentences[randomSentence];
+
+  var finalText =
+    sentenceStructure.starter[randomWords] +
+    name +
+    sentenceStructure.where[randomWords] +
+    location +
+    sentenceStructure.interests[randomWords] + 
+    category + 
+    "." +
+    sentences[randomSentence];
   return finalText;
 }
 
@@ -47,7 +62,7 @@ $.ajax({
     };
 
     $.ajax(settings).done(function (response) {
-      console.log(autoBiography(response.text, personaName, personaLocation));
+      console.log(autoBiography(response.text, personaName, personaLocation, specificCategory));
     });
   },
 });
