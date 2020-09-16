@@ -1,3 +1,12 @@
+$(document).ready(function(){
+
+// EVENT LISTENERS
+// =====================================================================
+
+// =====================================================================
+
+
+
 // random user api
 $.ajax({
   url: "https://randomuser.me/api/",
@@ -77,4 +86,5 @@ $.ajax(settingsTwo).done(function (responseTwo) {
     var corporateQuote = responseTwo.phrase;
 
     console.log("corporate quote: " + corporateQuote);
+});
 });
