@@ -7,32 +7,35 @@
 }
 
 #title-bar {
-    border: 1px dashed green;
-    background-color:#636564;
-}
-
-#main-container{
-    position: relative;
-    border: 2px dashed hotpink;
-    height: calc(100vh - 72px - 54px);
-    display: flex;
-    justify-content: center;
-    background-color: #F4F5F6;
+    /* border: 1px dashed green; */
+    background-color:#3A2418;
 }
 
 .navbar-brand {
-    color: #C5CCD3;
+    color: #DBB68F;
 font-size: 30px;
 padding-left: 15px;
 }
 
+#main-container{
+    position: relative;
+    /* border: 2px dashed hotpink; */
+    height: calc(100vh - 72px - 54px);
+    display: flex;
+    justify-content: center;
+    background-color: #ECFDFD;
+}
+
 #persona-card {
+    background-color: white;
     position: absolute;
     border: 2px outset;
     border-radius: 25px;
     /* min-height: 68vh; */
     min-width: 50vw;
     margin-top: 5vh;
+
+box-shadow: 4px 7px 10px 0px rgba(0,0,0,0.75);
 }
 
 #persona-info{
@@ -47,32 +50,53 @@ padding-left: 15px;
     display: block;
     margin-left: auto;
     margin-right: auto;
+    max-width: 350px;
 }
 
 #action-bar {
-    border: 1px solid green;
     padding-top: 10px;
     padding-bottom: 10px;
     position: absolute;
     bottom: 0;
     width: 100vw;
-    background-color: #C5CCD3;
+    background-color: #EFFAFA;
 }
 
 .action-icon{
-    border: 1px solid;
+    border: 1px outset #4C443C;
+    border-radius: 15px;
     margin-left: 2px;
     margin-right: 2px;
     text-align:center;
     padding: 0px!important;
-    color: #322214;
+    /* background-color: #C5FFFD; */
+    color: #3A2418;
 }
-
 
 .action-icon:hover{
     color: white;
 }
 
+#gen-new-psa-icon{
+background-color: #DBB68F;}
+
+#save-icon{
+    background-color: #BB7E5D;
+}
+
+#storage-icon{
+    background-color: #DBB68F;
+}
+
+#trash-icon{
+    background-color: #DA5C3F;
+}
+
 .fas{
     margin:auto;
+}
+
+#footer-background {
+    background-color: #73D0D1;
+    border: 2px solid #73D0D1;
 }

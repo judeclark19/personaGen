@@ -94,7 +94,11 @@ $(document).ready(function () {
 
   // EVENT LISTENERS
   // =====================================================================
-  // $("#save-icon").on("click", saveFunc())
+  // 
+//   $("#action-icon").on("click","#gen-new-psa-icon", function () {
+//     generateNewPersona();
+//   });
+
   $("#gen-new-psa-icon").on("click", function () {
     generateNewPersona();
   });
