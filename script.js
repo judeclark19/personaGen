@@ -3,7 +3,19 @@ $.ajax({
   url: "https://randomuser.me/api/",
   dataType: "json",
   success: function (data) {
-    console.log(data);
+    // console.log(data);
+    var randomGen = data.results[0]
+    var personaImg = randomGen.picture.thumbnail;
+    var personaName = randomGen.name.first + " " + randomGen.name.last;
+    var personaLocation = randomGen.location.city + ", " + randomGen.location.country;
+    var personaEmail = randomGen.email;
+    var personaGender = randomGen.gender;
+
+    console.log("image link: " + personaImg);
+    console.log("name: " + personaName);
+    console.log("location: " + personaLocation);
+    console.log("email: " + personaEmail);
+    console.log("gender: " + personaGender);
   },
 });
 
@@ -41,8 +53,11 @@ var settingsOne = {
 	}
 }
 
-$.ajax(settingsOne).done(function (response) {
-	console.log(response);
+$.ajax(settingsOne).done(function (responseOne) {
+    // console.log(responseOne);
+    var inspireQuote = responseOne.content;
+
+    console.log("inspirational quote: " + inspireQuote);
 });
 
 // corporate buzzwords api
@@ -57,6 +72,9 @@ var settingsTwo = {
 	}
 }
 
-$.ajax(settingsTwo).done(function (response) {
-	console.log(response);
+$.ajax(settingsTwo).done(function (responseTwo) {
+    // console.log(responseTwo);
+    var corporateQuote = responseTwo.phrase;
+
+    console.log("corporate quote: " + corporateQuote);
 });
