@@ -35,9 +35,16 @@
         <div id="target-container"></div>
         <!-- ================ -->
         <!-- THIS IS THE FORM -->
-        <h1>Generate New Persona</h1>
+        
         <form action="#" id="target-form">
-            <!-- interests drop down -->
+            <h1>Generate New Persona</h1>
+            <label for="age-type">Age Range</label>
+            <br>
+            <input id="age-low" type="text" placeholder="numbers only">
+            <br>
+            <input id="age-high" type="text" placeholder="numbers-only">
+            <br>
+
             <label for="sex-type">Gender</label>
             <select id="sex-type" name="sex-type">
                 <option value="0">Random</option>
@@ -62,7 +69,7 @@
                 <option value="Puppies">Puppies</option>
             </select>
             <br>
-            <input id="submit-generate" type="submit">
+            <input id="submit-generate" type="button">
         </form>
 
 </div>
@@ -71,7 +78,7 @@
     <!-- "footer" action bar -->
     <nav class="is-fixed-bottom" id="action-bar">
         <div class="columns is-centered is-mobile">
-         <div class="column action-icon is-one-quarter" style="font-size: 3em">
+         <div class="column action-icon is-one-quarter" id="generate-new-icon" style="font-size: 3em">
             <i class="fas fa-user-plus"></i>
           </div>
           <div class="column action-icon is-one-quarter" style="font-size: 3em">
