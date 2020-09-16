@@ -11,11 +11,11 @@ $.ajax({
     var personaEmail = randomGen.email;
     var personaGender = randomGen.gender;
 
-    console.log(personaImg);
-    console.log(personaName);
-    console.log(personaLocation);
-    console.log(personaEmail);
-    console.log(personaGender);
+    console.log("image link: " + personaImg);
+    console.log("name: " + personaName);
+    console.log("location: " + personaLocation);
+    console.log("email: " + personaEmail);
+    console.log("gender: " + personaGender);
   },
 });
 
@@ -57,7 +57,7 @@ $.ajax(settingsOne).done(function (responseOne) {
     // console.log(responseOne);
     var inspireQuote = responseOne.content;
 
-    console.log(inspireQuote);
+    console.log("inspirational quote: " + inspireQuote);
 });
 
 // corporate buzzwords api
@@ -76,5 +76,5 @@ $.ajax(settingsTwo).done(function (responseTwo) {
     // console.log(responseTwo);
     var corporateQuote = responseTwo.phrase;
 
-    console.log(corporateQuote);
+    console.log("corporate quote: " + corporateQuote);
 });
