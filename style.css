@@ -22,17 +22,19 @@
     
 }
 
-#persona-info-display{
-    position: absolute;               /* 2 */
-    top: 50%;                         /* 3 */
-    transform: translate(50%, -50%) 
+#persona-data-holder{
+    position: absolute;
+    top: 50%;
+    transform: translate(24%, -50%) 
 }
+
+
 
 #persona-image{
     display: block;
     margin-left: auto;
     margin-right: auto;
-    
+    margin-bottom: 20px;
 }
 
 #action-bar {
