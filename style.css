@@ -1,3 +1,19 @@
-h1 {
+/* h1 {
     color: purple
-} 
+}  */
+
+#title-bar {
+    border: 1px solid blue;
+}
+
+#action-bar {
+    border: 1px solid green;
+}
+
+.action-icon{
+    text-align:center;
+}
+
+.fas{
+    margin:auto;
+}
