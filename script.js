@@ -1,5 +1,5 @@
 var specificCategory = "meteorology";
-var userQuoteSelection = "Corporate";
+var userQuoteSelection = "Inspirational";
 
 // text generation
 function autoBiography(name, location, category, quote) {
@@ -70,7 +70,7 @@ $.ajax({
       $.ajax(settingsOne).done(function (responseOne) {
         // console.log(responseOne);
         var inspireQuote = responseOne.content;
-
+        inspireQuote = inspireQuote.toLowerCase();
         console.log(autoBiography(personaName, personaLocation, specificCategory, inspireQuote));
       });
     } else if (userQuoteSelection === "Corporate") {
@@ -90,51 +90,10 @@ $.ajax({
       $.ajax(settingsTwo).done(function (responseTwo) {
         // console.log(responseTwo);
         var corporateQuote = responseTwo.phrase;
+        corporateQuote = corporateQuote.toLowerCase();
 
         console.log(autoBiography(personaName, personaLocation, specificCategory, corporateQuote));
       });
     }
   }
 });
-
-
-// random inspirational quotes
-// function inspirationQuote() {
-//   var settingsOne = {
-//     async: true,
-//     crossDomain: true,
-//     url: "https://quotes15.p.rapidapi.com/quotes/random/?language_code=en",
-//     method: "GET",
-//     headers: {
-//       "x-rapidapi-host": "quotes15.p.rapidapi.com",
-//       "x-rapidapi-key": "59d0c27c79msh6e6814003e3803ep1e5484jsn5fecf295231f",
-//     },
-//   };
-
-//   $.ajax(settingsOne).done(function (responseOne) {
-//     // console.log(responseOne);
-//     var inspireQuote = responseOne.content;
-
-//     return inspireQuote;
-//   });
-// }
-
-// corporate buzzwords api
-// function corporateQuote() {
-//   var settingsTwo = {
-//     async: true,
-//     crossDomain: true,
-//     url: "https://sameer-kumar-corporate-bs-generator-v1.p.rapidapi.com/",
-//     method: "GET",
-//     headers: {
-//       "x-rapidapi-host":
-//         "sameer-kumar-corporate-bs-generator-v1.p.rapidapi.com",
-//       "x-rapidapi-key": "59d0c27c79msh6e6814003e3803ep1e5484jsn5fecf295231f",
-//     },
-//   };
-
-//   $.ajax(settingsTwo).done(function (responseTwo) {
-//     // console.log(responseTwo);
-//     var corporateQuote = responseTwo.phrase;
-
-//     return corporateQuote;
