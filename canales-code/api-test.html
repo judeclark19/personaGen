@@ -32,19 +32,33 @@
 <div id="main-container">
 <div id="persona-card">
     <div id="persona-data-holder">
-    <img id="persona-image" src="https://via.placeholder.com/200x200.png">
-        <p>Lorem ipsum dolor sit amet.</p>
-        <p>Lorem ipsum dolor sit amet.</p>
-        <p>Lorem ipsum dolor sit amet.</p>
-        <p>Lorem ipsum dolor sit amet.</p>
-    </div>
+        <form id="target-form">
+
+            <!-- interests drop down -->
+            <label for="quote-type">Quote Type</label>
+            <select id="quote-type" name="quote-type">
+              <option value="corporate">Corporate Quote</option>
+              <option value="inspirational">Inspirational Quote</option>
+            </select>
+            <br>
+            <label for="interest">Choose an Interest</label>
+            <select id="persona-interests" name="cars">
+              <option value="fighting">Fighting</option>
+              <option value="movies">Movies</option>
+              <option value="horticulture">Horticulture</option>
+              <option value="Puppies">Puppies</option>
+            </select>
+
+            <input id="submit-generate" type="submit">
+        </form>
+
 </div>
 <!-- Main content here! -->
 </div>
     <!-- "footer" action bar -->
     <nav class="is-fixed-bottom" id="action-bar">
         <div class="columns is-centered is-mobile">
-          <div class="column action-icon is-one-quarter" style="font-size: 3em" id="generate-persona">
+         <div class="column action-icon is-one-quarter" style="font-size: 3em">
             <i class="fas fa-user-plus"></i>
           </div>
           <div class="column action-icon is-one-quarter" style="font-size: 3em">
@@ -65,6 +79,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="./script.js" type="text/javascript"></script>
-    <script src="./api-TARGETTING.js" type="text/javascript"></script>
+    <script src="/canales-code/api-TARGETTING.js" type="text/javascript"></script>
   </body>
 </html>
