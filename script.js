@@ -1,58 +1,56 @@
 // text generation api
 function autoBiography(textInput, name, location) {
-    var sentences = textInput.split("<p>");
-    for (var i = 0; i < sentences.length; i++) {
-        sentences[i] = sentences[i].replace("</p>", "");
-    }
-    sentences.splice(0, 1);
-    return sentences;
+  var sentences = textInput.split("<p>");
+  for (var i = 0; i < sentences.length; i++) {
+    sentences[i] = sentences[i].replace("</p>", "");
+  }
+  sentences.splice(0, 1);
+
+  var randomSentence = Math.floor(Math.random() * sentences.length);
+  var finalText = "Hi my name is " + name + ". I am from " + location + "." + sentences[randomSentence];
+  return finalText;
 }
 
-
-var specificCategory = "education";
-
-console.log(specificCategory);
-
-var settings = {
-  async: true,
-  crossDomain: true,
-  url:
-    "https://contentai-net-text-generation.p.rapidapi.com/text-generation/api/?category=" +
-    specificCategory,
-  method: "GET",
-  headers: {
-    "x-rapidapi-host": "contentai-net-text-generation.p.rapidapi.com",
-    "x-rapidapi-key": "59d0c27c79msh6e6814003e3803ep1e5484jsn5fecf295231f",
-  },
-};
-
-$.ajax(settings).done(function (response) {
-  console.log(autoBiography(response.text));
-});
-
-
-
-
 // random user api
-// $.ajax({
-//   url: "https://randomuser.me/api/",
-//   dataType: "json",
-//   success: function (data) {
-//     // console.log(data);
-//     var randomGen = data.results[0]
-//     var personaImg = randomGen.picture.thumbnail;
-//     var personaName = randomGen.name.first + " " + randomGen.name.last;
-//     var personaLocation = randomGen.location.city + ", " + randomGen.location.country;
-//     var personaEmail = randomGen.email;
-//     var personaGender = randomGen.gender;
+$.ajax({
+  url: "https://randomuser.me/api/",
+  dataType: "json",
+  success: function (data) {
+    // console.log(data);
+    var randomGen = data.results[0];
+    var personaImg = randomGen.picture.thumbnail;
+    var personaName = randomGen.name.first + " " + randomGen.name.last;
+    var personaLocation =
+      randomGen.location.city + ", " + randomGen.location.country;
+    var personaEmail = randomGen.email;
+    var personaGender = randomGen.gender;
 
-//     console.log("image link: " + personaImg);
-//     console.log("name: " + personaName);
-//     console.log("location: " + personaLocation);
-//     console.log("email: " + personaEmail);
-//     console.log("gender: " + personaGender);
-//   },
-// });
+    console.log("image link: " + personaImg);
+    console.log("name: " + personaName);
+    console.log("location: " + personaLocation);
+    console.log("email: " + personaEmail);
+    console.log("gender: " + personaGender);
+
+    var specificCategory = "education";
+
+    var settings = {
+      async: true,
+      crossDomain: true,
+      url:
+        "https://contentai-net-text-generation.p.rapidapi.com/text-generation/api/?category=" +
+        specificCategory,
+      method: "GET",
+      headers: {
+        "x-rapidapi-host": "contentai-net-text-generation.p.rapidapi.com",
+        "x-rapidapi-key": "59d0c27c79msh6e6814003e3803ep1e5484jsn5fecf295231f",
+      },
+    };
+
+    $.ajax(settings).done(function (response) {
+      console.log(autoBiography(response.text, personaName, personaLocation));
+    });
+  },
+});
 
 // // random inspirational quotes
 // var settingsOne = {
