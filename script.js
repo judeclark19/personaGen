@@ -7,7 +7,7 @@ var saveIcon = $("#save-icon")
 var storageIcon = $("#storage-icon")
 var trashIcon = $("#trash-icon")
 
-// PAGE TARGETTING VARIABLES
+// PAGE TARGETING VARIABLES
 var personaCard = $("#persona-card")
 
 // ==============================
@@ -94,6 +94,7 @@ $(document).ready(function () {
   function generateNewPersona() {
     console.log("I clicked the generate new button");
     personaCard.empty();
+    personaCard.removeClass("hide");
     newUserCall();
   }
 
