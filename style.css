@@ -4,18 +4,29 @@
 
 #main-container{
     position: relative;
+    border: 2px dashed hotpink;
+    box-sizing: border-box;
+    max-height: calc(100vh - 72px - 54px);
+    /* margin-bottom: 200px; */
 }
 
 #persona-card {
     border: 1px solid blue;
+    margin-top: 5vh;
+    /* margin-bottom: 10vh; */
+    margin-right: 8vw;
+    margin-left: 8vw;
+    min-height: 68vh;
 }
 
 #action-bar {
     border: 1px solid green;
+    /* margin-top: 50px; */
     padding-top: 10px;
     padding-bottom: 10px;
     bottom: 0;
     position: absolute;
+    /* height: 3.25rem; */
     width: 100vw;
 }
 
