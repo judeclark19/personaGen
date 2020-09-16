@@ -6,12 +6,13 @@ $(document).ready(function(){
     var targetContainer = $("#target-container");
     var targetForm = $("#target-form");
     var quoteSelect = $("#quote-type");
-    var personaSelect = $("#pesona-interests");
+    var interestSelect = $("#persona-interests");
     var submitGenerate = $("#submit-generate");
 
-    targetForm.on("click", function() {
-      console.log(personaSelect.val())
-
+    submitGenerate.on("click", function() {
+      console.log(interestSelect.val());
+      console.log(quoteSelect.val());
+      event.preventDefault();
 
 
 
