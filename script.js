@@ -1,3 +1,50 @@
+$(function(){
+
+// EVENT LISTENERS
+// =====================================================================
+// $("#save-icon").on("click", saveFunc())
+$("#gen-new-psa-icon").on("click", function(){
+    generateNewPersona();
+})
+
+$("#save-icon").on("click", function(){
+    saveFunc();
+})
+
+$("#storage-icon").on("click", function(){
+    viewStoredPersonas();
+})
+
+$("#trash-icon").on("click", function(){
+    clearStorage();
+})
+// =====================================================================
+
+
+// UI Functions
+// =====================================================================
+function generateNewPersona() {
+    console.log("I clicked the generate new button")
+}
+
+function saveFunc() {
+     console.log("I clicked the save button")
+     alert("You clicked the save button")
+ }
+
+function viewStoredPersonas() {
+    console.log("I clicked the view storage icon")
+}
+
+function viewStoredPersonas() {
+    console.log("I clicked the view storage icon")
+}
+
+function clearStorage() {
+    console.log("I clicked the clear storage button")
+}
+// =====================================================================
+
 // random user api
 $.ajax({
   url: "https://randomuser.me/api/",
@@ -77,4 +124,5 @@ $.ajax(settingsTwo).done(function (responseTwo) {
     var corporateQuote = responseTwo.phrase;
 
     console.log("corporate quote: " + corporateQuote);
+});
 });
