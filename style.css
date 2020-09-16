@@ -1,9 +1,14 @@
+*{
+    font-family: 'Poppins', sans-serif;
+}
+
 .hide{
     display: none;
 }
 
 #title-bar {
     border: 1px dashed green;
+    background-color:#636564;
 }
 
 #main-container{
@@ -12,6 +17,13 @@
     height: calc(100vh - 72px - 54px);
     display: flex;
     justify-content: center;
+    background-color: #F4F5F6;
+}
+
+.navbar-brand {
+    color: #C5CCD3;
+font-size: 30px;
+padding-left: 15px;
 }
 
 #persona-card {
