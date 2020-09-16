@@ -5,11 +5,15 @@ $(document).ready(function(){
     var generateNew = $("#generate-persona");
     var targetContainer = $("#target-container");
     var targetForm = $("#target-form");
+
+    // FORM SELECTORS to target for VALUES
+    var sexSelect = $("#sex-type")
     var quoteSelect = $("#quote-type");
     var interestSelect = $("#persona-interests");
     var submitGenerate = $("#submit-generate");
 
     submitGenerate.on("click", function() {
+      console.log(sexSelect.val());
       console.log(interestSelect.val());
       console.log(quoteSelect.val());
       event.preventDefault();
