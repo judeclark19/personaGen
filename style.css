@@ -19,7 +19,6 @@
     margin-right: 8vw;
     margin-left: 8vw;
     min-height: 68vh;
-    
 }
 
 #persona-data-holder{
@@ -27,8 +26,6 @@
     top: 50%;
     transform: translate(24%, -50%) 
 }
-
-
 
 #persona-image{
     display: block;
