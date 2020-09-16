@@ -14,16 +14,23 @@
     position: absolute;
     border: 1px solid blue;
     border-radius: 25px;
-    min-height: 68vh;
+    /* min-height: 68vh; */
+    min-width: 50vw;
     margin-top: 5vh;
 }
 
-#persona-card p {
+#persona-info{
+    padding-bottom:20px;
+}
+#persona-info p {
     text-align: center;
 }
 
 #persona-image{
     padding: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #action-bar {
