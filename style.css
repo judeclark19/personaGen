@@ -11,6 +11,8 @@
 
 #action-bar {
     border: 1px solid green;
+    padding-top: 10px;
+    padding-bottom: 10px;
     bottom: 0;
     position: absolute;
     width: 100vw;
@@ -18,6 +20,7 @@
 
 .action-icon{
     text-align:center;
+    padding: 0px!important;
 }
 
 .fas{
