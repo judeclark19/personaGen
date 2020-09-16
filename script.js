@@ -1,28 +1,36 @@
-// text generation api
-function autoBiography(textInput, name, location, category) {
-  var sentences = textInput.split("<p>");
-  for (var i = 0; i < sentences.length; i++) {
-    sentences[i] = sentences[i].replace("</p>", "");
-  }
-  sentences.splice(0, 1);
+var specificCategory = "meteorology";
+var userQuoteSelection = "Corporate";
 
+// text generation
+function autoBiography(name, location, category, quote) {
   sentenceStructure = {
     starter: ["Hi my name is ", "Hello my name is ", "Whats up it's "],
     where: [". I am from ", ". I am originally from ", ". I come from "],
-    interests: [". I am very interested in ", ". I work in ", ". My biggest passion is "]
+    interests: [
+      ". I am very interested in ",
+      ". I work in ",
+      ". My biggest passion is ",
+    ],
+    quotes: [
+      ". As I always say, ",
+      ". My favorite quote is ",
+      ". I live by the phrase ",
+    ],
   };
-  var randomWords = Math.floor(Math.random() * sentenceStructure.starter.length);
-  var randomSentence = Math.floor(Math.random() * sentences.length);
+  var randomWords = Math.floor(
+    Math.random() * sentenceStructure.starter.length
+  );
 
   var finalText =
     sentenceStructure.starter[randomWords] +
     name +
     sentenceStructure.where[randomWords] +
     location +
-    sentenceStructure.interests[randomWords] + 
-    category + 
-    "." +
-    sentences[randomSentence];
+    sentenceStructure.interests[randomWords] +
+    category +
+    sentenceStructure.quotes[randomWords] +
+    quote +
+    ".";
   return finalText;
 }
 
@@ -46,61 +54,87 @@ $.ajax({
     console.log("email: " + personaEmail);
     console.log("gender: " + personaGender);
 
-    var specificCategory = "education";
+    if (userQuoteSelection === "Inspirational") {
+      var settingsOne = {
+        async: true,
+        crossDomain: true,
+        url: "https://quotes15.p.rapidapi.com/quotes/random/?language_code=en",
+        method: "GET",
+        headers: {
+          "x-rapidapi-host": "quotes15.p.rapidapi.com",
+          "x-rapidapi-key":
+            "59d0c27c79msh6e6814003e3803ep1e5484jsn5fecf295231f",
+        },
+      };
 
-    var settings = {
-      async: true,
-      crossDomain: true,
-      url:
-        "https://contentai-net-text-generation.p.rapidapi.com/text-generation/api/?category=" +
-        specificCategory,
-      method: "GET",
-      headers: {
-        "x-rapidapi-host": "contentai-net-text-generation.p.rapidapi.com",
-        "x-rapidapi-key": "59d0c27c79msh6e6814003e3803ep1e5484jsn5fecf295231f",
-      },
-    };
+      $.ajax(settingsOne).done(function (responseOne) {
+        // console.log(responseOne);
+        var inspireQuote = responseOne.content;
 
-    $.ajax(settings).done(function (response) {
-      console.log(autoBiography(response.text, personaName, personaLocation, specificCategory));
-    });
-  },
+        console.log(autoBiography(personaName, personaLocation, specificCategory, inspireQuote));
+      });
+    } else if (userQuoteSelection === "Corporate") {
+      var settingsTwo = {
+        async: true,
+        crossDomain: true,
+        url: "https://sameer-kumar-corporate-bs-generator-v1.p.rapidapi.com/",
+        method: "GET",
+        headers: {
+          "x-rapidapi-host":
+            "sameer-kumar-corporate-bs-generator-v1.p.rapidapi.com",
+          "x-rapidapi-key":
+            "59d0c27c79msh6e6814003e3803ep1e5484jsn5fecf295231f",
+        },
+      };
+
+      $.ajax(settingsTwo).done(function (responseTwo) {
+        // console.log(responseTwo);
+        var corporateQuote = responseTwo.phrase;
+
+        console.log(autoBiography(personaName, personaLocation, specificCategory, corporateQuote));
+      });
+    }
+  }
 });
 
-// // random inspirational quotes
-// var settingsOne = {
-// 	"async": true,
-// 	"crossDomain": true,
-// 	"url": "https://quotes15.p.rapidapi.com/quotes/random/?language_code=en",
-// 	"method": "GET",
-// 	"headers": {
-// 		"x-rapidapi-host": "quotes15.p.rapidapi.com",
-// 		"x-rapidapi-key": "59d0c27c79msh6e6814003e3803ep1e5484jsn5fecf295231f"
-// 	}
-// }
 
-// $.ajax(settingsOne).done(function (responseOne) {
+// random inspirational quotes
+// function inspirationQuote() {
+//   var settingsOne = {
+//     async: true,
+//     crossDomain: true,
+//     url: "https://quotes15.p.rapidapi.com/quotes/random/?language_code=en",
+//     method: "GET",
+//     headers: {
+//       "x-rapidapi-host": "quotes15.p.rapidapi.com",
+//       "x-rapidapi-key": "59d0c27c79msh6e6814003e3803ep1e5484jsn5fecf295231f",
+//     },
+//   };
+
+//   $.ajax(settingsOne).done(function (responseOne) {
 //     // console.log(responseOne);
 //     var inspireQuote = responseOne.content;
 
-//     console.log("inspirational quote: " + inspireQuote);
-// });
-
-// // corporate buzzwords api
-// var settingsTwo = {
-// 	"async": true,
-// 	"crossDomain": true,
-// 	"url": "https://sameer-kumar-corporate-bs-generator-v1.p.rapidapi.com/",
-// 	"method": "GET",
-// 	"headers": {
-// 		"x-rapidapi-host": "sameer-kumar-corporate-bs-generator-v1.p.rapidapi.com",
-// 		"x-rapidapi-key": "59d0c27c79msh6e6814003e3803ep1e5484jsn5fecf295231f"
-// 	}
+//     return inspireQuote;
+//   });
 // }
 
-// $.ajax(settingsTwo).done(function (responseTwo) {
+// corporate buzzwords api
+// function corporateQuote() {
+//   var settingsTwo = {
+//     async: true,
+//     crossDomain: true,
+//     url: "https://sameer-kumar-corporate-bs-generator-v1.p.rapidapi.com/",
+//     method: "GET",
+//     headers: {
+//       "x-rapidapi-host":
+//         "sameer-kumar-corporate-bs-generator-v1.p.rapidapi.com",
+//       "x-rapidapi-key": "59d0c27c79msh6e6814003e3803ep1e5484jsn5fecf295231f",
+//     },
+//   };
+
+//   $.ajax(settingsTwo).done(function (responseTwo) {
 //     // console.log(responseTwo);
 //     var corporateQuote = responseTwo.phrase;
 
-//     console.log("corporate quote: " + corporateQuote);
-// });
+//     return corporateQuote;
