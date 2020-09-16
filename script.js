@@ -29,6 +29,7 @@ function generateNewPersona() {
 
 function saveFunc() {
      console.log("I clicked the save button")
+     alert("You clicked the save button")
  }
 
 function viewStoredPersonas() {

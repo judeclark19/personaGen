@@ -5,7 +5,6 @@
 #main-container{
     position: relative;
     border: 2px dashed hotpink;
-    box-sizing: border-box;
     height: calc(100vh - 72px - 54px);
     display: flex;
     justify-content: center;
@@ -16,6 +15,7 @@
     border: 1px solid blue;
     border-radius: 25px;
     min-height: 68vh;
+    margin-top: 5vh;
 }
 
 #persona-card p {
@@ -27,11 +27,11 @@
 }
 
 #action-bar {
-    border: 1px solid green
+    border: 1px solid green;
     padding-top: 10px;
     padding-bottom: 10px;
-    bottom: 0;
     position: absolute;
+    bottom: 0;
     width: 100vw;
 }
 
