@@ -1,4 +1,9 @@
 $(function(){
+    // GLOBAL VARS
+// =================================================================
+var personaDataTypesArr = ["Name", "Age", "Location", "Bio"];
+
+// =====================================================================
 
 // EVENT LISTENERS
 // =====================================================================
@@ -25,6 +30,17 @@ $("#trash-icon").on("click", function(){
 // =====================================================================
 function generateNewPersona() {
     console.log("I clicked the generate new button")
+    $("#persona-card").empty();
+    var personaImgSrc = "https://via.placeholder.com/200x200.png"
+var personaImage = $("<img id='persona-image'>").attr("src", personaImgSrc)
+
+var personaInfoDiv = $("<div id='persona-info'>")
+
+for(let i=0; i<personaDataTypesArr.length; i++) {
+personaInfoDiv.append($("<p>").text("lorem ipsum dolor sit amet"))
+}
+
+$("#persona-card").append(personaImage, personaInfoDiv);
 }
 
 function saveFunc() {
@@ -43,6 +59,13 @@ function viewStoredPersonas() {
 function clearStorage() {
     console.log("I clicked the clear storage button")
 }
+// =====================================================================
+
+
+// Traversing the DOM
+// =====================================================================
+
+
 // =====================================================================
 
 // random user api
