@@ -1,19 +1,41 @@
-/* h1 {
-    color: purple
-}  */
-
 #title-bar {
     border: 1px solid blue;
 }
 
+#main-container{
+    /* height: calc(100vh-54px); */
+    /* margin-top:100px!important; */
+    border: 3px dashed hotpink;
+    position: relative;
+}
+
 #action-bar {
     border: 1px solid green;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    bottom: 0;
+    position: absolute;
+    width: 100vw;
 }
 
 .action-icon{
     text-align:center;
+    padding: 0px!important;
 }
 
 .fas{
     margin:auto;
 }
+
+/* .column {
+    position: relative;
+}
+
+.fas {
+    font-size: em;
+/* margin: 0;
+  position: absolute;
+  /* top: 50%; */
+  /* left: 50%; */
+  /* transform: translate(-50%, -50%); 
+} 
