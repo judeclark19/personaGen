@@ -12,10 +12,12 @@
     <title>Lucky 13</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="api-test.css" />
+    <link rel="stylesheet" href="./style.css" />
     <!-- Bulma -->
-    <link   rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css"/>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css"
+    />
     <!-- Font awesome -->
     <script
       src="https://kit.fontawesome.com/cee1303d38.js"
@@ -25,40 +27,44 @@
   <body>
     <!-- Build a nav bar -->
     <nav class="navbar" id="title-bar">
-      <div class="navbar-brand"><h1> PersonaGen </h1></div>
+      <div class="navbar-brand">PersonaGen</div>
     </nav>
-
-    <!-- ***************************************** -->
-    <!-- TARGETING -->
-    <div id="target-container" class="test">
-      </div>
-    <!-- ************************************************** -->
-    
-
-<!-- footer action bar -->
-    <nav class="navbar is-fixed-bottom" id="action-bar">
-      <div class="navbar-brand columns is-centered">
-        <div class="column action-icon" style="font-size: 3em">
-          <i class="fas fa-user-plus"></i>
+<div id="main-container">
+<div id="persona-card">
+    <div id="persona-data-holder">
+    <img id="persona-image" src="https://via.placeholder.com/200x200.png">
+        <p>Lorem ipsum dolor sit amet.</p>
+        <p>Lorem ipsum dolor sit amet.</p>
+        <p>Lorem ipsum dolor sit amet.</p>
+        <p>Lorem ipsum dolor sit amet.</p>
+    </div>
+</div>
+<!-- Main content here! -->
+</div>
+    <!-- "footer" action bar -->
+    <nav class="is-fixed-bottom" id="action-bar">
+        <div class="columns is-centered is-mobile">
+          <div class="column action-icon is-one-quarter" style="font-size: 3em" id="generate-persona">
+            <i class="fas fa-user-plus"></i>
+          </div>
+          <div class="column action-icon is-one-quarter" style="font-size: 3em">
+            <i class="fas fa-save"></i>
+          </div>
+  
+          <div class="column action-icon is-one-quarter" style="font-size: 3em">
+            <i class="fas fa-folder"></i>
+          </div>
+          <div class="column action-icon is-one-quarter" style="font-size: 3em">
+            <i class="fas fa-trash-alt"></i>
+          </div>
         </div>
-        <div class="column action-icon" style="font-size: 3em">
-          <i class="fas fa-save"></i>
-        </div>
-
-        <div class="column action-icon" style="font-size: 3em">
-          <i class="fas fa-folder"></i>
-        </div>
-        <div class="column action-icon" style="font-size: 3em">
-          <i class="fas fa-trash-alt"></i>
-        </div>
-      </div>
-    </nav>
-
+      </nav>
     <script
       src="https://code.jquery.com/jquery-3.5.1.min.js"
       integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
       crossorigin="anonymous"
     ></script>
-    <script src="api-test.js" type="text/javascript"></script>
+    <script src="./script.js" type="text/javascript"></script>
+    <script src="./api-TARGETTING.js" type="text/javascript"></script>
   </body>
 </html>

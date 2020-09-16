@@ -1,7 +1,7 @@
 $(document).ready(function(){
     console.log("hello cruel world")
 
-
+    
 
     var target = $("#target-container")
     // $("#persona-gen").on("click", function() {
@@ -55,7 +55,7 @@ $(document).ready(function(){
 
         }
       });
-
+    // });
 
 
 
