@@ -1,16 +1,11 @@
 // text generation api
-function autoBiography(textInput) {
+function autoBiography(textInput, name, location) {
     var sentences = textInput.split("<p>");
     for (var i = 0; i < sentences.length; i++) {
         sentences[i] = sentences[i].replace("</p>", "");
     }
-    // textInput = textInput.replace("</p>", "");
-    // textInput = textInput.replace("</p>", "");
-    // textInput = textInput.replace("</p>", "");
-    // var sentences = textInput.split("<p>");
-
+    sentences.splice(0, 1);
     return sentences;
-    // return textInput;
 }
 
 
