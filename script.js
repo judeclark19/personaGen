@@ -45,48 +45,49 @@ $(document).ready(function () {
     // "Ringo Starr"
     {
       personaIdentifier: "JL", // perhaps the api spits back something like an ID number for the face idk
-      personaData: [
+      personaData:
         {
+        image: "https://www.straight.com/files/v3/styles/gs_standard/public/images/15/12/johnlennon.jpg",
           name: "John Lennon",
           age: 80,
           location: "New York City",
           bio: "had a weird life and died young",
         },
-      ],
     },
     {
       personaIdentifier: "PM", // perhaps the api spits back something like an ID number for the face idk
-      personaData: [
+      personaData:
         {
+            image:"https://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cg_face%2Cq_auto:good%2Cw_300/MTE5NTU2MzE2Mjk4OTcwNjM1/paul-mccartney-9390850-1-402.jpg",
           name: "Paul McCartney",
           age: 78,
           location: "London, UK",
           bio: "his wife looks 30 years younger than she actually is",
         },
-      ],
     },
     {
       personaIdentifier: "GH", // perhaps the api spits back something like an ID number for the face idk
-      personaData: [
+      personaData: 
         {
+        image:"https://bloximages.newyork1.vip.townnews.com/thesuburban.com/content/tncms/assets/v3/editorial/2/d9/2d9861e0-d40a-580a-aef4-39a70bebcaa1/5944174002979.image.jpg",
           name: "George Harrison",
           age: 77,
           location: "Friar Park, England",
           bio: "has a son that is obviously a clone",
-        },
-      ],
+        }
     },
     {
-      personaIdentifier: "GH", // perhaps the api spits back something like an ID number for the face idk
-      personaData: [
+      personaIdentifier: "RS", // perhaps the api spits back something like an ID number for the face idk
+      personaData:
         {
+            image:"https://www.biography.com/.image/t_share/MTE5NTU2MzE2MDcwNjQzMjEx/ringo-starr-306872-1-402.jpg",
           name: "Ringo Starr",
           age: 80,
           location: "Los Angeles",
           bio: "peace and love, peace and love",
-        },
-      ],
+        }
     },
+    
   ];
 
   // =====================================================================
@@ -114,9 +115,16 @@ $(document).ready(function () {
   // UI Functions
   // =====================================================================
   function generateNewPersona() {
-    console.log("I clicked the generate new button");
+     var temporaryRNG =  Math.floor(Math.random() * 4);
+     
+    //  console.log(storedPersonas[temporaryRNG].personaData.image);
+    // console.log(temporaryRNG);
+
+   
     $("#persona-card").empty();
-    var personaImgSrc = "https://via.placeholder.com/200x200.png";
+    $("#persona-card").removeClass("hide");
+    // var personaImgSrc = "https://via.placeholder.com/200x200.png";
+    var personaImgSrc = storedPersonas[temporaryRNG].personaData.image
     var personaImage = $("<img id='persona-image'>").attr("src", personaImgSrc);
 
     var personaInfoDiv = $("<div id='persona-info'>");

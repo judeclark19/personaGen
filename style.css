@@ -28,7 +28,7 @@ padding-left: 15px;
 
 #persona-card {
     position: absolute;
-    border: 1px solid blue;
+    border: 2px outset;
     border-radius: 25px;
     /* min-height: 68vh; */
     min-width: 50vw;
@@ -56,11 +56,21 @@ padding-left: 15px;
     position: absolute;
     bottom: 0;
     width: 100vw;
+    background-color: #C5CCD3;
 }
 
 .action-icon{
+    border: 1px solid;
+    margin-left: 2px;
+    margin-right: 2px;
     text-align:center;
     padding: 0px!important;
+    color: #322214;
+}
+
+
+.action-icon:hover{
+    color: white;
 }
 
 .fas{
