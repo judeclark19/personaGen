@@ -34,7 +34,7 @@ submitGenerate.on("click", function (event) {
 // =======================
 
 // JOSEPH HARDCODE VARIABLES
-var specificCategory = "meteorology";
+var specificCategory;
 var userQuoteSelection = "Inspirational";
 
 // ==============
@@ -236,6 +236,9 @@ $(document).ready(function () {
             psaBioEl
           );
           personaBlock.append(imageContainer, dataContainer);
+
+          // creates interest/career based on age. No more meteorology!
+          specificCategory = generateProfession(personaAge);
 
           // ========================
           // VARIABLE BIO GENERATION
