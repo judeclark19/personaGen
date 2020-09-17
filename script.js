@@ -300,6 +300,10 @@ $(document).ready(function () {
           }
         });
       },
+      error: function(xhr) {
+        var errorText = xhr.status + " " + xhr.statusText + ". Please retry generate user button.";
+        alert(errorText);
+      }
     });
   } // END NEW USER CALL
 }); // END READY DOCUMENT
