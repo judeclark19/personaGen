@@ -12,19 +12,19 @@ var personaCard = $("#persona-card")
 
 // ==============================
 // FORM VARIABLES & EVENT LISTENER
-var targetForm = $("#target-form");
-var ageSelectLow = $("#age-low")
-var ageSelectHigh = $("#age-high")
-var sexSelect = $("#sex-type")
-var quoteSelect = $("#quote-type");
-var interestSelect = $("#persona-interests");
-var submitGenerate = $("#submit-generate"); //SUBMIT BUTTON
-// EVENT LISTENER FOR FORM 
-submitGenerate.on("click", function(event) {
-    var personaGender = (sexSelect.val())
-    var personaInterests = (interestSelect.val());
-    var personaQuote = (quoteSelect.val());
-    event.preventDefault();});
+// var targetForm = $("#target-form");
+// var ageSelectLow = $("#age-low")
+// var ageSelectHigh = $("#age-high")
+// var sexSelect = $("#sex-type")
+// var quoteSelect = $("#quote-type");
+// var interestSelect = $("#persona-interests");
+// var submitGenerate = $("#submit-generate"); //SUBMIT BUTTON
+// // EVENT LISTENER FOR FORM 
+// submitGenerate.on("click", function(event) {
+//     var personaGender = (sexSelect.val())
+//     var personaInterests = (interestSelect.val());
+//     var personaQuote = (quoteSelect.val());
+//     event.preventDefault();});
 // LEAVE HERE PLEASE
 // =======================
 
@@ -133,6 +133,7 @@ $(document).ready(function () {
      var br = document.createElement("br");
      var br1 = document.createElement("br");
      var br2 = document.createElement("br");
+     var br3 = document.createElement("br");
      
       var personaForm = $("<form id='persona-form'>");
       var personaFormTitle = $("<h2 id='persona-form-tile'>").text("Persona Parameters")
@@ -142,8 +143,16 @@ $(document).ready(function () {
       var personaLabelAgeHigh = $("<label for='age-high-input'>").text("Age High")
       var personaInputAgeHigh = $("<input type='number' id='age-high-input' name='age-high-input' min='18' max='65'>");
       // INTEREST SELECT
-      var personaInterests = $("<label for='persona-interests'>").text("Persona Interest")
-      var personaInterestSelect = $("<select id='persona-interests' name='persona-interests'>");
+      var personaGender = $("<label for='persona-gender-select'>").text("Persona Gender")
+      var personaGenderSelect = $("<select id='persona-gender-select' name='persona-interests'>");
+      var optionTestGender1 = $("<option>").val('gender-test-val-1').text('gender1').appendTo(personaGenderSelect);
+      var optionTestGender2 = $("<option>").val('gender-test-val-2').text('gender2').appendTo(personaGenderSelect);
+      var optionTestGender3 = $("<option>").val('gender-test-val-3').text('gender3').appendTo(personaGenderSelect);
+      var optionTestGender4 = $("<option>").val('gender-test-val-4').text('gender4').appendTo(personaGenderSelect);
+
+      // INTEREST SELECT
+      var personaInterests = $("<label for='persona-interest-select'>").text("Persona Interest")
+      var personaInterestSelect = $("<select id='persona-interest-select' name='persona-interests'>");
       var optionTestInterest1 = $("<option>").val('interest-test-val-1').text('interest1').appendTo(personaInterestSelect);
       var optionTestInterest2 = $("<option>").val('interest-test-val-2').text('interest2').appendTo(personaInterestSelect);
       var optionTestInterest3 = $("<option>").val('interest-test-val-3').text('interest3').appendTo(personaInterestSelect);
@@ -154,13 +163,35 @@ $(document).ready(function () {
       var optionTestQuote2 = $("<option>").val('quote-test-val-2').text('quote2').appendTo(personaQuoteSelect);
       var optionTestQuote3 = $("<option>").val('quote-test-val-3').text('quote3').appendTo(personaQuoteSelect);
       
-      var inputSubmit = $("<input type='submit' value='New User'>").text("SUBMIT ME");
-      
+      var inputSubmit = $("<input type='submit' id='submit-generate' value='Generate New Persona'>").text("SUBMIT ME");
+
       personaForm.append(personaFormTitle);
-      personaForm.append(personaLabelAgeLow, personaInputAgeLow, personaLabelAgeHigh, personaInputAgeHigh, br1, personaInterests, personaInterestSelect, br2, personaQuote, personaQuoteSelect);
+      personaForm.append(personaLabelAgeLow, personaInputAgeLow, personaLabelAgeHigh, personaInputAgeHigh, br1) 
+      personaForm.append(personaGender, personaGenderSelect, br3)
+      personaForm.append(personaInterests, personaInterestSelect, br2, personaQuote, personaQuoteSelect,);
       personaForm.append(br, inputSubmit);
       personaCard.append(personaForm);
       
+      //TARGETTING FORM VALUES
+      var targetForm = $("#persona-form");
+      var ageSelectLow = $("#age-low-input").val();
+      var ageSelectHigh = $("#age-high-input").val();
+      var genderSelect = $("#gender-type-input").val();
+      var quoteSelect = $("#persona-quote-select").val();
+      var interestSelect = $("#persona-interest-select");
+      var submitGenerate = $("#submit-generate"); //SUBMIT BUTTON
+
+      // EVENT LISTENER FOR FORM 
+      submitGenerate.on("click", function(event) {
+
+          console.log(ageSelectHigh);
+          console.log(ageSelectLow);
+          console.log(genderSelect);
+
+          var personaInterests = (interestSelect.val());
+          var personaQuote = (quoteSelect.val());
+          event.preventDefault();});
+
   // $.ajax({
   //   url: "https://randomuser.me/api/",
   //   dataType: "json",
