@@ -225,7 +225,9 @@ $(document).ready(function () {
           var psaBioEl = $("<p id='#psa-bio'>").text("Loading Bio"); // << we receive this information in  a later API CALL
           tableBlock.addClass("hide");
           personaBlock.removeClass("hide");
+          imageContainer.empty();
           dataContainer.empty();
+          imageContainer.append(personaImageEl);
           dataContainer.append(
             psaNameEl,
             psaGenderEl,
@@ -233,7 +235,7 @@ $(document).ready(function () {
             psaLocationEl,
             psaBioEl
           );
-          personaBlock.append(personaImageEl, dataContainer);
+          personaBlock.append(imageContainer, dataContainer);
 
           // ========================
           // VARIABLE BIO GENERATION

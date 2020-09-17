@@ -6,6 +6,15 @@
   display: none;
 }
 
+#main-container{
+  /* position: relative; */
+  border: 2px dashed hotpink;
+  /* height is 100-nav height -footer height */
+ min-height: calc(100vh - 60px - 60px);
+  /* display: flex; */
+  /* justify-content: center; */
+}
+
 #persona-image {
   padding: 20px;
   display: block;
@@ -41,9 +50,8 @@ button:hover{
 footer {
     padding-top:15px!important;
     padding-bottom: 15px!important;
-    position: absolute;
+    /* position: absolute; */
     bottom: 0;
     width: 100%;
-    margin-top: -60px; /* Without this negative margin, the footer will always load JUST out of sight. By giving it a negative margin that is the same height as the footer itself, it is repositioned back onto the page. */
-    clear: both; /* essentially a line break for floating*/
+    /* clear: both; essentially a line break for floating */
 }
