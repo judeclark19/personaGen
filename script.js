@@ -170,7 +170,7 @@ $(document).ready(function () {
   function newUserCall() {
     console.log("NEW USER CALL, CALLED");
     $.ajax({
-      url: "https://randomuser.me/api/",
+      url: "https://randomuser.me/api/extra",
       dataType: "json",
       success: function (data) {
         // ===========================================
@@ -300,6 +300,10 @@ $(document).ready(function () {
           }
         });
       },
+      error: function(xhr) {
+        var errorText = xhr.status + " " + xhr.statusText + ". Please retry generate user button.";
+        alert(errorText);
+      }
     });
   } // END NEW USER CALL
 }); // END READY DOCUMENT
