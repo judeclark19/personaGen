@@ -18,10 +18,11 @@ var librarySwitch = false;
 var personaBox = $("#persona-box");
 var personaBlock = $("#persona-block");
 var tableBlock = $("#table-block");
+var landingPromptBlock = $("#landing-prompt-block");
+var formBlock = $("#form-block")
 
 // ==============================
 // FORM VARIABLES & EVENT LISTENER
-var formBlock = $("#form-block")
 var targetForm = $("#target-form");
 var ageSelectLow = $("#age-low");
 var ageSelectHigh = $("#age-high");
@@ -108,21 +109,21 @@ $(document).ready(function () {
     generateNewPersona();
   });
   userParamsButton.on("click", function () {
-    $("#landing-prompt-block").addClass("hide");
-    $("#form-block").removeClass("hide");
+    landingPromptBlock.addClass("hide");
+    formBlock.removeClass("hide");
   });
 
   formSubmitBtn.on("click", function(){
     console.log("form submitted")
-    $("#form-block").addClass("hide");
+    formBlock.addClass("hide");
     generateNewPersona();
   })
 
   genNewIcon.on("click", function () {
     // generateNewPersona();
     personaBlock.addClass("hide");
-    $("#landing-prompt-block").removeClass("hide");
-    $("#form-block").addClass("hide");
+    landingPromptBlock.removeClass("hide");
+    formBlock.addClass("hide");
   });
 
   saveIcon.on("click", function () {
@@ -152,7 +153,7 @@ $(document).ready(function () {
   }
 
   function saveFunc() {
-    if (document.getElementById("save-icon-style").disabled) {
+    if (document.getElementById("save-icon-container").disabled) {
       console.log("This button is disabled.");
     } else {
       console.log("I clicked the save button");
@@ -243,7 +244,7 @@ $(document).ready(function () {
           // ===========================================
 
           //Hide the prompt
-          $("#landing-prompt-block").addClass("hide");
+          landingPromptBlock.addClass("hide");
 
           //Enable save button
           saveIconContainer.prop("disabled", false);
@@ -255,7 +256,7 @@ $(document).ready(function () {
           storageIconContainer.removeClass("disabled");
           storageIconContainer.addClass("storage-able");
 
-          //Enable storage button
+          //Enable trash button
           trashIconContainer.prop("disabled", false);
           trashIconContainer.removeClass("disabled");
           trashIconContainer.addClass("trash-able");
