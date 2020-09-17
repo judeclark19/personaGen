@@ -131,32 +131,34 @@ $(document).ready(function () {
  function newUserCall() {
      console.log("NEW USER CALL, CALLED")
      var br = document.createElement("br");
-      
-     
+     var br1 = document.createElement("br");
+     var br2 = document.createElement("br");
      
       var personaForm = $("<form id='persona-form'>");
-      var personaFormTitle = $("<h2 id='persona-form-tile'>").text("New Persona")
+      var personaFormTitle = $("<h2 id='persona-form-tile'>").text("Persona Parameters")
+      // AGE RANGE
       var personaLabelAgeLow = $("<label for='age-low-input'>").text("Age Low")
       var personaInputAgeLow = $("<input type='number' id='age-low-input' name='age-low-input' min='18' max='65'>");
-
       var personaLabelAgeHigh = $("<label for='age-high-input'>").text("Age High")
       var personaInputAgeHigh = $("<input type='number' id='age-high-input' name='age-high-input' min='18' max='65'>");
-      
-      var personaInterests = $("<label for='persona-interests'>").text("Persona Quote")
+      // INTEREST SELECT
+      var personaInterests = $("<label for='persona-interests'>").text("Persona Interest")
       var personaInterestSelect = $("<select id='persona-interests' name='persona-interests'>");
-      var optionTestInterest1 = $("<option>").val('interest-test-val-1').text('test1').appendTo(personaInterestSelect);
-      var optionTestInterest2 = $("<option>").val('interest-test-val-2').text('test2').appendTo(personaInterestSelect);
-      var optionTestInterest3 = $("<option>").val('interest-test-val-3').text('test3').appendTo(personaInterestSelect);
-
+      var optionTestInterest1 = $("<option>").val('interest-test-val-1').text('interest1').appendTo(personaInterestSelect);
+      var optionTestInterest2 = $("<option>").val('interest-test-val-2').text('interest2').appendTo(personaInterestSelect);
+      var optionTestInterest3 = $("<option>").val('interest-test-val-3').text('interest3').appendTo(personaInterestSelect);
+      // QUOTE SELECT
       var personaQuote = $("<label for='persona-quote'>").text("Persona Quote")
       var personaQuoteSelect = $("<select id='persona-quote' name='persona-quote'>");
       var optionTestQuote1 = $("<option>").val('quote-test-val-1').text('quote1').appendTo(personaQuoteSelect);
       var optionTestQuote2 = $("<option>").val('quote-test-val-2').text('quote2').appendTo(personaQuoteSelect);
       var optionTestQuote3 = $("<option>").val('quote-test-val-3').text('quote3').appendTo(personaQuoteSelect);
       
-
-
-      personaForm.append(personaLabelAgeLow, personaInputAgeLow, personaLabelAgeHigh, personaInputAgeHigh, br, personaInterests, personaInterestSelect, br, personaQuote, personaQuoteSelect);
+      var inputSubmit = $("<input type='submit' value='New User'>").text("SUBMIT ME");
+      
+      personaForm.append(personaFormTitle);
+      personaForm.append(personaLabelAgeLow, personaInputAgeLow, personaLabelAgeHigh, personaInputAgeHigh, br1, personaInterests, personaInterestSelect, br2, personaQuote, personaQuoteSelect);
+      personaForm.append(br, inputSubmit);
       personaCard.append(personaForm);
       
   // $.ajax({
