@@ -11,6 +11,7 @@ var storageIconContainer = $("#storage-icon-container");
 var storageIcon = $("#storage-icon");
 var trashIcon = $("#trash-icon");
 var trashIconContainer = $("#trash-icon-container");
+var formSubmitBtn = $("#form-submit-btn")
 var librarySwitch = false;
 
 // PAGE TARGETING VARIABLES
@@ -20,6 +21,7 @@ var tableBlock = $("#table-block");
 
 // ==============================
 // FORM VARIABLES & EVENT LISTENER
+var formBlock = $("#form-block")
 var targetForm = $("#target-form");
 var ageSelectLow = $("#age-low");
 var ageSelectHigh = $("#age-high");
@@ -106,8 +108,15 @@ $(document).ready(function () {
     generateNewPersona();
   });
   userParamsButton.on("click", function () {
-    generateNewPersona();
+    $("#landing-prompt-block").addClass("hide");
+    $("#form-block").removeClass("hide");
   });
+
+  formSubmitBtn.on("click", function(){
+    console.log("form submitted")
+    $("#form-block").addClass("hide");
+  })
+
   genNewIcon.on("click", function () {
     generateNewPersona();
   });
@@ -235,7 +244,7 @@ $(document).ready(function () {
           // ===========================================
 
           //Hide the prompt
-          $("#notification-block").addClass("hide");
+          $("#landing-prompt-block").addClass("hide");
 
           //Enable save button
           saveIconContainer.prop("disabled", false);

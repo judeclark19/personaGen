@@ -50,6 +50,11 @@ h1{
   font-size: 25px;
 }
 
+.user-select{
+  /* background-color:#5DD39E!important; */
+  border-radius: 5px !important;
+}
+
 /* ================================================================================ */
 
 /* Persona image */
@@ -68,6 +73,7 @@ h1{
 
 /* Messages (messages are what displays the individual data about each new persona */
 /* ================================================================================ */
+
 .message-header{
   background-color: #374B4A!important;
 }
