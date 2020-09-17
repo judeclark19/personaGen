@@ -9,13 +9,14 @@
 nav{
     padding-top:20px;
     padding-bottom:40px;
+    background-color: whitesmoke!important;
 }
 
 #main-container{
-    position: relative;
+    /* position: relative; */
     border: 2px dashed hotpink;
     /* height is 100-nav height -footer height */
-    /* height: calc(100vh - 52px - 84px); */
+   min-height: calc(100vh - 60px - 60px);
     /* display: flex; */
     /* justify-content: center; */
 }
@@ -23,6 +24,7 @@ nav{
 #persona-box{
     margin-top: 20px;
     margin-left: 20px;
+    border: 2px solid yellowgreen;
     width: 100%;
     margin: 0;
     /* width:calc(100vw - 100px); */
@@ -37,23 +39,50 @@ nav{
 
 #persona-image{
     float:right;
-}
-.action-icon{
-    color: red;
+    max-width: 300px;
 }
 
-footer{
+#action-bar{
+text-align:center;
+}
+
+.action-icon{
+    /* border: 1px dashed blue; */
+    margin: auto;
+}
+
+/* .icon-label{
+font-size: 10pt;
+} */
+
+button{
+    border: 2px solid whitesmoke;
+}
+button:hover{
+    border-width: 2px;
+    border-style: outset;
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(195, 195, 195));
+    border-image: initial;
+}
+
+/* .action-icon:hover{
+    color: white;
+} */
+
+/* footer{
     position: absolute;
     width: 100%;
     bottom: 0;
     padding-top:30px!important;
     padding-bottom: 30px!important;
-}
-/* #persona-image{
-    padding: 20px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 350px;
 } */
+footer {
+    padding-top:15px!important;
+    padding-bottom: 15px!important;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    margin-top: -60px; /* Without this negative margin, the footer will always load JUST out of sight. By giving it a negative margin that is the same height as the footer itself, it is repositioned back onto the page. */
+    clear: both; /* essentially a line break for floating*/
+}
 

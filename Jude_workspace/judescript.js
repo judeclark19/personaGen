@@ -10,8 +10,8 @@ var librarySwitch = false;
 
 // PAGE TARGETING VARIABLES
 var personaBox = $("#persona-box");
-var personaBlock = $("#persona-block");
-var tableBlock = $("#table-block");
+var personaBlock = $("#persona-block")
+var tableBlock = $("#table-block")
 
 // ==============================
 // FORM VARIABLES & EVENT LISTENER
@@ -120,9 +120,9 @@ $(document).ready(function () {
     console.log("I clicked the generate new button");
     var genConfirm = confirm(
       "Generate new user? \n (This is where we can prompt to gen random or put in user params)"
-    );
-    if (genConfirm) {
-      newUserCall();
+      );
+    if (genConfirm){
+    newUserCall();
     }
   }
 
@@ -134,8 +134,8 @@ $(document).ready(function () {
 
   function viewStoredPersonas() {
     console.log("I clicked the view storage icon");
-
-    if (librarySwitch === false) {
+    
+    if (librarySwitch===false){
       personaBlock.addClass("hide");
       tableBlock.removeClass("hide");
       librarySwitch = true;
@@ -149,11 +149,11 @@ $(document).ready(function () {
   function clearStorage() {
     var clearConfirm = confirm(
       "Are you sure you want to delete everything in your library?"
-    );
-    if (clearConfirm) {
-      localStorage.clear();
-      console.log("THIS CURRENTLY DELETES LOCAL STORAGE");
-    }
+      );
+    if (clearConfirm){
+    localStorage.clear();
+    console.log("THIS CURRENTLY DELETES LOCAL STORAGE");
+  }
   }
   // =====================================================================
 
@@ -208,93 +208,93 @@ $(document).ready(function () {
         $.ajax(settings).done(function (imgResponse) {
           var personaAge = imgResponse.faces[0].attributes.age.value;
 
-          // ===========================================
-          //   DYNAMICALLY GENERATING NEW PERSONA CONTENT USING ABOVE VARIABLES
-          // ===========================================
-          var imageContainer = $("#image-container");
-          var dataContainer = $("#data-container");
-          var personaImageEl = $("<img id='persona-image'>").attr(
-            "src",
-            personaImgLarge
-          );
-          var personaBlock = $("#persona-block");
-          var psaNameEl = $("<p id='#psa-name'>").text(personaName);
-          var psaAgeEl = $("<p id='#psa-age'>").text(personaAge);
-          var psaGenderEl = $("<p id='#psa-gender'>").text(personaGender);
-          var psaLocationEl = $("<p id='#psa-location'>").text(personaLocation);
-          var psaBioEl = $("<p id='#psa-bio'>").text("Loading Bio"); // << we receive this information in  a later API CALL
-          tableBlock.addClass("hide");
-          personaBlock.removeClass("hide");
-          dataContainer.empty();
-          dataContainer.append(
-            psaNameEl,
-            psaGenderEl,
-            psaAgeEl,
-            psaLocationEl,
-            psaBioEl
-          );
-          personaBlock.append(personaImageEl, dataContainer);
+        // ===========================================
+        //   DYNAMICALLY GENERATING NEW PERSONA CONTENT USING ABOVE VARIABLES
+        // ===========================================
+        var imageContainer = $("#image-container");
+        var dataContainer = $("#data-container");
+        var personaImageEl = $("<img id='persona-image'>").attr(
+          "src",
+          personaImgLarge
+        );
+        var personaBlock = $("#persona-block")
+        var psaNameEl = $("<p id='#psa-name'>").text(personaName);
+        var psaAgeEl = $("<p id='#psa-age'>").text(personaAge);
+        var psaGenderEl = $("<p id='#psa-gender'>").text(personaGender);
+        var psaLocationEl = $("<p id='#psa-location'>").text(personaLocation);
+        var psaBioEl = $("<p id='#psa-bio'>").text("Loading Bio..."); // << we receive this information in  a later API CALL
+        tableBlock.addClass("hide")
+        personaBlock.removeClass("hide")
+        dataContainer.empty();
+        dataContainer.append(
+          psaNameEl,
+          psaGenderEl,
+          psaAgeEl,
+          psaLocationEl,
+          psaBioEl
+        );
+        personaBlock.append(personaImage, dataContainer);
 
-          // ========================
-          // VARIABLE BIO GENERATION
-          // ========================
-          if (userQuoteSelection === "Inspirational") {
-            var settingsOne = {
-              async: true,
-              crossDomain: true,
-              url:
-                "https://quotes15.p.rapidapi.com/quotes/random/?language_code=en",
-              method: "GET",
-              headers: {
-                "x-rapidapi-host": "quotes15.p.rapidapi.com",
-                "x-rapidapi-key":
-                  "59d0c27c79msh6e6814003e3803ep1e5484jsn5fecf295231f",
-              },
-            };
+        // ========================
+        // VARIABLE BIO GENERATION
+        // ========================
+        if (userQuoteSelection === "Inspirational") {
+          var settingsOne = {
+            async: true,
+            crossDomain: true,
+            url:
+              "https://quotes15.p.rapidapi.com/quotes/random/?language_code=en",
+            method: "GET",
+            headers: {
+              "x-rapidapi-host": "quotes15.p.rapidapi.com",
+              "x-rapidapi-key":
+                "59d0c27c79msh6e6814003e3803ep1e5484jsn5fecf295231f",
+            },
+          };
 
-            $.ajax(settingsOne).done(function (responseOne) {
-              // INSPIRATIONAL BIO CREATION
-              var inspireQuote = responseOne.content;
-              psaBioEl.text(
-                autoBiography(
-                  personaName,
-                  personaLocation,
-                  specificCategory,
-                  inspireQuote
-                )
-              );
-            });
-          }
-          // CORPORATE BIO CREATION
-          else if (userQuoteSelection === "Corporate") {
-            var settingsTwo = {
-              async: true,
-              crossDomain: true,
-              url:
-                "https://sameer-kumar-corporate-bs-generator-v1.p.rapidapi.com/",
-              method: "GET",
-              headers: {
-                "x-rapidapi-host":
-                  "sameer-kumar-corporate-bs-generator-v1.p.rapidapi.com",
-                "x-rapidapi-key":
-                  "59d0c27c79msh6e6814003e3803ep1e5484jsn5fecf295231f",
-              },
-            };
-
-            $.ajax(settingsTwo).done(function (responseTwo) {
-              // console.log(responseTwo);
-              var corporateQuote = responseTwo.phrase;
-
+          $.ajax(settingsOne).done(function (responseOne) {
+            // INSPIRATIONAL BIO CREATION
+            var inspireQuote = responseOne.content;
+            psaBioEl.text(
               autoBiography(
                 personaName,
                 personaLocation,
                 specificCategory,
-                corporateQuote
-              );
-            });
-          }
-        });
-      },
-    });
-  } // END NEW USER CALL
+                inspireQuote
+              )
+            );
+          });
+        }
+        // CORPORATE BIO CREATION
+        else if (userQuoteSelection === "Corporate") {
+          var settingsTwo = {
+            async: true,
+            crossDomain: true,
+            url:
+              "https://sameer-kumar-corporate-bs-generator-v1.p.rapidapi.com/",
+            method: "GET",
+            headers: {
+              "x-rapidapi-host":
+                "sameer-kumar-corporate-bs-generator-v1.p.rapidapi.com",
+              "x-rapidapi-key":
+                "59d0c27c79msh6e6814003e3803ep1e5484jsn5fecf295231f",
+            },
+          };
+
+          $.ajax(settingsTwo).done(function (responseTwo) {
+            // console.log(responseTwo);
+            var corporateQuote = responseTwo.phrase;
+
+            autoBiography(
+              personaName,
+              personaLocation,
+              specificCategory,
+              corporateQuote
+            );
+          });
+        }
+      });
+    },
+  });
+} // END NEW USER CALL
 }); // END READY DOCUMENT
