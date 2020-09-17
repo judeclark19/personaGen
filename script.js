@@ -218,18 +218,32 @@ $(document).ready(function () {
             personaImgLarge
           );
           var personaBlock = $("#persona-block");
-          var psaNameEl = $("<p id='#psa-name'>").text(personaName);
-          var psaAgeEl = $("<p id='#psa-age'>").text(personaAge);
-          var psaGenderEl = $("<p id='#psa-gender'>").text(personaGender);
-          var psaLocationEl = $("<p id='#psa-location'>").text(personaLocation);
-          var psaBioEl = $("<p id='#psa-bio'>").text("Loading Bio"); // << we receive this information in  a later API CALL
+          // var psaNameEl = $("<p id='#psa-name' class='notification'>").text("Name: " +personaName);
+
+
+          var nameMsgEl = $("<div class='message' id='name-msg'>")
+          var nameMsgHeaderEl = $("<div class='message-header' id='name-msg-header'>").text("Name")
+          var nameMsgBodyEl = $("<div class='message-body' id='name-msg-body'>").text(personaName)
+          nameMsgEl.append(nameMsgHeaderEl, nameMsgBodyEl)
+
+
+
+          // var psaAgeEl = $("<p id='#psa-age' class='notification'>").text("Age: "+personaAge);
+          var psaAgeEl = $("#psa-age")
+          // var psaGenderEl = $("<p id='#psa-gender' class='notification'>").text("Gender: "+personaGender);
+          var psaGenderEl = $("#psa-gender")
+          // var psaLocationEl = $("<p id='#psa-location' class='notification'>").text("Location: "+personaLocation);
+          var psaLocationEl = $("#psa-location")
+          // var psaBioEl = $("<p id='#psa-bio' class='bio-loading notification'>").text("Loading Bio...");
+          // << we receive this information in  a later API CALL
+          var psaBioEl = $("#psa-bio")
           tableBlock.addClass("hide");
           personaBlock.removeClass("hide");
           imageContainer.empty();
           dataContainer.empty();
           imageContainer.append(personaImageEl);
           dataContainer.append(
-            psaNameEl,
+            nameMsgEl,
             psaGenderEl,
             psaAgeEl,
             psaLocationEl,
@@ -257,6 +271,7 @@ $(document).ready(function () {
             $.ajax(settingsOne).done(function (responseOne) {
               // INSPIRATIONAL BIO CREATION
               var inspireQuote = responseOne.content;
+              psaBioEl.removeClass("bio-loading")
               psaBioEl.text(
                 autoBiography(
                   personaName,

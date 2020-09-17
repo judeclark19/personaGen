@@ -23,6 +23,14 @@
   max-width: 350px;
 }
 
+/* p{
+  border: 1px dashed blue;
+} */
+
+.bio-loading{
+  color: gray;
+  font-weight: bold;
+}
 #action-bar {
   text-align: center;
 }
