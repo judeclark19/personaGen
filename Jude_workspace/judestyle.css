@@ -38,8 +38,18 @@ nav{
 #persona-image{
     float:right;
 }
+
+#action-bar{
+text-align:center;
+}
+
 .action-icon{
-    color: red;
+    border: 1px dashed blue;
+    margin: auto;
+}
+
+.action-icon:hover{
+    color: white;
 }
 
 footer{
