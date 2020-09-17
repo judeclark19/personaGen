@@ -93,15 +93,17 @@ $(document).ready(function () {
   // =====================================================================
   function generateNewPersona() {
     console.log("I clicked the generate new button");
+    var genConfirm = confirm("Generate new user? \n (This is where we can prompt to gen random or put in user params)");
     // var personaImage = $("<img id='persona-image'>").attr("src", "https://via.placeholder.com/200x200.png");
     // // personaImage.attr("src", "https://via.placeholder.com/200x200.png");
     // imageContainer.append(personaImage);
-    newUserCall();
+    if (genConfirm){
+    newUserCall();}
   }
 
   function saveFunc() {
     console.log("I clicked the save button");
-    alert("You clicked the save button");
+    alert("Persona added to your library.");
   }
 
   function viewStoredPersonas() {
@@ -158,11 +160,13 @@ $(document).ready(function () {
           personaImgLarge
         );
         var personaInfoDiv = $("<div id='persona-info'>");
+        var personaBlock = $("#persona-block")
         var psaNameEl = $("<p id='#psa-name'>").text(personaName);
         var psaAgeEl = $("<p id='#psa-age'>").text(personaAge);
         var psaGenderEl = $("<p id='#psa-gender'>").text(personaGender);
         var psaLocationEl = $("<p id='#psa-location'>").text(personaLocation);
-        var psaBioEl = $("<p id='#psa-bio'>").text("Loading Bio"); // << we receive this information in  a later API CALL
+        var psaBioEl = $("<p id='#psa-bio'>").text("Loading Bio..."); // << we receive this information in  a later API CALL
+        personaBlock.removeClass("hide")
         dataContainer.empty();
         dataContainer.append(
           psaNameEl,
