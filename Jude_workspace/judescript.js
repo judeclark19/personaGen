@@ -6,10 +6,12 @@ var genNewIcon = $("#gen-new-psa-icon");
 var saveIcon = $("#save-icon");
 var storageIcon = $("#storage-icon");
 var trashIcon = $("#trash-icon");
+var librarySwitch = false;
 
 // PAGE TARGETING VARIABLES
 var personaCard = $("#persona-card");
 var personaBox = $("#persona-box");
+var tableBlock = $("#table-block")
 
 // ==============================
 // FORM VARIABLES & EVENT LISTENER
@@ -20,6 +22,7 @@ var sexSelect = $("#sex-type");
 var quoteSelect = $("#quote-type");
 var interestSelect = $("#persona-interests");
 var submitGenerate = $("#submit-generate"); //SUBMIT BUTTON
+
 // EVENT LISTENER FOR FORM
 submitGenerate.on("click", function (event) {
   var personaGender = sexSelect.val();
@@ -110,10 +113,13 @@ $(document).ready(function () {
 
   function viewStoredPersonas() {
     console.log("I clicked the view storage icon");
-  }
+    
+    if (librarySwitch===false){
+      tableBlock.removeClass("hide");
+      librarySwitch = true;
+    }
+    tableBlock.removeClass("hide");
 
-  function viewStoredPersonas() {
-    console.log("I clicked the view storage icon");
   }
 
   function clearStorage() {
