@@ -93,8 +93,7 @@ $(document).ready(function () {
   // =====================================================================
   function generateNewPersona() {
     console.log("I clicked the generate new button");
-    personaCard.empty();
-    personaCard.removeClass("hide");
+    personaImage.removeClass("hide");
     newUserCall();
   }
 

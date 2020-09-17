@@ -23,6 +23,7 @@ nav{
 #persona-box{
     margin-top: 20px;
     margin-left: 20px;
+    border: 2px solid yellowgreen;
     width: 100%;
     margin: 0;
     /* width:calc(100vw - 100px); */
@@ -37,6 +38,7 @@ nav{
 
 #persona-image{
     float:right;
+    max-width: 300px;
 }
 
 #action-bar{
