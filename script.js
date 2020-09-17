@@ -7,7 +7,7 @@ var saveIcon = $("#save-icon")
 var storageIcon = $("#storage-icon")
 var trashIcon = $("#trash-icon")
 
-// PAGE TARGETTING VARIABLES
+// PAGE TARGETING VARIABLES
 var personaCard = $("#persona-card")
 
 // ==============================
@@ -53,6 +53,7 @@ function autoBiography(name, location, category, quote) {
   var randomWords = Math.floor(
     Math.random() * sentenceStructure.starter.length
   );
+  quote = quote[0].toLowerCase() + quote.slice(1);
   var finalText =
     sentenceStructure.starter[randomWords] +
     name +
@@ -94,6 +95,7 @@ $(document).ready(function () {
   function generateNewPersona() {
     console.log("I clicked the generate new button");
     personaCard.empty();
+    personaCard.removeClass("hide");
     newUserCall();
   }
 
@@ -178,7 +180,6 @@ $(document).ready(function () {
         $.ajax(settingsOne).done(function (responseOne) {
         // INSPIRATIONAL BIO CREATION
           var inspireQuote = responseOne.content;
-          inspireQuote = inspireQuote.toLowerCase();
           psaBioEl.text(autoBiography(personaName, personaLocation, specificCategory, inspireQuote));
         });
       } 
@@ -200,17 +201,13 @@ $(document).ready(function () {
         $.ajax(settingsTwo).done(function (responseTwo) {
           // console.log(responseTwo);
           var corporateQuote = responseTwo.phrase;
-          corporateQuote = corporateQuote.toLowerCase();
           
-          console.log( "IS THIS EVEN WORKING?   " +
             autoBiography(
               personaName,
               personaLocation,
               specificCategory,
               corporateQuote
                  )
-             );
-          
             });
          }
          },
