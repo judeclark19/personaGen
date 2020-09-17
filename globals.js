@@ -34,12 +34,12 @@ interests = [
     {title:"cooking", ageRange: [16, 40]},
     {title:"computer programming", ageRange: [25, 60]},
     {title:"dentistry", ageRange: [40, 70]},
-    {title:"doctor", ageRange: [40, 70]},
+    {title:"medicine", ageRange: [40, 70]},
     {title:"engineering", ageRange: [30, 70]},
     {title:"farming", ageRange: [30, 70]},
     {title:"floristry", ageRange: [50, 90]},
     {title:"gardening", ageRange: [50, 90]},
-    {title:"rock music", ageRange: [18, 35]},
+    {title:"music", ageRange: [10, 35]},
     {title:"law", ageRange: [25, 80]},
     {title:"modeling", ageRange: [18, 30]},
     {title:"nursing", ageRange: [30, 70]},
@@ -55,3 +55,13 @@ interests = [
     {title:"classical music", ageRange: [35, 80]},
     {title:"restaurants", ageRange: [15, 50]},
 ];
+
+function generateProfession(age) {
+    var randomInterest = Math.floor(Math.random() * interests.length);
+    while (age < interests[randomInterest].ageRange[0] || age > interests[randomInterest].ageRange[1]) {
+        randomInterest = Math.floor(Math.random() * interests.length);
+    }
+    return age + ": " + interests[randomInterest].title;
+}
+
+console.log(generateProfession(40));
