@@ -170,7 +170,7 @@ $(document).ready(function () {
   function newUserCall() {
     console.log("NEW USER CALL, CALLED");
     $.ajax({
-      url: "https://randomuser.me/api/extra",
+      url: "https://randomuser.me/api/",
       dataType: "json",
       success: function (data) {
         // ===========================================
