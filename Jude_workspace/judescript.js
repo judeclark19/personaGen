@@ -103,7 +103,9 @@ $(document).ready(function () {
 
   function saveFunc() {
     console.log("I clicked the save button");
-    alert("Persona added to your library.");
+    alert("hello save");
+    // alert("Persona added to your library. \n
+    // (not really yet)");
   }
 
   function viewStoredPersonas() {
@@ -115,8 +117,10 @@ $(document).ready(function () {
   }
 
   function clearStorage() {
+    var clearConfirm = confirm("Are you sure you want to delete everything in your library?")
+    if (clearStorage){
     storage.clear();
-    console.log("THIS CURRENTLY DELETES LOCAL STORAGE");
+    console.log("Clear local storage not working yet");}
   }
   // =====================================================================
 

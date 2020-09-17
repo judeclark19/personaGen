@@ -9,6 +9,7 @@
 nav{
     padding-top:20px;
     padding-bottom:40px;
+    background-color: whitesmoke!important;
 }
 
 #main-container{
@@ -46,13 +47,27 @@ text-align:center;
 }
 
 .action-icon{
-    border: 1px dashed blue;
+    /* border: 1px dashed blue; */
     margin: auto;
 }
 
-.action-icon:hover{
-    color: white;
+.icon-label{
+font-size: 10pt;
 }
+
+button{
+    border: 2px solid whitesmoke;
+}
+button:hover{
+    border-width: 2px;
+    border-style: outset;
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(195, 195, 195));
+    border-image: initial;
+}
+
+/* .action-icon:hover{
+    color: white;
+} */
 
 footer{
     position: absolute;
