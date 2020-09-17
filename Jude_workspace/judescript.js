@@ -71,6 +71,27 @@ function autoBiography(name, location, category, quote) {
   return finalText;
 }
 
+// function getAge(imageURL) {
+//   var settings = {
+//     async: true,
+//     crossDomain: true,
+//     url:
+//       "https://faceplusplus-faceplusplus.p.rapidapi.com/facepp/v3/detect?image_url=" +
+//       imageURL,
+//     method: "POST",
+//     headers: {
+//       "x-rapidapi-host": "faceplusplus-faceplusplus.p.rapidapi.com",
+//       "x-rapidapi-key": "59d0c27c79msh6e6814003e3803ep1e5484jsn5fecf295231f",
+//       "content-type": "application/x-www-form-urlencoded",
+//     },
+//     data: { return_attributes: "gender,age" },
+//   };
+
+//   $.ajax(settings).done(function (imgResponse) {
+//     return imgResponse.faces[0].attributes.age.value;
+//   });
+// }
+
 // FUNCTION
 $(document).ready(function () {
   // =====================================================================
@@ -159,11 +180,33 @@ $(document).ready(function () {
         var personaImg = randomGen.picture.thumbnail; // thumbnail IMAGE
         var personaImgLarge = randomGen.picture.large; //large IMAGE
         var personaName = randomGen.name.first + " " + randomGen.name.last;
-        var personaAge = randomGen.dob.age; // PERSONA AGE
+        // var personaAge = randomGen.dob.age; // PERSONA AGE
         var personaLocation =
           randomGen.location.city + ", " + randomGen.location.country;
         var personaEmail = randomGen.email;
         var personaGender = randomGen.gender;
+
+        // ============================================
+        // Sends image to facial recognition api to get accurate age
+        // ============================================
+        var settings = {
+          async: true,
+          crossDomain: true,
+          url:
+            "https://faceplusplus-faceplusplus.p.rapidapi.com/facepp/v3/detect?image_url=" +
+            personaImgLarge,
+          method: "POST",
+          headers: {
+            "x-rapidapi-host": "faceplusplus-faceplusplus.p.rapidapi.com",
+            "x-rapidapi-key":
+              "59d0c27c79msh6e6814003e3803ep1e5484jsn5fecf295231f",
+            "content-type": "application/x-www-form-urlencoded",
+          },
+          data: { return_attributes: "gender,age" },
+        };
+
+        $.ajax(settings).done(function (imgResponse) {
+          var personaAge = imgResponse.faces[0].attributes.age.value;
 
         // ===========================================
         //   DYNAMICALLY GENERATING NEW PERSONA CONTENT USING ABOVE VARIABLES
@@ -190,10 +233,7 @@ $(document).ready(function () {
           psaLocationEl,
           psaBioEl
         );
-        // personaCard.append(personaImage, personaInfoDiv);
-        imageContainer.empty();
-        imageContainer.append(personaImageEl);
-        personaBox.append(imageContainer, dataContainer);
+        personaBlock.append(personaImage, dataContainer);
 
         // ========================
         // VARIABLE BIO GENERATION
@@ -215,7 +255,6 @@ $(document).ready(function () {
           $.ajax(settingsOne).done(function (responseOne) {
             // INSPIRATIONAL BIO CREATION
             var inspireQuote = responseOne.content;
-            inspireQuote = inspireQuote.toLowerCase();
             psaBioEl.text(
               autoBiography(
                 personaName,
@@ -245,20 +284,17 @@ $(document).ready(function () {
           $.ajax(settingsTwo).done(function (responseTwo) {
             // console.log(responseTwo);
             var corporateQuote = responseTwo.phrase;
-            corporateQuote = corporateQuote.toLowerCase();
 
-            console.log(
-              "IS THIS EVEN WORKING?   " +
-                autoBiography(
-                  personaName,
-                  personaLocation,
-                  specificCategory,
-                  corporateQuote
-                )
+            autoBiography(
+              personaName,
+              personaLocation,
+              specificCategory,
+              corporateQuote
             );
           });
         }
-      },
-    });
-  } // END NEW USER CALL
+      });
+    },
+  });
+} // END NEW USER CALL
 }); // END READY DOCUMENT

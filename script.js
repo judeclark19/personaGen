@@ -71,6 +71,27 @@ function autoBiography(name, location, category, quote) {
   return finalText;
 }
 
+// function getAge(imageURL) {
+//   var settings = {
+//     async: true,
+//     crossDomain: true,
+//     url:
+//       "https://faceplusplus-faceplusplus.p.rapidapi.com/facepp/v3/detect?image_url=" +
+//       imageURL,
+//     method: "POST",
+//     headers: {
+//       "x-rapidapi-host": "faceplusplus-faceplusplus.p.rapidapi.com",
+//       "x-rapidapi-key": "59d0c27c79msh6e6814003e3803ep1e5484jsn5fecf295231f",
+//       "content-type": "application/x-www-form-urlencoded",
+//     },
+//     data: { return_attributes: "gender,age" },
+//   };
+
+//   $.ajax(settings).done(function (imgResponse) {
+//     return imgResponse.faces[0].attributes.age.value;
+//   });
+// }
+
 // FUNCTION
 $(document).ready(function () {
   // =====================================================================
@@ -159,100 +180,120 @@ $(document).ready(function () {
         var personaImg = randomGen.picture.thumbnail; // thumbnail IMAGE
         var personaImgLarge = randomGen.picture.large; //large IMAGE
         var personaName = randomGen.name.first + " " + randomGen.name.last;
-        var personaAge = randomGen.dob.age; // PERSONA AGE
+        // var personaAge = randomGen.dob.age; // PERSONA AGE
         var personaLocation =
           randomGen.location.city + ", " + randomGen.location.country;
         var personaEmail = randomGen.email;
         var personaGender = randomGen.gender;
 
-        // ===========================================
-        //   DYNAMICALLY GENERATING NEW PERSONA CONTENT USING ABOVE VARIABLES
-        // ===========================================
-        var imageContainer = $("#image-container");
-        var dataContainer = $("#data-container");
-        var personaImageEl = $("<img id='persona-image'>").attr(
-          "src",
-          personaImgLarge
-        );
-        var personaBlock = $("#persona-block")
-        var psaNameEl = $("<p id='#psa-name'>").text(personaName);
-        var psaAgeEl = $("<p id='#psa-age'>").text(personaAge);
-        var psaGenderEl = $("<p id='#psa-gender'>").text(personaGender);
-        var psaLocationEl = $("<p id='#psa-location'>").text(personaLocation);
-        var psaBioEl = $("<p id='#psa-bio'>").text("Loading Bio"); // << we receive this information in  a later API CALL
-        tableBlock.addClass("hide")
-        personaBlock.removeClass("hide")
-        dataContainer.empty();
-        dataContainer.append(
-          psaNameEl,
-          psaGenderEl,
-          psaAgeEl,
-          psaLocationEl,
-          psaBioEl
-        );
-        // personaCard.append(personaImage, personaInfoDiv);
-        imageContainer.empty();
-        imageContainer.append(personaImageEl);
-        personaBox.append(imageContainer, dataContainer);
+        // ============================================
+        // Sends image to facial recognition api to get accurate age
+        // ============================================
+        var settings = {
+          async: true,
+          crossDomain: true,
+          url:
+            "https://faceplusplus-faceplusplus.p.rapidapi.com/facepp/v3/detect?image_url=" +
+            personaImgLarge,
+          method: "POST",
+          headers: {
+            "x-rapidapi-host": "faceplusplus-faceplusplus.p.rapidapi.com",
+            "x-rapidapi-key":
+              "59d0c27c79msh6e6814003e3803ep1e5484jsn5fecf295231f",
+            "content-type": "application/x-www-form-urlencoded",
+          },
+          data: { return_attributes: "gender,age" },
+        };
 
-        // ========================
-        // VARIABLE BIO GENERATION
-        // ========================
-        if (userQuoteSelection === "Inspirational") {
-          var settingsOne = {
-            async: true,
-            crossDomain: true,
-            url:
-              "https://quotes15.p.rapidapi.com/quotes/random/?language_code=en",
-            method: "GET",
-            headers: {
-              "x-rapidapi-host": "quotes15.p.rapidapi.com",
-              "x-rapidapi-key":
-                "59d0c27c79msh6e6814003e3803ep1e5484jsn5fecf295231f",
-            },
-          };
+        $.ajax(settings).done(function (imgResponse) {
+          var personaAge = imgResponse.faces[0].attributes.age.value;
 
-          $.ajax(settingsOne).done(function (responseOne) {
-            // INSPIRATIONAL BIO CREATION
-            var inspireQuote = responseOne.content;
-            psaBioEl.text(
+          // ===========================================
+          //   DYNAMICALLY GENERATING NEW PERSONA CONTENT USING ABOVE VARIABLES
+          // ===========================================
+          var imageContainer = $("#image-container");
+          var dataContainer = $("#data-container");
+          var personaImageEl = $("<img id='persona-image'>").attr(
+            "src",
+            personaImgLarge
+          );
+          var personaBlock = $("#persona-block");
+          var psaNameEl = $("<p id='#psa-name'>").text(personaName);
+          var psaAgeEl = $("<p id='#psa-age'>").text(personaAge);
+          var psaGenderEl = $("<p id='#psa-gender'>").text(personaGender);
+          var psaLocationEl = $("<p id='#psa-location'>").text(personaLocation);
+          var psaBioEl = $("<p id='#psa-bio'>").text("Loading Bio"); // << we receive this information in  a later API CALL
+          tableBlock.addClass("hide");
+          personaBlock.removeClass("hide");
+          dataContainer.empty();
+          dataContainer.append(
+            psaNameEl,
+            psaGenderEl,
+            psaAgeEl,
+            psaLocationEl,
+            psaBioEl
+          );
+          personaBlock.append(personaImageEl, dataContainer);
+
+          // ========================
+          // VARIABLE BIO GENERATION
+          // ========================
+          if (userQuoteSelection === "Inspirational") {
+            var settingsOne = {
+              async: true,
+              crossDomain: true,
+              url:
+                "https://quotes15.p.rapidapi.com/quotes/random/?language_code=en",
+              method: "GET",
+              headers: {
+                "x-rapidapi-host": "quotes15.p.rapidapi.com",
+                "x-rapidapi-key":
+                  "59d0c27c79msh6e6814003e3803ep1e5484jsn5fecf295231f",
+              },
+            };
+
+            $.ajax(settingsOne).done(function (responseOne) {
+              // INSPIRATIONAL BIO CREATION
+              var inspireQuote = responseOne.content;
+              psaBioEl.text(
+                autoBiography(
+                  personaName,
+                  personaLocation,
+                  specificCategory,
+                  inspireQuote
+                )
+              );
+            });
+          }
+          // CORPORATE BIO CREATION
+          else if (userQuoteSelection === "Corporate") {
+            var settingsTwo = {
+              async: true,
+              crossDomain: true,
+              url:
+                "https://sameer-kumar-corporate-bs-generator-v1.p.rapidapi.com/",
+              method: "GET",
+              headers: {
+                "x-rapidapi-host":
+                  "sameer-kumar-corporate-bs-generator-v1.p.rapidapi.com",
+                "x-rapidapi-key":
+                  "59d0c27c79msh6e6814003e3803ep1e5484jsn5fecf295231f",
+              },
+            };
+
+            $.ajax(settingsTwo).done(function (responseTwo) {
+              // console.log(responseTwo);
+              var corporateQuote = responseTwo.phrase;
+
               autoBiography(
                 personaName,
                 personaLocation,
                 specificCategory,
-                inspireQuote
-              )
-            );
-          });
-        }
-        // CORPORATE BIO CREATION
-        else if (userQuoteSelection === "Corporate") {
-          var settingsTwo = {
-            async: true,
-            crossDomain: true,
-            url:
-              "https://sameer-kumar-corporate-bs-generator-v1.p.rapidapi.com/",
-            method: "GET",
-            headers: {
-              "x-rapidapi-host":
-                "sameer-kumar-corporate-bs-generator-v1.p.rapidapi.com",
-              "x-rapidapi-key":
-                "59d0c27c79msh6e6814003e3803ep1e5484jsn5fecf295231f",
-            },
-          };
-
-          $.ajax(settingsTwo).done(function (responseTwo) {
-            // console.log(responseTwo);
-            var corporateQuote = responseTwo.phrase;
-
-            autoBiography(
-              personaName,
-              personaLocation,
-              specificCategory,
-              corporateQuote
-            );
-          });
-        }
+                corporateQuote
+              );
+            });
+          }
+        });
       },
     });
   } // END NEW USER CALL
