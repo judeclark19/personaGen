@@ -194,16 +194,19 @@ $(document).ready(function () {
       var personaJobVal = personaProfessionInput.val();
       // CONSOLE LOGGING VALUES OF INPUTS
       console.log("this click button is working");
-      console.log(ageSelectHigh);
-      console.log(ageSelectLow);
-      console.log(genderSelect);
-      console.log(quoteSelect);
-      console.log(interestSelect);
-      console.log(personaJobVal)
+      console.log(personaLowAgeVal);
+      console.log(personaHighAgeVal);
+      console.log(personaGenderVal);
+      console.log(personaQuoteVal);
+      console.log(personaInterestVal);
+      console.log(personaJobVal);
 
       event.preventDefault();
-
+      
+      mainContainer.empty();
+      newUserCall();
         });
+
 function newUserCall() {
   $.ajax({
     url: "https://randomuser.me/api/",
@@ -224,18 +227,18 @@ function newUserCall() {
       var personaEmail = randomGen.email;
       var personaGender = randomGen.gender;
     
-    // ===========================================
-    //  DYNAMICALLY GENERATING NEW PERSONA CONTENT USING ABOVE VARIABLES
-    // ===========================================
-      var personaImage = $("<img id='persona-image'>").attr("src", personaImgLarge);
-      var personaInfoDiv = $("<div id='persona-info'>");
-      var psaNameEl = $("<p id='#psa-name'>").text(personaName);
-      var psaAgeEl = $("<p id='#psa-age'>").text(personaAge);
-      var psaGenderEl = $("<p id='#psa-gender'>").text(personaGender);
-      var psaLocationEl = $("<p id='#psa-location'>").text(personaLocation);
-      var psaBioEl = $("<p id='#psa-bio'>").text("Loading Bio");  // << we receive this information in  a later API CALL
-      personaInfoDiv.append(psaNameEl, psaGenderEl, psaAgeEl, psaLocationEl, psaBioEl);
-      personaCard.append(personaImage, personaInfoDiv);
+      // ===========================================
+      //  DYNAMICALLY GENERATING NEW PERSONA CONTENT USING ABOVE VARIABLES
+      // ===========================================
+        var personaImage = $("<img id='persona-image'>").attr("src", personaImgLarge);
+        var personaInfoDiv = $("<div id='persona-info'>");
+        var psaNameEl = $("<p id='#psa-name'>").text(personaName);
+        var psaAgeEl = $("<p id='#psa-age'>").text(personaAge);
+        var psaGenderEl = $("<p id='#psa-gender'>").text(personaGender);
+        var psaLocationEl = $("<p id='#psa-location'>").text(personaLocation);
+        var psaBioEl = $("<p id='#psa-bio'>").text("Loading Bio");  // << we receive this information in  a later API CALL
+        personaInfoDiv.append(psaNameEl, psaGenderEl, psaAgeEl, psaLocationEl, psaBioEl);
+        personaCard.append(personaImage, personaInfoDiv);
 
     // ========================
     // VARIABLE BIO GENERATION
