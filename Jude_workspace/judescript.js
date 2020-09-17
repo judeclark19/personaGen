@@ -29,8 +29,7 @@ submitGenerate.on("click", function (event) {
   var personaGender = sexSelect.val();
   var personaInterests = interestSelect.val();
   var personaQuote = quoteSelect.val();
-  event.preventDefault();
-});
+  event.preventDefault();});
 // LEAVE HERE PLEASE
 // =======================
 
@@ -58,6 +57,7 @@ function autoBiography(name, location, category, quote) {
   var randomWords = Math.floor(
     Math.random() * sentenceStructure.starter.length
   );
+  quote = quote[0].toLowerCase() + quote.slice(1);
   var finalText =
     sentenceStructure.starter[randomWords] +
     name +
@@ -98,18 +98,14 @@ $(document).ready(function () {
   function generateNewPersona() {
     console.log("I clicked the generate new button");
     var genConfirm = confirm("Generate new user? \n (This is where we can prompt to gen random or put in user params)");
-    // var personaImage = $("<img id='persona-image'>").attr("src", "https://via.placeholder.com/200x200.png");
-    // // personaImage.attr("src", "https://via.placeholder.com/200x200.png");
-    // imageContainer.append(personaImage);
     if (genConfirm){
     newUserCall();}
   }
 
   function saveFunc() {
     console.log("I clicked the save button");
-    alert("hello save");
-    // alert("Persona added to your library. \n
-    // (not really yet)");
+    //TODO: add some sort of validation so that user can't save before they have generated a persona. perhaps start with the save button disabled
+    alert("Persona added to your library. \n (not really yet)");
   }
 
   function viewStoredPersonas() {
@@ -128,10 +124,11 @@ $(document).ready(function () {
   }
 
   function clearStorage() {
+
     var clearConfirm = confirm("Are you sure you want to delete everything in your library?")
-    if (clearStorage){
-    storage.clear();
-    console.log("Clear local storage not working yet");}
+    if (clearConfirm){
+    localStorage.clear();
+    console.log("THIS CURRENTLY DELETES LOCAL STORAGE");}
   }
   // =====================================================================
 

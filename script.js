@@ -6,9 +6,13 @@ var genNewIcon =  $("#gen-new-psa-icon");
 var saveIcon = $("#save-icon")
 var storageIcon = $("#storage-icon")
 var trashIcon = $("#trash-icon")
+var librarySwitch = false;
 
 // PAGE TARGETING VARIABLES
 var personaCard = $("#persona-card")
+var personaBox = $("#persona-box");
+var personaBlock = $("#persona-block")
+var tableBlock = $("#table-block")
 
 // ==============================
 // FORM VARIABLES & EVENT LISTENER
@@ -19,6 +23,7 @@ var sexSelect = $("#sex-type")
 var quoteSelect = $("#quote-type");
 var interestSelect = $("#persona-interests");
 var submitGenerate = $("#submit-generate"); //SUBMIT BUTTON
+
 // EVENT LISTENER FOR FORM 
 submitGenerate.on("click", function(event) {
     var personaGender = (sexSelect.val())
@@ -31,7 +36,6 @@ submitGenerate.on("click", function(event) {
 // JOSEPH HARDCODE VARIABLES
 var specificCategory = "meteorology";
 var userQuoteSelection = "Inspirational";
-
  
 // ==============
 // Text Generation
@@ -67,7 +71,6 @@ function autoBiography(name, location, category, quote) {
   return finalText;
 }
 
-
 // FUNCTION
 $(document).ready(function () {
   // =====================================================================
@@ -94,35 +97,44 @@ $(document).ready(function () {
   // =====================================================================
   function generateNewPersona() {
     console.log("I clicked the generate new button");
-    personaCard.empty();
-    personaCard.removeClass("hide");
-    newUserCall();
+    var genConfirm = confirm("Generate new user? \n (This is where we can prompt to gen random or put in user params)");
+    if (genConfirm){
+    newUserCall();}
   }
 
   function saveFunc() {
     console.log("I clicked the save button");
-    alert("You clicked the save button");
+    //TODO: add some sort of validation so that user can't save before they have generated a persona. perhaps start with the save button disabled
+    alert("Persona added to your library. \n (not really yet)");
   }
 
   function viewStoredPersonas() {
     console.log("I clicked the view storage icon");
-  }
+    
+    if (librarySwitch===false){
+      personaBlock.addClass("hide");
+      tableBlock.removeClass("hide");
+      librarySwitch = true;
+    } else {
+      personaBlock.removeClass("hide");
+      tableBlock.addClass("hide");
+      librarySwitch = false;
+    }
 
-  function viewStoredPersonas() {
-    console.log("I clicked the view storage icon");
   }
 
   function clearStorage() {
-    storage.clear()
-    console.log("THIS CURRENTLY DELETES LOCAL STORAGE");
+
+    var clearConfirm = confirm("Are you sure you want to delete everything in your library?")
+    if (clearConfirm){
+    localStorage.clear()
+    console.log("THIS CURRENTLY DELETES LOCAL STORAGE");}
   }
   // =====================================================================
 
   // Traversing the DOM
   // =====================================================================
 
-
-  
 // ================================
 // ================================
 //                  NEW USER CALL 
