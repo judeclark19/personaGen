@@ -115,10 +115,14 @@ $(document).ready(function () {
   formSubmitBtn.on("click", function(){
     console.log("form submitted")
     $("#form-block").addClass("hide");
+    generateNewPersona();
   })
 
   genNewIcon.on("click", function () {
-    generateNewPersona();
+    // generateNewPersona();
+    personaBlock.addClass("hide");
+    $("#landing-prompt-block").removeClass("hide");
+    $("#form-block").addClass("hide");
   });
 
   saveIcon.on("click", function () {
@@ -144,12 +148,7 @@ $(document).ready(function () {
   // =====================================================================
   function generateNewPersona() {
     console.log("I clicked the generate new button");
-    var genConfirm = confirm(
-      "Generate new user? \n (This is where we can prompt to gen random or put in user params)"
-    );
-    if (genConfirm) {
       newUserCall();
-    }
   }
 
   function saveFunc() {
