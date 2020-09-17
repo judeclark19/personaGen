@@ -2,16 +2,17 @@
 // ================
 
 // ICONS AND BUTTON VARIABLES
-var randomButton = $("#user-select-random")
-var userParamsButton = $("#user-select-parameters")
+var randomButton = $("#user-select-random");
+var userParamsButton = $("#user-select-parameters");
 var genNewIcon = $("#gen-new-psa-icon");
+var gnpContainer = $("#gnp-icon-container");
 var saveIcon = $("#save-icon");
 var saveIconContainer = $("#save-icon-container");
-var storageIconContainer = $("#storage-icon-container");
 var storageIcon = $("#storage-icon");
+var storageIconContainer = $("#storage-icon-container");
 var trashIcon = $("#trash-icon");
 var trashIconContainer = $("#trash-icon-container");
-var formSubmitBtn = $("#form-submit-btn")
+var formSubmitBtn = $("#form-submit-btn");
 var librarySwitch = false;
 
 // PAGE TARGETING VARIABLES
@@ -19,7 +20,7 @@ var personaBox = $("#persona-box");
 var personaBlock = $("#persona-block");
 var tableBlock = $("#table-block");
 var landingPromptBlock = $("#landing-prompt-block");
-var formBlock = $("#form-block")
+var formBlock = $("#form-block");
 
 // ==============================
 // FORM VARIABLES & EVENT LISTENER
@@ -113,15 +114,15 @@ $(document).ready(function () {
     formBlock.removeClass("hide");
   });
 
-  formSubmitBtn.on("click", function(){
-    console.log("form submitted")
+  formSubmitBtn.on("click", function () {
+    console.log("form submitted");
     formBlock.addClass("hide");
     generateNewPersona();
-  })
+  });
 
   genNewIcon.on("click", function () {
     // generateNewPersona();
-    personaBlock.addClass("hide");
+    // personaBlock.addClass("hide");
     landingPromptBlock.removeClass("hide");
     formBlock.addClass("hide");
   });
@@ -131,13 +132,11 @@ $(document).ready(function () {
   });
 
   storageIcon.on("click", function () {
-
-    if(storageIconContainer.prop('disabled')===false){
-    viewStoredPersonas();}
-    else {
-      console.log("library is disabled")
+    if (storageIconContainer.prop("disabled") === false) {
+      viewStoredPersonas();
+    } else {
+      console.log("library is disabled");
     }
-    
   });
 
   trashIcon.on("click", function () {
@@ -149,7 +148,7 @@ $(document).ready(function () {
   // =====================================================================
   function generateNewPersona() {
     console.log("I clicked the generate new button");
-      newUserCall();
+    newUserCall();
   }
 
   function saveFunc() {
@@ -157,8 +156,19 @@ $(document).ready(function () {
       console.log("This button is disabled.");
     } else {
       console.log("I clicked the save button");
-      //TODO: add some sort of validation so that user can't save before they have generated a persona. perhaps start with the save button disabled
-      alert("Persona added to your library. \n (not really yet)");
+
+      // Get the snackbar DIV
+      var saveSnack = $("#save-snack");
+
+      // Add the "show" class to DIV
+      // x.className = "show";
+      saveSnack.addClass("show");
+
+      // After 3 seconds, remove the show class from DIV
+      setTimeout(function () {
+      saveSnack.removeClass("show");
+        // saveSnack.className = saveSnack.className.replace("show", "");
+      }, 2000);
     }
   }
 
@@ -245,6 +255,10 @@ $(document).ready(function () {
 
           //Hide the prompt
           landingPromptBlock.addClass("hide");
+
+          //Enable the GenNewPsa button
+          gnpContainer.removeClass("disabled")
+          gnpContainer.addClass("gnp-able")
 
           //Enable save button
           saveIconContainer.prop("disabled", false);
@@ -353,10 +367,14 @@ $(document).ready(function () {
           }
         });
       },
-      error: function(xhr) {
-        var errorText = xhr.status + " " + xhr.statusText + ". Please retry generate user button.";
+      error: function (xhr) {
+        var errorText =
+          xhr.status +
+          " " +
+          xhr.statusText +
+          ". Please retry generate user button.";
         alert(errorText);
-      }
+      },
     });
   } // END NEW USER CALL
 }); // END READY DOCUMENT
