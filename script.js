@@ -114,12 +114,10 @@ $(document).ready(function () {
     storage.clear()
     console.log("THIS CURRENTLY DELETES LOCAL STORAGE");
   }
-  // =====================================================================
 
-  // Traversing the DOM
-  // =====================================================================
-
-
+// =====================================================================
+// Traversing the DOM
+// =====================================================================
   
 // ================================
 // ================================
@@ -148,7 +146,7 @@ $(document).ready(function () {
       var personaGender = randomGen.gender;
     
     // ===========================================
-    //   DYNAMICALLY GENERATING NEW PERSONA CONTENT USING ABOVE VARIABLES
+    //  DYNAMICALLY GENERATING NEW PERSONA CONTENT USING ABOVE VARIABLES
     // ===========================================
       var personaImage = $("<img id='persona-image'>").attr("src", personaImgLarge);
       var personaInfoDiv = $("<div id='persona-info'>");
