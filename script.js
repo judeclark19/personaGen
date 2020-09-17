@@ -1,11 +1,16 @@
 // GLOBAL VARIABLES
 // ================
 
-// ICON VARIABLES
+// ICONS AND BUTTON VARIABLES
+var randomButton = $("#user-select-random")
+var userParamsButton = $("#user-select-parameters")
 var genNewIcon = $("#gen-new-psa-icon");
 var saveIcon = $("#save-icon");
+var saveIconContainer = $("#save-icon-container");
+var storageIconContainer = $("#storage-icon-container");
 var storageIcon = $("#storage-icon");
 var trashIcon = $("#trash-icon");
+var trashIconContainer = $("#trash-icon-container");
 var librarySwitch = false;
 
 // PAGE TARGETING VARIABLES
@@ -97,6 +102,12 @@ $(document).ready(function () {
   // =====================================================================
   // EVENT LISTENERS
   // =====================================================================
+  randomButton.on("click", function () {
+    generateNewPersona();
+  });
+  userParamsButton.on("click", function () {
+    generateNewPersona();
+  });
   genNewIcon.on("click", function () {
     generateNewPersona();
   });
@@ -106,7 +117,13 @@ $(document).ready(function () {
   });
 
   storageIcon.on("click", function () {
-    viewStoredPersonas();
+
+    if(storageIconContainer.prop('disabled')===false){
+    viewStoredPersonas();}
+    else {
+      console.log("library is disabled")
+    }
+    
   });
 
   trashIcon.on("click", function () {
@@ -127,9 +144,13 @@ $(document).ready(function () {
   }
 
   function saveFunc() {
-    console.log("I clicked the save button");
-    //TODO: add some sort of validation so that user can't save before they have generated a persona. perhaps start with the save button disabled
-    alert("Persona added to your library. \n (not really yet)");
+    if (document.getElementById("save-icon-style").disabled) {
+      console.log("This button is disabled.");
+    } else {
+      console.log("I clicked the save button");
+      //TODO: add some sort of validation so that user can't save before they have generated a persona. perhaps start with the save button disabled
+      alert("Persona added to your library. \n (not really yet)");
+    }
   }
 
   function viewStoredPersonas() {
@@ -138,6 +159,7 @@ $(document).ready(function () {
     if (librarySwitch === false) {
       personaBlock.addClass("hide");
       tableBlock.removeClass("hide");
+      // storageIconContainer.addClass("is-active")
       librarySwitch = true;
     } else {
       personaBlock.removeClass("hide");
@@ -211,6 +233,25 @@ $(document).ready(function () {
           // ===========================================
           //   DYNAMICALLY GENERATING NEW PERSONA CONTENT USING ABOVE VARIABLES
           // ===========================================
+
+          //Hide the prompt
+          $("#notification-block").addClass("hide");
+
+          //Enable save button
+          saveIconContainer.prop("disabled", false);
+          saveIconContainer.removeClass("disabled");
+          saveIconContainer.addClass("save-able");
+
+          //Enable storage button
+          storageIconContainer.prop("disabled", false);
+          storageIconContainer.removeClass("disabled");
+          storageIconContainer.addClass("storage-able");
+
+          //Enable storage button
+          trashIconContainer.prop("disabled", false);
+          trashIconContainer.removeClass("disabled");
+          trashIconContainer.addClass("trash-able");
+
           var imageContainer = $("#image-container");
           var dataContainer = $("#data-container");
           var personaImageEl = $("<img id='persona-image'>").attr(
@@ -225,20 +266,19 @@ $(document).ready(function () {
           var ageEl = $("#age-msg-body");
           ageEl.text(personaAge);
 
-          var genderEl = $("#gender-msg-body")
-          genderEl.text(personaGender)
+          var genderEl = $("#gender-msg-body");
+          genderEl.text(personaGender);
 
-          var genderEl = $("#location-msg-body")
-          genderEl.text(personaLocation)
+          var genderEl = $("#location-msg-body");
+          genderEl.text(personaLocation);
 
-          var bioEl = $("#bio-msg-body")
+          var bioEl = $("#bio-msg-body");
           bioEl.text("Loading Bio..."); //  << we receive this information in  a later API CALL
-          
+
           imageContainer.empty();
           imageContainer.append(personaImageEl);
           tableBlock.addClass("hide");
           personaBlock.removeClass("hide");
-          
 
           // ========================
           // VARIABLE BIO GENERATION

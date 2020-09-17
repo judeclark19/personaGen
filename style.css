@@ -8,6 +8,8 @@
   display: none;
 }
 
+/* Nav/title bar */
+/* ================================================================================ */
 nav{
   background-color: #EFFAFA!important;
 }
@@ -18,22 +20,40 @@ h1{
   /* padding-top:20px;
   padding-bottom: 20px; */
 }
+/* ================================================================================ */
 
-
+/* Main */
+/* ================================================================================ */
 #main-container{
-  /* position: relative; */
+  position: relative;
   /* border: 2px dashed hotpink; */
   /* height is 100-nav height -footer height */
  min-height: calc(100vh - 60px - 60px);
   /* display: flex; */
   /* justify-content: center; */
 }
+/* ================================================================================ */
 
-/* #image-container{
-  border: 2px solid red;
-  background-color: #759590;
-} */
+/* Notifications */
+/* ================================================================================ */
+.notification{
+  border: 1px outset;
+  float: bottom;
+  position: absolute;
+  top: 100px;
+  /* bottom: 0px; */
+  text-align: center;
+  z-index: 0;
 
+}
+.notif-title{
+  font-size: 25px;
+}
+
+/* ================================================================================ */
+
+/* Persona image */
+/* ================================================================================ */
 #persona-image {
   padding: 20px;
   display: block;
@@ -44,7 +64,10 @@ h1{
   background-color: #E9EDEC;
 }
 
+/* ================================================================================ */
 
+/* Messages (messages are what displays the individual data about each new persona */
+/* ================================================================================ */
 .message-header{
   background-color: #374B4A!important;
 }
@@ -53,14 +76,16 @@ h1{
   background-color: #E9EDEC!important;
   font-weight: bold;
 }
-/* p{
-  border: 1px dashed blue;
-} */
 
 .bio-loading{
   color: gray;
   font-weight: bold;
 }
+
+/* ================================================================================ */
+
+/* Footer/action bar and the icons */
+/* ================================================================================ */
 #action-bar {
   text-align: center;
 }
@@ -70,21 +95,37 @@ h1{
   margin: auto;
 }
 
-#gen-new-icon-style{
-  background-color: #5DD39E!important;
+
+/* style disabled buttons so they don't do anything */
+.disabled{
+  /* border: 2px solid red; */
+  cursor: not-allowed;
+}
+.disabled:hover{
+  border: 2px solid #EFF6F6;
+}
+/* --------------------------------------------- */
+
+.genNew-is-active{
+  background-color: #30b077!important;
+  border: 2px inset;
+}
+
+#gen-new-icon-container{
+  background-color: #5DD39E;
   border-radius: 10px;
 }
 
-#save-icon-style{
+.save-able{
   background-color: #C5FFFD;
   border-radius: 10px;
 }
 
-#storage-icon-style{
-  background-color: #69D2D1;
+.storage-able{
+  background-color: #EBB984;
   border-radius: 10px;
 }
-#trash-icon-style{
+.trash-able{
   background-color: #AF1B3F!important;
   border-radius: 10px;
 }
@@ -102,7 +143,7 @@ button {
 }
 
 button:hover{
-    border-width: 2px;
+    /* border-width: 2px; */
     border-style: outset;
     border-color: -internal-light-dark(rgb(118, 118, 118), rgb(195, 195, 195));
     border-image: initial;

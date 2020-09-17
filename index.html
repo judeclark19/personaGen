@@ -13,10 +13,13 @@
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- google font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap"
+      rel="stylesheet"
+    />
     <!-- Local styles -->
     <link rel="stylesheet" href="./style.css" />
-    
+
     <!-- Bulma -->
     <link
       rel="stylesheet"
@@ -46,17 +49,25 @@
     <!-- ./Nav/title bar -->
 
     <div class="container" id="main-container">
+      <!-- Landing/Gen New Modal -->
+      <div class="block" id="notification-block">
+        <div class="notification">
+          <button class="delete"></button>
+          <h3 class="notif-title">Generate a new persona:</h3></br>
+          <button class="button" id="user-select-random">Generate random</button>
+          <button class="button" id="user-select-parameters">Enter custom parameters</button>
+        </div>
+      </div>
+      <!-- END of Landing/Gen New Modal -->
+
       <div class="block hide" id="persona-block">
         <div class="box columns" id="persona-box">
           <div class="column" id="image-container">
             <!-- <img id="persona-image" src="https://via.placeholder.com/200x200.png"> -->
           </div>
           <div class="column" id="data-container">
-
             <div class="message" id="name-msg">
-              <div class="message-header" id="name-msg-header">
-                Name
-              </div>
+              <div class="message-header" id="name-msg-header">Name</div>
               <div class="message-body" id="name-msg-body">
                 Name will appear here
               </div>
@@ -97,10 +108,10 @@
                 Bio will appear here
               </div>
             </div>
-
           </div>
         </div>
       </div>
+
 
       <div class="block hide" id="table-block">
         <h2 class="title is-3">My Saved Personae</h2>
@@ -136,31 +147,34 @@
           </tbody>
         </table>
       </div>
+
+      
     </div>
     <!-- ./main container -->
 
     <!-- "footer" action bar -->
     <footer class="footer">
       <div class="columns is-mobile" id="action-bar">
-        <button class="column" id="gen-new-icon-style">
+
+        <button class="column" id="gen-new-icon-container">
           <div class="action-icon" id="gen-new-psa-icon">
             <i class="fas fa-user-plus" style="font-size: 2em"></i>
           </div>
         </button>
 
-        <button class="column" id="save-icon-style">
+        <button class="column disabled" id="save-icon-container" disabled>
           <div class="action-icon" id="save-icon">
             <i class="fas fa-save" style="font-size: 2em"></i>
           </div>
         </button>
 
-        <button class="column" id="storage-icon-style">
+        <button class="column disabled" id="storage-icon-container" disabled>
           <div class="action-icon" id="storage-icon">
             <i class="fas fa-folder" style="font-size: 2em"></i>
           </div>
         </button>
 
-        <button class="column" id="trash-icon-style">
+        <button class="column" id="trash-icon-container">
           <div class="action-icon" id="trash-icon">
             <i class="fas fa-trash-alt" style="font-size: 2em"></i>
           </div>
