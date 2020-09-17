@@ -136,57 +136,6 @@ $(document).ready(function () {
     storage.clear();
     console.log("THIS CURRENTLY DELETES LOCAL STORAGE");
   }
-<<<<<<< HEAD
-
-// =====================================================================
-// Traversing the DOM
-// =====================================================================
-  
-// ================================
-// ================================
-//                  NEW USER CALL 
-// THIS IS THE PRIMARY FUNCTION USERS WILL RELY ON
-// ===============================
-// ================================
-
- function newUserCall() {
-     console.log("NEW USER CALL, CALLED")
-  $.ajax({
-    url: "https://randomuser.me/api/",
-    dataType: "json",
-    success: function (data) {
-      // ===========================================
-      // ASSIGNING PERSONA VARIABLES WITHIN FUNCTION BASED ON RESPONSE FROM API
-      // =========================================
-      var randomGen = data.results[0];
-      var personaImg = randomGen.picture.thumbnail;    // thumbnail IMAGE
-      var personaImgLarge = randomGen.picture.large; //large IMAGE
-      var personaName = randomGen.name.first + " " + randomGen.name.last;
-      var personaAge = randomGen.dob.age;               // PERSONA AGE
-      var personaLocation =
-        randomGen.location.city + ", " + randomGen.location.country;
-      var personaEmail = randomGen.email;
-      var personaGender = randomGen.gender;
-    
-    // ===========================================
-    //  DYNAMICALLY GENERATING NEW PERSONA CONTENT USING ABOVE VARIABLES
-    // ===========================================
-      var personaImage = $("<img id='persona-image'>").attr("src", personaImgLarge);
-      var personaInfoDiv = $("<div id='persona-info'>");
-      var psaNameEl = $("<p id='#psa-name'>").text(personaName);
-      var psaAgeEl = $("<p id='#psa-age'>").text(personaAge);
-      var psaGenderEl = $("<p id='#psa-gender'>").text(personaGender);
-      var psaLocationEl = $("<p id='#psa-location'>").text(personaLocation);
-      var psaBioEl = $("<p id='#psa-bio'>").text("Loading Bio");  // << we receive this information in  a later API CALL
-      personaInfoDiv.append(psaNameEl, psaGenderEl, psaAgeEl, psaLocationEl, psaBioEl);
-      personaCard.append(personaImage, personaInfoDiv);
-
-    // ========================
-    // VARIABLE BIO GENERATION
-    // ========================
-      if (userQuoteSelection === "Inspirational") {
-        var settingsOne = {
-=======
   // =====================================================================
 
   // Traversing the DOM
@@ -222,7 +171,6 @@ $(document).ready(function () {
         // Sends image to facial recognition api to get accurate age
         // ============================================
         var settings = {
->>>>>>> b95681d8b2f0b8825da605fe142e36d9ae179e75
           async: true,
           crossDomain: true,
           url:

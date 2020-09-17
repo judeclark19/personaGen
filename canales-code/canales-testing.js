@@ -130,94 +130,118 @@ $(document).ready(function () {
 
  function newUserCall() {
      console.log("NEW USER CALL, CALLED")
-  $.ajax({
-    url: "https://randomuser.me/api/",
-    dataType: "json",
-    success: function (data) {
-      var personaForm = $("form id='persona-form'>");
-      var personaLabelAgeLow = $("label for='age-low-input'").text("Age Loww")
-      var personaFormAgeLow = $("input type='number' id='age-low-input' name='age-low-input' min='18' max='65'>");
+     var br = document.createElement("br");
+      
+     
+     
+      var personaForm = $("<form id='persona-form'>");
+      var personaFormTitle = $("<h2 id='persona-form-tile'>").text("New Persona")
+      var personaLabelAgeLow = $("<label for='age-low-input'>").text("Age Low")
+      var personaInputAgeLow = $("<input type='number' id='age-low-input' name='age-low-input' min='18' max='65'>");
+
+      var personaLabelAgeHigh = $("<label for='age-high-input'>").text("Age High")
+      var personaInputAgeHigh = $("<input type='number' id='age-high-input' name='age-high-input' min='18' max='65'>");
+      
+      var personaInterests = $("<label for='persona-interests'>").text("Persona Quote")
+      var personaInterestSelect = $("<select id='persona-interests' name='persona-interests'>");
+      var optionTestInterest1 = $("<option>").val('interest-test-val-1').text('test1').appendTo(personaInterestSelect);
+      var optionTestInterest2 = $("<option>").val('interest-test-val-2').text('test2').appendTo(personaInterestSelect);
+      var optionTestInterest3 = $("<option>").val('interest-test-val-3').text('test3').appendTo(personaInterestSelect);
+
+      var personaQuote = $("<label for='persona-quote'>").text("Persona Quote")
+      var personaQuoteSelect = $("<select id='persona-quote' name='persona-quote'>");
+      var optionTestQuote1 = $("<option>").val('quote-test-val-1').text('quote1').appendTo(personaQuoteSelect);
+      var optionTestQuote2 = $("<option>").val('quote-test-val-2').text('quote2').appendTo(personaQuoteSelect);
+      var optionTestQuote3 = $("<option>").val('quote-test-val-3').text('quote3').appendTo(personaQuoteSelect);
+      
+
+
+      personaForm.append(personaLabelAgeLow, personaInputAgeLow, personaLabelAgeHigh, personaInputAgeHigh, br, personaInterests, personaInterestSelect, br, personaQuote, personaQuoteSelect);
+      personaCard.append(personaForm);
+      
+  // $.ajax({
+  //   url: "https://randomuser.me/api/",
+  //   dataType: "json",
+  //   success: function (data) {
 
       
-      
-      
-      // ===========================================
-      // ASSIGNING PERSONA VARIABLES WITHIN FUNCTION BASED ON RESPONSE FROM API
-      // =========================================
-      var randomGen = data.results[0];
-      var personaImg = randomGen.picture.thumbnail;    // thumbnail IMAGE
-      var personaImgLarge = randomGen.picture.large; //large IMAGE
-      var personaName = randomGen.name.first + " " + randomGen.name.last;
-      var personaAge = randomGen.dob.age;               // PERSONA AGE
-      var personaLocation =
-        randomGen.location.city + ", " + randomGen.location.country;
-      var personaEmail = randomGen.email;
-      var personaGender = randomGen.gender;
+  //     // ===========================================
+  //     // ASSIGNING PERSONA VARIABLES WITHIN FUNCTION BASED ON RESPONSE FROM API
+  //     // =========================================
+  //     var randomGen = data.results[0];
+  //     var personaImg = randomGen.picture.thumbnail;    // thumbnail IMAGE
+  //     var personaImgLarge = randomGen.picture.large; //large IMAGE
+  //     var personaName = randomGen.name.first + " " + randomGen.name.last;
+  //     var personaAge = randomGen.dob.age;               // PERSONA AGE
+  //     var personaLocation =
+  //       randomGen.location.city + ", " + randomGen.location.country;
+  //     var personaEmail = randomGen.email;
+  //     var personaGender = randomGen.gender;
     
     // ===========================================
     //  DYNAMICALLY GENERATING NEW PERSONA CONTENT USING ABOVE VARIABLES
     // ===========================================
-      var personaImage = $("<img id='persona-image'>").attr("src", personaImgLarge);
-      var personaInfoDiv = $("<div id='persona-info'>");
-      var psaNameEl = $("<p id='#psa-name'>").text(personaName);
-      var psaAgeEl = $("<p id='#psa-age'>").text(personaAge);
-      var psaGenderEl = $("<p id='#psa-gender'>").text(personaGender);
-      var psaLocationEl = $("<p id='#psa-location'>").text(personaLocation);
-      var psaBioEl = $("<p id='#psa-bio'>").text("Loading Bio");  // << we receive this information in  a later API CALL
-      personaInfoDiv.append(psaNameEl, psaGenderEl, psaAgeEl, psaLocationEl, psaBioEl);
-      personaCard.append(personaImage, personaInfoDiv);
+      // var personaImage = $("<img id='persona-image'>").attr("src", personaImgLarge);
+      // var personaInfoDiv = $("<div id='persona-info'>");
+      // var psaNameEl = $("<p id='#psa-name'>").text(personaName);
+      // var psaAgeEl = $("<p id='#psa-age'>").text(personaAge);
+      // var psaGenderEl = $("<p id='#psa-gender'>").text(personaGender);
+      // var psaLocationEl = $("<p id='#psa-location'>").text(personaLocation);
+      // var psaBioEl = $("<p id='#psa-bio'>").text("Loading Bio");  // << we receive this information in  a later API CALL
+      // personaInfoDiv.append(psaNameEl, psaGenderEl, psaAgeEl, psaLocationEl, psaBioEl);
+      // personaCard.append(personaImage, personaInfoDiv);
 
     // ========================
     // VARIABLE BIO GENERATION
     // ========================
-      if (userQuoteSelection === "Inspirational") {
-        var settingsOne = {
-          async: true,
-          crossDomain: true,
-          url:
-            "https://quotes15.p.rapidapi.com/quotes/random/?language_code=en",
-          method: "GET",
-          headers: {
-            "x-rapidapi-host": "quotes15.p.rapidapi.com",
-            "x-rapidapi-key":
-              "59d0c27c79msh6e6814003e3803ep1e5484jsn5fecf295231f",
-          },
-        };
+    //   if (userQuoteSelection === "Inspirational") {
+    //     var settingsOne = {
+    //       async: true,
+    //       crossDomain: true,
+    //       url:
+    //         "https://quotes15.p.rapidapi.com/quotes/random/?language_code=en",
+    //       method: "GET",
+    //       headers: {
+    //         "x-rapidapi-host": "quotes15.p.rapidapi.com",
+    //         "x-rapidapi-key":
+    //           "59d0c27c79msh6e6814003e3803ep1e5484jsn5fecf295231f",
+    //       },
+    //     };
 
-        $.ajax(settingsOne).done(function (responseOne) {
-        // INSPIRATIONAL BIO CREATION
-          var inspireQuote = responseOne.content;
-          psaBioEl.text(autoBiography(personaName, personaLocation, specificCategory, inspireQuote));
-        });
-      } 
-        // CORPORATE BIO CREATION 
-        else if (userQuoteSelection === "Corporate") {
-        var settingsTwo = {
-          async: true,
-          crossDomain: true,
-          url: "https://sameer-kumar-corporate-bs-generator-v1.p.rapidapi.com/",
-          method: "GET",
-          headers: {
-            "x-rapidapi-host":
-              "sameer-kumar-corporate-bs-generator-v1.p.rapidapi.com",
-            "x-rapidapi-key":
-              "59d0c27c79msh6e6814003e3803ep1e5484jsn5fecf295231f",
-          },
-        };
+    //     $.ajax(settingsOne).done(function (responseOne) {
+    //     // INSPIRATIONAL BIO CREATION
+    //       var inspireQuote = responseOne.content;
+    //       psaBioEl.text(autoBiography(personaName, personaLocation, specificCategory, inspireQuote));
+    //     });
+    //   } 
+    //     // CORPORATE BIO CREATION 
+    //     else if (userQuoteSelection === "Corporate") {
+    //     var settingsTwo = {
+    //       async: true,
+    //       crossDomain: true,
+    //       url: "https://sameer-kumar-corporate-bs-generator-v1.p.rapidapi.com/",
+    //       method: "GET",
+    //       headers: {
+    //         "x-rapidapi-host":
+    //           "sameer-kumar-corporate-bs-generator-v1.p.rapidapi.com",
+    //         "x-rapidapi-key":
+    //           "59d0c27c79msh6e6814003e3803ep1e5484jsn5fecf295231f",
+    //       },
+    //     };
 
-        $.ajax(settingsTwo).done(function (responseTwo) {
-          // console.log(responseTwo);
-          var corporateQuote = responseTwo.phrase;
+    //     $.ajax(settingsTwo).done(function (responseTwo) {
+    //       // console.log(responseTwo);
+    //       var corporateQuote = responseTwo.phrase;
           
-            autoBiography(
-              personaName,
-              personaLocation,
-              specificCategory,
-              corporateQuote
-                 )
-            });
-         }
-         },
-     });
+    //         autoBiography(
+    //           personaName,
+    //           personaLocation,
+    //           specificCategory,
+    //           corporateQuote
+    //              )
+    //         });
+    //      }
+    //      },
+    //  });
     } // END NEW USER CALL
 });// END READY DOCUMENT
