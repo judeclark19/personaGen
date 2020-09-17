@@ -9,7 +9,6 @@ var trashIcon = $("#trash-icon");
 var librarySwitch = false;
 
 // PAGE TARGETING VARIABLES
-var personaCard = $("#persona-card");
 var personaBox = $("#persona-box");
 var personaBlock = $("#persona-block")
 var tableBlock = $("#table-block")
@@ -29,7 +28,8 @@ submitGenerate.on("click", function (event) {
   var personaGender = sexSelect.val();
   var personaInterests = interestSelect.val();
   var personaQuote = quoteSelect.val();
-  event.preventDefault();});
+  event.preventDefault();
+});
 // LEAVE HERE PLEASE
 // =======================
 
@@ -97,9 +97,12 @@ $(document).ready(function () {
   // =====================================================================
   function generateNewPersona() {
     console.log("I clicked the generate new button");
-    var genConfirm = confirm("Generate new user? \n (This is where we can prompt to gen random or put in user params)");
+    var genConfirm = confirm(
+      "Generate new user? \n (This is where we can prompt to gen random or put in user params)"
+      );
     if (genConfirm){
-    newUserCall();}
+    newUserCall();
+    }
   }
 
   function saveFunc() {
@@ -120,15 +123,16 @@ $(document).ready(function () {
       tableBlock.addClass("hide");
       librarySwitch = false;
     }
-
   }
 
   function clearStorage() {
-
-    var clearConfirm = confirm("Are you sure you want to delete everything in your library?")
+    var clearConfirm = confirm(
+      "Are you sure you want to delete everything in your library?"
+      );
     if (clearConfirm){
     localStorage.clear();
-    console.log("THIS CURRENTLY DELETES LOCAL STORAGE");}
+    console.log("THIS CURRENTLY DELETES LOCAL STORAGE");
+  }
   }
   // =====================================================================
 
@@ -148,7 +152,6 @@ $(document).ready(function () {
       url: "https://randomuser.me/api/",
       dataType: "json",
       success: function (data) {
-
         // ===========================================
         // ASSIGNING PERSONA VARIABLES WITHIN FUNCTION BASED ON RESPONSE FROM API
         // =========================================
@@ -167,17 +170,17 @@ $(document).ready(function () {
         // ===========================================
         var imageContainer = $("#image-container");
         var dataContainer = $("#data-container");
-        var personaImage = $("<img id='persona-image'>").attr(
+        var personaImageEl = $("<img id='persona-image'>").attr(
           "src",
           personaImgLarge
         );
-        var personaInfoDiv = $("<div id='persona-info'>");
         var personaBlock = $("#persona-block")
         var psaNameEl = $("<p id='#psa-name'>").text(personaName);
         var psaAgeEl = $("<p id='#psa-age'>").text(personaAge);
         var psaGenderEl = $("<p id='#psa-gender'>").text(personaGender);
         var psaLocationEl = $("<p id='#psa-location'>").text(personaLocation);
         var psaBioEl = $("<p id='#psa-bio'>").text("Loading Bio..."); // << we receive this information in  a later API CALL
+        tableBlock.addClass("hide")
         personaBlock.removeClass("hide")
         dataContainer.empty();
         dataContainer.append(
@@ -189,7 +192,7 @@ $(document).ready(function () {
         );
         // personaCard.append(personaImage, personaInfoDiv);
         imageContainer.empty();
-        imageContainer.append(personaImage);
+        imageContainer.append(personaImageEl);
         personaBox.append(imageContainer, dataContainer);
 
         // ========================
