@@ -11,6 +11,7 @@ var librarySwitch = false;
 // PAGE TARGETING VARIABLES
 var personaCard = $("#persona-card");
 var personaBox = $("#persona-box");
+var personaBlock = $("#persona-block")
 var tableBlock = $("#table-block")
 
 // ==============================
@@ -115,10 +116,14 @@ $(document).ready(function () {
     console.log("I clicked the view storage icon");
     
     if (librarySwitch===false){
+      personaBlock.addClass("hide");
       tableBlock.removeClass("hide");
       librarySwitch = true;
+    } else {
+      personaBlock.removeClass("hide");
+      tableBlock.addClass("hide");
+      librarySwitch = false;
     }
-    tableBlock.removeClass("hide");
 
   }
 
