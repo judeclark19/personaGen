@@ -61,7 +61,5 @@ function generateProfession(age) {
     while (age < interests[randomInterest].ageRange[0] || age > interests[randomInterest].ageRange[1]) {
         randomInterest = Math.floor(Math.random() * interests.length);
     }
-    return age + ": " + interests[randomInterest].title;
+    return interests[randomInterest].title;
 }
-
-console.log(generateProfession(40));
