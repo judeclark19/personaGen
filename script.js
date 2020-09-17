@@ -218,38 +218,27 @@ $(document).ready(function () {
             personaImgLarge
           );
           var personaBlock = $("#persona-block");
-          // var psaNameEl = $("<p id='#psa-name' class='notification'>").text("Name: " +personaName);
 
+          var nameEl = $("#name-msg-body");
+          nameEl.text(personaName);
 
-          var nameMsgEl = $("<div class='message' id='name-msg'>")
-          var nameMsgHeaderEl = $("<div class='message-header' id='name-msg-header'>").text("Name")
-          var nameMsgBodyEl = $("<div class='message-body' id='name-msg-body'>").text(personaName)
-          nameMsgEl.append(nameMsgHeaderEl, nameMsgBodyEl)
+          var ageEl = $("#age-msg-body");
+          ageEl.text(personaAge);
 
+          var genderEl = $("#gender-msg-body")
+          genderEl.text(personaGender)
 
+          var genderEl = $("#location-msg-body")
+          genderEl.text(personaLocation)
 
-          // var psaAgeEl = $("<p id='#psa-age' class='notification'>").text("Age: "+personaAge);
-          var psaAgeEl = $("#psa-age")
-          // var psaGenderEl = $("<p id='#psa-gender' class='notification'>").text("Gender: "+personaGender);
-          var psaGenderEl = $("#psa-gender")
-          // var psaLocationEl = $("<p id='#psa-location' class='notification'>").text("Location: "+personaLocation);
-          var psaLocationEl = $("#psa-location")
-          // var psaBioEl = $("<p id='#psa-bio' class='bio-loading notification'>").text("Loading Bio...");
-          // << we receive this information in  a later API CALL
-          var psaBioEl = $("#psa-bio")
+          var bioEl = $("#bio-msg-body")
+          bioEl.text("Loading Bio..."); //  << we receive this information in  a later API CALL
+          
+          imageContainer.empty();
+          imageContainer.append(personaImageEl);
           tableBlock.addClass("hide");
           personaBlock.removeClass("hide");
-          imageContainer.empty();
-          dataContainer.empty();
-          imageContainer.append(personaImageEl);
-          dataContainer.append(
-            nameMsgEl,
-            psaGenderEl,
-            psaAgeEl,
-            psaLocationEl,
-            psaBioEl
-          );
-          personaBlock.append(imageContainer, dataContainer);
+          
 
           // ========================
           // VARIABLE BIO GENERATION
@@ -271,8 +260,8 @@ $(document).ready(function () {
             $.ajax(settingsOne).done(function (responseOne) {
               // INSPIRATIONAL BIO CREATION
               var inspireQuote = responseOne.content;
-              psaBioEl.removeClass("bio-loading")
-              psaBioEl.text(
+              // psabioEl.removeClass("bio-loading")
+              bioEl.text(
                 autoBiography(
                   personaName,
                   personaLocation,

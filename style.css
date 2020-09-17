@@ -6,6 +6,10 @@
   display: none;
 }
 
+.show{
+  display:block;
+}
+
 #main-container{
   /* position: relative; */
   border: 2px dashed hotpink;
