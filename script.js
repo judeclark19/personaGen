@@ -18,13 +18,12 @@ var judeDummyStorage = [
 ];
 // ================
 
-// ICONS AND BUTTON VARIABLES
+// ICON AND BUTTON VARIABLES
 var randomButton = $("#user-select-random");
 var userParamsButton = $("#user-select-parameters");
-var genNewIcon = $("#gen-new-psa-icon");
-var gnpContainer = $("#gnp-icon-container");
+var viewPsaIcon = $("#view-psa-icon");
+var viewPsaContainer = $("#view-psa-icon-container");
 var saveIcon = $("#save-icon");
-// ICON VARIABLES
 var saveIconContainer = $("#save-icon-container");
 var libraryIcon = $("#library-icon");
 var libraryIconContainer = $("#library-icon-container");
@@ -40,7 +39,7 @@ var formContainer = $("#form-container");
 var personaBox = $("#persona-box");
 var personaBlock = $("#persona-block");
 var libraryBlock = $("#library-table-block");
-var landingPromptBlock = $("#landing-prompt-block");
+var landingBlock = $("#landing-block");
 var formBlock = $("#form-block");
 var clearWarning = $("#clear-warning-block");
 
@@ -144,7 +143,7 @@ $(document).ready(function () {
   });
 
   userParamsButton.on("click", function () {
-    landingPromptBlock.addClass("hide");
+    landingBlock.addClass("hide");
     formBlock.removeClass("hide");
     personaBlock.addClass("hide");
     libraryBlock.addClass("hide");
@@ -153,15 +152,15 @@ $(document).ready(function () {
   });
 
   $("#close-prompt-btn").on("click", function () {
-    landingPromptBlock.addClass("hide");
-    gnpContainer.removeClass("disabled");
-    gnpContainer.addClass("gnp-able");
+    landingBlock.addClass("hide");
+    viewPsaContainer.removeClass("disabled");
+    viewPsaContainer.addClass("gnp-able");
   });
 
   $("#close-form-btn").on("click", function () {
     formBlock.addClass("hide");
-    gnpContainer.removeClass("disabled");
-    gnpContainer.addClass("gnp-able");
+    viewPsaContainer.removeClass("disabled");
+    viewPsaContainer.addClass("gnp-able");
   });
 
   formSubmitBtn.on("click", function () {
@@ -170,13 +169,13 @@ $(document).ready(function () {
     generateNewPersona();
   });
 
-  genNewIcon.on("click", function () {
+  viewPsaIcon.on("click", function () {
     // generateNewPersona();
     // personaBlock.addClass("hide");
-    landingPromptBlock.removeClass("hide");
+    landingBlock.removeClass("hide");
     formBlock.addClass("hide");
-    gnpContainer.addClass("disabled");
-    gnpContainer.removeClass("gnp-able");
+    viewPsaContainer.addClass("disabled");
+    viewPsaContainer.removeClass("gnp-able");
   });
 
   saveIcon.on("click", function () {
@@ -216,9 +215,9 @@ $(document).ready(function () {
     //TODO: disable buttons
 
     //Disable action buttons
-    gnpContainer.prop("disabled", true);
-    gnpContainer.addClass("disabled");
-    gnpContainer.removeClass("gnp-able");
+    viewPsaContainer.prop("disabled", true);
+    viewPsaContainer.addClass("disabled");
+    viewPsaContainer.removeClass("gnp-able");
 
     saveIconContainer.prop("disabled", true);
     saveIconContainer.addClass("disabled");
@@ -235,7 +234,7 @@ $(document).ready(function () {
     //hide n show
     clearWarning.addClass("hide");
     personaBlock.addClass("hide");
-    landingPromptBlock.removeClass("hide");
+    landingBlock.removeClass("hide");
     if (librarySwitch) {
       librarySwitch = false;
       libraryBlock.addClass("hide");
@@ -410,12 +409,12 @@ console.log(personaQuoteSelect.val());
           //   DYNAMICALLY GENERATING NEW PERSONA CONTENT USING ABOVE VARIABLES
           // ===========================================
 
-          //Hide the prompt
-          landingPromptBlock.addClass("hide");
+          //Hide the landing page
+          landingBlock.addClass("hide");
 
-          //Enable the GenNewPsa button
-          gnpContainer.removeClass("disabled");
-          gnpContainer.addClass("gnp-able");
+          //Enable the view current psa button
+          viewPsaContainer.removeClass("disabled");
+          viewPsaContainer.addClass("gnp-able");
 
           //Enable save button
           saveIconContainer.prop("disabled", false);

@@ -50,16 +50,20 @@
 
     </div>
     <!-- MAIN ============================================================== -->
-    <div class="container" id="main-container">
-      <!-- Landing/Gen New Notification -->
-      <div class="block" id="landing-prompt-block">
-        <div class="notification">
-          <!-- <button class="delete" id="close-prompt-btn"></button> -->
-          <!-- <h3 class="notif-title">Generate a new persona:</h3> -->
+    <div id="wrap">
+    <main class="container" id="main-container">
+      <!-- Landing/home page -->
+      <div class="block" id="landing-block">
+        <div class="notification" id="landing-notification">
+
+<div class="half-page">
           <h3 class="title is-2">Generate a new persona:</h3>
-          <button class="button user-select is-large" id="user-select-random">Random</button>
-          <hr/>
-          <h3 class="title is-4">or enter your own custom parameters:</h3>
+          <button class="button is-primary is-large" id="user-select-random">Random</button>
+          
+          </div>
+<hr/>
+          <div class="half-page">
+          <h3 class="title is-4">or, enter your own<br />custom parameters here:</h3>
 
           <form id="persona-form" action="#">
             <p>
@@ -100,61 +104,11 @@
 </p><br/>
           </form>
 
-          <button class="button user-select is-large" id="user-select-parameters">Custom</button>
+          <button class="button is-info is-outlined is-large" id="user-select-parameters">Custom</button>
+        </div>
         </div>
       </div>
-      <!-- END of Landing/Gen New Notification -->
-
-<!-- user parameter input form -->
-      <!-- <div class="block hide" id="form-block">
-        <div class="notification">
-          <button class="delete" id="close-form-btn"></button>
-          <h3 class="notif-title">New Persona Parameters</h3>
-          <div id="form-container">
-
-            <form id="persona-form" action="#">
-              <p>
-              <label for="age-low-input">Min Age</label>
-              <input type="number" id="age-low-input" name="age-low-input" min="18" max="65">
-
-              <label for="age-high-input">Max Age</label>
-              <input type="number" id="age-high-input" name="age-high-input" min="18" max="65">
-</p>
-<p>
-              <label for="persona-gender-select">Gender</label>
-              <select id="persona-gender-select" name="persona-interests">
-                <option value="gender-test-val-0">Select...</option>
-                <option value="gender-test-val-1">gender1</option>
-                <option value="gender-test-val-2">gender2</option>
-                <option value="gender-test-val-3">gender3</option>
-                <option value="gender-test-val-4">gender4</option>
-              </select>
-</p><p>
-              <label for="persona-profession-input">Profession</label>
-              <input type="text" id="persona-profession-input" name="persona-profession-input" placeholder="(Optional)">
-</p><p>
-              <label for="persona-interest-select">Persona Interest</label>
-              <select id="persona-interest-select" name="persona-interests">
-                <option value="interest-test-val-0">Select...</option>
-                <option value="interest-test-val-1">interest1</option>
-                <option value="interest-test-val-2">interest2</option>
-                <option value="interest-test-val-3">interest3</option>
-              </select>
-</p><p>
-              <label for="persona-quote-select">Quote Type</label>
-              <select id="persona-quote-select" name="persona-quote-select">
-                <option value="quote-test-val-0">Select...</option>
-                <option value="quote-test-val-1">Random Quote</option>
-                <option value="quote-test-val-2">Corporate Theme</option>
-                <option value="quote-test-val-3">Movie Quote</option>
-              </select>
-</p>
-            </form>
-          </div>
-          <button class="button is-medium is-info" id="form-submit-btn">Submit</button>
-        </div>
-      </div> -->
-      <!-- END user input form -->
+      <!-- END of Landing/home page -->
       
 
       <!-- CLEAR LIBRARY WARNING MESSAGE-->
@@ -251,26 +205,29 @@
             </tr> -->
           </tbody>
         </table>
-      </div>
-
-      
+      </main>
     </div>
+
+       <!-- ./main container -->
+       <!-- ========================================================================= -->
+    
     <div id="save-snack" class="snackbar">Persona saved to library.</div>
-    <!-- ./main container -->
+   
+
 
     <!-- "footer" action bar -->
-    <footer class="footer">
-      <div class="columns is-mobile" id="action-bar">
+    <footer class="columns is-mobile" id="action-bar">
+      <!-- <div class="columns is-mobile" id="action-bar"> -->
 
-        <button class="column disabled" id="trash-icon-container" disabled>
-          <div class="action-icon" id="trash-icon">
+        <button class="column disabled" id="home-icon-container" disabled>
+          <div class="action-icon" id="home-icon">
             <i class="fas fa-home" style="font-size: 2em"></i>
           </div>
         </button>
 
-        <button class="column disabled" id="gnp-icon-container" disabled>
-          <div class="action-icon" id="gen-new-psa-icon">
-            <i class="fas fa-user-plus" style="font-size: 2em"></i>
+        <button class="column disabled" id="view-psa-icon-container" disabled>
+          <div class="action-icon" id="view-psa-icon">
+            <i class="fas fa-user" style="font-size: 2em"></i>
           </div>
         </button>
 
@@ -292,7 +249,8 @@
           </div>
         </button> -->
 
-      </div>
+      <!-- </div> -->
+      <!-- </div> -->
     </footer>
 
     <!-- end footer -->

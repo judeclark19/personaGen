@@ -1,7 +1,17 @@
 /* Color palette: "New Mexico */
 
 * {
-  font-family: "Poppins", sans-serif;
+  font-family: "Poppins", sans-serif
+}
+
+#wrap {
+  min-height: 100%;
+}
+
+#main-container {
+  overflow: auto;
+  padding-bottom: 180px;
+  /* must be same height as the footer */
 }
 
 .hide {
@@ -36,14 +46,35 @@ h1{
 
 /* Notifications */
 /* ================================================================================ */
-#landing-prompt-block{
+#landing-block{
   border: 1px outset;
+  /* border: 3px solid hotpink; */
+  /* height: calc(100vh - 60px - 60px); */
+  margin-bottom: 0px;
   /* float: bottom; */
   /* position: absolute; */
   /* bottom: -22px; */
   /* bottom: 0px; */
   text-align: center;
+  
 }
+
+.half-page{
+  height: 40%;
+  /* border: 3px solid hotpink; */
+
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  /* height: 400px; */
+  
+}
+
+#landing-notification{
+  /* height: 100%; */
+  width: 100%;
+}
+
 #clear-warning-block{
   border: 1px outset;
   /* float: bottom; */
@@ -141,7 +172,6 @@ h1{
   margin: auto;
 }
 
-
 /* style disabled buttons so they don't do anything */
 .disabled{
   /* border: 2px solid red; */
@@ -150,7 +180,6 @@ h1{
 .disabled:hover{
   border: 2px solid #EFF6F6;
 }
-/* --------------------------------------------- */
 
 .genNew-is-active{
   background-color: #30b077!important;
@@ -196,12 +225,13 @@ button:hover{
 
 footer {
   background-color: #EFFAFA!important;
-    padding-top:20px!important;
-    padding-bottom: 20px!important;
-    /* position: absolute; */
-    bottom: 0;
-    width: 100%;
-    /* clear: both; essentially a line break for floating */
+  /* background-color: aqua !important; */
+  position:fixed;
+ bottom:0;
+ left:0;
+ width: 100%;
+ margin: 0px!important;
+ height: 80px;
 }
 
 /* Snackbar  yo this is new to me*/
@@ -219,7 +249,7 @@ footer {
   position: fixed;
   z-index: 1;
   left: 50%;
-  bottom: 30px;
+  bottom: 100px;
 }
 
 .snackbar.show {
@@ -233,20 +263,20 @@ footer {
 /* Animations to fade the snackbar in and out */
 @-webkit-keyframes fadein {
   from {bottom: 0; opacity: 0;}
-  to {bottom: 30px; opacity: 1;}
+  to {bottom: 100px; opacity: 1;}
 }
 
 @keyframes fadein {
   from {bottom: 0; opacity: 0;}
-  to {bottom: 30px; opacity: 1;}
+  to {bottom: 100px; opacity: 1;}
 }
 
 @-webkit-keyframes fadeout {
-  from {bottom: 30px; opacity: 1;}
+  from {bottom: 100px; opacity: 1;}
   to {bottom: 0; opacity: 0;}
 }
 
 @keyframes fadeout {
-  from {bottom: 30px; opacity: 1;}
+  from {bottom: 100px; opacity: 1;}
   to {bottom: 0; opacity: 0;}
 }
