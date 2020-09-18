@@ -44,26 +44,6 @@ var landingPromptBlock = $("#landing-prompt-block");
 var formBlock = $("#form-block");
 var clearWarning = $("#clear-warning-block");
 
-// ==============================
-// FORM VARIABLES & EVENT LISTENER
-var targetForm = $("#target-form");
-var ageSelectLow = $("#age-low");
-var ageSelectHigh = $("#age-high");
-var sexSelect = $("#sex-type");
-var quoteSelect = $("#quote-type");
-var interestSelect = $("#persona-interests");
-var submitGenerate = $("#submit-generate"); //SUBMIT BUTTON
-
-// EVENT LISTENER FOR FORM
-submitGenerate.on("click", function (event) {
-  var personaGender = sexSelect.val();
-  var personaInterests = interestSelect.val();
-  var personaQuote = quoteSelect.val();
-  event.preventDefault();
-});
-// LEAVE HERE PLEASE
-// =======================
-
 // JOSEPH HARDCODE VARIABLES
 var specificCategory;
 var userQuoteSelection = "Inspirational";
@@ -99,6 +79,7 @@ function autoBiography(name, location, category, quote) {
     sentenceStructure.quotes[randomWords] +
     quote +
     ".";
+    console.log(finalText)
   return finalText;
 }
 

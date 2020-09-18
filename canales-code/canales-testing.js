@@ -1,21 +1,4 @@
 // GLOBAL VARIABLES
-var judeDummyStorage = [
-  {
-    personaName: "Jeremy Clarkson",
-    personaAge: 60,
-    personaLocation: "Chipping Norton",
-  },
-  {
-    personaName: "James May",
-    personaAge: 57,
-    personaLocation: "Hammersmith",
-  },
-  {
-    personaName: "Richard Hammond",
-    personaAge: 50,
-    personaLocation: "Herefordshire",
-  },
-];
 // ================
 
 // ICONS AND BUTTON VARIABLES
@@ -44,33 +27,13 @@ var landingPromptBlock = $("#landing-prompt-block");
 var formBlock = $("#form-block");
 var clearWarning = $("#clear-warning-block");
 
-// ==============================
-// FORM VARIABLES & EVENT LISTENER
-var targetForm = $("#target-form");
-var ageSelectLow = $("#age-low");
-var ageSelectHigh = $("#age-high");
-var sexSelect = $("#sex-type");
-var quoteSelect = $("#quote-type");
-var interestSelect = $("#persona-interests");
-var submitGenerate = $("#submit-generate"); //SUBMIT BUTTON
-
-// EVENT LISTENER FOR FORM
-submitGenerate.on("click", function (event) {
-  var personaGender = sexSelect.val();
-  var personaInterests = interestSelect.val();
-  var personaQuote = quoteSelect.val();
-  event.preventDefault();
-});
-// LEAVE HERE PLEASE
-// =======================
-
 // JOSEPH HARDCODE VARIABLES
 var specificCategory;
 var userQuoteSelection = "Inspirational";
 
 // ==============
 // Text Generation
-function autoBiography(name, location, category, quote) {
+function autoBiography(name, location, interests, quote) {
   sentenceStructure = {
     starter: ["Hi my name is ", "Hello my name is ", "Whats up it's "],
     where: [". I am from ", ". I am originally from ", ". I come from "],
@@ -95,16 +58,16 @@ function autoBiography(name, location, category, quote) {
     sentenceStructure.where[randomWords] +
     location +
     sentenceStructure.interests[randomWords] +
-    category +
+    interests +
     sentenceStructure.quotes[randomWords] +
     quote +
     ".";
+    console.log(finalText)
   return finalText;
 }
 
 
 
-// FUNCTION
 $(document).ready(function () {
   // =====================================================================
   //  GLOBAL EVENT LISTENERS
@@ -311,8 +274,8 @@ $(document).ready(function () {
          var optionTestInterest2 = $("<option>").val('interest-test-val-2').text('interest2').appendTo(personaInterestSelect);
          var optionTestInterest3 = $("<option>").val('interest-test-val-3').text('interest3').appendTo(personaInterestSelect);
          // QUOTE SELECT
-         var personaQuote = $("<label for='persona-quote'>").text("Persona Quote")
-         var personaQuoteSelect = $("<select id='persona-quote' name='persona-quote'>");
+         var personaQuote = $("<label for='persona-quote-select'>").text("Persona Quote")
+         var personaQuoteSelect = $("<select id='persona-quote-select' name='persona-quote'>");
          var optionTestQuote1 = $("<option>").val('quote-test-val-1').text('quote1').appendTo(personaQuoteSelect);
          var optionTestQuote2 = $("<option>").val('quote-test-val-2').text('quote2').appendTo(personaQuoteSelect);
          var optionTestQuote3 = $("<option>").val('quote-test-val-3').text('quote3').appendTo(personaQuoteSelect);
@@ -392,9 +355,9 @@ $(document).ready(function () {
            personaInfoDiv.append(psaNameEl, psaGenderEl, psaAgeEl, psaLocationEl, psaBioEl);
            mainContainer.append(personaImage, personaInfoDiv);
    
-       // ========================
-       // VARIABLE BIO GENERATION
-       // ========================
+        // ========================
+        // VARIABLE BIO GENERATION
+        // ========================
          if (userQuoteSelection === "Inspirational") {
            var settingsOne = {
              async: true,
