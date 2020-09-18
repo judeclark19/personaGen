@@ -39,8 +39,8 @@ h1{
 #landing-prompt-block{
   border: 1px outset;
   /* float: bottom; */
-  position: absolute;
-  bottom: -22px;
+  /* position: absolute; */
+  /* bottom: -22px; */
   /* bottom: 0px; */
   text-align: center;
 }
@@ -175,9 +175,9 @@ h1{
   border-radius: 10px;
 }
 
-.fas{
+/* .fas{
   color: #41393A;
-}
+} */
 
 /* .icon-label{
     font-size: 10pt;

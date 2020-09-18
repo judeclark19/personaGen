@@ -57,42 +57,45 @@ var personaArray = [];
 function displayPersonaKeys() {
   mainContainer.empty();
 
-    var personaStorageKeys = Object.keys(localStorage);
-    if (personaStorageKeys == null) {
-    alert("i'm empty")
-    } else{
-    for (var i = 0; i < personaStorageKeys; i ++) {
-      var personaKeyItem = localStorage.getItem(personaStorageKeys[i])
-      console.log(personaKeyItem)
-    } } }
+  var personaStorageKeys = Object.keys(localStorage);
+  if (personaStorageKeys == null) {
+    alert("i'm empty");
+  } else {
+    for (var i = 0; i < personaStorageKeys; i++) {
+      var personaKeyItem = localStorage.getItem(personaStorageKeys[i]);
+      console.log(personaKeyItem);
+    }
+  }
+}
 
-    saveIcon.on("click", function() {
-      var personaName = $("#name-msg-body")[0].childNodes[0].data;
-      var personaImage = $("#persona-image")[0].currentSrc;
-      var personaAge = $("#age-msg-body")[0].childNodes[0].data;
-      var personaGender = $("#gender-msg-body")[0].childNodes[0].data;
-      var personaLocation = $("#location-msg-body")[0].childNodes[0].data;
-      var personaBio = $("#bio-msg-body")[0].childNodes[0].data;
-      
-      console.log(personaImage);
-      console.log(personaName); 
-      console.log(personaAge);
-      console.log(personaGender);
-      console.log(personaLocation)
-      console.log(personaBio);
+saveIcon.on("click", function () {
+  var personaName = $("#name-msg-body")[0].childNodes[0].data;
+  var personaImage = $("#persona-image")[0].currentSrc;
+  var personaAge = $("#age-msg-body")[0].childNodes[0].data;
+  var personaGender = $("#gender-msg-body")[0].childNodes[0].data;
+  var personaLocation = $("#location-msg-body")[0].childNodes[0].data;
+  var personaBio = $("#bio-msg-body")[0].childNodes[0].data;
 
-      var personaKeyItem = {
-      name: personaName,
-      image: personaImage,
-      age: personaAge,
-      gender: personaGender,
-      location: personaLocation,
-      bio: personaBio  }
+  console.log(personaImage);
+  console.log(personaName);
+  console.log(personaAge);
+  console.log(personaGender);
+  console.log(personaLocation);
+  console.log(personaBio);
 
-      console.log(personaKeyItem)
+  var personaKeyItem = {
+    name: personaName,
+    image: personaImage,
+    age: personaAge,
+    gender: personaGender,
+    location: personaLocation,
+    bio: personaBio,
+  };
 
-      storedPersona = localStorage.setItem(personaName, personaKeyItem)
-    });
+  console.log(personaKeyItem);
+
+  storedPersona = localStorage.setItem(personaName, personaKeyItem);
+});
 // ==============
 // Text Generation
 function autoBiography(name, location, interests, quote) {
@@ -124,11 +127,9 @@ function autoBiography(name, location, interests, quote) {
     sentenceStructure.quotes[randomWords] +
     quote +
     ".";
-    console.log(finalText)
+  console.log(finalText);
   return finalText;
 }
-
-
 
 // FUNCTION
 $(document).ready(function () {
@@ -147,6 +148,7 @@ $(document).ready(function () {
     formBlock.removeClass("hide");
     personaBlock.addClass("hide");
     libraryBlock.addClass("hide");
+    generateNewPersona();
     formCall();
   });
 
@@ -311,28 +313,28 @@ $(document).ready(function () {
 
     // AGE RANGE
     var personaInputAgeLow = $("#age-low-input");
-    var personaInputAgeHigh = $("#age-high-inputs");
-
+    console.log(personaInputAgeLow.val());
+    var personaInputAgeHigh = $("#age-high-input");
+    console.log(personaInputAgeHigh.val());
     // GENDER SELECT
     var personaGenderSelect = $("#persona-gender-select");
-
+console.log(personaGenderSelect.val());
     // PROFESSION INPUT
     var personaProfessionInput = $("#persona-profession-input");
-
+console.log(personaProfessionInput.val());
     // INTEREST SELECT
     var personaInterestSelect = $("#persona-interest-select");
-    
+console.log(personaInterestSelect.val());
     // QUOTE SELECT
     var personaQuoteSelect = $("#persona-quote-select");
-
-
+console.log(personaQuoteSelect.val());
     //TARGETING FORM VALUES
     var submitGenerate = $("#submit-generate"); //SUBMIT BUTTON
     var personaForm = $("#persona-form");
 
     // EVENT LISTENER FOR FORM
     // formSubmitBtn.on("click", function (event) {
-      $("#persona-form").on("submit", function(event){
+    $("#persona-form").on("submit", function (event) {
       var personaLowAgeVal = $("#age-low-input").val();
       var personaHighAgeVal = $("#age-high-input").val();
       var personaGenderVal = $("#persona-gender-select").val();
@@ -551,7 +553,9 @@ $(document).ready(function () {
             };
 
             $.ajax(settings).done(function (response) {
-              var randomMovie = Math.floor(Math.random() * response.taglines.length);
+              var randomMovie = Math.floor(
+                Math.random() * response.taglines.length
+              );
               var movieQuote = response.taglines[randomMovie];
               bioEl.text(
                 autoBiography(
