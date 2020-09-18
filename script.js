@@ -54,6 +54,8 @@ var quoteSelect = $("#quote-type");
 var interestSelect = $("#persona-interests");
 var submitGenerate = $("#submit-generate"); //SUBMIT BUTTON
 
+var personaJobVal;
+
 // EVENT LISTENER FOR FORM
 submitGenerate.on("click", function (event) {
   var personaGender = sexSelect.val();
@@ -65,7 +67,6 @@ submitGenerate.on("click", function (event) {
 // =======================
 
 // JOSEPH HARDCODE VARIABLES
-var specificCategory;
 var userQuoteSelection = "Inspirational";
 
 // ==============
@@ -359,7 +360,7 @@ $(document).ready(function () {
          var personaGenderVal = $("#persona-gender-select").val();
          var personaQuoteVal = $("#persona-quote-select").val();
          var personaInterestVal = $("#persona-interest-select").val();
-         var personaJobVal = $("#persona-profession-input").val();
+        //  personaJobVal = $("#persona-profession-input").val();
          // CONSOLE LOGGING VALUES OF INPUTS
          console.log("this click button is working");
          console.log(personaLowAgeVal);
@@ -431,7 +432,7 @@ $(document).ready(function () {
            $.ajax(settingsOne).done(function (responseOne) {
            // INSPIRATIONAL BIO CREATION
              var inspireQuote = responseOne.content;
-             psaBioEl.text(autoBiography(personaName, personaLocation, specificCategory, inspireQuote));
+             psaBioEl.text(autoBiography(personaName, personaLocation, personaJobVal, inspireQuote));
            });
          } 
            // CORPORATE BIO CREATION 
@@ -456,7 +457,7 @@ $(document).ready(function () {
                autoBiography(
                  personaName,
                  personaLocation,
-                 specificCategory,
+                 personaJobVal,
                  corporateQuote
                     )
                });
@@ -571,7 +572,11 @@ $(document).ready(function () {
           personaBlock.removeClass("hide");
 
           // creates interest/career based on age. No more meteorology!
-          specificCategory = generateProfession(personaAge);
+          // if no input on form the interest is randomly generated
+          personaJobVal = $("#persona-profession-input").val();
+          if (!personaJobVal) {
+            personaJobVal = generateProfession(personaAge);
+          }
 
           // ========================
           // VARIABLE BIO GENERATION
@@ -598,7 +603,7 @@ $(document).ready(function () {
                 autoBiography(
                   personaName,
                   personaLocation,
-                  specificCategory,
+                  personaJobVal,
                   inspireQuote
                 )
               );
@@ -627,7 +632,7 @@ $(document).ready(function () {
               autoBiography(
                 personaName,
                 personaLocation,
-                specificCategory,
+                personaJobVal,
                 corporateQuote
               );
             });
