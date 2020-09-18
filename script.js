@@ -331,8 +331,8 @@ $(document).ready(function () {
          var optionTestInterest2 = $("<option>").val('interest-test-val-2').text('interest2').appendTo(personaInterestSelect);
          var optionTestInterest3 = $("<option>").val('interest-test-val-3').text('interest3').appendTo(personaInterestSelect);
          // QUOTE SELECT
-         var personaQuote = $("<label for='persona-quote'>").text("Persona Quote")
-         var personaQuoteSelect = $("<select id='persona-quote' name='persona-quote'>");
+         var personaQuote = $("<label for='persona-quote-select'>").text("Persona Quote")
+         var personaQuoteSelect = $("<select id='persona-quote-select' name='persona-quote-select'>");
          var optionTestQuote1 = $("<option>").val('quote-test-val-1').text('Random Quote').appendTo(personaQuoteSelect);
          var optionTestQuote2 = $("<option>").val('quote-test-val-2').text('Corporate Theme').appendTo(personaQuoteSelect);
          var optionTestQuote3 = $("<option>").val('quote-test-val-3').text('quote3').appendTo(personaQuoteSelect);
@@ -358,7 +358,7 @@ $(document).ready(function () {
          var personaLowAgeVal = $("#age-low-input").val();
          var personaHighAgeVal = $("#age-high-input").val();
          var personaGenderVal = $("#persona-gender-select").val();
-        //  var personaQuoteVal = $("#persona-quote-select").val();
+         var personaQuoteVal = $("#persona-quote-select").val();
         //  var personaInterestVal = $("#persona-interest-select").val();
         //  personaJobVal = $("#persona-profession-input").val();
          // CONSOLE LOGGING VALUES OF INPUTS
@@ -578,12 +578,13 @@ $(document).ready(function () {
             personaJobVal = generateProfession(personaAge);
           }
           // var personaInterestVal = $("#persona-interest-select").val();
-          var personaQuoteVal = $("#persona-quote-select").val();
+          personaQuoteVal = $("#persona-quote-select").val();
+          console.log(personaQuoteVal);
 
           // ========================
           // VARIABLE BIO GENERATION
           // ========================
-          if (personaQuoteVal === "Random Quote") {
+          if (personaQuoteVal === "quote-test-val-1") {
             var settingsOne = {
               async: true,
               crossDomain: true,
@@ -612,7 +613,8 @@ $(document).ready(function () {
             });
           }
           // CORPORATE BIO CREATION
-          else if (personaQuoteVal === "Corporate Theme") {
+          else if (personaQuoteVal === "quote-test-val-2") {
+            console.log("it's corporate time!");
             var settingsTwo = {
               async: true,
               crossDomain: true,
