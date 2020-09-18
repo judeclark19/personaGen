@@ -36,18 +36,45 @@ h1{
 
 /* Notifications */
 /* ================================================================================ */
-.notification{
+#landing-prompt-block{
   border: 1px outset;
-  float: bottom;
+  /* float: bottom; */
   position: absolute;
-  top: 100px;
+  bottom: -22px;
   /* bottom: 0px; */
   text-align: center;
-  z-index: 0;
-
 }
+#clear-warning-block{
+  border: 1px outset;
+  /* float: bottom; */
+  position: absolute;
+  bottom: -35px;
+  right: 0px;
+  /* bottom: 0px; */
+  text-align: center;
+}
+
+#form-block{
+  border: 1px outset;
+  /* float: bottom; */
+  position: absolute;
+  top: 200px;
+  /* bottom: 0px; */
+  text-align: center;
+}
+
+/* #form-submit-btn{
+  background-color:green;
+} */
+
 .notif-title{
   font-size: 25px;
+}
+
+.user-select{
+  color: white!important;
+  background-color:#5DD39E!important;
+  border-radius: 5px !important;
 }
 
 /* ================================================================================ */
@@ -60,7 +87,7 @@ h1{
   margin-left: auto;
   margin-right: auto;
   max-width: 350px;
-  border: 5px solid #374B4A;
+  border: 5px solid #344645;
   background-color: #E9EDEC;
 }
 
@@ -68,8 +95,9 @@ h1{
 
 /* Messages (messages are what displays the individual data about each new persona */
 /* ================================================================================ */
+
 .message-header{
-  background-color: #374B4A!important;
+  background-color: #344645!important;
 }
 
 .message-body{
@@ -82,6 +110,24 @@ h1{
   font-weight: bold;
 }
 
+/* ================================================================================ */
+
+/* Library/Storage */
+/* ================================================================================ */
+#library-title{
+  margin-top:20px;
+  padding: 15px;
+  text-align: center;
+  background-color:#Dd882c;
+  color: white;
+}
+
+.table{
+  color: #344645!important;
+}
+.table.is-striped tbody tr:not(.is-selected):nth-child(even){
+  background-color: #f9ebdc!important;
+}
 /* ================================================================================ */
 
 /* Footer/action bar and the icons */
@@ -111,17 +157,16 @@ h1{
   border: 2px inset;
 }
 
-#gen-new-icon-container{
+.gnp-able{
   background-color: #5DD39E;
   border-radius: 10px;
 }
-
 .save-able{
   background-color: #C5FFFD;
   border-radius: 10px;
 }
 
-.storage-able{
+.library-able{
   background-color: #EBB984;
   border-radius: 10px;
 }
@@ -157,4 +202,51 @@ footer {
     bottom: 0;
     width: 100%;
     /* clear: both; essentially a line break for floating */
+}
+
+/* Snackbar  yo this is new to me*/
+/*=========================================================== */
+/* The snackbar - position it at the bottom and in the middle of the screen */
+.snackbar {
+  visibility: hidden;
+  min-width: 250px; /* Set a default minimum width */
+  margin-left: -125px; /* Divide value of min-width by 2 */
+  background-color: #344645;
+  color: #E9EDEC;
+  text-align: center;
+  border-radius: 5px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+}
+
+.snackbar.show {
+  visibility: visible;
+  /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+  However, delay the fade out process for 1.5 seconds */
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 1.5s;
+  animation: fadein 0.5s, fadeout 0.5s 1.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
 }

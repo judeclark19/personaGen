@@ -1,17 +1,36 @@
 // GLOBAL VARIABLES
+var judeDummyStorage = [
+  {
+    personaName: "Jeremy Clarkson",
+    personaAge: 60,
+    personaLocation: "Chipping Norton",
+  },
+  {
+    personaName: "James May",
+    personaAge: 57,
+    personaLocation: "Hammersmith",
+  },
+  {
+    personaName: "Richard Hammond",
+    personaAge: 50,
+    personaLocation: "Herefordshire",
+  },
+];
 // ================
 
-// BUTTON VARIABLE
-var randomButton = $("#user-select-random")
-var userParamsButton = $("#user-select-parameters")
+// ICONS AND BUTTON VARIABLES
+var randomButton = $("#user-select-random");
+var userParamsButton = $("#user-select-parameters");
 var genNewIcon = $("#gen-new-psa-icon");
+var gnpContainer = $("#gnp-icon-container");
 var saveIcon = $("#save-icon");
 // ICON VARIABLES
 var saveIconContainer = $("#save-icon-container");
-var storageIconContainer = $("#storage-icon-container");
-var storageIcon = $("#storage-icon");
+var libraryIcon = $("#library-icon");
+var libraryIconContainer = $("#library-icon-container");
 var trashIcon = $("#trash-icon");
 var trashIconContainer = $("#trash-icon-container");
+var formSubmitBtn = $("#form-submit-btn");
 var librarySwitch = false;
 
 // TEMPORARY FORM CONTAINER TARGET
@@ -20,9 +39,31 @@ var formContainer = $("#form-container");
 // PAGE TARGETING VARIABLES
 var personaBox = $("#persona-box");
 var personaBlock = $("#persona-block");
-var tableBlock = $("#table-block");
-var mainContainer = $("#main-container");
-var formContainer = $("#form-container");
+var libraryBlock = $("#library-table-block");
+var landingPromptBlock = $("#landing-prompt-block");
+var formBlock = $("#form-block");
+var clearWarning = $("#clear-warning-block");
+
+// ==============================
+// FORM VARIABLES & EVENT LISTENER
+var targetForm = $("#target-form");
+var ageSelectLow = $("#age-low");
+var ageSelectHigh = $("#age-high");
+var sexSelect = $("#sex-type");
+var quoteSelect = $("#quote-type");
+var interestSelect = $("#persona-interests");
+var submitGenerate = $("#submit-generate"); //SUBMIT BUTTON
+
+// EVENT LISTENER FOR FORM
+submitGenerate.on("click", function (event) {
+  var personaGender = sexSelect.val();
+  var personaInterests = interestSelect.val();
+  var personaQuote = quoteSelect.val();
+  event.preventDefault();
+});
+// LEAVE HERE PLEASE
+// =======================
+
 // JOSEPH HARDCODE VARIABLES
 var specificCategory;
 var userQuoteSelection = "Inspirational";
@@ -94,28 +135,105 @@ $(document).ready(function () {
   });
 
   userParamsButton.on("click", function () {
-    $("#notification-block").addClass("hide");
-    formCall();           // deploys form for parameter call
+    landingPromptBlock.addClass("hide");
+    formBlock.removeClass("hide");
+    personaBlock.addClass("hide");
+    libraryBlock.addClass("hide");
+    formCall();
   });
-  // STATIC ICONS
-  genNewIcon.on("click", function () {
+
+  $("#close-prompt-btn").on("click", function () {
+    landingPromptBlock.addClass("hide");
+    gnpContainer.removeClass("disabled");
+    gnpContainer.addClass("gnp-able");
+  });
+
+  $("#close-form-btn").on("click", function () {
+    formBlock.addClass("hide");
+    gnpContainer.removeClass("disabled");
+    gnpContainer.addClass("gnp-able");
+  });
+
+  formSubmitBtn.on("click", function () {
+    console.log("form submitted");
+    formBlock.addClass("hide");
     generateNewPersona();
+  });
+
+  genNewIcon.on("click", function () {
+    // generateNewPersona();
+    // personaBlock.addClass("hide");
+    landingPromptBlock.removeClass("hide");
+    formBlock.addClass("hide");
+    gnpContainer.addClass("disabled");
+    gnpContainer.removeClass("gnp-able");
   });
 
   saveIcon.on("click", function () {
     saveFunc();
   });
 
-  storageIcon.on("click", function () {
-    if(storageIconContainer.prop('disabled')===false){
-    viewStoredPersonas();}
-    else {
-      console.log("library is disabled")
+  libraryIcon.on("click", function () {
+    if (libraryIconContainer.prop("disabled") === false) {
+      librarySwitchFunc();
+    } else {
+      console.log("library is disabled");
     }
   });
 
+  $("#close-library-btn").on("click", function () {
+    // console.log("library  close button")
+    librarySwitch = false;
+    libraryBlock.addClass("hide");
+    personaBlock.removeClass("hide");
+  });
+
   trashIcon.on("click", function () {
-    localStorage.clear();
+    if (trashIconContainer.prop("disabled") === false) {
+      //show the modal for delete confirm
+      clearWarning.removeClass("hide");
+    } else {
+      console.log("Trash icon is disabled");
+    }
+  });
+
+  $("#close-warning-btn").on("click", function () {
+    clearWarning.addClass("hide");
+  });
+
+  $("#clear-yes-btn").on("click", function () {
+    console.log("clear yes");
+    //TODO: disable buttons
+
+    //Disable action buttons
+    gnpContainer.prop("disabled", true);
+    gnpContainer.addClass("disabled");
+    gnpContainer.removeClass("gnp-able");
+
+    saveIconContainer.prop("disabled", true);
+    saveIconContainer.addClass("disabled");
+    saveIconContainer.removeClass("save-able");
+
+    libraryIconContainer.prop("disabled", true);
+    libraryIconContainer.addClass("disabled");
+    libraryIconContainer.removeClass("library-able");
+
+    trashIconContainer.prop("disabled", true);
+    trashIconContainer.addClass("disabled");
+    trashIconContainer.removeClass("trash-able");
+
+    //hide n show
+    clearWarning.addClass("hide");
+    personaBlock.addClass("hide");
+    landingPromptBlock.removeClass("hide");
+    if (librarySwitch) {
+      librarySwitch = false;
+      libraryBlock.addClass("hide");
+    }
+  });
+
+  $("#clear-no-btn").on("click", function () {
+    clearWarning.addClass("hide");
   });
 
   // =====================================================================
@@ -123,48 +241,57 @@ $(document).ready(function () {
   // =====================================================================
   function generateNewPersona() {
     console.log("I clicked the generate new button");
-    var genConfirm = confirm(
-      "Generate new user? \n (This is where we can prompt to gen random or put in user params)"
-    );
-    if (genConfirm) {
-      newUserCall();
-    }
+    newUserCall();
   }
 
   function saveFunc() {
-    if (document.getElementById("save-icon-style").disabled) {
-      console.log("This button is disabled.");
+    if (document.getElementById("save-icon-container").disabled) {
+      console.log("Save button is disabled.");
     } else {
-      console.log("I clicked the save button");
-      //TODO: add some sort of validation so that user can't save before they have generated a persona. perhaps start with the save button disabled
-      alert("Persona added to your library. \n (not really yet)");
+      // saveCurrentPersona(); TODO: build this function
+      var saveSnack = $("#save-snack");
+      saveSnack.addClass("show");
+
+      // After 2 seconds, remove the show class from DIV
+      setTimeout(function () {
+        saveSnack.removeClass("show");
+      }, 2000);
     }
   }
 
-  function viewStoredPersonas() {
-    console.log("I clicked the view storage icon");
-
+  function librarySwitchFunc() {
     if (librarySwitch === false) {
       personaBlock.addClass("hide");
-      tableBlock.removeClass("hide");
-      // storageIconContainer.addClass("is-active")
+      libraryBlock.removeClass("hide");
       librarySwitch = true;
+      generateLibrary();
     } else {
       personaBlock.removeClass("hide");
-      tableBlock.addClass("hide");
+      libraryBlock.addClass("hide");
       librarySwitch = false;
     }
   }
 
-  function clearStorage() {
-    var clearConfirm = confirm(
-      "Are you sure you want to delete everything in your library?"
-    );
-    if (clearConfirm) {
-      localStorage.clear();
-      console.log("THIS CURRENTLY DELETES LOCAL STORAGE");
+  function generateLibrary() {
+    $("#table-body").empty();
+    for (let i = 0; i < judeDummyStorage.length; i++) {
+      console.log("Library generated from storage");
+      tableRow = $("<tr>");
+      tableName = $("<td>").text(judeDummyStorage[i].personaName);
+      tableAge = $("<td>").text(judeDummyStorage[i].personaAge);
+      tableLocation = $("<td>").text(judeDummyStorage[i].personaLocation);
+
+      tableRow.append(tableName, tableAge, tableLocation);
+      $("#table-body").append(tableRow);
     }
   }
+
+  function clearStorage() {
+    // localStorage.clear();
+    console.log("storage cleared");
+  }
+
+  // =====================================================================
 
   // =====================================================================
   // Traversing the DOM
@@ -223,7 +350,7 @@ $(document).ready(function () {
          personaForm.append(br, inputSubmit);
          formContainer.append(personaForm);
          
-         //TARGETTING FORM VALUES
+         //TARGETING FORM VALUES
          var submitGenerate = $("#submit-generate"); //SUBMIT BUTTON
          var personaForm = $("#persona-form");
          
@@ -398,19 +525,23 @@ $(document).ready(function () {
           // ===========================================
 
           //Hide the prompt
-          $("#notification-block").addClass("hide");
+          landingPromptBlock.addClass("hide");
+
+          //Enable the GenNewPsa button
+          gnpContainer.removeClass("disabled");
+          gnpContainer.addClass("gnp-able");
 
           //Enable save button
           saveIconContainer.prop("disabled", false);
           saveIconContainer.removeClass("disabled");
           saveIconContainer.addClass("save-able");
 
-          //Enable storage button
-          storageIconContainer.prop("disabled", false);
-          storageIconContainer.removeClass("disabled");
-          storageIconContainer.addClass("storage-able");
+          //Enable library button
+          libraryIconContainer.prop("disabled", false);
+          libraryIconContainer.removeClass("disabled");
+          libraryIconContainer.addClass("library-able");
 
-          //Enable storage button
+          //Enable trash button
           trashIconContainer.prop("disabled", false);
           trashIconContainer.removeClass("disabled");
           trashIconContainer.addClass("trash-able");
@@ -440,7 +571,7 @@ $(document).ready(function () {
 
           imageContainer.empty();
           imageContainer.append(personaImageEl);
-          tableBlock.addClass("hide");
+          libraryBlock.addClass("hide");
           personaBlock.removeClass("hide");
 
           // creates interest/career based on age. No more meteorology!
@@ -507,10 +638,14 @@ $(document).ready(function () {
           }
         });
       },
-      error: function(xhr) {
-        var errorText = xhr.status + " " + xhr.statusText + ". Please retry generate user button.";
+      error: function (xhr) {
+        var errorText =
+          xhr.status +
+          " " +
+          xhr.statusText +
+          ". Please retry generate user button.";
         alert(errorText);
-      }
+      },
     });
   } // END NEW USER CALL
 }); // END READY DOCUMENT
