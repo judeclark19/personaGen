@@ -308,126 +308,31 @@ $(document).ready(function () {
   // ================================
   function formCall() {
     console.log("FORM GENERATION, CALLED");
-    var br = document.createElement("br");
-    var br1 = document.createElement("br");
-    var br2 = document.createElement("br");
-    var br3 = document.createElement("br");
-    var br4 = document.createElement("br");
 
-    var personaForm = $("<form id='persona-form' action='#'>");
-    var personaFormTitle = $("<h2 id='persona-form-tile'>").text(
-      "Persona Parameters"
-    );
     // AGE RANGE
-    var personaLabelAgeLow = $("<label for='age-low-input'>").text("Age Low");
-    var personaInputAgeLow = $(
-      "<input type='number' id='age-low-input' name='age-low-input' min='18' max='65'>"
-    );
-    var personaLabelAgeHigh = $("<label for='age-high-input'>").text(
-      "Age High"
-    );
-    var personaInputAgeHigh = $(
-      "<input type='number' id='age-high-input' name='age-high-input' min='18' max='65'>"
-    );
+    var personaInputAgeLow = $("#age-low-input");
+    var personaInputAgeHigh = $("#age-high-inputs");
+
     // GENDER SELECT
-    var personaGender = $("<label for='persona-gender-select'>").text(
-      "Persona Gender"
-    );
-    var personaGenderSelect = $(
-      "<select id='persona-gender-select' name='persona-interests'>"
-    );
-    var optionTestGender1 = $("<option>")
-      .val("gender-test-val-1")
-      .text("gender1")
-      .appendTo(personaGenderSelect);
-    var optionTestGender2 = $("<option>")
-      .val("gender-test-val-2")
-      .text("gender2")
-      .appendTo(personaGenderSelect);
-    var optionTestGender3 = $("<option>")
-      .val("gender-test-val-3")
-      .text("gender3")
-      .appendTo(personaGenderSelect);
-    var optionTestGender4 = $("<option>")
-      .val("gender-test-val-4")
-      .text("gender4")
-      .appendTo(personaGenderSelect);
+    var personaGenderSelect = $("#persona-gender-select");
+
     // PROFESSION INPUT
-    var personaProfessionLabel = $(
-      "<label for='persona-profession-input'>"
-    ).text("Persona Profession");
-    var personaProfessionInput = $(
-      "<input type='text' id='persona-profession-input' name='persona-profession-input' placeholder='if left blank will randomize'>"
-    );
+    var personaProfessionInput = $("#persona-profession-input");
+
     // INTEREST SELECT
-    var personaInterests = $("<label for='persona-interest-select'>").text(
-      "Persona Interest"
-    );
-    var personaInterestSelect = $(
-      "<select id='persona-interest-select' name='persona-interests'>"
-    );
-    var optionTestInterest1 = $("<option>")
-      .val("interest-test-val-1")
-      .text("interest1")
-      .appendTo(personaInterestSelect);
-    var optionTestInterest2 = $("<option>")
-      .val("interest-test-val-2")
-      .text("interest2")
-      .appendTo(personaInterestSelect);
-    var optionTestInterest3 = $("<option>")
-      .val("interest-test-val-3")
-      .text("interest3")
-      .appendTo(personaInterestSelect);
+    var personaInterestSelect = $("#persona-interest-select");
+    
     // QUOTE SELECT
-    var personaQuote = $("<label for='persona-quote-select'>").text(
-      "Persona Quote"
-    );
-    var personaQuoteSelect = $(
-      "<select id='persona-quote-select' name='persona-quote-select'>"
-    );
-    var optionTestQuote1 = $("<option>")
-      .val("quote-test-val-1")
-      .text("Random Quote")
-      .appendTo(personaQuoteSelect);
-    var optionTestQuote2 = $("<option>")
-      .val("quote-test-val-2")
-      .text("Corporate Theme")
-      .appendTo(personaQuoteSelect);
-    var optionTestQuote3 = $("<option>")
-      .val("quote-test-val-3")
-      .text("Movie Quote")
-      .appendTo(personaQuoteSelect);
+    var personaQuoteSelect = $("#persona-quote-select");
 
-    var inputSubmit = $(
-      "<button type='submit' id='submit-generate' class='button' value='Generate New Persona'>"
-    ).text("SUBMIT ME");
-
-    personaForm.append(personaFormTitle);
-    personaForm.append(
-      personaLabelAgeLow,
-      personaInputAgeLow,
-      personaLabelAgeHigh,
-      personaInputAgeHigh,
-      br1
-    );
-    personaForm.append(personaGender, personaGenderSelect, br3);
-    personaForm.append(personaProfessionLabel, personaProfessionInput, br4);
-    personaForm.append(
-      personaInterests,
-      personaInterestSelect,
-      br2,
-      personaQuote,
-      personaQuoteSelect
-    );
-    personaForm.append(br, inputSubmit);
-    formContainer.append(personaForm);
 
     //TARGETING FORM VALUES
     var submitGenerate = $("#submit-generate"); //SUBMIT BUTTON
     var personaForm = $("#persona-form");
 
     // EVENT LISTENER FOR FORM
-    submitGenerate.on("click", function (event) {
+    // formSubmitBtn.on("click", function (event) {
+      $("#persona-form").on("submit", function(event){
       var personaLowAgeVal = $("#age-low-input").val();
       var personaHighAgeVal = $("#age-high-input").val();
       var personaGenderVal = $("#persona-gender-select").val();
@@ -440,8 +345,8 @@ $(document).ready(function () {
       console.log(personaHighAgeVal);
       console.log(personaGenderVal);
       console.log(personaQuoteVal);
-      console.log(personaInterestVal);
-      console.log(personaJobVal);
+      // console.log(personaInterestVal);
+      // console.log(personaJobVal);
 
       generateNewPersona();
       formContainer.empty();
