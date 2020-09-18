@@ -68,6 +68,7 @@ submitGenerate.on("click", function (event) {
 
 // JOSEPH HARDCODE VARIABLES
 var userQuoteSelection;
+var randomStatus = false;
 
 // ==============
 // Text Generation
@@ -132,6 +133,7 @@ $(document).ready(function () {
   
   // NEW PERSONA PROMPT BUTTONS
   randomButton.on("click", function () {
+    randomStatus = true;
     generateNewPersona();
   });
 
@@ -584,6 +586,11 @@ $(document).ready(function () {
           // ========================
           // VARIABLE BIO GENERATION
           // ========================
+          if (randomStatus === true) {
+            // to be randomized later
+            personaQuoteVal = "quote-test-val-1"
+            randomStatus = false;
+          }
           if (personaQuoteVal === "quote-test-val-1") {
             var settingsOne = {
               async: true,
@@ -633,12 +640,12 @@ $(document).ready(function () {
               // console.log(responseTwo);
               var corporateQuote = responseTwo.phrase;
 
-              autoBiography(
+              bioEl.text(autoBiography(
                 personaName,
                 personaLocation,
                 personaJobVal,
                 corporateQuote
-              );
+              ));
             });
           }
         });
