@@ -70,7 +70,7 @@ var userQuoteSelection = "Inspirational";
 
 // ==============
 // Text Generation
-function autoBiography(name, location, category, quote) {
+function autoBiography(name, location, interests, quote) {
   sentenceStructure = {
     starter: ["Hi my name is ", "Hello my name is ", "Whats up it's "],
     where: [". I am from ", ". I am originally from ", ". I come from "],
@@ -95,7 +95,7 @@ function autoBiography(name, location, category, quote) {
     sentenceStructure.where[randomWords] +
     location +
     sentenceStructure.interests[randomWords] +
-    category +
+    interests +
     sentenceStructure.quotes[randomWords] +
     quote +
     ".";
