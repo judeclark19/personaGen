@@ -1,5 +1,6 @@
 // GLOBAL VARIABLES
 // ================
+$(document).ready(function () {
 
 // ICONS AND BUTTON VARIABLES
 var randomButton = $("#user-select-random");
@@ -20,6 +21,7 @@ var librarySwitch = false;
 var formContainer = $("#form-container");
 
 // PAGE TARGETING VARIABLES
+var mainContainer = $("#main-container");
 var personaBox = $("#persona-box");
 var personaBlock = $("#persona-block");
 var libraryBlock = $("#library-table-block");
@@ -30,6 +32,25 @@ var clearWarning = $("#clear-warning-block");
 // JOSEPH HARDCODE VARIABLES
 var specificCategory;
 var userQuoteSelection = "Inspirational";
+
+// STORAGE VARIABLES AND FUNCTIONS
+var personaArray = [];
+
+// displayPersonaKeys();
+
+// function displayPersonaKeys() {
+//   mainContainer.empty();
+
+//   var personaStorageKeys = Object.keys(localStorage);
+//   if (personaStorageKeys == null) {
+//   alert("i'm empty")
+// } else{
+//   for (var i = 0; i < personaStorageKeys; i ++) {
+//     var personaKeyItem = localStorage.getItem(personaStorageKeys[i])
+//     console.log(personaKeyItem)
+//   }
+// }
+// }
 
 // ==============
 // Text Generation
@@ -68,7 +89,7 @@ function autoBiography(name, location, interests, quote) {
 
 
 
-$(document).ready(function () {
+
   // =====================================================================
   //  GLOBAL EVENT LISTENERS
   // =====================================================================
@@ -293,7 +314,6 @@ $(document).ready(function () {
          //TARGETING FORM VALUES
          var submitGenerate = $("#submit-generate"); //SUBMIT BUTTON
          var personaForm = $("#persona-form");
-         
    
          // EVENT LISTENER FOR FORM 
          submitGenerate.on("click", function(event) {     
@@ -318,9 +338,9 @@ $(document).ready(function () {
         formContainer.empty();
         
         event.preventDefault();
-        //  originalUserCall();
-           });
+           }); // END USER FORM FUNCTION
    
+    
     
     // ACTUAL DYNAMIC GENERATION OF DATA
     // DO NOT TOUCH 
