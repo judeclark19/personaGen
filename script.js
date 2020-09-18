@@ -333,8 +333,8 @@ $(document).ready(function () {
          // QUOTE SELECT
          var personaQuote = $("<label for='persona-quote'>").text("Persona Quote")
          var personaQuoteSelect = $("<select id='persona-quote' name='persona-quote'>");
-         var optionTestQuote1 = $("<option>").val('quote-test-val-1').text('quote1').appendTo(personaQuoteSelect);
-         var optionTestQuote2 = $("<option>").val('quote-test-val-2').text('quote2').appendTo(personaQuoteSelect);
+         var optionTestQuote1 = $("<option>").val('quote-test-val-1').text('Random Quote').appendTo(personaQuoteSelect);
+         var optionTestQuote2 = $("<option>").val('quote-test-val-2').text('Corporate Theme').appendTo(personaQuoteSelect);
          var optionTestQuote3 = $("<option>").val('quote-test-val-3').text('quote3').appendTo(personaQuoteSelect);
          
          var inputSubmit = $("<button type='submit' id='submit-generate' class='button' value='Generate New Persona'>").text("SUBMIT ME");
