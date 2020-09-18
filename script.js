@@ -358,7 +358,7 @@ $(document).ready(function () {
          var personaLowAgeVal = $("#age-low-input").val();
          var personaHighAgeVal = $("#age-high-input").val();
          var personaGenderVal = $("#persona-gender-select").val();
-         var personaQuoteVal = $("#persona-quote-select").val();
+        //  var personaQuoteVal = $("#persona-quote-select").val();
         //  var personaInterestVal = $("#persona-interest-select").val();
         //  personaJobVal = $("#persona-profession-input").val();
          // CONSOLE LOGGING VALUES OF INPUTS
@@ -577,12 +577,13 @@ $(document).ready(function () {
           if (!personaJobVal) {
             personaJobVal = generateProfession(personaAge);
           }
-          var personaInterestVal = $("#persona-interest-select").val();
+          // var personaInterestVal = $("#persona-interest-select").val();
+          var personaQuoteVal = $("#persona-quote-select").val();
 
           // ========================
           // VARIABLE BIO GENERATION
           // ========================
-          if (personaInterestVal === "Random Quote") {
+          if (personaQuoteVal === "Random Quote") {
             var settingsOne = {
               async: true,
               crossDomain: true,
@@ -611,7 +612,7 @@ $(document).ready(function () {
             });
           }
           // CORPORATE BIO CREATION
-          else if (personaInterestVal === "Corporate Theme") {
+          else if (personaQuoteVal === "Corporate Theme") {
             var settingsTwo = {
               async: true,
               crossDomain: true,
