@@ -239,10 +239,6 @@ $(document).ready(function () {
   // =====================================================================
   // UI Functions
   // =====================================================================
-  function generateNewPersona() {
-    console.log("I clicked the generate new button");
-    newUserCall();
-  }
 
   function saveFunc() {
     if (document.getElementById("save-icon-container").disabled) {
@@ -374,7 +370,7 @@ $(document).ready(function () {
          console.log(personaJobVal);
    
          
-        newUserCall();
+        generateNewPersona();
         formContainer.empty();
         
         event.preventDefault();
@@ -479,7 +475,7 @@ $(document).ready(function () {
   // ===============================
   // ================================
 
-  function newUserCall() {
+  function generateNewPersona() {
     console.log("NEW USER CALL, CALLED");
     $.ajax({
       url: "https://randomuser.me/api/",
