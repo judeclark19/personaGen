@@ -44,32 +44,55 @@ var landingPromptBlock = $("#landing-prompt-block");
 var formBlock = $("#form-block");
 var clearWarning = $("#clear-warning-block");
 
-// ==============================
-// FORM VARIABLES & EVENT LISTENER
-var targetForm = $("#target-form");
-var ageSelectLow = $("#age-low");
-var ageSelectHigh = $("#age-high");
-var sexSelect = $("#sex-type");
-var quoteSelect = $("#quote-type");
-var interestSelect = $("#persona-interests");
-var submitGenerate = $("#submit-generate"); //SUBMIT BUTTON
-
-var personaJobVal;
-
-// EVENT LISTENER FOR FORM
-submitGenerate.on("click", function (event) {
-  var personaGender = sexSelect.val();
-  var personaInterests = interestSelect.val();
-  var personaQuote = quoteSelect.val();
-  event.preventDefault();
-});
-// LEAVE HERE PLEASE
-// =======================
-
 // JOSEPH HARDCODE VARIABLES
 var userQuoteSelection;
 var randomStatus = false;
+// *******************************************
+// STORAGE VARIABLES AND FUNCTIONS
+// *******************************************
+var personaArray = [];
 
+// displayPersonaKeys();
+
+function displayPersonaKeys() {
+  mainContainer.empty();
+
+    var personaStorageKeys = Object.keys(localStorage);
+    if (personaStorageKeys == null) {
+    alert("i'm empty")
+    } else{
+    for (var i = 0; i < personaStorageKeys; i ++) {
+      var personaKeyItem = localStorage.getItem(personaStorageKeys[i])
+      console.log(personaKeyItem)
+    } } }
+
+    saveIcon.on("click", function() {
+      var personaName = $("#name-msg-body")[0].childNodes[0].data;
+      var personaImage = $("#persona-image")[0].currentSrc;
+      var personaAge = $("#age-msg-body")[0].childNodes[0].data;
+      var personaGender = $("#gender-msg-body")[0].childNodes[0].data;
+      var personaLocation = $("#location-msg-body")[0].childNodes[0].data;
+      var personaBio = $("#bio-msg-body")[0].childNodes[0].data;
+      
+      console.log(personaImage);
+      console.log(personaName); 
+      console.log(personaAge);
+      console.log(personaGender);
+      console.log(personaLocation)
+      console.log(personaBio);
+
+      var personaKeyItem = {
+      name: personaName,
+      image: personaImage,
+      age: personaAge,
+      gender: personaGender,
+      location: personaLocation,
+      bio: personaBio  }
+
+      console.log(personaKeyItem)
+
+      storedPersona = localStorage.setItem(personaName, personaKeyItem)
+    });
 // ==============
 // Text Generation
 function autoBiography(name, location, interests, quote) {
@@ -101,29 +124,11 @@ function autoBiography(name, location, interests, quote) {
     sentenceStructure.quotes[randomWords] +
     quote +
     ".";
+    console.log(finalText)
   return finalText;
 }
 
-// function getAge(imageURL) {
-//   var settings = {
-//     async: true,
-//     crossDomain: true,
-//     url:
-//       "https://faceplusplus-faceplusplus.p.rapidapi.com/facepp/v3/detect?image_url=" +
-//       imageURL,
-//     method: "POST",
-//     headers: {
-//       "x-rapidapi-host": "faceplusplus-faceplusplus.p.rapidapi.com",
-//       "x-rapidapi-key": "59d0c27c79msh6e6814003e3803ep1e5484jsn5fecf295231f",
-//       "content-type": "application/x-www-form-urlencoded",
-//     },
-//     data: { return_attributes: "gender,age" },
-//   };
 
-//   $.ajax(settings).done(function (imgResponse) {
-//     return imgResponse.faces[0].attributes.age.value;
-//   });
-// }
 
 // FUNCTION
 $(document).ready(function () {
