@@ -21,11 +21,16 @@
 /* Nav/title bar */
 /* ================================================================================ */
 nav{
-  background-color: #EFFAFA!important;
+  background-color: #374B4A!important;
+  /* background-color: lightgreen!important; */
+  position:fixed!important;
+  top:0;
+  left:0;
+  width: 100%;
 }
 
 h1{
-  color: #41393A!important;
+  color: #EFFAFA!important;
   font-weight:600!important;;
   /* padding-top:20px;
   padding-bottom: 20px; */
@@ -34,11 +39,13 @@ h1{
 
 /* Main */
 /* ================================================================================ */
-#main-container{
-  position: relative;
-  /* border: 2px dashed hotpink; */
+main{
+  /* position: relative; */
+  border: 2px dashed hotpink;
+  margin-top: 52px;
+  height: 100%;
   /* height is 100-nav height -footer height */
- min-height: calc(100vh - 60px - 60px);
+ height: calc(100vh - 131px);
   /* display: flex; */
   /* justify-content: center; */
 }
@@ -47,9 +54,10 @@ h1{
 /* Notifications */
 /* ================================================================================ */
 #landing-block{
-  border: 1px outset;
-  /* border: 3px solid hotpink; */
-  /* height: calc(100vh - 60px - 60px); */
+  /* border: 1px outset; */
+  border: 2px solid royalblue!important;
+  /* height: calc(100vh - 150px); */
+  height:calc(100vh - 131px);
   margin-bottom: 0px;
   /* float: bottom; */
   /* position: absolute; */
@@ -60,10 +68,12 @@ h1{
 }
 
 .half-page{
-  height: 40%;
-  /* border: 3px solid hotpink; */
+  min-height:310px;
+  /* height: 40%; */
+  /* border: 3px solid red; */
 
   display: flex;
+  align-items:center;
   justify-content: center;
   flex-direction: column;
   /* height: 400px; */
@@ -71,7 +81,8 @@ h1{
 }
 
 #landing-notification{
-  /* height: 100%; */
+  padding:0px;
+  height: 100%;
   width: 100%;
 }
 
