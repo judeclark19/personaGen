@@ -72,6 +72,17 @@
       </div>
       <!-- END user input form -->
 
+      <!-- CLEAR LIBRARY WARNING MESSAGE-->
+      <div class="block hide" id="clear-warning-block">
+        <div class="notification">
+          <button class="delete" id="close-warning-btn"></button>
+          <h3 class="notif-title">Are you sure you want to clear your library?</h3>
+          <button class="button is-medium is-danger" id="clear-yes-btn">Yes</button>
+          <button class="button is-medium is-success" id="clear-no-btn">No</button>
+        </div>
+      </div>
+      <!-- END CLEAR LIBRARY WARNING MESSAGE -->
+
 <!-- BEGIN persona block -->
       <div class="block hide" id="persona-block">
         <div class="box columns" id="persona-box">
@@ -183,8 +194,8 @@
           </div>
         </button>
 
-        <button class="column disabled" id="storage-icon-container" disabled>
-          <div class="action-icon" id="storage-icon">
+        <button class="column disabled" id="library-icon-container" disabled>
+          <div class="action-icon" id="library-icon">
             <i class="fas fa-folder" style="font-size: 2em"></i>
           </div>
         </button>

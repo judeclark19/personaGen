@@ -8,8 +8,8 @@ var genNewIcon = $("#gen-new-psa-icon");
 var gnpContainer = $("#gnp-icon-container");
 var saveIcon = $("#save-icon");
 var saveIconContainer = $("#save-icon-container");
-var storageIcon = $("#storage-icon");
-var storageIconContainer = $("#storage-icon-container");
+var libraryIcon = $("#library-icon");
+var libraryIconContainer = $("#library-icon-container");
 var trashIcon = $("#trash-icon");
 var trashIconContainer = $("#trash-icon-container");
 var formSubmitBtn = $("#form-submit-btn");
@@ -21,6 +21,7 @@ var personaBlock = $("#persona-block");
 var libraryBlock = $("#library-table-block");
 var landingPromptBlock = $("#landing-prompt-block");
 var formBlock = $("#form-block");
+var clearWarning = $("#clear-warning-block")
 
 // ==============================
 // FORM VARIABLES & EVENT LISTENER
@@ -147,8 +148,8 @@ $(document).ready(function () {
     saveFunc();
   });
 
-  storageIcon.on("click", function () {
-    if (storageIconContainer.prop("disabled") === false) {
+  libraryIcon.on("click", function () {
+    if (libraryIconContainer.prop("disabled") === false) {
       librarySwitchFunc();
     } else {
       console.log("library is disabled");
@@ -164,17 +165,32 @@ $(document).ready(function () {
 
   trashIcon.on("click", function () {
     if (trashIconContainer.prop("disabled") === false) {
-      var clearConfirm = confirm(
-        "Are you sure you want to delete everything in your library?"
-      );
-      if (clearConfirm) {
-        localStorage.clear();
-        console.log("THIS CURRENTLY DELETES LOCAL STORAGE");
-      }
+      //show the modal for delete confirm
+      clearWarning.removeClass("hide")
     } else {
       console.log("Trash icon is disabled");
     }
   });
+
+  $("#close-warning-btn").on("click", function () {
+   clearWarning.addClass("hide")
+  });
+
+  $("#clear-yes-btn").on("click", function () {
+    console.log("clear yes")
+    //TODO: gotta hide the library properly with the switch
+    clearWarning.addClass("hide")
+    personaBlock.addClass("hide")
+    landingPromptBlock.removeClass("hide")
+    if (librarySwitch){
+      librarySwitch = false;
+      libraryBlock.addClass("hide")
+    }
+   });
+
+   $("#clear-no-btn").on("click", function () {
+    console.log("clear no")
+   });
 
   // =====================================================================
   // UI Functions
@@ -206,12 +222,11 @@ $(document).ready(function () {
   }
 
   function librarySwitchFunc() {
-    console.log("I clicked the view storage icon");
+    console.log("I clicked the library icon");
 
     if (librarySwitch === false) {
       personaBlock.addClass("hide");
       libraryBlock.removeClass("hide");
-      // storageIconContainer.addClass("is-active")
       librarySwitch = true;
     } else {
       personaBlock.removeClass("hide");
@@ -220,15 +235,11 @@ $(document).ready(function () {
     }
   }
 
-  // function clearStorage() {
-  //   var clearConfirm = confirm(
-  //     "Are you sure you want to delete everything in your library?"
-  //   );
-  //   if (clearConfirm) {
-  //     localStorage.clear();
-  //     console.log("THIS CURRENTLY DELETES LOCAL STORAGE");
-  //   }
-  // }
+  function clearStorage() {
+      // localStorage.clear();
+      console.log("storage cleared");
+    }
+
   // =====================================================================
 
   // Traversing the DOM
@@ -298,10 +309,10 @@ $(document).ready(function () {
           saveIconContainer.removeClass("disabled");
           saveIconContainer.addClass("save-able");
 
-          //Enable storage button
-          storageIconContainer.prop("disabled", false);
-          storageIconContainer.removeClass("disabled");
-          storageIconContainer.addClass("storage-able");
+          //Enable library button
+          libraryIconContainer.prop("disabled", false);
+          libraryIconContainer.removeClass("disabled");
+          libraryIconContainer.addClass("library-able");
 
           //Enable trash button
           trashIconContainer.prop("disabled", false);

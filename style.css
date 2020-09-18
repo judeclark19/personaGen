@@ -44,6 +44,15 @@ h1{
   /* bottom: 0px; */
   text-align: center;
 }
+#clear-warning-block{
+  border: 1px outset;
+  /* float: bottom; */
+  position: absolute;
+  bottom: -22px;
+  right: 0px;
+  /* bottom: 0px; */
+  text-align: center;
+}
 
 #form-block{
   border: 1px outset;
@@ -157,7 +166,7 @@ h1{
   border-radius: 10px;
 }
 
-.storage-able{
+.library-able{
   background-color: #EBB984;
   border-radius: 10px;
 }
