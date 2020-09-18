@@ -643,7 +643,16 @@ $(document).ready(function () {
 
             $.ajax(settings).done(function (response) {
               console.log(response.taglines);
-              var randomMovie;
+              var randomMovie = Math.floor(Math.random() * response.taglines.length);
+              var movieQuote = response.taglines[randomMovie];
+              bioEl.text(
+                autoBiography(
+                  personaName,
+                  personaLocation,
+                  personaJobVal,
+                  movieQuote
+                )
+              );
             });
           }
         });
