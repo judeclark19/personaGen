@@ -390,7 +390,7 @@ $(document).ready(function () {
       .appendTo(personaQuoteSelect);
     var optionTestQuote3 = $("<option>")
       .val("quote-test-val-3")
-      .text("quote3")
+      .text("Movie Quote")
       .appendTo(personaQuoteSelect);
 
     var inputSubmit = $(
