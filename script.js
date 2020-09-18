@@ -1,19 +1,19 @@
 // GLOBAL VARIABLES
-var judeDummyStorage=[
+var judeDummyStorage = [
   {
     personaName: "Jeremy Clarkson",
     personaAge: 60,
-    personaLocation: "Chipping Norton"
+    personaLocation: "Chipping Norton",
   },
   {
     personaName: "James May",
     personaAge: 57,
-    personaLocation: "Hammersmith"
+    personaLocation: "Hammersmith",
   },
   {
     personaName: "Richard Hammond",
     personaAge: 50,
-    personaLocation: "Herefordshire"
+    personaLocation: "Herefordshire",
   },
 ];
 // ================
@@ -38,7 +38,7 @@ var personaBlock = $("#persona-block");
 var libraryBlock = $("#library-table-block");
 var landingPromptBlock = $("#landing-prompt-block");
 var formBlock = $("#form-block");
-var clearWarning = $("#clear-warning-block")
+var clearWarning = $("#clear-warning-block");
 
 // ==============================
 // FORM VARIABLES & EVENT LISTENER
@@ -141,7 +141,7 @@ $(document).ready(function () {
   });
 
   $("#close-form-btn").on("click", function () {
-    formBlock.addClass("hide")
+    formBlock.addClass("hide");
     gnpContainer.removeClass("disabled");
     gnpContainer.addClass("gnp-able");
   });
@@ -175,39 +175,58 @@ $(document).ready(function () {
 
   $("#close-library-btn").on("click", function () {
     // console.log("library  close button")
-    librarySwitch=false;
-    libraryBlock.addClass("hide")
+    librarySwitch = false;
+    libraryBlock.addClass("hide");
     personaBlock.removeClass("hide");
-  })
+  });
 
   trashIcon.on("click", function () {
     if (trashIconContainer.prop("disabled") === false) {
       //show the modal for delete confirm
-      clearWarning.removeClass("hide")
+      clearWarning.removeClass("hide");
     } else {
       console.log("Trash icon is disabled");
     }
   });
 
   $("#close-warning-btn").on("click", function () {
-   clearWarning.addClass("hide")
+    clearWarning.addClass("hide");
   });
 
   $("#clear-yes-btn").on("click", function () {
-    console.log("clear yes")
-    //TODO: gotta hide the library properly with the switch
-    clearWarning.addClass("hide")
-    personaBlock.addClass("hide")
-    landingPromptBlock.removeClass("hide")
-    if (librarySwitch){
-      librarySwitch = false;
-      libraryBlock.addClass("hide")
-    }
-   });
+    console.log("clear yes");
+    //TODO: disable buttons
 
-   $("#clear-no-btn").on("click", function () {
-    clearWarning.addClass("hide")
-   });
+    //Disable action buttons
+    gnpContainer.prop("disabled", true);
+    gnpContainer.addClass("disabled");
+    gnpContainer.removeClass("gnp-able");
+
+    saveIconContainer.prop("disabled", true);
+    saveIconContainer.addClass("disabled");
+    saveIconContainer.removeClass("save-able");
+
+    libraryIconContainer.prop("disabled", true);
+    libraryIconContainer.addClass("disabled");
+    libraryIconContainer.removeClass("library-able");
+
+    trashIconContainer.prop("disabled", true);
+    trashIconContainer.addClass("disabled");
+    trashIconContainer.removeClass("trash-able");
+
+    //hide n show
+    clearWarning.addClass("hide");
+    personaBlock.addClass("hide");
+    landingPromptBlock.removeClass("hide");
+    if (librarySwitch) {
+      librarySwitch = false;
+      libraryBlock.addClass("hide");
+    }
+  });
+
+  $("#clear-no-btn").on("click", function () {
+    clearWarning.addClass("hide");
+  });
 
   // =====================================================================
   // UI Functions
@@ -221,7 +240,6 @@ $(document).ready(function () {
     if (document.getElementById("save-icon-container").disabled) {
       console.log("Save button is disabled.");
     } else {
-
       saveCurrentPersona();
       var saveSnack = $("#save-snack");
       saveSnack.addClass("show");
@@ -248,22 +266,22 @@ $(document).ready(function () {
 
   function generateLibrary() {
     $("#table-body").empty();
-for(let i=0; i<judeDummyStorage.length; i++){
-    console.log("Library generated from storage");
-    tableRow = $("<tr>");
-    tableName = $("<td>").text(judeDummyStorage[i].personaName);
-    tableAge = $("<td>").text(judeDummyStorage[i].personaAge);
-    tableLocation = $("<td>").text(judeDummyStorage[i].personaLocation);
+    for (let i = 0; i < judeDummyStorage.length; i++) {
+      console.log("Library generated from storage");
+      tableRow = $("<tr>");
+      tableName = $("<td>").text(judeDummyStorage[i].personaName);
+      tableAge = $("<td>").text(judeDummyStorage[i].personaAge);
+      tableLocation = $("<td>").text(judeDummyStorage[i].personaLocation);
 
-    tableRow.append(tableName, tableAge, tableLocation)
-    $("#table-body").append(tableRow)
-}
+      tableRow.append(tableName, tableAge, tableLocation);
+      $("#table-body").append(tableRow);
+    }
   }
 
   function clearStorage() {
-      // localStorage.clear();
-      console.log("storage cleared");
-    }
+    // localStorage.clear();
+    console.log("storage cleared");
+  }
 
   // =====================================================================
 
