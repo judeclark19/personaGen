@@ -16,7 +16,6 @@
 /* ================================================================================ */
 nav{
   background-color: #374B4A!important;
-  /* background-color: lightgreen!important; */
   position:fixed!important;
   top:0;
   left:0;
@@ -25,60 +24,45 @@ nav{
 
 h1{
   color: #EFFAFA!important;
-  font-weight:600!important;;
-  /* padding-top:20px;
-  padding-bottom: 20px; */
+  font-weight:600!important;
 }
 /* ================================================================================ */
 
 /* Main */
 /* ================================================================================ */
 main{
-  /* position: relative; */
-  border: 2px dashed hotpink;
+  /* border: 2px dashed hotpink; */
   margin-top: 52px;
-  /* height: 100%; */
-  /* height is 100-nav height -footer height */
- /* height: calc(100vh); */
-  /* display: flex; */
-  /* justify-content: center; */
 }
 /* ================================================================================ */
 
 /* Notifications */
 /* ================================================================================ */
 #landing-block{
-  /* border: 1px outset; */
-  border: 2px solid royalblue!important;
-  /* height: calc(100vh - 150px); */
+  border: 1px outset;
   height:calc(100vh - 131px);
   margin-bottom: 0px;
-  /* float: bottom; */
-  /* position: absolute; */
-  /* bottom: -22px; */
-  /* bottom: 0px; */
   text-align: center;
-  
-}
-
-.half-page{
-  min-height:310px;
-  /* height: 40%; */
-  /* border: 3px solid red; */
-
-  display: flex;
-  align-items:center;
-  justify-content: center;
-  flex-direction: column;
-  /* height: 400px; */
-  
 }
 
 #landing-notification{
-  padding:60px;
+  padding: 0px;
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
   height: 100%;
   width: 100%;
-  /* align-items: center; */
+  position: relative;
+}
+
+#landing-container{
+  /* border:3px solid orange; */
+  width: 100%;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 #clear-warning-block{
