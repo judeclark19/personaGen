@@ -102,26 +102,7 @@ function autoBiography(name, location, category, quote) {
   return finalText;
 }
 
-// function getAge(imageURL) {
-//   var settings = {
-//     async: true,
-//     crossDomain: true,
-//     url:
-//       "https://faceplusplus-faceplusplus.p.rapidapi.com/facepp/v3/detect?image_url=" +
-//       imageURL,
-//     method: "POST",
-//     headers: {
-//       "x-rapidapi-host": "faceplusplus-faceplusplus.p.rapidapi.com",
-//       "x-rapidapi-key": "59d0c27c79msh6e6814003e3803ep1e5484jsn5fecf295231f",
-//       "content-type": "application/x-www-form-urlencoded",
-//     },
-//     data: { return_attributes: "gender,age" },
-//   };
 
-//   $.ajax(settings).done(function (imgResponse) {
-//     return imgResponse.faces[0].attributes.age.value;
-//   });
-// }
 
 // FUNCTION
 $(document).ready(function () {
