@@ -67,7 +67,7 @@ submitGenerate.on("click", function (event) {
 // =======================
 
 // JOSEPH HARDCODE VARIABLES
-var userQuoteSelection = "Inspirational";
+var userQuoteSelection;
 
 // ==============
 // Text Generation
@@ -415,7 +415,7 @@ $(document).ready(function () {
        // ========================
        // VARIABLE BIO GENERATION
        // ========================
-         if (userQuoteSelection === "Inspirational") {
+         if (optionTestQuote1.val() === "Random Quote") {
            var settingsOne = {
              async: true,
              crossDomain: true,
