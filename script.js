@@ -139,6 +139,7 @@ $(document).ready(function () {
     formBlock.removeClass("hide");
     personaBlock.addClass("hide");
     libraryBlock.addClass("hide");
+    formCall();
   });
 
   $("#close-prompt-btn").on("click", function () {
@@ -349,7 +350,7 @@ $(document).ready(function () {
          personaForm.append(br, inputSubmit);
          formContainer.append(personaForm);
          
-         //TARGETTING FORM VALUES
+         //TARGETING FORM VALUES
          var submitGenerate = $("#submit-generate"); //SUBMIT BUTTON
          var personaForm = $("#persona-form");
          

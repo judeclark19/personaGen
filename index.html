@@ -68,15 +68,19 @@
 
 <!-- user parameter input form -->
       <div class="block hide" id="form-block">
+        <!-- <div class="block hide" id="form-container"> -->
         <div class="notification">
           <button class="delete" id="close-form-btn"></button>
           <h3 class="notif-title">New Persona Parameters</h3>
-          <p>Enter your own custom parameters with which to generate a new persona.</p>
-          <p>(Form will be here)</p>
+          <div id="form-container">
+            <!-- dynamically populated in JS -->
+          </div>
           <button class="button is-medium is-info" id="form-submit-btn">Submit</button>
         </div>
       </div>
       <!-- END user input form -->
+
+      
 
       <!-- CLEAR LIBRARY WARNING MESSAGE-->
       <div class="block hide" id="clear-warning-block">
