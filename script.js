@@ -381,90 +381,90 @@ $(document).ready(function () {
     
     // ACTUAL DYNAMIC GENERATION OF DATA
     // DO NOT TOUCH 
-     function originalUserCall() {
-     $.ajax({
-       url: "https://randomuser.me/api/",
-       dataType: "json",
-       success: function (data) {
-         // ===========================================
-         // ASSIGNING PERSONA VARIABLES WITHIN FUNCTION BASED ON RESPONSE FROM API
-         // =========================================
-         var randomGen = data.results[0];
-         var personaImg = randomGen.picture.thumbnail;    // thumbnail IMAGE
-         var personaImgLarge = randomGen.picture.large; //large IMAGE
-         var personaName = randomGen.name.first + " " + randomGen.name.last;
-         var personaAge = randomGen.dob.age;               // PERSONA AGE
-         var personaLocation =
-             randomGen.location.city + ", " + randomGen.location.country;
-         var personaEmail = randomGen.email;
-         var personaGender = randomGen.gender;
+    //  function originalUserCall() {
+    //  $.ajax({
+    //    url: "https://randomuser.me/api/",
+    //    dataType: "json",
+    //    success: function (data) {
+    //      // ===========================================
+    //      // ASSIGNING PERSONA VARIABLES WITHIN FUNCTION BASED ON RESPONSE FROM API
+    //      // =========================================
+    //      var randomGen = data.results[0];
+    //      var personaImg = randomGen.picture.thumbnail;    // thumbnail IMAGE
+    //      var personaImgLarge = randomGen.picture.large; //large IMAGE
+    //      var personaName = randomGen.name.first + " " + randomGen.name.last;
+    //      var personaAge = randomGen.dob.age;               // PERSONA AGE
+    //      var personaLocation =
+    //          randomGen.location.city + ", " + randomGen.location.country;
+    //      var personaEmail = randomGen.email;
+    //      var personaGender = randomGen.gender;
        
-         // ===========================================
-         //  DYNAMICALLY GENERATING NEW PERSONA CONTENT USING ABOVE VARIABLES
-         // ===========================================
-           var personaImage = $("<img id='persona-image'>").attr("src", personaImgLarge);
-           var personaInfoDiv = $("<div id='persona-info'>");
-           var psaNameEl = $("<p id='#psa-name'>").text(personaName);
-           var psaAgeEl = $("<p id='#psa-age'>").text(personaAge);
-           var psaGenderEl = $("<p id='#psa-gender'>").text(personaGender);
-           var psaLocationEl = $("<p id='#psa-location'>").text(personaLocation);
-           var psaBioEl = $("<p id='#psa-bio'>").text("Loading Bio");  // << we receive this information in  a later API CALL
-           personaInfoDiv.append(psaNameEl, psaGenderEl, psaAgeEl, psaLocationEl, psaBioEl);
-           mainContainer.append(personaImage, personaInfoDiv);
+    //      // ===========================================
+    //      //  DYNAMICALLY GENERATING NEW PERSONA CONTENT USING ABOVE VARIABLES
+    //      // ===========================================
+    //        var personaImage = $("<img id='persona-image'>").attr("src", personaImgLarge);
+    //        var personaInfoDiv = $("<div id='persona-info'>");
+    //        var psaNameEl = $("<p id='#psa-name'>").text(personaName);
+    //        var psaAgeEl = $("<p id='#psa-age'>").text(personaAge);
+    //        var psaGenderEl = $("<p id='#psa-gender'>").text(personaGender);
+    //        var psaLocationEl = $("<p id='#psa-location'>").text(personaLocation);
+    //        var psaBioEl = $("<p id='#psa-bio'>").text("Loading Bio");  // << we receive this information in  a later API CALL
+    //        personaInfoDiv.append(psaNameEl, psaGenderEl, psaAgeEl, psaLocationEl, psaBioEl);
+    //        mainContainer.append(personaImage, personaInfoDiv);
    
-       // ========================
-       // VARIABLE BIO GENERATION
-       // ========================
-         if (optionTestQuote1.val() === "Random Quote") {
-           var settingsOne = {
-             async: true,
-             crossDomain: true,
-             url:
-               "https://quotes15.p.rapidapi.com/quotes/random/?language_code=en",
-             method: "GET",
-             headers: {
-               "x-rapidapi-host": "quotes15.p.rapidapi.com",
-               "x-rapidapi-key":
-                 "59d0c27c79msh6e6814003e3803ep1e5484jsn5fecf295231f",
-             },
-           };
+    //    // ========================
+    //    // VARIABLE BIO GENERATION
+    //    // ========================
+    //      if (optionTestQuote1.val() === "Random Quote") {
+    //        var settingsOne = {
+    //          async: true,
+    //          crossDomain: true,
+    //          url:
+    //            "https://quotes15.p.rapidapi.com/quotes/random/?language_code=en",
+    //          method: "GET",
+    //          headers: {
+    //            "x-rapidapi-host": "quotes15.p.rapidapi.com",
+    //            "x-rapidapi-key":
+    //              "59d0c27c79msh6e6814003e3803ep1e5484jsn5fecf295231f",
+    //          },
+    //        };
    
-           $.ajax(settingsOne).done(function (responseOne) {
-           // INSPIRATIONAL BIO CREATION
-             var inspireQuote = responseOne.content;
-             psaBioEl.text(autoBiography(personaName, personaLocation, personaJobVal, inspireQuote));
-           });
-         } 
-           // CORPORATE BIO CREATION 
-           else if (userQuoteSelection === "Corporate") {
-           var settingsTwo = {
-             async: true,
-             crossDomain: true,
-             url: "https://sameer-kumar-corporate-bs-generator-v1.p.rapidapi.com/",
-             method: "GET",
-             headers: {
-               "x-rapidapi-host":
-                 "sameer-kumar-corporate-bs-generator-v1.p.rapidapi.com",
-               "x-rapidapi-key":
-                 "59d0c27c79msh6e6814003e3803ep1e5484jsn5fecf295231f",
-             },
-           };
+    //        $.ajax(settingsOne).done(function (responseOne) {
+    //        // INSPIRATIONAL BIO CREATION
+    //          var inspireQuote = responseOne.content;
+    //          psaBioEl.text(autoBiography(personaName, personaLocation, personaJobVal, inspireQuote));
+    //        });
+    //      } 
+    //        // CORPORATE BIO CREATION 
+    //        else if (userQuoteSelection === "Corporate") {
+    //        var settingsTwo = {
+    //          async: true,
+    //          crossDomain: true,
+    //          url: "https://sameer-kumar-corporate-bs-generator-v1.p.rapidapi.com/",
+    //          method: "GET",
+    //          headers: {
+    //            "x-rapidapi-host":
+    //              "sameer-kumar-corporate-bs-generator-v1.p.rapidapi.com",
+    //            "x-rapidapi-key":
+    //              "59d0c27c79msh6e6814003e3803ep1e5484jsn5fecf295231f",
+    //          },
+    //        };
    
-           $.ajax(settingsTwo).done(function (responseTwo) {
-             // console.log(responseTwo);
-             var corporateQuote = responseTwo.phrase;
+    //        $.ajax(settingsTwo).done(function (responseTwo) {
+    //          // console.log(responseTwo);
+    //          var corporateQuote = responseTwo.phrase;
              
-               autoBiography(
-                 personaName,
-                 personaLocation,
-                 personaJobVal,
-                 corporateQuote
-                    )
-               });
-            }
-            },
-        });
-       };
+    //            autoBiography(
+    //              personaName,
+    //              personaLocation,
+    //              personaJobVal,
+    //              corporateQuote
+    //                 )
+    //            });
+    //         }
+    //         },
+    //     });
+    //    };
       };
 
 
