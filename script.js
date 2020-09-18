@@ -1,4 +1,21 @@
 // GLOBAL VARIABLES
+var judeDummyStorage=[
+  {
+    personaName: "Jeremy Clarkson",
+    personaAge: 60,
+    personaLocation: "Chipping Norton"
+  },
+  {
+    personaName: "James May",
+    personaAge: 57,
+    personaLocation: "Hammersmith"
+  },
+  {
+    personaName: "Richard Hammond",
+    personaAge: 50,
+    personaLocation: "Herefordshire"
+  },
+];
 // ================
 
 // ICONS AND BUTTON VARIABLES
@@ -189,7 +206,7 @@ $(document).ready(function () {
    });
 
    $("#clear-no-btn").on("click", function () {
-    console.log("clear no")
+    clearWarning.addClass("hide")
    });
 
   // =====================================================================
@@ -202,9 +219,8 @@ $(document).ready(function () {
 
   function saveFunc() {
     if (document.getElementById("save-icon-container").disabled) {
-      console.log("This button is disabled.");
+      console.log("Save button is disabled.");
     } else {
-      console.log("I clicked the save button");
 
       // Get the snackbar DIV
       var saveSnack = $("#save-snack");
@@ -222,17 +238,31 @@ $(document).ready(function () {
   }
 
   function librarySwitchFunc() {
-    console.log("I clicked the library icon");
 
     if (librarySwitch === false) {
       personaBlock.addClass("hide");
       libraryBlock.removeClass("hide");
       librarySwitch = true;
+      generateLibrary();
     } else {
       personaBlock.removeClass("hide");
       libraryBlock.addClass("hide");
       librarySwitch = false;
     }
+  }
+
+  function generateLibrary() {
+    $("#table-body").empty();
+for(let i=0; i<judeDummyStorage.length; i++){
+    console.log("Library generated from storage");
+    tableRow = $("<tr>");
+    tableName = $("<td>").text(judeDummyStorage[i].personaName);
+    tableAge = $("<td>").text(judeDummyStorage[i].personaAge);
+    tableLocation = $("<td>").text(judeDummyStorage[i].personaLocation);
+
+    tableRow.append(tableName, tableAge, tableLocation)
+    $("#table-body").append(tableRow)
+}
   }
 
   function clearStorage() {
