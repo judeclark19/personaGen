@@ -229,7 +229,7 @@ $(document).ready(function () {
          
    
          // EVENT LISTENER FOR FORM 
-         submitGenerate.on("click", function(event) {     
+         submitGenerate.on("submit", function(event) {     
         
          var personaLowAgeVal = $("#age-low-input").val();
          var personaHighAgeVal = $("#age-high-input").val();
