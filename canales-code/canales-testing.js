@@ -11,28 +11,9 @@ var trashIcon = $("#trash-icon")
 var personaCard = $("#persona-card")
 var mainContainer = $("#main-container")
 
-// ==============================
-// FORM VARIABLES & EVENT LISTENER
-// var targetForm = $("#target-form");
-// var ageSelectLow = $("#age-low")
-// var ageSelectHigh = $("#age-high")
-// var sexSelect = $("#sex-type")
-// var quoteSelect = $("#quote-type");
-// var interestSelect = $("#persona-interests");
-// var submitGenerate = $("#submit-generate"); //SUBMIT BUTTON
-// // EVENT LISTENER FOR FORM 
-// submitGenerate.on("click", function(event) {
-//     var personaGender = (sexSelect.val())
-//     var personaInterests = (interestSelect.val());
-//     var personaQuote = (quoteSelect.val());
-//     event.preventDefault();});
-// LEAVE HERE PLEASE
-// =======================
-
 // JOSEPH HARDCODE VARIABLES
 var specificCategory = "meteorology";
 var userQuoteSelection = "Inspirational";
-
  
 // ==============
 // Text Generation
@@ -98,7 +79,6 @@ $(document).ready(function () {
     personaCard.empty();
     personaCard.removeClass("hide");
     formCall();
-    
   }
 
   function saveFunc() {
