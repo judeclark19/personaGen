@@ -222,23 +222,18 @@ $(document).ready(function () {
       console.log("Save button is disabled.");
     } else {
 
-      // Get the snackbar DIV
+      saveCurrentPersona();
       var saveSnack = $("#save-snack");
-
-      // Add the "show" class to DIV
-      // x.className = "show";
       saveSnack.addClass("show");
 
-      // After 3 seconds, remove the show class from DIV
+      // After 2 seconds, remove the show class from DIV
       setTimeout(function () {
         saveSnack.removeClass("show");
-        // saveSnack.className = saveSnack.className.replace("show", "");
       }, 2000);
     }
   }
 
   function librarySwitchFunc() {
-
     if (librarySwitch === false) {
       personaBlock.addClass("hide");
       libraryBlock.removeClass("hide");
