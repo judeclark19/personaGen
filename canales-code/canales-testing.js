@@ -33,24 +33,30 @@ var clearWarning = $("#clear-warning-block");
 var specificCategory;
 var userQuoteSelection = "Inspirational";
 
+// *******************************************
 // STORAGE VARIABLES AND FUNCTIONS
+// *******************************************
 var personaArray = [];
 
 // displayPersonaKeys();
 
-// function displayPersonaKeys() {
-//   mainContainer.empty();
+function displayPersonaKeys() {
+  mainContainer.empty();
 
-//   var personaStorageKeys = Object.keys(localStorage);
-//   if (personaStorageKeys == null) {
-//   alert("i'm empty")
-// } else{
-//   for (var i = 0; i < personaStorageKeys; i ++) {
-//     var personaKeyItem = localStorage.getItem(personaStorageKeys[i])
-//     console.log(personaKeyItem)
-//   }
-// }
-// }
+    var personaStorageKeys = Object.keys(localStorage);
+    if (personaStorageKeys == null) {
+    alert("i'm empty")
+    } else{
+    for (var i = 0; i < personaStorageKeys; i ++) {
+      var personaKeyItem = localStorage.getItem(personaStorageKeys[i])
+      console.log(personaKeyItem)
+    } } }
+
+saveIcon.on("click", function() {
+  var personaName = $("#name-msg-body");
+  console.log(personaName)
+  console.log(personaName[0].childNodes[0].data)
+});
 
 // ==============
 // Text Generation
@@ -134,9 +140,9 @@ function autoBiography(name, location, interests, quote) {
     gnpContainer.removeClass("gnp-able");
   });
 
-  saveIcon.on("click", function () {
-    saveFunc();
-  });
+  // saveIcon.on("click", function () {
+  //   saveFunc();
+  // });
 
   libraryIcon.on("click", function () {
     if (libraryIconContainer.prop("disabled") === false) {
@@ -251,8 +257,6 @@ function autoBiography(name, location, interests, quote) {
     // localStorage.clear();
     console.log("storage cleared");
   }
-
-  // =====================================================================
 
   // =====================================================================
   // Traversing the DOM
