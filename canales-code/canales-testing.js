@@ -78,7 +78,7 @@ function displayPersonaKeys() {
 
       console.log(personaKeyItem)
 
-      storedPersona = localStorage.setItem(personaKeyItem, personaName)
+      storedPersona = localStorage.setItem(personaName, personaKeyItem)
     });
     
 // ==============

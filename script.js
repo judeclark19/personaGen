@@ -47,7 +47,52 @@ var clearWarning = $("#clear-warning-block");
 // JOSEPH HARDCODE VARIABLES
 var userQuoteSelection;
 var randomStatus = false;
+// *******************************************
+// STORAGE VARIABLES AND FUNCTIONS
+// *******************************************
+var personaArray = [];
 
+// displayPersonaKeys();
+
+function displayPersonaKeys() {
+  mainContainer.empty();
+
+    var personaStorageKeys = Object.keys(localStorage);
+    if (personaStorageKeys == null) {
+    alert("i'm empty")
+    } else{
+    for (var i = 0; i < personaStorageKeys; i ++) {
+      var personaKeyItem = localStorage.getItem(personaStorageKeys[i])
+      console.log(personaKeyItem)
+    } } }
+
+    saveIcon.on("click", function() {
+      var personaName = $("#name-msg-body")[0].childNodes[0].data;
+      var personaImage = $("#persona-image")[0].currentSrc;
+      var personaAge = $("#age-msg-body")[0].childNodes[0].data;
+      var personaGender = $("#gender-msg-body")[0].childNodes[0].data;
+      var personaLocation = $("#location-msg-body")[0].childNodes[0].data;
+      var personaBio = $("#bio-msg-body")[0].childNodes[0].data;
+      
+      console.log(personaImage);
+      console.log(personaName); 
+      console.log(personaAge);
+      console.log(personaGender);
+      console.log(personaLocation)
+      console.log(personaBio);
+
+      var personaKeyItem = {
+      name: personaName,
+      image: personaImage,
+      age: personaAge,
+      gender: personaGender,
+      location: personaLocation,
+      bio: personaBio  }
+
+      console.log(personaKeyItem)
+
+      storedPersona = localStorage.setItem(personaName, personaKeyItem)
+    });
 // ==============
 // Text Generation
 function autoBiography(name, location, interests, quote) {
