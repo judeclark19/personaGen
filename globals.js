@@ -63,3 +63,20 @@ function generateProfession(age) {
     }
     return interests[randomInterest].title;
 }
+
+movies = ["tt0944947", ];
+
+var settings = {
+	"async": true,
+	"crossDomain": true,
+	"url": "https://imdb8.p.rapidapi.com/title/get-taglines?tconst=tt0944947",
+	"method": "GET",
+	"headers": {
+		"x-rapidapi-host": "imdb8.p.rapidapi.com",
+		"x-rapidapi-key": "59d0c27c79msh6e6814003e3803ep1e5484jsn5fecf295231f"
+	}
+}
+
+$.ajax(settings).done(function (response) {
+	console.log(response);
+});
