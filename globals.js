@@ -64,12 +64,14 @@ function generateProfession(age) {
     return interests[randomInterest].title;
 }
 
-movies = ["tt0944947", ];
+// game of thrones / the matrix / deep red / beetlejuice / terminator / 
+movies = ["tt0944947", "tt0133093", "tt0073582", "tt0094721", "tt0088247", "tt1979376"];
+movie = movies[5];
 
 var settings = {
 	"async": true,
 	"crossDomain": true,
-	"url": "https://imdb8.p.rapidapi.com/title/get-taglines?tconst=tt0944947",
+	"url": "https://imdb8.p.rapidapi.com/title/get-taglines?tconst=" + movie,
 	"method": "GET",
 	"headers": {
 		"x-rapidapi-host": "imdb8.p.rapidapi.com",
@@ -78,5 +80,6 @@ var settings = {
 }
 
 $.ajax(settings).done(function (response) {
-	console.log(response);
+    console.log(response.taglines);
+    var randomMovie;
 });
