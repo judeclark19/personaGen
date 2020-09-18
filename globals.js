@@ -76,20 +76,4 @@ movies = [
   "tt0088247",
   "tt1979376",
 ];
-// movie = movies[Math.floor(Math.random() * movies.length)];
 
-// var settings = {
-//   async: true,
-//   crossDomain: true,
-//   url: "https://imdb8.p.rapidapi.com/title/get-taglines?tconst=" + movie,
-//   method: "GET",
-//   headers: {
-//     "x-rapidapi-host": "imdb8.p.rapidapi.com",
-//     "x-rapidapi-key": "59d0c27c79msh6e6814003e3803ep1e5484jsn5fecf295231f",
-//   },
-// };
-
-// $.ajax(settings).done(function (response) {
-//   console.log(response.taglines);
-//   var randomMovie;
-// });

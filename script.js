@@ -556,14 +556,14 @@ $(document).ready(function () {
           }
           // var personaInterestVal = $("#persona-interest-select").val();
           personaQuoteVal = $("#persona-quote-select").val();
-          console.log(personaQuoteVal);
 
           // ========================
           // VARIABLE BIO GENERATION
           // ========================
           if (randomStatus === true) {
-            // to be randomized later
-            personaQuoteVal = "quote-test-val-1";
+            // randomizes bio quote
+            var quoteNumber = Math.ceil(Math.random() * 3);
+            personaQuoteVal = "quote-test-val-" + quoteNumber;
             randomStatus = false;
           }
           if (personaQuoteVal === "quote-test-val-1") {
@@ -596,7 +596,6 @@ $(document).ready(function () {
           }
           // CORPORATE BIO CREATION
           else if (personaQuoteVal === "quote-test-val-2") {
-            console.log("it's corporate time!");
             var settingsTwo = {
               async: true,
               crossDomain: true,
@@ -642,7 +641,6 @@ $(document).ready(function () {
             };
 
             $.ajax(settings).done(function (response) {
-              console.log(response.taglines);
               var randomMovie = Math.floor(Math.random() * response.taglines.length);
               var movieQuote = response.taglines[randomMovie];
               bioEl.text(
