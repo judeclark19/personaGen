@@ -18,7 +18,7 @@ var librarySwitch = false;
 // PAGE TARGETING VARIABLES
 var personaBox = $("#persona-box");
 var personaBlock = $("#persona-block");
-var tableBlock = $("#table-block");
+var libraryBlock = $("#library-table-block");
 var landingPromptBlock = $("#landing-prompt-block");
 var formBlock = $("#form-block");
 
@@ -112,6 +112,20 @@ $(document).ready(function () {
   userParamsButton.on("click", function () {
     landingPromptBlock.addClass("hide");
     formBlock.removeClass("hide");
+    personaBlock.addClass("hide");
+    libraryBlock.addClass("hide");
+  });
+
+  $("#close-prompt-btn").on("click", function () {
+    landingPromptBlock.addClass("hide");
+    gnpContainer.removeClass("disabled");
+    gnpContainer.addClass("gnp-able");
+  });
+
+  $("#close-form-btn").on("click", function () {
+    formBlock.addClass("hide")
+    gnpContainer.removeClass("disabled");
+    gnpContainer.addClass("gnp-able");
   });
 
   formSubmitBtn.on("click", function () {
@@ -125,6 +139,8 @@ $(document).ready(function () {
     // personaBlock.addClass("hide");
     landingPromptBlock.removeClass("hide");
     formBlock.addClass("hide");
+    gnpContainer.addClass("disabled");
+    gnpContainer.removeClass("gnp-able");
   });
 
   saveIcon.on("click", function () {
@@ -133,14 +149,31 @@ $(document).ready(function () {
 
   storageIcon.on("click", function () {
     if (storageIconContainer.prop("disabled") === false) {
-      viewStoredPersonas();
+      librarySwitchFunc();
     } else {
       console.log("library is disabled");
     }
   });
 
+  $("#close-library-btn").on("click", function () {
+    // console.log("library  close button")
+    librarySwitch=false;
+    libraryBlock.addClass("hide")
+    personaBlock.removeClass("hide");
+  })
+
   trashIcon.on("click", function () {
-    clearStorage();
+    if (trashIconContainer.prop("disabled") === false) {
+      var clearConfirm = confirm(
+        "Are you sure you want to delete everything in your library?"
+      );
+      if (clearConfirm) {
+        localStorage.clear();
+        console.log("THIS CURRENTLY DELETES LOCAL STORAGE");
+      }
+    } else {
+      console.log("Trash icon is disabled");
+    }
   });
 
   // =====================================================================
@@ -166,36 +199,36 @@ $(document).ready(function () {
 
       // After 3 seconds, remove the show class from DIV
       setTimeout(function () {
-      saveSnack.removeClass("show");
+        saveSnack.removeClass("show");
         // saveSnack.className = saveSnack.className.replace("show", "");
       }, 2000);
     }
   }
 
-  function viewStoredPersonas() {
+  function librarySwitchFunc() {
     console.log("I clicked the view storage icon");
 
     if (librarySwitch === false) {
       personaBlock.addClass("hide");
-      tableBlock.removeClass("hide");
+      libraryBlock.removeClass("hide");
       // storageIconContainer.addClass("is-active")
       librarySwitch = true;
     } else {
       personaBlock.removeClass("hide");
-      tableBlock.addClass("hide");
+      libraryBlock.addClass("hide");
       librarySwitch = false;
     }
   }
 
-  function clearStorage() {
-    var clearConfirm = confirm(
-      "Are you sure you want to delete everything in your library?"
-    );
-    if (clearConfirm) {
-      localStorage.clear();
-      console.log("THIS CURRENTLY DELETES LOCAL STORAGE");
-    }
-  }
+  // function clearStorage() {
+  //   var clearConfirm = confirm(
+  //     "Are you sure you want to delete everything in your library?"
+  //   );
+  //   if (clearConfirm) {
+  //     localStorage.clear();
+  //     console.log("THIS CURRENTLY DELETES LOCAL STORAGE");
+  //   }
+  // }
   // =====================================================================
 
   // Traversing the DOM
@@ -257,8 +290,8 @@ $(document).ready(function () {
           landingPromptBlock.addClass("hide");
 
           //Enable the GenNewPsa button
-          gnpContainer.removeClass("disabled")
-          gnpContainer.addClass("gnp-able")
+          gnpContainer.removeClass("disabled");
+          gnpContainer.addClass("gnp-able");
 
           //Enable save button
           saveIconContainer.prop("disabled", false);
@@ -300,7 +333,7 @@ $(document).ready(function () {
 
           imageContainer.empty();
           imageContainer.append(personaImageEl);
-          tableBlock.addClass("hide");
+          libraryBlock.addClass("hide");
           personaBlock.removeClass("hide");
 
           // creates interest/career based on age. No more meteorology!

@@ -52,7 +52,7 @@
       <!-- Landing/Gen New Notification -->
       <div class="block" id="landing-prompt-block">
         <div class="notification">
-          <button class="delete"></button>
+          <button class="delete" id="close-prompt-btn"></button>
           <h3 class="notif-title">Generate a new persona:</h3></br>
           <button class="button user-select is-medium" id="user-select-random">Generate random</button>
           <button class="button user-select is-medium" id="user-select-parameters">Enter custom parameters</button>
@@ -63,14 +63,16 @@
 <!-- user parameter input form -->
       <div class="block hide" id="form-block">
         <div class="notification">
-          <button class="delete"></button>
+          <button class="delete" id="close-form-btn"></button>
           <h3 class="notif-title">New Persona Parameters</h3>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae repudiandae culpa aliquam sequi possimus inventore corrupti ut blanditiis debitis tempore! Distinctio expedita doloribus voluptates aperiam? Tenetur atque incidunt facilis eligendi.</p>
-          <button class="button is-medium" id="form-submit-btn">Submit</button>
+          <p>Enter your own custom parameters with which to generate a new persona.</p>
+          <p>(Form will be here)</p>
+          <button class="button is-medium is-info" id="form-submit-btn">Submit</button>
         </div>
       </div>
       <!-- END user input form -->
 
+<!-- BEGIN persona block -->
       <div class="block hide" id="persona-block">
         <div class="box columns" id="persona-box">
           <div class="column" id="image-container">
@@ -124,8 +126,9 @@
       </div>
 
 
-      <div class="block hide" id="table-block">
-        <h2 class="title is-3">My Saved Personae</h2>
+      <div class="block hide" id="library-table-block">
+        
+        <div class="title is-3" id="library-title">My Persona Library   <button class="delete" id="close-library-btn"></button></div>
         <table class="table is-striped">
           <thead>
             <tr>
