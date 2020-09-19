@@ -460,6 +460,7 @@ $(document).ready(function () {
   // ================================
 
   function generateNewPersona() {
+    // uses api parameters to specify sex 
     var personaGenderSelect = $("#persona-gender-select").val();
     if (personaGenderSelect === "nonbinary") {
       var randomMeURL = "https://randomuser.me/api/";
@@ -483,6 +484,7 @@ $(document).ready(function () {
           randomGen.location.city + ", " + randomGen.location.country;
         var personaEmail = randomGen.email;
         personaGender = randomGen.gender;
+        // changes male/female returned gender to nonbinary if selected
         if (personaGenderSelect === "nonbinary") {
           personaGender = "nonbinary";
         }
