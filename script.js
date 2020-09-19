@@ -225,6 +225,8 @@ $(document).ready(function () {
     libraryDelete1.on("click", function () {
       console.log("Hello world");
       libraryDelete1.addClass("hide");
+      libraryDelete1.removeClass("button is-warning");
+      libraryDelete2.addClass("button is-danger");
       libraryDelete2.removeClass("hide");
     });
   
@@ -323,9 +325,9 @@ $(document).ready(function () {
     homeIconContainer.removeClass("able");
     homeIconContainer.addClass("active");
     //disable viewpsa
-    viewPsaContainer.prop("disabled", true);
-    viewPsaContainer.addClass("disabled");
-    viewPsaContainer.removeClass("able");
+    gnpContainer.prop("disabled", true);
+    gnpContainer.addClass("disabled");
+    gnpContainer.removeClass("able");
     //disable save
     saveIconContainer.prop("disabled", true);
     saveIconContainer.addClass("disabled");
