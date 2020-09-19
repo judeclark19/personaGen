@@ -651,6 +651,7 @@ function generateLibrary() {
                 Math.random() * response.taglines.length
               );
               var movieQuote = response.taglines[randomMovie];
+              
               bioEl.text(
                 autoBiography(
                   personaName,
