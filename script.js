@@ -31,7 +31,7 @@ var librarySwitch = false;
 var saveSwitch = false;
 
 // TEMPORARY FORM CONTAINER TARGET
-var formContainer = $("#form-container");
+// var formContainer = $("#form-container");
 
 // PAGE TARGETING VARIABLES
 var mainContainer = $("#main-container");
@@ -142,21 +142,30 @@ $(document).ready(function () {
   });
 
   userParamsButton.on("click", function () {
-    landingBlock.addClass("hide");
-    formBlock.removeClass("hide");
-    personaBlock.addClass("hide");
+
+    console.log("form call called")
+    //Hide landing page
+    hideLandingPage();
+
+    //Show the persona page
+    showPersonaPage();
+
+    // //Hide the Library page
     libraryBlock.addClass("hide");
+
     formCall();
   });
 
   homeIcon.on("click", function () {
-    if (homeIconContainer.prop("disabled") === true) {
-      console.log("home button is disabled");
-    } else if (homeIconContainer.hasClass("active")) {
+    // if (homeIconContainer.prop("disabled") === true) {
+    //   console.log("home button is disabled");
+    // } else 
+    
+    if (homeIconContainer.hasClass("active")) {
       console.log("home button is already active");
     } else {
-      homeIconContainer.addClass("active");
-      personaBlock.addClass("hide");
+      homeIconActive();
+      hidePersonaPage();
       landingBlock.removeClass("hide");
       gnpContainer.removeClass("active");
       gnpContainer.addClass("able");
@@ -211,24 +220,71 @@ $(document).ready(function () {
     }
   });
 
-    //Library main delete button
-    var libraryDelete1 = $("#library-delete");
-    var libraryDelete2 = $("#library-confirm");
-  
-    libraryDelete1.on("click", function () {
-      console.log("Hello world");
-      libraryDelete1.addClass("hide");
-      libraryDelete2.removeClass("hide");
-    });
-  
-    libraryDelete2.on("click", function () {
-      console.log("need to build library delete");
-      resetState();
-    });
+  //Library main delete button
+  var libraryDelete1 = $("#library-delete");
+  var libraryDelete2 = $("#library-confirm");
+
+  libraryDelete1.on("click", function () {
+    console.log("Hello world");
+    libraryDelete1.addClass("hide");
+    libraryDelete1.removeClass("button is-warning");
+    libraryDelete2.addClass("button is-danger");
+    libraryDelete2.removeClass("hide");
+  });
+
+  libraryDelete2.on("click", function () {
+    console.log("need to build library delete");
+    resetState();
+  });
 
   // =====================================================================
   // UI Functions
   // =====================================================================
+
+  //Hide landing page
+  function hideLandingPage() {
+    landingBlock.addClass("hide");
+  }
+
+  //Hide the persona page
+  function hidePersonaPage() {
+    personaBlock.addClass("hide");
+  }
+
+//Show the persona page
+function showPersonaPage() {
+  personaBlock.removeClass("hide");
+}
+
+   //Hide library page
+   function hideLibraryPage() {
+    libraryBlock.addClass("hide");
+  }
+
+  //Change home icon to Able
+  function homeIconAble() {
+    homeIconContainer.removeClass("active");
+    homeIconContainer.addClass("able");
+  }
+
+  //Change home icon to "active"
+  function homeIconActive(){
+    homeIconContainer.addClass("active");
+  }
+
+  // Change Persona Icon to "active"
+  function personIconActive() {
+    gnpContainer.removeClass("disabled");
+    gnpContainer.addClass("active");
+    gnpContainer.prop("disabled", false);
+  }
+
+  //Change Save Icon to "Able"
+  function saveIconAble() {
+    saveIconContainer.prop("disabled", false);
+    saveIconContainer.removeClass("disabled");
+    saveIconContainer.addClass("able");
+  }
 
   saveIconContainer.on("click", function () {
     saveSnackbar();
@@ -298,9 +354,9 @@ $(document).ready(function () {
           alert("need to build individual delete");
         }
       });
-        // THIS IS A NESTED ON CLICK EVENT FOR THE DISPLAY OF THE LOCAL STORAGE ITEMS
-        // BASED ON TABLE ROW CLICKED
-        tableRow.on("click", function() {
+      // THIS IS A NESTED ON CLICK EVENT FOR THE DISPLAY OF THE LOCAL STORAGE ITEMS
+      // BASED ON TABLE ROW CLICKED
+      tableRow.on("click", function() {
         console.log(($(this)[0].attributes[0].nodeValue));
         personaStorageKey = ($(this)[0].attributes[0].nodeValue);
         searchPersonaStorage = JSON.parse(localStorage.getItem(personaStorageKey));
@@ -319,8 +375,13 @@ $(document).ready(function () {
         gnpContainer.removeClass("able");
         gnpContainer.addClass("active");
 
-
-      })
+        $("#name-msg-body").text(searchPersonaStorage.name);
+        $("#age-msg-body").text(searchPersonaStorage.age);
+        $("#gender-msg-body").text(searchPersonaStorage.gender);
+        $("#location-msg-body").text(searchPersonaStorage.location);
+        $("#bio-msg-body").text(searchPersonaStorage.bio)
+        $("#persona-image").attr("src", searchPersonaStorage.image);
+      });
     }
   }
 
@@ -331,9 +392,9 @@ $(document).ready(function () {
     homeIconContainer.removeClass("able");
     homeIconContainer.addClass("active");
     //disable viewpsa
-    viewPsaContainer.prop("disabled", true);
-    viewPsaContainer.addClass("disabled");
-    viewPsaContainer.removeClass("able");
+    gnpContainer.prop("disabled", true);
+    gnpContainer.addClass("disabled");
+    gnpContainer.removeClass("able");
     //disable save
     saveIconContainer.prop("disabled", true);
     saveIconContainer.addClass("disabled");
@@ -360,6 +421,7 @@ $(document).ready(function () {
   // ================================
   function formCall() {
     console.log("FORM GENERATION, CALLED");
+
     // AGE RANGE
     var personaInputAgeLow = $("#age-low-input");
     console.log(personaInputAgeLow.val());
@@ -379,29 +441,33 @@ $(document).ready(function () {
     console.log(personaQuoteSelect.val());
 
     //TARGETING FORM VALUES
-    var submitGenerate = $("#submit-generate"); //SUBMIT BUTTON
+    var submitGenerate = $("#user-select-parameters"); //SUBMIT BUTTON
     var personaForm = $("#persona-form");
 
     // EVENT LISTENER FOR FORM
-    submitGenerate.on("click", function (event) {
+    // submitGenerate.on("click", function (event) {
+      console.log("this button is working");
       var personaLowAgeVal = $("#age-low-input").val();
       var personaHighAgeVal = $("#age-high-input").val();
       var personaGenderVal = $("#persona-gender-select").val();
       var personaQuoteVal = $("#persona-quote-select").val();
+      //  var personaInterestVal = $("#persona-interest-select").val();
+      //  personaJobVal = $("#persona-profession-input").val();
+      // CONSOLE LOGGING VALUES OF INPUTS
       console.log("this click button is working");
       console.log(personaLowAgeVal);
       console.log(personaHighAgeVal);
       console.log(personaGenderVal);
       console.log(personaQuoteVal);
-      console.log(personaInterestVal);
-      console.log(personaJobVal);
+      // console.log(personaInterestVal);
+      // console.log(personaJobVal);
 
       generateNewPersona();
-      formContainer.empty();
+      // formContainer.empty();
 
-      event.preventDefault();
+      // event.preventDefault();
       //  originalUserCall();
-    });
+    // });
   }
 
   // ================================
@@ -468,21 +534,16 @@ $(document).ready(function () {
           // ===========================================
 
           //Hide the landing page
-          landingBlock.addClass("hide");
+          hideLandingPage();
 
           //Make home icon able
-          homeIconContainer.removeClass("active");
-          homeIconContainer.addClass("able");
+          homeIconAble();
 
-          //Activate the GenNewPsa button
-          gnpContainer.removeClass("disabled");
-          gnpContainer.addClass("active");
-          gnpContainer.prop("disabled", false);
+          //Change Persona Icon to "active"
+          personIconActive();
 
-          //Enable save button
-          saveIconContainer.prop("disabled", false);
-          saveIconContainer.removeClass("disabled");
-          saveIconContainer.addClass("able");
+          //Change Save Icon to "Able"
+          saveIconAble();
 
           var imageContainer = $("#image-container");
           var dataContainer = $("#data-container");
@@ -501,8 +562,8 @@ $(document).ready(function () {
           var genderEl = $("#gender-msg-body");
           genderEl.text(personaGender);
 
-          var genderEl = $("#location-msg-body");
-          genderEl.text(personaLocation);
+          var locationEl = $("#location-msg-body");
+          locationEl.text(personaLocation);
 
           var bioEl = $("#bio-msg-body");
           bioEl.text("Loading Bio..."); //  << we receive this information in  a later API CALL
