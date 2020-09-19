@@ -365,3 +365,22 @@ footer {
     opacity: 0;
   }
 }
+ button {
+   width: 85%;
+ }
+
+ #custom-settings {
+   margin-top: 20px;
+   margin-left: 28px;
+   width: 85%;
+ }
+
+ select {
+   width: 85%;
+   height: 40px;
+ }
+
+ input {
+  width: 85%;
+  height: 40px;
+ }
