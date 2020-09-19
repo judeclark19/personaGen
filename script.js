@@ -1,22 +1,5 @@
 // GLOBAL VARIABLES
-var judeDummyStorage = [
-  {
-    personaName: "Jeremy Clarkson",
-    personaAge: 60,
-    personaLocation: "Chipping Norton",
-  },
-  {
-    personaName: "James May",
-    personaAge: 57,
-    personaLocation: "Hammersmith",
-  },
-  {
-    personaName: "Richard Hammond",
-    personaAge: 50,
-    personaLocation: "Herefordshire",
-  },
-];
-// ================
+$(document).ready(function () {
 
 // ICONS AND BUTTON VARIABLES
 var randomButton = $("#user-select-random");
@@ -37,6 +20,7 @@ var librarySwitch = false;
 var formContainer = $("#form-container");
 
 // PAGE TARGETING VARIABLES
+var mainContainer = $("#main-container");
 var personaBox = $("#persona-box");
 var personaBlock = $("#persona-block");
 var libraryBlock = $("#library-table-block");
@@ -53,49 +37,45 @@ var randomStatus = false;
 var personaArray = [];
 
 // displayPersonaKeys();
+displayPersonaKeys()
 
 function displayPersonaKeys() {
-  mainContainer.empty();
+    var personaStorageKeys = Object.keys(localStorage);
+    if (personaStorageKeys == null) {
+    console.log("i'm empty")
+    } else{
+    for (var i = 0; i < personaStorageKeys.length; i ++) {
+      var personaKeyItem = (personaStorageKeys[i], JSON.parse(localStorage.getItem(personaStorageKeys[i])));
+      // console.log(personaKeyItem);
+      personaArray.push(personaKeyItem);
+      console.log(personaArray);
+    } } };
 
-  var personaStorageKeys = Object.keys(localStorage);
-  if (personaStorageKeys == null) {
-    alert("i'm empty");
-  } else {
-    for (var i = 0; i < personaStorageKeys; i++) {
-      var personaKeyItem = localStorage.getItem(personaStorageKeys[i]);
-      console.log(personaKeyItem);
-    }
-  }
-}
+    saveIcon.on("click", function() {
+      var personaName = $("#name-msg-body")[0].childNodes[0].data;
+      var personaImage = $("#persona-image")[0].currentSrc;
+      var personaAge = $("#age-msg-body")[0].childNodes[0].data;
+      var personaGender = $("#gender-msg-body")[0].childNodes[0].data;
+      var personaLocation = $("#location-msg-body")[0].childNodes[0].data;
+      var personaBio = $("#bio-msg-body")[0].childNodes[0].data;
+      console.log(personaImage);
+      console.log(personaName); 
+      console.log(personaAge);
+      console.log(personaGender);
+      console.log(personaLocation)
+      console.log(personaBio);
+      var personaKeyItem = {
+      name: personaName,
+      image: personaImage,
+      age: personaAge,
+      gender: personaGender,
+      location: personaLocation,
+      bio: personaBio  }
 
-saveIcon.on("click", function () {
-  var personaName = $("#name-msg-body")[0].childNodes[0].data;
-  var personaImage = $("#persona-image")[0].currentSrc;
-  var personaAge = $("#age-msg-body")[0].childNodes[0].data;
-  var personaGender = $("#gender-msg-body")[0].childNodes[0].data;
-  var personaLocation = $("#location-msg-body")[0].childNodes[0].data;
-  var personaBio = $("#bio-msg-body")[0].childNodes[0].data;
+      console.log(personaKeyItem)
 
-  console.log(personaImage);
-  console.log(personaName);
-  console.log(personaAge);
-  console.log(personaGender);
-  console.log(personaLocation);
-  console.log(personaBio);
-
-  var personaKeyItem = {
-    name: personaName,
-    image: personaImage,
-    age: personaAge,
-    gender: personaGender,
-    location: personaLocation,
-    bio: personaBio,
-  };
-
-  console.log(personaKeyItem);
-
-  storedPersona = localStorage.setItem(personaName, personaKeyItem);
-});
+      storedPersona = localStorage.setItem(personaName, JSON.stringify(personaKeyItem))
+    });
 // ==============
 // Text Generation
 function autoBiography(name, location, interests, quote) {

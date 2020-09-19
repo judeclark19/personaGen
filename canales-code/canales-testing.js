@@ -1,3 +1,4 @@
+
 // GLOBAL VARIABLES
 // ================
 $(document).ready(function () {
@@ -78,6 +79,7 @@ function displayPersonaKeys() {
 
       storedPersona = localStorage.setItem(personaName, JSON.stringify(personaKeyItem))
     });
+    
     
 // ==============
 // Text Generation
