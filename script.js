@@ -31,7 +31,7 @@ var librarySwitch = false;
 var saveSwitch = false;
 
 // TEMPORARY FORM CONTAINER TARGET
-var formContainer = $("#form-container");
+// var formContainer = $("#form-container");
 
 // PAGE TARGETING VARIABLES
 var mainContainer = $("#main-container");
@@ -372,11 +372,12 @@ $(document).ready(function () {
     console.log(personaQuoteSelect.val());
 
     //TARGETING FORM VALUES
-    var submitGenerate = $("#submit-generate"); //SUBMIT BUTTON
+    var submitGenerate = $("#user-select-parameters"); //SUBMIT BUTTON
     var personaForm = $("#persona-form");
 
     // EVENT LISTENER FOR FORM
-    submitGenerate.on("click", function (event) {
+    // submitGenerate.on("click", function (event) {
+      console.log("this button is working");
       var personaLowAgeVal = $("#age-low-input").val();
       var personaHighAgeVal = $("#age-high-input").val();
       var personaGenderVal = $("#persona-gender-select").val();
@@ -389,15 +390,15 @@ $(document).ready(function () {
       console.log(personaHighAgeVal);
       console.log(personaGenderVal);
       console.log(personaQuoteVal);
-      console.log(personaInterestVal);
-      console.log(personaJobVal);
+      // console.log(personaInterestVal);
+      // console.log(personaJobVal);
 
       generateNewPersona();
-      formContainer.empty();
+      // formContainer.empty();
 
-      event.preventDefault();
+      // event.preventDefault();
       //  originalUserCall();
-    });
+    // });
   }
 
   // ================================
