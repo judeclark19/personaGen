@@ -1,20 +1,34 @@
 // GLOBAL VARIABLES
+// This controls the collapsibles on the persona page
+var coll = document.getElementsByClassName("collapsible");
+var i;
 
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function () {
+    this.classList.toggle("active-col");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
 
 // ICONS AND BUTTON VARIABLES
 var randomButton = $("#user-select-random");
 var userParamsButton = $("#user-select-parameters");
-var genNewIcon = $("#gen-new-psa-icon");
-var gnpContainer = $("#gnp-icon-container");
+var homeIcon = $("#home-icon");
+var homeIconContainer = $("#home-icon-container");
+var genNewIcon = $("#view-psa-icon");
+var gnpContainer = $("#view-psa-icon-container");
 var saveIcon = $("#save-icon");
-// ICON VARIABLES
 var saveIconContainer = $("#save-icon-container");
 var libraryIcon = $("#library-icon");
 var libraryIconContainer = $("#library-icon-container");
-var trashIcon = $("#trash-icon");
-var trashIconContainer = $("#trash-icon-container");
 var formSubmitBtn = $("#form-submit-btn");
 var librarySwitch = false;
+var saveSwitch = false;
 
 // TEMPORARY FORM CONTAINER TARGET
 var formContainer = $("#form-container");
@@ -24,7 +38,7 @@ var mainContainer = $("#main-container");
 var personaBox = $("#persona-box");
 var personaBlock = $("#persona-block");
 var libraryBlock = $("#library-table-block");
-var landingPromptBlock = $("#landing-prompt-block");
+var landingBlock = $("#landing-block");
 var formBlock = $("#form-block");
 var clearWarning = $("#clear-warning-block");
 
@@ -37,45 +51,53 @@ var randomStatus = false;
 var personaArray = [];
 
 // THIS HAS BEEN UPDATED
-displayPersonaKeys()
+displayPersonaKeys();
 
 function displayPersonaKeys() {
-    var personaStorageKeys = Object.keys(localStorage);
-    if (personaStorageKeys == null) {
-    console.log("i'm empty")
-    } else{
-    for (var i = 0; i < personaStorageKeys.length; i ++) {
-      var personaKeyItem = (personaStorageKeys[i], JSON.parse(localStorage.getItem(personaStorageKeys[i])));
+  var personaStorageKeys = Object.keys(localStorage);
+  if (personaStorageKeys == null) {
+    console.log("i'm empty");
+  } else {
+    for (var i = 0; i < personaStorageKeys.length; i++) {
+      var personaKeyItem =
+        (personaStorageKeys[i],
+        JSON.parse(localStorage.getItem(personaStorageKeys[i])));
       // console.log(personaKeyItem);
       personaArray.push(personaKeyItem);
       console.log(personaArray);
-    } } };
+    }
+  }
+}
 
-    saveIcon.on("click", function() {
-      var personaName = $("#name-msg-body")[0].childNodes[0].data;
-      var personaImage = $("#persona-image")[0].currentSrc;
-      var personaAge = $("#age-msg-body")[0].childNodes[0].data;
-      var personaGender = $("#gender-msg-body")[0].childNodes[0].data;
-      var personaLocation = $("#location-msg-body")[0].childNodes[0].data;
-      var personaBio = $("#bio-msg-body")[0].childNodes[0].data;
-      console.log(personaImage);
-      console.log(personaName); 
-      console.log(personaAge);
-      console.log(personaGender);
-      console.log(personaLocation)
-      console.log(personaBio);
-      var personaKeyItem = {
-      name: personaName,
-      image: personaImage,
-      age: personaAge,
-      gender: personaGender,
-      location: personaLocation,
-      bio: personaBio  }
+saveIcon.on("click", function () {
+  var personaName = $("#name-msg-body")[0].childNodes[0].data;
+  var personaImage = $("#persona-image")[0].currentSrc;
+  var personaAge = $("#age-msg-body")[0].childNodes[0].data;
+  var personaGender = $("#gender-msg-body")[0].childNodes[0].data;
+  var personaLocation = $("#location-msg-body")[0].childNodes[0].data;
+  var personaBio = $("#bio-msg-body")[0].childNodes[0].data;
+  console.log(personaImage);
+  console.log(personaName);
+  console.log(personaAge);
+  console.log(personaGender);
+  console.log(personaLocation);
+  console.log(personaBio);
+  var personaKeyItem = {
+    name: personaName,
+    image: personaImage,
+    age: personaAge,
+    gender: personaGender,
+    location: personaLocation,
+    bio: personaBio,
+  };
 
-      console.log(personaKeyItem)
+  console.log(personaKeyItem);
 
-      storedPersona = localStorage.setItem(personaName, JSON.stringify(personaKeyItem))
-    });
+  storedPersona = localStorage.setItem(
+    personaName,
+    JSON.stringify(personaKeyItem)
+  );
+});
 // ==============
 // Text Generation
 function autoBiography(name, location, interests, quote) {
@@ -97,6 +119,12 @@ function autoBiography(name, location, interests, quote) {
     Math.random() * sentenceStructure.starter.length
   );
   quote = quote[0].toLowerCase() + quote.slice(1);
+<<<<<<< HEAD
+=======
+  if (quote[quote.length - 1] === ".") {
+    quote = quote.slice(0, quote.length - 1);
+  }
+>>>>>>> 7288dc6e0ead80c5d022330ab13459b8fd617f2d
   var finalText =
     sentenceStructure.starter[randomWords] +
     name +
@@ -124,23 +152,31 @@ $(document).ready(function () {
   });
 
   userParamsButton.on("click", function () {
-    landingPromptBlock.addClass("hide");
+    landingBlock.addClass("hide");
     formBlock.removeClass("hide");
     personaBlock.addClass("hide");
     libraryBlock.addClass("hide");
     formCall();
   });
 
-  $("#close-prompt-btn").on("click", function () {
-    landingPromptBlock.addClass("hide");
-    gnpContainer.removeClass("disabled");
-    gnpContainer.addClass("gnp-able");
-  });
-
-  $("#close-form-btn").on("click", function () {
-    formBlock.addClass("hide");
-    gnpContainer.removeClass("disabled");
-    gnpContainer.addClass("gnp-able");
+  homeIcon.on("click", function () {
+    if (homeIconContainer.prop("disabled") === true) {
+      console.log("home button is disabled");
+    } else if (homeIconContainer.hasClass("active")) {
+      console.log("home button is already active");
+    } else {
+      homeIconContainer.addClass("active");
+      personaBlock.addClass("hide");
+      landingBlock.removeClass("hide");
+      gnpContainer.removeClass("active");
+      gnpContainer.addClass("able");
+      libraryBlock.addClass("hide");
+      console.log("clicked home button");
+      if (libraryIconContainer.hasClass("active")) {
+        libraryIconContainer.removeClass("active");
+        libraryIconContainer.addClass("able");
+      }
+    }
   });
 
   formSubmitBtn.on("click", function () {
@@ -150,90 +186,72 @@ $(document).ready(function () {
   });
 
   genNewIcon.on("click", function () {
-    // generateNewPersona();
-    // personaBlock.addClass("hide");
-    landingPromptBlock.removeClass("hide");
-    formBlock.addClass("hide");
-    gnpContainer.addClass("disabled");
-    gnpContainer.removeClass("gnp-able");
-  });
-
-  saveIcon.on("click", function () {
-    saveFunc();
+    if (gnpContainer.prop("disabled") === true) {
+      console.log("view psa is disabled");
+    } else {
+      console.log("clicked view psa button");
+      landingBlock.addClass("hide");
+      personaBlock.removeClass("hide");
+      homeIconContainer.removeClass("active");
+      homeIconContainer.addClass("able");
+      gnpContainer.removeClass("able");
+      gnpContainer.addClass("active");
+      libraryBlock.addClass("hide");
+      if (libraryIconContainer.hasClass("active")) {
+        libraryIconContainer.removeClass("active");
+        libraryIconContainer.addClass("able");
+      }
+    }
   });
 
   libraryIcon.on("click", function () {
     if (libraryIconContainer.prop("disabled") === false) {
       librarySwitchFunc();
+      gnpContainer.removeClass("active");
+      gnpContainer.addClass("able");
+      homeIconContainer.removeClass("active");
+      homeIconContainer.addClass("able");
+      libraryIconContainer.removeClass("able");
+      libraryIconContainer.addClass("active");
+      personaBlock.addClass("hide");
+      landingBlock.addClass("hide");
+      libraryBlock.removeClass("hide");
     } else {
       console.log("library is disabled");
     }
   });
 
-  $("#close-library-btn").on("click", function () {
-    // console.log("library  close button")
-    librarySwitch = false;
-    libraryBlock.addClass("hide");
-    personaBlock.removeClass("hide");
-  });
-
-  trashIcon.on("click", function () {
-    if (trashIconContainer.prop("disabled") === false) {
-      //show the modal for delete confirm
-      clearWarning.removeClass("hide");
-    } else {
-      console.log("Trash icon is disabled");
-    }
-  });
-
-  $("#close-warning-btn").on("click", function () {
-    clearWarning.addClass("hide");
-  });
-
-  $("#clear-yes-btn").on("click", function () {
-    console.log("clear yes");
-    //TODO: disable buttons
-
-    //Disable action buttons
-    gnpContainer.prop("disabled", true);
-    gnpContainer.addClass("disabled");
-    gnpContainer.removeClass("gnp-able");
-
-    saveIconContainer.prop("disabled", true);
-    saveIconContainer.addClass("disabled");
-    saveIconContainer.removeClass("save-able");
-
-    libraryIconContainer.prop("disabled", true);
-    libraryIconContainer.addClass("disabled");
-    libraryIconContainer.removeClass("library-able");
-
-    trashIconContainer.prop("disabled", true);
-    trashIconContainer.addClass("disabled");
-    trashIconContainer.removeClass("trash-able");
-
-    //hide n show
-    clearWarning.addClass("hide");
-    personaBlock.addClass("hide");
-    landingPromptBlock.removeClass("hide");
-    if (librarySwitch) {
-      librarySwitch = false;
-      libraryBlock.addClass("hide");
-    }
-  });
-
-  $("#clear-no-btn").on("click", function () {
-    clearWarning.addClass("hide");
-  });
+    //Library main delete button
+    var libraryDelete1 = $("#library-delete");
+    var libraryDelete2 = $("#library-confirm");
+  
+    libraryDelete1.on("click", function () {
+      console.log("Hello world");
+      libraryDelete1.addClass("hide");
+      libraryDelete2.removeClass("hide");
+    });
+  
+    libraryDelete2.on("click", function () {
+      console.log("need to build library delete");
+      resetState();
+    });
 
   // =====================================================================
   // UI Functions
   // =====================================================================
 
-  function saveFunc() {
+  saveIconContainer.on("click", function () {
+    saveSnackbar();
+    saveSwitch = true;
+    libraryIconContainer.removeClass("disabled");
+    libraryIconContainer.prop("disabled", false);
+    libraryIconContainer.addClass("able");
+  });
+
+  function saveSnackbar() {
     if (document.getElementById("save-icon-container").disabled) {
       console.log("Save button is disabled.");
     } else {
-      // saveCurrentPersona(); TODO: build this function
       var saveSnack = $("#save-snack");
       saveSnack.addClass("show");
 
@@ -257,6 +275,7 @@ $(document).ready(function () {
     }
   }
 
+<<<<<<< HEAD
 // ======================================
 // GENERATING STORAGE INTO LIBRARY FOLDER
 // ======================================
@@ -264,6 +283,20 @@ function generateLibrary() {
     $("#table-body").empty();
     for (var i = 0; i < personaArray.length; i ++) {
 
+=======
+  // ======================================
+  // GENERATING STORAGE INTO LIBRARY FOLDER
+  // ======================================
+  function generateLibrary() {
+    $("#table-body").empty();
+    for (var i = 0; i < personaArray.length; i++) {
+      console.log(personaArray[i].name);
+      console.log(personaArray[i].image);
+      console.log(personaArray[i].age);
+      console.log(personaArray[i].gender);
+      console.log(personaArray[i].location);
+      console.log(personaArray[i].bio);
+>>>>>>> 7288dc6e0ead80c5d022330ab13459b8fd617f2d
 
       tableRow = $("<tr>");
       tableRow.attr("data-attribute", personaArray[i].name);
@@ -271,6 +304,7 @@ function generateLibrary() {
       tableAge = $("<td>").text(personaArray[i].age);
       tableLocation = $("<td>").text(personaArray[i].location);
 
+<<<<<<< HEAD
       tableRow.append(tableName, tableAge, tableLocation);
      $("#table-body").append(tableRow);
      
@@ -283,6 +317,52 @@ function generateLibrary() {
     })
     }
 };
+=======
+      //the delete button on each row
+      deleteBadge = $(
+        "<span class='button tag is-warning' data-confirm-switch='delete'>"
+      ).text("DELETE");
+      tableDelete = $("<td>");
+      tableDelete.append(deleteBadge);
+
+      tableRow.append(tableName, tableAge, tableLocation, tableDelete);
+      $("#table-body").append(tableRow);
+
+      deleteBadge.on("click", function () {
+        console.log($(this).attr("data-confirm-switch"));
+        if ($(this).attr("data-confirm-switch") === "delete") {
+          $(this).removeClass("is-warning");
+          $(this).addClass("is-danger");
+          $(this).text("CONFIRM");
+
+          $(this).attr("data-confirm-switch", "confirm");
+        } else {
+          alert("need to build individual delete");
+        }
+      });
+    }
+  }
+
+  function resetState() {
+    libraryBlock.addClass("hide");
+    landingBlock.removeClass("hide");
+    //activate home button
+    homeIconContainer.removeClass("able");
+    homeIconContainer.addClass("active");
+    //disable viewpsa
+    viewPsaContainer.prop("disabled", true);
+    viewPsaContainer.addClass("disabled");
+    viewPsaContainer.removeClass("able");
+    //disable save
+    saveIconContainer.prop("disabled", true);
+    saveIconContainer.addClass("disabled");
+    saveIconContainer.removeClass("able");
+    //disable library
+    libraryIconContainer.prop("disabled", true);
+    libraryIconContainer.addClass("disabled");
+    libraryIconContainer.removeClass("active");
+  }
+>>>>>>> 7288dc6e0ead80c5d022330ab13459b8fd617f2d
 
   function clearStorage() {
     // localStorage.clear();
@@ -295,120 +375,33 @@ function generateLibrary() {
   // Traversing the DOM
   // =====================================================================
 
+<<<<<<< HEAD
  
+=======
+  // ===============================
+>>>>>>> 7288dc6e0ead80c5d022330ab13459b8fd617f2d
   // THIS CREATE THE FORM THAT IS DISPLAYED
   // ================================
   function formCall() {
     console.log("FORM GENERATION, CALLED");
-    var br = document.createElement("br");
-    var br1 = document.createElement("br");
-    var br2 = document.createElement("br");
-    var br3 = document.createElement("br");
-    var br4 = document.createElement("br");
 
-    var personaForm = $("<form id='persona-form' action='#'>");
-    var personaFormTitle = $("<h2 id='persona-form-tile'>").text(
-      "Persona Parameters"
-    );
     // AGE RANGE
-    var personaLabelAgeLow = $("<label for='age-low-input'>").text("Age Low");
-    var personaInputAgeLow = $(
-      "<input type='number' id='age-low-input' name='age-low-input' min='18' max='65'>"
-    );
-    var personaLabelAgeHigh = $("<label for='age-high-input'>").text(
-      "Age High"
-    );
-    var personaInputAgeHigh = $(
-      "<input type='number' id='age-high-input' name='age-high-input' min='18' max='65'>"
-    );
+    var personaInputAgeLow = $("#age-low-input");
+    console.log(personaInputAgeLow.val());
+    var personaInputAgeHigh = $("#age-high-input");
+    console.log(personaInputAgeHigh.val());
     // GENDER SELECT
-    var personaGender = $("<label for='persona-gender-select'>").text(
-      "Persona Gender"
-    );
-    var personaGenderSelect = $(
-      "<select id='persona-gender-select' name='persona-interests'>"
-    );
-    var optionTestGender1 = $("<option>")
-      .val("male")
-      .text("male")
-      .appendTo(personaGenderSelect);
-    var optionTestGender2 = $("<option>")
-      .val("female")
-      .text("female")
-      .appendTo(personaGenderSelect);
-    var optionTestGender3 = $("<option>")
-      .val("nonbinary")
-      .text("nonbinary")
-      .appendTo(personaGenderSelect);
+    var personaGenderSelect = $("#persona-gender-select");
+    console.log(personaGenderSelect.val());
     // PROFESSION INPUT
-    var personaProfessionLabel = $(
-      "<label for='persona-profession-input'>"
-    ).text("Persona Profession");
-    var personaProfessionInput = $(
-      "<input type='text' id='persona-profession-input' name='persona-profession-input' placeholder='if left blank will randomize'>"
-    );
+    var personaProfessionInput = $("#persona-profession-input");
+    console.log(personaProfessionInput.val());
     // INTEREST SELECT
-    var personaInterests = $("<label for='persona-interest-select'>").text(
-      "Persona Interest"
-    );
-    var personaInterestSelect = $(
-      "<select id='persona-interest-select' name='persona-interests'>"
-    );
-    var optionTestInterest1 = $("<option>")
-      .val("interest-test-val-1")
-      .text("interest1")
-      .appendTo(personaInterestSelect);
-    var optionTestInterest2 = $("<option>")
-      .val("interest-test-val-2")
-      .text("interest2")
-      .appendTo(personaInterestSelect);
-    var optionTestInterest3 = $("<option>")
-      .val("interest-test-val-3")
-      .text("interest3")
-      .appendTo(personaInterestSelect);
+    var personaInterestSelect = $("#persona-interest-select");
+    console.log(personaInterestSelect.val());
     // QUOTE SELECT
-    var personaQuote = $("<label for='persona-quote-select'>").text(
-      "Persona Quote"
-    );
-    var personaQuoteSelect = $(
-      "<select id='persona-quote-select' name='persona-quote-select'>"
-    );
-    var optionTestQuote1 = $("<option>")
-      .val("quote-test-val-1")
-      .text("Random Quote")
-      .appendTo(personaQuoteSelect);
-    var optionTestQuote2 = $("<option>")
-      .val("quote-test-val-2")
-      .text("Corporate Theme")
-      .appendTo(personaQuoteSelect);
-    var optionTestQuote3 = $("<option>")
-      .val("quote-test-val-3")
-      .text("Movie Quote")
-      .appendTo(personaQuoteSelect);
-
-    var inputSubmit = $(
-      "<button type='submit' id='submit-generate' class='button' value='Generate New Persona'>"
-    ).text("SUBMIT ME");
-
-    personaForm.append(personaFormTitle);
-    personaForm.append(
-      personaLabelAgeLow,
-      personaInputAgeLow,
-      personaLabelAgeHigh,
-      personaInputAgeHigh,
-      br1
-    );
-    personaForm.append(personaGender, personaGenderSelect, br3);
-    personaForm.append(personaProfessionLabel, personaProfessionInput, br4);
-    personaForm.append(
-      personaInterests,
-      personaInterestSelect,
-      br2,
-      personaQuote,
-      personaQuoteSelect
-    );
-    personaForm.append(br, inputSubmit);
-    formContainer.append(personaForm);
+    var personaQuoteSelect = $("#persona-quote-select");
+    console.log(personaQuoteSelect.val());
 
     //TARGETING FORM VALUES
     var submitGenerate = $("#submit-generate"); //SUBMIT BUTTON
@@ -502,27 +495,22 @@ function generateLibrary() {
           //   DYNAMICALLY GENERATING NEW PERSONA CONTENT USING ABOVE VARIABLES
           // ===========================================
 
-          //Hide the prompt
-          landingPromptBlock.addClass("hide");
+          //Hide the landing page
+          landingBlock.addClass("hide");
 
-          //Enable the GenNewPsa button
+          //Make home icon able
+          homeIconContainer.removeClass("active");
+          homeIconContainer.addClass("able");
+
+          //Activate the GenNewPsa button
           gnpContainer.removeClass("disabled");
-          gnpContainer.addClass("gnp-able");
+          gnpContainer.addClass("active");
+          gnpContainer.prop("disabled", false);
 
           //Enable save button
           saveIconContainer.prop("disabled", false);
           saveIconContainer.removeClass("disabled");
-          saveIconContainer.addClass("save-able");
-
-          //Enable library button
-          libraryIconContainer.prop("disabled", false);
-          libraryIconContainer.removeClass("disabled");
-          libraryIconContainer.addClass("library-able");
-
-          //Enable trash button
-          trashIconContainer.prop("disabled", false);
-          trashIconContainer.removeClass("disabled");
-          trashIconContainer.addClass("trash-able");
+          saveIconContainer.addClass("able");
 
           var imageContainer = $("#image-container");
           var dataContainer = $("#data-container");
@@ -587,7 +575,19 @@ function generateLibrary() {
             $.ajax(settingsOne).done(function (responseOne) {
               // INSPIRATIONAL BIO CREATION
               var inspireQuote = responseOne.content;
+<<<<<<< HEAD
               // psabioEl.removeClass("bio-loading")
+=======
+              // can't believe I had to write this. A lot of crazy stuff on the internet :/
+              if (
+                inspireQuote.toLowerCase().includes("hitler") ||
+                inspireQuote.toLowerCase().includes("asshole") ||
+                inspireQuote.toLowerCase().includes("fuck")
+              ) {
+                inspireQuote = "live, laugh, love";
+              }
+
+>>>>>>> 7288dc6e0ead80c5d022330ab13459b8fd617f2d
               bioEl.text(
                 autoBiography(
                   personaName,
@@ -618,7 +618,10 @@ function generateLibrary() {
             };
 
             $.ajax(settingsTwo).done(function (responseTwo) {
+<<<<<<< HEAD
               // console.log(responseTwo);
+=======
+>>>>>>> 7288dc6e0ead80c5d022330ab13459b8fd617f2d
               var corporateQuote = responseTwo.phrase;
 
               bioEl.text(
@@ -652,6 +655,10 @@ function generateLibrary() {
                 Math.random() * response.taglines.length
               );
               var movieQuote = response.taglines[randomMovie];
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7288dc6e0ead80c5d022330ab13459b8fd617f2d
               bioEl.text(
                 autoBiography(
                   personaName,

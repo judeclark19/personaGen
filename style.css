@@ -4,57 +4,78 @@
   font-family: "Poppins", sans-serif;
 }
 
+#wrap {
+  min-height: 100%;
+}
+
 .hide {
   display: none;
 }
 
 /* Nav/title bar */
 /* ================================================================================ */
-nav{
-  background-color: #EFFAFA!important;
+nav {
+  background-color: #0ca3a5 !important;
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  border-bottom: 2px solid gray;
 }
 
-h1{
-  color: #41393A!important;
-  font-weight:600!important;;
-  /* padding-top:20px;
-  padding-bottom: 20px; */
+h1 {
+  color: #41393a !important;
+  font-weight: 600 !important;
 }
 /* ================================================================================ */
 
 /* Main */
 /* ================================================================================ */
-#main-container{
-  position: relative;
+
+main {
   /* border: 2px dashed hotpink; */
-  /* height is 100-nav height -footer height */
- min-height: calc(100vh - 60px - 60px);
-  /* display: flex; */
-  /* justify-content: center; */
+  margin-top: 52px;
 }
+
+.is-primary {
+  background-color: #0ca4a5 !important;
+}
+
+.is-primary:hover {
+  background-color: #0a8585 !important;
+}
+
 /* ================================================================================ */
 
 /* Notifications */
 /* ================================================================================ */
-#landing-prompt-block{
+
+#landing-block {
   border: 1px outset;
-  /* float: bottom; */
-  position: absolute;
-  bottom: -22px;
-  /* bottom: 0px; */
+  height: calc(100vh - 131px);
+  margin-bottom: 0px;
   text-align: center;
 }
-#clear-warning-block{
-  border: 1px outset;
-  /* float: bottom; */
+#landing-notification {
+  padding: 0px;
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+#landing-container {
+  /* border:3px solid orange; */
+  width: 100%;
+  margin: 0;
   position: absolute;
-  bottom: -35px;
-  right: 0px;
-  /* bottom: 0px; */
-  text-align: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-#form-block{
+#form-block {
   border: 1px outset;
   /* float: bottom; */
   position: absolute;
@@ -62,24 +83,19 @@ h1{
   /* bottom: 0px; */
   text-align: center;
 }
-
-/* #form-submit-btn{
-  background-color:green;
-} */
-
-.notif-title{
+.notif-title {
   font-size: 25px;
 }
 
-.user-select{
-  color: white!important;
-  background-color:#5DD39E!important;
+.user-select {
+  color: white !important;
+  background-color: #5dd39e !important;
   border-radius: 5px !important;
 }
 
 /* ================================================================================ */
 
-/* Persona image */
+/* Persona Block */
 /* ================================================================================ */
 #persona-image {
   padding: 20px;
@@ -87,8 +103,59 @@ h1{
   margin-left: auto;
   margin-right: auto;
   max-width: 350px;
-  border: 5px solid #344645;
-  background-color: #E9EDEC;
+  border: 5px solid #577574;
+  background-color: #e9edec;
+}
+
+#persona-block {
+  /* border: 2px solid greenyellow; */
+  margin: 0px;
+  height: 100%;
+  margin-bottom: 20px;
+}
+
+#persona-box {
+  /* border: 2px solid red; */
+  height: 100%;
+}
+
+#data-container {
+  margin-bottom: 50px;
+}
+
+.active-col,
+.collapsible,
+.collapsible:hover {
+  background-color: #577574;
+  cursor: pointer;
+}
+
+.collapsible:hover {
+  background-color: #344645;
+  cursor: pointer;
+}
+
+.card-header-icon:hover {
+  color: white;
+}
+
+.card-header-title {
+  color: white !important;
+}
+
+.collapsible {
+  /* border:2px solid red; */
+  padding: 0px;
+}
+
+/* Style the collapsible content. Note: hidden by default */
+.card-content {
+  /* border:2px solid red; */
+  padding: 10px !important;
+  display: none;
+  overflow: hidden;
+  color: black;
+  background-color: #e9edec;
 }
 
 /* ================================================================================ */
@@ -96,16 +163,16 @@ h1{
 /* Messages (messages are what displays the individual data about each new persona */
 /* ================================================================================ */
 
-.message-header{
-  background-color: #344645!important;
+.message-header {
+  background-color: #344645 !important;
 }
 
-.message-body{
-  background-color: #E9EDEC!important;
+.message-body {
+  background-color: #e9edec !important;
   font-weight: bold;
 }
 
-.bio-loading{
+.bio-loading {
   color: gray;
   font-weight: bold;
 }
@@ -114,19 +181,45 @@ h1{
 
 /* Library/Storage */
 /* ================================================================================ */
-#library-title{
-  margin-top:20px;
+#library-title {
+  /* margin-top:20px; */
+  margin-bottom: 0px;
   padding: 15px;
   text-align: center;
-  background-color:#Dd882c;
-  color: white;
+  background-color: #effafa;
+  color: #374b4a;
 }
 
-.table{
-  color: #344645!important;
+thead {
+  background-color: #69d2d1;
 }
-.table.is-striped tbody tr:not(.is-selected):nth-child(even){
-  background-color: #f9ebdc!important;
+
+#table-labels:hover {
+  background-color: #69d2d1;
+}
+
+th {
+  color: #374b4a !important;
+}
+
+.table {
+  color: #344645 !important;
+}
+
+#library-delete {
+  font-size: 14pt;
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#library-confirm {
+  font-size: 14pt;
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 /* ================================================================================ */
 
@@ -138,115 +231,137 @@ h1{
 
 .action-icon {
   /* border: 1px dashed blue; */
-  margin: auto;
+  margin: 0;
 }
-
 
 /* style disabled buttons so they don't do anything */
-.disabled{
-  /* border: 2px solid red; */
+.disabled {
   cursor: not-allowed;
 }
-.disabled:hover{
-  border: 2px solid #EFF6F6;
+.disabled:hover {
+  border: 2px solid #eff6f6;
 }
-/* --------------------------------------------- */
 
-.genNew-is-active{
-  background-color: #30b077!important;
+.able {
+  background-color: #0ca3a5;
+  /* background-color: #0a8585; */
+  /* color: #0a8585; */
+  /* color: #0CA4A5; */
+  color: #374b4a;
+  border-color: transparent;
+  border: 2px outset;
+}
+
+.able:hover {
+  background-color: #0ebebe;
+  /* background-color: #0a8585; */
+  border-color: transparent;
+  color: lightgray;
+}
+.active {
+  background-color: lightgray;
+  border-color: #0ca4a5;
+  color: #effafa;
   border: 2px inset;
 }
 
-.gnp-able{
-  background-color: #5DD39E;
-  border-radius: 10px;
-}
-.save-able{
-  background-color: #C5FFFD;
-  border-radius: 10px;
-}
+.active:hover {
+  background-color: lightgray;
 
-.library-able{
-  background-color: #EBB984;
-  border-radius: 10px;
+  border-color: #0ca4a5;
+  color: #effafa;
+  border: 2px inset;
 }
-.trash-able{
-  background-color: #AF1B3F!important;
-  border-radius: 10px;
-}
-
-.fas{
-  color: #41393A;
-}
-
-/* .icon-label{
-    font-size: 10pt;
-    } */
-
 button {
-  border: 2px solid #EFFAFA;
+  border: 2px solid #effafa;
 }
 
-button:hover{
-    /* border-width: 2px; */
-    border-style: outset;
-    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(195, 195, 195));
-    border-image: initial;
+button:hover {
+  /* border-width: 2px; */
+  border-style: outset;
+  border-color: -internal-light-dark(rgb(118, 118, 118), rgb(195, 195, 195));
+  border-image: initial;
 }
 
 footer {
-  background-color: #EFFAFA!important;
-    padding-top:20px!important;
-    padding-bottom: 20px!important;
-    /* position: absolute; */
-    bottom: 0;
-    width: 100%;
-    /* clear: both; essentially a line break for floating */
+  background-color: white;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  margin: 0px !important;
+  /* margin-bottom:0px!important;
+ margin-left:0px!important;
+ margin-right:0px!important; */
+  height: 80px;
 }
 
 /* Snackbar  yo this is new to me*/
 /*=========================================================== */
-/* The snackbar - position it at the bottom and in the middle of the screen */
+/* position it at the bottom and in the middle of the screen */
 .snackbar {
   visibility: hidden;
   min-width: 250px; /* Set a default minimum width */
   margin-left: -125px; /* Divide value of min-width by 2 */
   background-color: #344645;
-  color: #E9EDEC;
+  color: #e9edec;
   text-align: center;
   border-radius: 5px;
   padding: 16px;
   position: fixed;
   z-index: 1;
   left: 50%;
-  bottom: 30px;
+  bottom: 100px;
 }
-
 .snackbar.show {
   visibility: visible;
   /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
-  However, delay the fade out process for 1.5 seconds */
+    However, delay the fade out process for 1.5 seconds */
   -webkit-animation: fadein 0.5s, fadeout 0.5s 1.5s;
   animation: fadein 0.5s, fadeout 0.5s 1.5s;
 }
 
 /* Animations to fade the snackbar in and out */
 @-webkit-keyframes fadein {
-  from {bottom: 0; opacity: 0;}
-  to {bottom: 30px; opacity: 1;}
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 100px;
+    opacity: 1;
+  }
 }
 
 @keyframes fadein {
-  from {bottom: 0; opacity: 0;}
-  to {bottom: 30px; opacity: 1;}
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 100px;
+    opacity: 1;
+  }
 }
 
 @-webkit-keyframes fadeout {
-  from {bottom: 30px; opacity: 1;}
-  to {bottom: 0; opacity: 0;}
+  from {
+    bottom: 100px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
 }
 
 @keyframes fadeout {
-  from {bottom: 30px; opacity: 1;}
-  to {bottom: 0; opacity: 0;}
+  from {
+    bottom: 100px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
 }
