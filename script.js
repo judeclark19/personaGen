@@ -356,19 +356,31 @@ function showPersonaPage() {
       });
       // THIS IS A NESTED ON CLICK EVENT FOR THE DISPLAY OF THE LOCAL STORAGE ITEMS
       // BASED ON TABLE ROW CLICKED
-      tableRow.on("click", function () {
-        console.log($(this)[0].attributes[0].nodeValue);
-        personaStorageKey = $(this)[0].attributes[0].nodeValue;
-        searchPersonaStorage = JSON.parse(
-          localStorage.getItem(personaStorageKey)
-        );
+      tableRow.on("click", function() {
+        console.log(($(this)[0].attributes[0].nodeValue));
+        personaStorageKey = ($(this)[0].attributes[0].nodeValue);
+        searchPersonaStorage = JSON.parse(localStorage.getItem(personaStorageKey));
         console.log(searchPersonaStorage); // this is logging the targetted object's values
         console.log(searchPersonaStorage.name);
-        console.log(searchPersonaStorage.image);
-        console.log(searchPersonaStorage.gender);
-        console.log(searchPersonaStorage.age);
-        console.log(searchPersonaStorage.location);
+        console.log(searchPersonaStorage.image);    
+        console.log(searchPersonaStorage.gender);   
+        console.log(searchPersonaStorage.age);    
+        console.log(searchPersonaStorage.location); 
         console.log(searchPersonaStorage.bio);
+        
+        libraryBlock.addClass("hide");
+        libraryIconContainer.removeClass("active");
+        libraryIconContainer.addClass("able");
+        personaBlock.removeClass("hide");
+        gnpContainer.removeClass("able");
+        gnpContainer.addClass("active");
+
+        $("#name-msg-body").text(searchPersonaStorage.name);
+        $("#age-msg-body").text(searchPersonaStorage.age);
+        $("#gender-msg-body").text(searchPersonaStorage.gender);
+        $("#location-msg-body").text(searchPersonaStorage.location);
+        $("#bio-msg-body").text(searchPersonaStorage.bio)
+        $("#persona-image").attr("src", searchPersonaStorage.image);
       });
     }
   }
