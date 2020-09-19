@@ -38,18 +38,6 @@ var userQuoteSelection = "Inspirational";
 // *******************************************
 var personaArray = [];
 
-libraryIconContainer.on("click",function()  {
-  for (var i = 0; i < personaArray.length; i ++) {
-    console.log(personaArray[i].name)
-    console.log(personaArray[i].image)
-    console.log(personaArray[i].age)
-    console.log(personaArray[i].gender)
-    console.log(personaArray[i].location)
-    console.log(personaArray[i].bio)
-  }
-
-
-});
 // displayPersonaKeys();
 displayPersonaKeys()
 
@@ -126,9 +114,6 @@ function autoBiography(name, location, interests, quote) {
   return finalText;
 }
 
-
-
-
   // =====================================================================
   //  GLOBAL EVENT LISTENERS
   // =====================================================================
@@ -165,17 +150,11 @@ function autoBiography(name, location, interests, quote) {
   });
 
   genNewIcon.on("click", function () {
-    // generateNewPersona();
-    // personaBlock.addClass("hide");
     landingPromptBlock.removeClass("hide");
     formBlock.addClass("hide");
     gnpContainer.addClass("disabled");
     gnpContainer.removeClass("gnp-able");
   });
-
-  // saveIcon.on("click", function () {
-  //   saveFunc();
-  // });
 
   libraryIcon.on("click", function () {
     if (libraryIconContainer.prop("disabled") === false) {
@@ -272,6 +251,9 @@ function autoBiography(name, location, interests, quote) {
     }
   }
 
+// ======================================
+// GENERATING STORAGE INTO LIBRARY FOLDER
+// ======================================
   function generateLibrary() {
     $("#table-body").empty();
       for (var i = 0; i < personaArray.length; i ++) {
@@ -287,8 +269,8 @@ function autoBiography(name, location, interests, quote) {
         tableAge = $("<td>").text(personaArray[i].age);
         tableLocation = $("<td>").text(personaArray[i].location);
 
-      tableRow.append(tableName, tableAge, tableLocation);
-      $("#table-body").append(tableRow);
+        tableRow.append(tableName, tableAge, tableLocation);
+       $("#table-body").append(tableRow);
     }
   };
 
