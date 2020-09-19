@@ -586,7 +586,12 @@ function generateLibrary() {
             $.ajax(settingsOne).done(function (responseOne) {
               // INSPIRATIONAL BIO CREATION
               var inspireQuote = responseOne.content;
-              // psabioEl.removeClass("bio-loading")
+              if (inspireQuote.toLowerCase().includes("hitler") ||
+              inspireQuote.toLowerCase().includes("asshole") || 
+              inspireQuote.toLowerCase().includes("fuck")) {
+                inspireQuote = "";
+              }
+              
               bioEl.text(
                 autoBiography(
                   personaName,
