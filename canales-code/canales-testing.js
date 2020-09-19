@@ -275,8 +275,6 @@ function autoBiography(name, location, interests, quote) {
         tableRow.append(tableName, tableAge, tableLocation);
        $("#table-body").append(tableRow);
     }
-
-    
   };
 
   function clearStorage() {

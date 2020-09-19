@@ -1,5 +1,5 @@
 // GLOBAL VARIABLES
-$(document).ready(function () {
+
 
 // ICONS AND BUTTON VARIABLES
 var randomButton = $("#user-select-random");
@@ -36,7 +36,7 @@ var randomStatus = false;
 // *******************************************
 var personaArray = [];
 
-// displayPersonaKeys();
+// THIS HAS BEEN UPDATED
 displayPersonaKeys()
 
 function displayPersonaKeys() {
@@ -257,19 +257,29 @@ $(document).ready(function () {
     }
   }
 
-  function generateLibrary() {
-    $("#table-body").empty();
-    for (let i = 0; i < judeDummyStorage.length; i++) {
-      console.log("Library generated from storage");
+// ======================================
+// GENERATING STORAGE INTO LIBRARY FOLDER
+// ======================================
+function generateLibrary() {
+  $("#table-body").empty();
+    for (var i = 0; i < personaArray.length; i ++) {
+      console.log(personaArray[i].name);
+      console.log(personaArray[i].image);
+      console.log(personaArray[i].age);
+      console.log(personaArray[i].gender);
+      console.log(personaArray[i].location);
+      console.log(personaArray[i].bio);
+
       tableRow = $("<tr>");
-      tableName = $("<td>").text(judeDummyStorage[i].personaName);
-      tableAge = $("<td>").text(judeDummyStorage[i].personaAge);
-      tableLocation = $("<td>").text(judeDummyStorage[i].personaLocation);
+      tableRow.attr("data-attribute", personaArray[i]);
+      tableName = $("<td>").text(personaArray[i].name);
+      tableAge = $("<td>").text(personaArray[i].age);
+      tableLocation = $("<td>").text(personaArray[i].location);
 
       tableRow.append(tableName, tableAge, tableLocation);
-      $("#table-body").append(tableRow);
-    }
+     $("#table-body").append(tableRow);
   }
+};
 
   function clearStorage() {
     // localStorage.clear();
