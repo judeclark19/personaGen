@@ -58,12 +58,7 @@ function displayPersonaKeys() {
       var personaGender = $("#gender-msg-body")[0].childNodes[0].data;
       var personaLocation = $("#location-msg-body")[0].childNodes[0].data;
       var personaBio = $("#bio-msg-body")[0].childNodes[0].data;
-      console.log(personaImage);
-      console.log(personaName); 
-      console.log(personaAge);
-      console.log(personaGender);
-      console.log(personaLocation)
-      console.log(personaBio);
+
       var personaKeyItem = {
       name: personaName,
       image: personaImage,
@@ -277,8 +272,14 @@ function generateLibrary() {
       tableRow.on("click", function() {
       console.log(($(this)[0].attributes[0].nodeValue));
       personaStorageKey = ($(this)[0].attributes[0].nodeValue);
-      searchPersonaStorage = JSON.parse(localStorage.getItem(personaStorageKey));
+      // searchPersonaStorage = JSON.parse(localStorage.getItem(personaStorageKey));
       console.log(searchPersonaStorage);
+      console.log(personaStorageKey.name);
+      console.log(searchPersonaStorage.image);
+      console.log(searchPersonaStorage.gender);
+      console.log(searchPersonaStorage.age);
+      console.log(searchPersonaStorage.location);
+      console.log(personaStorageKey.bio);
     })
     }
 };
