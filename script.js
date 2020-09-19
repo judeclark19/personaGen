@@ -469,6 +469,7 @@ function generateLibrary() {
         // var personaAge = randomGen.dob.age; // PERSONA AGE
         var personaLocation =
           randomGen.location.city + ", " + randomGen.location.country;
+        var personaState = randomGen.location.state;
         var personaEmail = randomGen.email;
         personaGender = randomGen.gender;
         // changes male/female returned gender to nonbinary if selected
@@ -599,7 +600,8 @@ function generateLibrary() {
                   personaName,
                   personaLocation,
                   personaJobVal,
-                  inspireQuote
+                  inspireQuote,
+                  personaState
                 )
               );
             });
@@ -632,7 +634,8 @@ function generateLibrary() {
                   personaName,
                   personaLocation,
                   personaJobVal,
-                  corporateQuote
+                  corporateQuote,
+                  personaState
                 )
               );
             });
@@ -664,7 +667,8 @@ function generateLibrary() {
                   personaName,
                   personaLocation,
                   personaJobVal,
-                  movieQuote
+                  movieQuote,
+                  personaState
                 )
               );
             });
