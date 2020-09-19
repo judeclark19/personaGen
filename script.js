@@ -111,7 +111,6 @@ function autoBiography(name, location, interests, quote) {
     sentenceStructure.quotes[randomWords] +
     quote +
     ".";
-  console.log(finalText);
   return finalText;
 }
 
@@ -462,7 +461,6 @@ function generateLibrary() {
       url: randomMeURL,
       dataType: "json",
       success: function (data) {
-        console.log(data);
         // ===========================================
         // ASSIGNING PERSONA VARIABLES WITHIN FUNCTION BASED ON RESPONSE FROM API
         // =========================================
@@ -628,7 +626,7 @@ function generateLibrary() {
             };
 
             $.ajax(settingsTwo).done(function (responseTwo) {
-              // console.log(responseTwo);
+
               var corporateQuote = responseTwo.phrase;
 
               bioEl.text(
