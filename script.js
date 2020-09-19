@@ -98,8 +98,8 @@ function autoBiography(name, location, interests, quote) {
     Math.random() * sentenceStructure.starter.length
   );
   quote = quote[0].toLowerCase() + quote.slice(1);
-  if (quote[quote.length - 2] === ".") {
-    quote.slice(0, quote.length - 1)
+  if (quote[quote.length - 1] === ".") {
+    quote = quote.slice(0, quote.length - 1)
   }
   var finalText =
     sentenceStructure.starter[randomWords] +
