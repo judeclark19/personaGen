@@ -142,21 +142,30 @@ $(document).ready(function () {
   });
 
   userParamsButton.on("click", function () {
-    landingBlock.addClass("hide");
-    formBlock.removeClass("hide");
-    personaBlock.addClass("hide");
+
+    console.log("form call called")
+    //Hide landing page
+    hideLandingPage();
+
+    //Show the persona page
+    showPersonaPage();
+
+    // //Hide the Library page
     libraryBlock.addClass("hide");
+
     formCall();
   });
 
   homeIcon.on("click", function () {
-    if (homeIconContainer.prop("disabled") === true) {
-      console.log("home button is disabled");
-    } else if (homeIconContainer.hasClass("active")) {
+    // if (homeIconContainer.prop("disabled") === true) {
+    //   console.log("home button is disabled");
+    // } else 
+    
+    if (homeIconContainer.hasClass("active")) {
       console.log("home button is already active");
     } else {
-      homeIconContainer.addClass("active");
-      personaBlock.addClass("hide");
+      homeIconActive();
+      hidePersonaPage();
       landingBlock.removeClass("hide");
       gnpContainer.removeClass("active");
       gnpContainer.addClass("able");
@@ -211,26 +220,71 @@ $(document).ready(function () {
     }
   });
 
-    //Library main delete button
-    var libraryDelete1 = $("#library-delete");
-    var libraryDelete2 = $("#library-confirm");
-  
-    libraryDelete1.on("click", function () {
-      console.log("Hello world");
-      libraryDelete1.addClass("hide");
-      libraryDelete1.removeClass("button is-warning");
-      libraryDelete2.addClass("button is-danger");
-      libraryDelete2.removeClass("hide");
-    });
-  
-    libraryDelete2.on("click", function () {
-      console.log("need to build library delete");
-      resetState();
-    });
+  //Library main delete button
+  var libraryDelete1 = $("#library-delete");
+  var libraryDelete2 = $("#library-confirm");
+
+  libraryDelete1.on("click", function () {
+    console.log("Hello world");
+    libraryDelete1.addClass("hide");
+    libraryDelete1.removeClass("button is-warning");
+    libraryDelete2.addClass("button is-danger");
+    libraryDelete2.removeClass("hide");
+  });
+
+  libraryDelete2.on("click", function () {
+    console.log("need to build library delete");
+    resetState();
+  });
 
   // =====================================================================
   // UI Functions
   // =====================================================================
+
+  //Hide landing page
+  function hideLandingPage() {
+    landingBlock.addClass("hide");
+  }
+
+  //Hide the persona page
+  function hidePersonaPage() {
+    personaBlock.addClass("hide");
+  }
+
+//Show the persona page
+function showPersonaPage() {
+  personaBlock.removeClass("hide");
+}
+
+   //Hide library page
+   function hideLibraryPage() {
+    libraryBlock.addClass("hide");
+  }
+
+  //Change home icon to Able
+  function homeIconAble() {
+    homeIconContainer.removeClass("active");
+    homeIconContainer.addClass("able");
+  }
+
+  //Change home icon to "active"
+  function homeIconActive(){
+    homeIconContainer.addClass("active");
+  }
+
+  // Change Persona Icon to "active"
+  function personIconActive() {
+    gnpContainer.removeClass("disabled");
+    gnpContainer.addClass("active");
+    gnpContainer.prop("disabled", false);
+  }
+
+  //Change Save Icon to "Able"
+  function saveIconAble() {
+    saveIconContainer.prop("disabled", false);
+    saveIconContainer.removeClass("disabled");
+    saveIconContainer.addClass("able");
+  }
 
   saveIconContainer.on("click", function () {
     saveSnackbar();
@@ -300,20 +354,22 @@ $(document).ready(function () {
           alert("need to build individual delete");
         }
       });
-        // THIS IS A NESTED ON CLICK EVENT FOR THE DISPLAY OF THE LOCAL STORAGE ITEMS
-        // BASED ON TABLE ROW CLICKED
-        tableRow.on("click", function() {
-        console.log(($(this)[0].attributes[0].nodeValue));
-        personaStorageKey = ($(this)[0].attributes[0].nodeValue);
-        searchPersonaStorage = JSON.parse(localStorage.getItem(personaStorageKey));
+      // THIS IS A NESTED ON CLICK EVENT FOR THE DISPLAY OF THE LOCAL STORAGE ITEMS
+      // BASED ON TABLE ROW CLICKED
+      tableRow.on("click", function () {
+        console.log($(this)[0].attributes[0].nodeValue);
+        personaStorageKey = $(this)[0].attributes[0].nodeValue;
+        searchPersonaStorage = JSON.parse(
+          localStorage.getItem(personaStorageKey)
+        );
         console.log(searchPersonaStorage); // this is logging the targetted object's values
         console.log(searchPersonaStorage.name);
-        console.log(searchPersonaStorage.image);    
-        console.log(searchPersonaStorage.gender);   
-        console.log(searchPersonaStorage.age);    
-        console.log(searchPersonaStorage.location); 
-        console.log(searchPersonaStorage.bio);  
-      })
+        console.log(searchPersonaStorage.image);
+        console.log(searchPersonaStorage.gender);
+        console.log(searchPersonaStorage.age);
+        console.log(searchPersonaStorage.location);
+        console.log(searchPersonaStorage.bio);
+      });
     }
   }
 
@@ -465,21 +521,16 @@ $(document).ready(function () {
           // ===========================================
 
           //Hide the landing page
-          landingBlock.addClass("hide");
+          hideLandingPage();
 
           //Make home icon able
-          homeIconContainer.removeClass("active");
-          homeIconContainer.addClass("able");
+          homeIconAble();
 
-          //Activate the GenNewPsa button
-          gnpContainer.removeClass("disabled");
-          gnpContainer.addClass("active");
-          gnpContainer.prop("disabled", false);
+          //Change Persona Icon to "active"
+          personIconActive();
 
-          //Enable save button
-          saveIconContainer.prop("disabled", false);
-          saveIconContainer.removeClass("disabled");
-          saveIconContainer.addClass("able");
+          //Change Save Icon to "Able"
+          saveIconAble();
 
           var imageContainer = $("#image-container");
           var dataContainer = $("#data-container");
