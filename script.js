@@ -21,6 +21,8 @@ var judeDummyStorage = [
 // ICON AND BUTTON VARIABLES
 var randomButton = $("#user-select-random");
 var userParamsButton = $("#user-select-parameters");
+var homeIcon = $("#home-icon");
+var homeIconContainer = $("#home-icon-container");
 var viewPsaIcon = $("#view-psa-icon");
 var viewPsaContainer = $("#view-psa-icon-container");
 var saveIcon = $("#save-icon");
@@ -31,6 +33,8 @@ var trashIcon = $("#trash-icon");
 var trashIconContainer = $("#trash-icon-container");
 var formSubmitBtn = $("#form-submit-btn");
 var librarySwitch = false;
+var saveSwitch = false;
+var confirmSwitch = false;
 
 // TEMPORARY FORM CONTAINER TARGET
 var formContainer = $("#form-container");
@@ -67,7 +71,7 @@ function displayPersonaKeys() {
   }
 }
 
-saveIcon.on("click", function () {
+saveIconContainer.on("click", function () {
   var personaName = $("#name-msg-body")[0].childNodes[0].data;
   var personaImage = $("#persona-image")[0].currentSrc;
   var personaAge = $("#age-msg-body")[0].childNodes[0].data;
@@ -136,7 +140,7 @@ $(document).ready(function () {
   //  GLOBAL EVENT LISTENERS
   // =====================================================================
 
-  // NEW PERSONA PROMPT BUTTONS
+  //Landing Page buttons
   randomButton.on("click", function () {
     randomStatus = true;
     generateNewPersona();
@@ -151,40 +155,54 @@ $(document).ready(function () {
     formCall();
   });
 
-  $("#close-prompt-btn").on("click", function () {
-    landingBlock.addClass("hide");
-    viewPsaContainer.removeClass("disabled");
-    viewPsaContainer.addClass("gnp-able");
-  });
-
-  $("#close-form-btn").on("click", function () {
-    formBlock.addClass("hide");
-    viewPsaContainer.removeClass("disabled");
-    viewPsaContainer.addClass("gnp-able");
-  });
-
-  formSubmitBtn.on("click", function () {
-    console.log("form submitted");
-    formBlock.addClass("hide");
-    generateNewPersona();
+  homeIcon.on("click", function () {
+    if (homeIconContainer.prop("disabled") === true) {
+      console.log("home button is disabled");
+    } else {
+      homeIconContainer.addClass("active");
+      personaBlock.addClass("hide");
+      landingBlock.removeClass("hide");
+      viewPsaContainer.removeClass("active");
+      viewPsaContainer.addClass("able")
+      libraryIconContainer.removeClass("active")
+      libraryIconContainer.addClass("able")
+      console.log("clicked home button");
+    }
   });
 
   viewPsaIcon.on("click", function () {
-    // generateNewPersona();
-    // personaBlock.addClass("hide");
-    landingBlock.removeClass("hide");
-    formBlock.addClass("hide");
-    viewPsaContainer.addClass("disabled");
-    viewPsaContainer.removeClass("gnp-able");
+    if (viewPsaContainer.prop("disabled") === true) {
+      console.log("view psa is disabled");
+    } else {
+      console.log("clicked view psa button");
+      homeIconContainer.removeClass("active");
+      homeIconContainer.addClass("able");
+      viewPsaContainer.removeClass("able");
+      viewPsaContainer.addClass("active")
+      libraryIconContainer.removeClass("active")
+      libraryIconContainer.addClass("able")
+      landingBlock.addClass("hide");
+      personaBlock.removeClass("hide");
+    }
   });
 
   saveIcon.on("click", function () {
-    saveFunc();
+    saveSnackbar();
+    saveSwitch = true;
+    libraryIconContainer.removeClass("disabled");
+    libraryIconContainer.prop("disabled", false);
+    libraryIconContainer.addClass("able");
   });
 
   libraryIcon.on("click", function () {
     if (libraryIconContainer.prop("disabled") === false) {
       librarySwitchFunc();
+      viewPsaContainer.removeClass("active")
+      homeIconContainer.removeClass("active")
+      viewPsaContainer.addClass("able")
+      homeIconContainer.addClass("able")
+      libraryIconContainer.removeClass("able")
+      libraryIconContainer.addClass("active")
     } else {
       console.log("library is disabled");
     }
@@ -206,40 +224,40 @@ $(document).ready(function () {
     }
   });
 
-  $("#close-warning-btn").on("click", function () {
-    clearWarning.addClass("hide");
-  });
+  // $("#close-warning-btn").on("click", function () {
+  //   clearWarning.addClass("hide");
+  // });
 
-  $("#clear-yes-btn").on("click", function () {
-    console.log("clear yes");
-    //TODO: disable buttons
+  // $("#clear-yes-btn").on("click", function () {
+  //   console.log("clear yes");
+  //   //TODO: disable buttons
 
-    //Disable action buttons
-    viewPsaContainer.prop("disabled", true);
-    viewPsaContainer.addClass("disabled");
-    viewPsaContainer.removeClass("gnp-able");
+  //   //Disable action buttons
+  //   viewPsaContainer.prop("disabled", true);
+  //   viewPsaContainer.addClass("disabled");
+  //   viewPsaContainer.removeClass("gnp-able");
 
-    saveIconContainer.prop("disabled", true);
-    saveIconContainer.addClass("disabled");
-    saveIconContainer.removeClass("save-able");
+  //   saveIconContainer.prop("disabled", true);
+  //   saveIconContainer.addClass("disabled");
+  //   saveIconContainer.removeClass("save-able");
 
-    libraryIconContainer.prop("disabled", true);
-    libraryIconContainer.addClass("disabled");
-    libraryIconContainer.removeClass("library-able");
+  //   libraryIconContainer.prop("disabled", true);
+  //   libraryIconContainer.addClass("disabled");
+  //   libraryIconContainer.removeClass("library-able");
 
-    trashIconContainer.prop("disabled", true);
-    trashIconContainer.addClass("disabled");
-    trashIconContainer.removeClass("trash-able");
+  //   trashIconContainer.prop("disabled", true);
+  //   trashIconContainer.addClass("disabled");
+  //   trashIconContainer.removeClass("trash-able");
 
-    //hide n show
-    clearWarning.addClass("hide");
-    personaBlock.addClass("hide");
-    landingBlock.removeClass("hide");
-    if (librarySwitch) {
-      librarySwitch = false;
-      libraryBlock.addClass("hide");
-    }
-  });
+  //   //hide n show
+  //   clearWarning.addClass("hide");
+  //   personaBlock.addClass("hide");
+  //   landingBlock.removeClass("hide");
+  //   if (librarySwitch) {
+  //     librarySwitch = false;
+  //     libraryBlock.addClass("hide");
+  //   }
+  // });
 
   $("#clear-no-btn").on("click", function () {
     clearWarning.addClass("hide");
@@ -249,7 +267,7 @@ $(document).ready(function () {
   // UI Functions
   // =====================================================================
 
-  function saveFunc() {
+  function saveSnackbar() {
     if (document.getElementById("save-icon-container").disabled) {
       console.log("Save button is disabled.");
     } else {
@@ -285,9 +303,30 @@ $(document).ready(function () {
       tableName = $("<td>").text(judeDummyStorage[i].personaName);
       tableAge = $("<td>").text(judeDummyStorage[i].personaAge);
       tableLocation = $("<td>").text(judeDummyStorage[i].personaLocation);
+      deleteBadge = $("<span class='button tag is-warning'>").text("DELETE");
+      tableDelete = $("<td>");
+      tableDelete.append(deleteBadge);
 
-      tableRow.append(tableName, tableAge, tableLocation);
+      tableRow.append(tableName, tableAge, tableLocation, tableDelete);
       $("#table-body").append(tableRow);
+
+      //Delete validation, ask user to confirm
+      deleteBadge.on("click", function () {
+        
+        console.log("switch before: "+ confirmSwitch);
+
+        if (confirmSwitch===false){
+        $(this).removeClass("is-warning");
+        $(this).addClass("is-danger");
+        $(this).text("CONFIRM");
+        confirmSwitch = true;
+        console.log("Switch after: "+confirmSwitch);
+        } else {
+          alert("need to build this functionality");
+        }
+
+
+      })
     }
   }
 
@@ -317,16 +356,16 @@ $(document).ready(function () {
     console.log(personaInputAgeHigh.val());
     // GENDER SELECT
     var personaGenderSelect = $("#persona-gender-select");
-console.log(personaGenderSelect.val());
+    console.log(personaGenderSelect.val());
     // PROFESSION INPUT
     var personaProfessionInput = $("#persona-profession-input");
-console.log(personaProfessionInput.val());
+    console.log(personaProfessionInput.val());
     // INTEREST SELECT
     var personaInterestSelect = $("#persona-interest-select");
-console.log(personaInterestSelect.val());
+    console.log(personaInterestSelect.val());
     // QUOTE SELECT
     var personaQuoteSelect = $("#persona-quote-select");
-console.log(personaQuoteSelect.val());
+    console.log(personaQuoteSelect.val());
     //TARGETING FORM VALUES
     var submitGenerate = $("#submit-generate"); //SUBMIT BUTTON
     var personaForm = $("#persona-form");
@@ -412,24 +451,19 @@ console.log(personaQuoteSelect.val());
           //Hide the landing page
           landingBlock.addClass("hide");
 
-          //Enable the view current psa button
+          //De-activate the home button
+          homeIconContainer.removeClass("active");
+          homeIconContainer.addClass("able");
+
+          //Enable and activate the view current psa button
+          viewPsaContainer.prop("disabled", false);
           viewPsaContainer.removeClass("disabled");
-          viewPsaContainer.addClass("gnp-able");
+          viewPsaContainer.addClass("active");
 
           //Enable save button
           saveIconContainer.prop("disabled", false);
           saveIconContainer.removeClass("disabled");
-          saveIconContainer.addClass("save-able");
-
-          //Enable library button
-          libraryIconContainer.prop("disabled", false);
-          libraryIconContainer.removeClass("disabled");
-          libraryIconContainer.addClass("library-able");
-
-          //Enable trash button
-          trashIconContainer.prop("disabled", false);
-          trashIconContainer.removeClass("disabled");
-          trashIconContainer.addClass("trash-able");
+          saveIconContainer.addClass("able");
 
           var imageContainer = $("#image-container");
           var dataContainer = $("#data-container");
@@ -452,7 +486,8 @@ console.log(personaQuoteSelect.val());
           genderEl.text(personaLocation);
 
           var bioEl = $("#bio-msg-body");
-          bioEl.text("Loading Bio..."); //  << we receive this information in  a later API CALL
+          bioLoading = $("<progress>")
+          bioEl.append(bioLoading); //  << we receive this information in  a later API CALL
 
           imageContainer.empty();
           imageContainer.append(personaImageEl);

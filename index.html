@@ -56,7 +56,6 @@
 <div id="landing-container">
           <h3 class="title is-2">Generate a new persona:</h3>
           <button class="button is-primary is-large" id="user-select-random">Random</button>
-  
 <hr/>
           <h3 class="title is-4">or, enter your own<br />custom parameters here:</h3>
 
@@ -164,7 +163,7 @@
                 <p>Bio</p>
               </div>
               <div class="message-body" id="bio-msg-body">
-                Bio will appear here
+                <!-- Loading bar, then bio -->
               </div>
             </div>
           </div>
@@ -177,27 +176,19 @@
         <div class="title is-3" id="library-title">My Persona Library   <button class="delete" id="close-library-btn"></button></div>
         <table class="table is-striped">
           <thead>
-            <tr>
+            <tr id="table-labels">
               <th>Name</th>
               <th>Age</th>
               <th>Location</th>
+              <th></th>
             </tr>
           </thead>
           <tbody id="table-body">
             <!-- <tr>
               <td>John Lennon</td>
               <td>40</td>
-              <td>New York</td>
-            </tr>
-            <tr>
-              <td>Paul McCartney</td>
-              <td>78</td>
-              <td>London</td>
-            </tr>
-            <tr>
-              <td>Ringo Starr</td>
-              <td>80</td>
-              <td>Los Angeles</td>
+              <td>New Yor<k</td>
+              <td>Delete?</td>
             </tr> -->
           </tbody>
         </table>
@@ -214,27 +205,27 @@
     <footer class="columns is-mobile" id="action-bar">
       <!-- <div class="columns is-mobile" id="action-bar"> -->
 
-        <button class="column disabled" id="home-icon-container" disabled>
+        <button class="column active" id="home-icon-container">
           <div class="action-icon" id="home-icon">
-            <i class="fas fa-home" style="font-size: 2em"></i>
+            <i class="fas fa-home" style="font-size: 3em"></i>
           </div>
         </button>
 
         <button class="column disabled" id="view-psa-icon-container" disabled>
           <div class="action-icon" id="view-psa-icon">
-            <i class="fas fa-user" style="font-size: 2em"></i>
+            <i class="fas fa-user" style="font-size: 3em"></i>
           </div>
         </button>
 
         <button class="column disabled" id="save-icon-container" disabled>
           <div class="action-icon" id="save-icon">
-            <i class="far fa-save" style="font-size: 2em"></i>
+            <i class="far fa-save" style="font-size: 3em"></i>
           </div>
         </button>
 
         <button class="column disabled" id="library-icon-container" disabled>
           <div class="action-icon" id="library-icon">
-            <i class="fas fa-address-book" style="font-size: 2em"></i>
+            <i class="fas fa-address-book" style="font-size: 3em"></i>
           </div>
         </button>
 

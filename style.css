@@ -15,7 +15,7 @@
 /* Nav/title bar */
 /* ================================================================================ */
 nav{
-  background-color: #374B4A!important;
+  background-color: #2D6261!important;
   position:fixed!important;
   top:0;
   left:0;
@@ -34,7 +34,15 @@ main{
   /* border: 2px dashed hotpink; */
   margin-top: 52px;
 }
-/* ================================================================================ */
+
+.is-primary{
+  background-color: #0CA4A5!important;
+}
+
+.is-primary:hover{
+  background-color: #0a8585!important;
+}
+/* hovewr 0a8585 ================================================================================ */
 
 /* Notifications */
 /* ================================================================================ */
@@ -112,6 +120,10 @@ main{
   background-color: #E9EDEC;
 }
 
+#data-container{
+margin-bottom:50px;
+}
+
 /* ================================================================================ */
 
 /* Messages (messages are what displays the individual data about each new persona */
@@ -136,19 +148,30 @@ main{
 /* Library/Storage */
 /* ================================================================================ */
 #library-title{
-  margin-top:20px;
+  /* margin-top:20px; */
+  margin-bottom: 0px;
   padding: 15px;
   text-align: center;
-  background-color:#Dd882c;
+  background-color:#0CA4A5;
   color: white;
+}
+
+thead{
+  background-color: #69D2D1;
+}
+
+#table-labels:hover{
+  background-color: #69D2D1;
+}
+
+th{
+  color:#374B4A!important;
 }
 
 .table{
   color: #344645!important;
 }
-.table.is-striped tbody tr:not(.is-selected):nth-child(even){
-  background-color: #f9ebdc!important;
-}
+
 /* ================================================================================ */
 
 /* Footer/action bar and the icons */
@@ -164,34 +187,31 @@ main{
 
 /* style disabled buttons so they don't do anything */
 .disabled{
-  /* border: 2px solid red; */
   cursor: not-allowed;
 }
 .disabled:hover{
   border: 2px solid #EFF6F6;
 }
 
-.genNew-is-active{
-  background-color: #30b077!important;
-  border: 2px inset;
-}
-
-.gnp-able{
-  background-color: #5DD39E;
-  border-radius: 10px;
-}
-.save-able{
+.able{
   background-color: #C5FFFD;
-  border-radius: 10px;
+    border-color: transparent;
+    color: #0CA4A5;
+    border:2px outset;
 }
 
-.library-able{
-  background-color: #EBB984;
-  border-radius: 10px;
+.able:hover{
+  background-color: #0a8585;
+    border-color: transparent;
+    color: #fff;
 }
-.trash-able{
-  background-color: #AF1B3F!important;
-  border-radius: 10px;
+
+.active{
+  background-color: #0CA4A5;
+
+    border-color: transparent;
+    color: #EFFAFA;
+    border: 2px inset;
 }
 
 /* .fas{
@@ -214,8 +234,7 @@ button:hover{
 }
 
 footer {
-  background-color: #EFFAFA!important;
-  /* background-color: aqua !important; */
+  background-color: white;
   position:fixed;
  bottom:0;
  left:0;
