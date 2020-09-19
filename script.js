@@ -16,6 +16,21 @@ var judeDummyStorage = [
     personaLocation: "Herefordshire",
   },
 ];
+
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active-col");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
 // ================
 
 // ICON AND BUTTON VARIABLES
@@ -149,7 +164,6 @@ $(document).ready(function () {
     landingBlock.addClass("hide");
     formBlock.removeClass("hide");
     personaBlock.addClass("hide");
-    libraryBlock.addClass("hide");
     generateNewPersona();
     formCall();
   });
@@ -165,8 +179,12 @@ $(document).ready(function () {
       landingBlock.removeClass("hide");
       viewPsaContainer.removeClass("active");
       viewPsaContainer.addClass("able")
-      libraryIconContainer.removeClass("active")
+      libraryBlock.addClass("hide")
       console.log("clicked home button");
+      if (libraryIconContainer.hasClass("active")) {
+        libraryIconContainer.removeClass("active")
+        libraryIconContainer.addClass("able")
+      }
     }
   });
 
@@ -175,18 +193,17 @@ $(document).ready(function () {
       console.log("view psa is disabled");
     } else {
       console.log("clicked view psa button");
+      landingBlock.addClass("hide");
+      personaBlock.removeClass("hide");
       homeIconContainer.removeClass("active");
       homeIconContainer.addClass("able");
       viewPsaContainer.removeClass("able");
       viewPsaContainer.addClass("active")
-      libraryIconContainer.removeClass("active")
-      libraryIconContainer.addClass("able")
-      landingBlock.addClass("hide");
-      personaBlock.removeClass("hide");
-      libraryDelete1.removeClass("button is-warning");
-      libraryDelete1.addClass("hide")
-      libraryDelete2.removeClass("button is-danger");
-      libraryDelete2.addClass("hide")
+      libraryBlock.addClass("hide")
+      if (libraryIconContainer.hasClass("active")) {
+        libraryIconContainer.removeClass("active")
+        libraryIconContainer.addClass("able")
+      }
     }
   });
 
@@ -207,16 +224,12 @@ $(document).ready(function () {
       homeIconContainer.addClass("able")
       libraryIconContainer.removeClass("able")
       libraryIconContainer.addClass("active")
+      personaBlock.addClass("hide")
+      landingBlock.addClass("hide")
+      libraryBlock.removeClass("hide")
     } else {
       console.log("library is disabled");
     }
-  });
-
-  $("#close-library-btn").on("click", function () {
-    // console.log("library  close button")
-    librarySwitch = false;
-    libraryBlock.addClass("hide");
-    personaBlock.removeClass("hide");
   });
 
   trashIcon.on("click", function () {
@@ -341,10 +354,31 @@ $(document).ready(function () {
       })
 
       libraryDelete2.on("click", function () {
-        alert("need to build library delete");
+        console.log("need to build library delete");
+        resetState();
       })
 
     }
+  }
+
+  function resetState(){
+    libraryBlock.addClass("hide")
+    landingBlock.removeClass("hide")
+    //activate home button
+    homeIconContainer.removeClass("able");
+    homeIconContainer.addClass("active");
+    //disable viewpsa
+    viewPsaContainer.prop("disabled", true);
+    viewPsaContainer.addClass("disabled");
+    viewPsaContainer.removeClass("able");
+    //disable save
+    saveIconContainer.prop("disabled", true);
+    saveIconContainer.addClass("disabled");
+    saveIconContainer.removeClass("able");
+    //disable library
+    libraryIconContainer.prop("disabled", true);
+    libraryIconContainer.addClass("disabled");
+    libraryIconContainer.removeClass("active");
   }
 
   function clearStorage() {
@@ -508,7 +542,6 @@ $(document).ready(function () {
 
           imageContainer.empty();
           imageContainer.append(personaImageEl);
-          libraryBlock.addClass("hide");
           personaBlock.removeClass("hide");
 
           // creates interest/career based on age. No more meteorology!

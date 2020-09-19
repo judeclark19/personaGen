@@ -20,6 +20,7 @@ nav{
   top:0;
   left:0;
   width: 100%;
+  border-bottom: 2px solid gray;
 }
 
 h1{
@@ -108,7 +109,7 @@ main{
 
 /* ================================================================================ */
 
-/* Persona image */
+/* Persona Block */
 /* ================================================================================ */
 #persona-image {
   padding: 20px;
@@ -116,12 +117,58 @@ main{
   margin-left: auto;
   margin-right: auto;
   max-width: 350px;
-  border: 5px solid #344645;
+  border: 5px solid #577574;
   background-color: #E9EDEC;
+}
+
+#persona-block{
+  /* border: 2px solid greenyellow; */
+  margin: 0px;
+  height: 100%;
+  margin-bottom: 20px;
+}
+
+#persona-box{
+  /* border: 2px solid red; */
+  height: 100%;
 }
 
 #data-container{
 margin-bottom:50px;
+}
+
+
+.active-col, .collapsible, .collapsible:hover {
+  background-color: #577574;
+  cursor: pointer;
+}
+
+.collapsible:hover{
+  background-color: #344645;
+  cursor: pointer;
+}
+
+.card-header-icon:hover{
+  color: white;
+}
+
+.card-header-title{
+  color: white!important;
+}
+
+.collapsible{
+  /* border:2px solid red; */
+  padding:0px;
+}
+
+/* Style the collapsible content. Note: hidden by default */
+.card-content {
+  /* border:2px solid red; */
+  padding: 10px!important;
+  display: none;
+  overflow: hidden;
+  color: black;
+  background-color: #E9EDEC;
 }
 
 /* ================================================================================ */
@@ -147,13 +194,14 @@ margin-bottom:50px;
 
 /* Library/Storage */
 /* ================================================================================ */
+
 #library-title{
   /* margin-top:20px; */
   margin-bottom: 0px;
   padding: 15px;
   text-align: center;
-  background-color:#0CA4A5;
-  color: white;
+  background-color:#EFFAFA;
+  color: #374B4A;
 }
 
 thead{
@@ -198,7 +246,7 @@ th{
 
 .action-icon {
   /* border: 1px dashed blue; */
-  margin: auto;
+  margin: 0;
 }
 
 /* style disabled buttons so they don't do anything */
@@ -210,28 +258,31 @@ th{
 }
 
 .able{
-  background-color: #C5FFFD;
+  background-color: #0CA3A5;
+  /* background-color: #0a8585; */
+  /* color: #0a8585; */
+    /* color: #0CA4A5; */
+    color: #374B4A;
     border-color: transparent;
-    color: #0CA4A5;
     border:2px outset;
 }
 
 .able:hover{
-  background-color: #0a8585;
+  background-color: #0Ebebe;
+  /* background-color: #0a8585; */
     border-color: transparent;
-    color: #fff;
+    color: lightgray;
 }
 
 .active{
-  background-color: #0CA4A5;
-
+  background-color: lightgray;
     border-color: #0CA4A5;
     color: #EFFAFA;
     border: 2px inset;
 }
 
 .active:hover{
-  background-color: #0CA4A5;
+  background-color: lightgray;
 
     border-color: #0CA4A5;
     color: #EFFAFA;
@@ -264,6 +315,9 @@ footer {
  left:0;
  width: 100%;
  margin: 0px!important;
+ /* margin-bottom:0px!important;
+ margin-left:0px!important;
+ margin-right:0px!important; */
  height: 80px;
 }
 

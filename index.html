@@ -125,85 +125,84 @@
           </div>
           <div class="column" id="data-container">
 
-<!-- TEST; BULMA COMPONENT -->
-<div class="card">
-  <header class="card-header">
-    <p class="card-header-title">
-      Component
-    </p>
-    <a href="#" class="card-header-icon" aria-label="more options">
-      <span class="icon">
-        <i class="fas fa-angle-down" aria-hidden="true"></i>
-      </span>
-    </a>
-  </header>
-  <div class="card-content">
-    <div class="content">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
-      <a href="#">@bulmaio</a>. <a href="#">#css</a> <a href="#">#responsive</a>
-      <br>
-      <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-    </div>
-  </div>
-  <footer class="card-footer">
-    <a href="#" class="card-footer-item">Save</a>
-    <a href="#" class="card-footer-item">Edit</a>
-    <a href="#" class="card-footer-item">Delete</a>
-  </footer>
+<!-- collapsible data cards -->
+<header class="card-header collapsible active-col">
+  <p class="card-header-title">
+    Name
+  </p>
+  <a href="#" class="card-header-icon" aria-label="more options">
+    <span class="icon">
+      <i class="fas fa-angle-down" aria-hidden="true"></i>
+    </span>
+  </a>
+</header>
+<div class="card-content" style="display: block">
+  <p id="name-msg-body">Lorem ipsum...</p>
 </div>
 
-<!-- END TEST OF BULMA COMPONENT -->
+<header class="card-header collapsible active-col">
+  <p class="card-header-title">
+    Age
+  </p>
+  <a href="#" class="card-header-icon" aria-label="more options">
+    <span class="icon">
+      <i class="fas fa-angle-down" aria-hidden="true"></i>
+    </span>
+  </a>
+</header>
+<div class="card-content" style="display: block">
+  <p id="age-msg-body">Lorem ipsum...</p>
+</div>
+
+<header class="card-header collapsible">
+  <p class="card-header-title">
+    Gender
+  </p>
+  <a href="#" class="card-header-icon" aria-label="more options">
+    <span class="icon">
+      <i class="fas fa-angle-down" aria-hidden="true"></i>
+    </span>
+  </a>
+</header>
+<div class="card-content">
+  <p id="gender-msg-body">Lorem ipsum...</p>
+</div>
+
+<header class="card-header collapsible">
+  <p class="card-header-title">
+    Location
+  </p>
+  <a href="#" class="card-header-icon" aria-label="more options">
+    <span class="icon">
+      <i class="fas fa-angle-down" aria-hidden="true"></i>
+    </span>
+  </a>
+</header>
+<div class="card-content">
+  <p id="location-msg-body">Lorem ipsum...</p>
+</div>
+
+<header class="card-header collapsible">
+  <p class="card-header-title">
+    Bio
+  </p>
+  <a href="#" class="card-header-icon" aria-label="more options">
+    <span class="icon">
+      <i class="fas fa-angle-down" aria-hidden="true"></i>
+    </span>
+  </a>
+</header>
+<div class="card-content">
+  <p id="bio-msg-body">Lorem ipsum...</p>
+</div>
+
+</div>
+</div>
+</div>
 
 
-            <div class="message" id="name-msg">
-              <div class="message-header" id="name-msg-header">Name</div>
-              <div class="message-body" id="name-msg-body">
-                Name will appear here
-              </div>
-            </div>
-
-            <div class="message" id="age-msg">
-              <div class="message-header" id="age-msg-header">
-                <p>Age</p>
-              </div>
-              <div class="message-body" id="age-msg-body">
-                Age will appear here
-              </div>
-            </div>
-
-            <div class="message" id="gender-msg">
-              <div class="message-header" id="gender-msg-header">
-                <p>Gender</p>
-              </div>
-              <div class="message-body" id="gender-msg-body">
-                Gender will appear here
-              </div>
-            </div>
-
-            <div class="message" id="location-msg">
-              <div class="message-header" id="location-msg-header">
-                <p>Location</p>
-              </div>
-              <div class="message-body" id="location-msg-body">
-                Location will appear here
-              </div>
-            </div>
-
-            <div class="message" id="bio-msg">
-              <div class="message-header" id="bio-msg-header">
-                <p>Bio</p>
-              </div>
-              <div class="message-body" id="bio-msg-body">
-                <!-- Loading bar, then bio -->
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
+<!-- Begin Library Block -->
       <div class="block hide" id="library-table-block">
-        
         <div class="title is-3" id="library-title">My Persona Library   </div>
         <table class="table is-striped">
           <thead>
@@ -225,6 +224,8 @@
         </table>
         <span class="button is-warning" id="clear-prompt">Click to clear the entire library</span>
         <span class="hide" id="clear-confirm">CONFIRM DELETE</span>
+
+        <!-- End Library Block -->
       </main>
 
        <!-- ./main container -->
@@ -238,26 +239,26 @@
     <footer class="columns is-mobile" id="action-bar">
       <!-- <div class="columns is-mobile" id="action-bar"> -->
 
-        <button class="column active" id="home-icon-container">
-          <div class="action-icon" id="home-icon">
+        <button class="column active action-icon" id="home-icon-container">
+          <div id="home-icon">
             <i class="fas fa-home" style="font-size: 3em"></i>
           </div>
         </button>
 
-        <button class="column disabled" id="view-psa-icon-container" disabled>
-          <div class="action-icon" id="view-psa-icon">
+        <button class="column disabled action-icon" id="view-psa-icon-container" disabled>
+          <div id="view-psa-icon">
             <i class="fas fa-user" style="font-size: 3em"></i>
           </div>
         </button>
 
-        <button class="column disabled" id="save-icon-container" disabled>
-          <div class="action-icon" id="save-icon">
+        <button class="column disabled action-icon" id="save-icon-container" disabled>
+          <div id="save-icon">
             <i class="far fa-save" style="font-size: 3em"></i>
           </div>
         </button>
 
-        <button class="column disabled" id="library-icon-container" disabled>
-          <div class="action-icon" id="library-icon">
+        <button class="column disabled action-icon" id="library-icon-container" disabled>
+          <div id="library-icon">
             <i class="fas fa-address-book" style="font-size: 3em"></i>
           </div>
         </button>
