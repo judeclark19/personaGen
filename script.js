@@ -76,12 +76,7 @@ saveIcon.on("click", function () {
   var personaGender = $("#gender-msg-body")[0].childNodes[0].data;
   var personaLocation = $("#location-msg-body")[0].childNodes[0].data;
   var personaBio = $("#bio-msg-body")[0].childNodes[0].data;
-  console.log(personaImage);
-  console.log(personaName);
-  console.log(personaAge);
-  console.log(personaGender);
-  console.log(personaLocation);
-  console.log(personaBio);
+
   var personaKeyItem = {
     name: personaName,
     image: personaImage,
@@ -90,8 +85,6 @@ saveIcon.on("click", function () {
     location: personaLocation,
     bio: personaBio,
   };
-
-  console.log(personaKeyItem);
 
   storedPersona = localStorage.setItem(
     personaName,
@@ -280,19 +273,11 @@ $(document).ready(function () {
   function generateLibrary() {
     $("#table-body").empty();
     for (var i = 0; i < personaArray.length; i++) {
-      console.log(personaArray[i].name);
-      console.log(personaArray[i].image);
-      console.log(personaArray[i].age);
-      console.log(personaArray[i].gender);
-      console.log(personaArray[i].location);
-      console.log(personaArray[i].bio);
-
       tableRow = $("<tr>");
-      tableRow.attr("data-attribute", personaArray[i]);
+      tableRow.attr("data-attribute", personaArray[i].name);
       tableName = $("<td>").text(personaArray[i].name);
       tableAge = $("<td>").text(personaArray[i].age);
       tableLocation = $("<td>").text(personaArray[i].location);
-
       //the delete button on each row
       deleteBadge = $(
         "<span class='button tag is-warning' data-confirm-switch='delete'>"
@@ -315,6 +300,20 @@ $(document).ready(function () {
           alert("need to build individual delete");
         }
       });
+        // THIS IS A NESTED ON CLICK EVENT FOR THE DISPLAY OF THE LOCAL STORAGE ITEMS
+        // BASED ON TABLE ROW CLICKED
+        tableRow.on("click", function() {
+        console.log(($(this)[0].attributes[0].nodeValue));
+        personaStorageKey = ($(this)[0].attributes[0].nodeValue);
+        searchPersonaStorage = JSON.parse(localStorage.getItem(personaStorageKey));
+        console.log(searchPersonaStorage); // this is logging the targetted object's values
+        console.log(searchPersonaStorage.name);
+        console.log(searchPersonaStorage.image);    
+        console.log(searchPersonaStorage.gender);   
+        console.log(searchPersonaStorage.age);    
+        console.log(searchPersonaStorage.location); 
+        console.log(searchPersonaStorage.bio);  
+      })
     }
   }
 
