@@ -40,16 +40,22 @@ var personaArray = [];
 
 // displayPersonaKeys();
 
-function displayPersonaKeys() {
-  mainContainer.empty();
+displayPersonaKeys()
 
+function displayPersonaKeys() {
+ 
+
+  
     var personaStorageKeys = Object.keys(localStorage);
     if (personaStorageKeys == null) {
-    alert("i'm empty")
+    console.log("i'm empty")
     } else{
-    for (var i = 0; i < personaStorageKeys; i ++) {
-      var personaKeyItem = localStorage.getItem(personaStorageKeys[i])
-      console.log(personaKeyItem)
+    for (var i = 0; i < personaStorageKeys.length; i ++) {
+      var personaBio = [];
+      var personaKeyItem = (personaStorageKeys[i], JSON.parse(localStorage.getItem(personaStorageKeys[i])));
+      console.log(personaKeyItem);
+
+
     } } }
 
     saveIcon.on("click", function() {
@@ -67,7 +73,6 @@ function displayPersonaKeys() {
       console.log(personaLocation)
       console.log(personaBio);
 
-
       var personaKeyItem = {
       name: personaName,
       image: personaImage,
@@ -78,7 +83,7 @@ function displayPersonaKeys() {
 
       console.log(personaKeyItem)
 
-      storedPersona = localStorage.setItem(personaName, personaKeyItem)
+      storedPersona = localStorage.setItem(personaName, JSON.stringify(personaKeyItem))
     });
     
 // ==============
