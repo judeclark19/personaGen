@@ -483,7 +483,11 @@ $(document).ready(function () {
         var personaLocation =
           randomGen.location.city + ", " + randomGen.location.country;
         var personaEmail = randomGen.email;
-        var personaGender = randomGen.gender;
+        personaGender = randomGen.gender;
+        // changes male/female returned gender to nonbinary if selected
+        if (personaGenderSelect === "nonbinary") {
+          personaGender = "nonbinary";
+        }
 
         // ============================================
         // Sends image to facial recognition api to get accurate age
