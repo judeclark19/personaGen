@@ -292,10 +292,8 @@ function generateLibrary() {
   // Traversing the DOM
   // =====================================================================
 
-  // ===============================
-  // DO NOT TOUCH - FORM CALL
+ 
   // THIS CREATE THE FORM THAT IS DISPLAYED
-  // DO NOT TOUCH - FORM CALL
   // ================================
   function formCall() {
     console.log("FORM GENERATION, CALLED");
