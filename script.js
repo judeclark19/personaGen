@@ -31,7 +31,7 @@ var librarySwitch = false;
 var saveSwitch = false;
 
 // TEMPORARY FORM CONTAINER TARGET
-// var formContainer = $("#form-container");
+var formContainer = $("#form-container");
 
 // PAGE TARGETING VARIABLES
 var mainContainer = $("#main-container");
@@ -310,7 +310,16 @@ $(document).ready(function () {
         console.log(searchPersonaStorage.gender);   
         console.log(searchPersonaStorage.age);    
         console.log(searchPersonaStorage.location); 
-        console.log(searchPersonaStorage.bio);  
+        console.log(searchPersonaStorage.bio);
+        
+        libraryBlock.addClass("hide");
+        libraryIconContainer.removeClass("active");
+        libraryIconContainer.addClass("able");
+        personaBlock.removeClass("hide");
+        gnpContainer.removeClass("able");
+        gnpContainer.addClass("active");
+
+
       })
     }
   }
@@ -351,7 +360,6 @@ $(document).ready(function () {
   // ================================
   function formCall() {
     console.log("FORM GENERATION, CALLED");
-
     // AGE RANGE
     var personaInputAgeLow = $("#age-low-input");
     console.log(personaInputAgeLow.val());
@@ -371,33 +379,29 @@ $(document).ready(function () {
     console.log(personaQuoteSelect.val());
 
     //TARGETING FORM VALUES
-    var submitGenerate = $("#user-select-parameters"); //SUBMIT BUTTON
+    var submitGenerate = $("#submit-generate"); //SUBMIT BUTTON
     var personaForm = $("#persona-form");
 
     // EVENT LISTENER FOR FORM
-    // submitGenerate.on("click", function (event) {
-      console.log("this button is working");
+    submitGenerate.on("click", function (event) {
       var personaLowAgeVal = $("#age-low-input").val();
       var personaHighAgeVal = $("#age-high-input").val();
       var personaGenderVal = $("#persona-gender-select").val();
       var personaQuoteVal = $("#persona-quote-select").val();
-      //  var personaInterestVal = $("#persona-interest-select").val();
-      //  personaJobVal = $("#persona-profession-input").val();
-      // CONSOLE LOGGING VALUES OF INPUTS
       console.log("this click button is working");
       console.log(personaLowAgeVal);
       console.log(personaHighAgeVal);
       console.log(personaGenderVal);
       console.log(personaQuoteVal);
-      // console.log(personaInterestVal);
-      // console.log(personaJobVal);
+      console.log(personaInterestVal);
+      console.log(personaJobVal);
 
       generateNewPersona();
-      // formContainer.empty();
+      formContainer.empty();
 
-      // event.preventDefault();
+      event.preventDefault();
       //  originalUserCall();
-    // });
+    });
   }
 
   // ================================
