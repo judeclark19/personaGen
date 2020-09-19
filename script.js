@@ -20,8 +20,8 @@ var randomButton = $("#user-select-random");
 var userParamsButton = $("#user-select-parameters");
 var homeIcon = $("#home-icon");
 var homeIconContainer = $("#home-icon-container");
-var genNewIcon = $("#gen-new-psa-icon");
-var gnpContainer = $("#gnp-icon-container");
+var genNewIcon = $("#view-psa-icon");
+var gnpContainer = $("#view-psa-icon-container");
 var saveIcon = $("#save-icon");
 var saveIconContainer = $("#save-icon-container");
 var libraryIcon = $("#library-icon");
@@ -89,13 +89,6 @@ saveIcon.on("click", function () {
     gender: personaGender,
     location: personaLocation,
     bio: personaBio,
-
-
-    saveSnackbar();
-    saveSwitch = true;
-    libraryIconContainer.removeClass("disabled");
-    libraryIconContainer.prop("disabled", false);
-    libraryIconContainer.addClass("able");
   };
 
   console.log(personaKeyItem);
@@ -122,10 +115,14 @@ function autoBiography(name, location, interests, quote) {
       ". I live by the phrase ",
     ],
   };
+  location = location.split(",")[0];
   var randomWords = Math.floor(
     Math.random() * sentenceStructure.starter.length
   );
   quote = quote[0].toLowerCase() + quote.slice(1);
+  if (quote[quote.length - 1] === ".") {
+    quote = quote.slice(0, quote.length - 1);
+  }
   var finalText =
     sentenceStructure.starter[randomWords] +
     name +
@@ -136,7 +133,6 @@ function autoBiography(name, location, interests, quote) {
     sentenceStructure.quotes[randomWords] +
     quote +
     ".";
-  console.log(finalText);
   return finalText;
 }
 
@@ -222,10 +218,32 @@ $(document).ready(function () {
     }
   });
 
+    //Library main delete button
+    var libraryDelete1 = $("#library-delete");
+    var libraryDelete2 = $("#library-confirm");
+  
+    libraryDelete1.on("click", function () {
+      console.log("Hello world");
+      libraryDelete1.addClass("hide");
+      libraryDelete2.removeClass("hide");
+    });
+  
+    libraryDelete2.on("click", function () {
+      console.log("need to build library delete");
+      resetState();
+    });
 
   // =====================================================================
   // UI Functions
   // =====================================================================
+
+  saveIconContainer.on("click", function () {
+    saveSnackbar();
+    saveSwitch = true;
+    libraryIconContainer.removeClass("disabled");
+    libraryIconContainer.prop("disabled", false);
+    libraryIconContainer.addClass("able");
+  });
 
   function saveSnackbar() {
     if (document.getElementById("save-icon-container").disabled) {
@@ -280,11 +298,7 @@ $(document).ready(function () {
       tableDelete = $("<td>");
       tableDelete.append(deleteBadge);
 
-      //Library main delete button
-      var libraryDelete1 = $("#clear-prompt");
-      var libraryDelete2 = $("#clear-confirm");
-
-      tableRow.append(tableName, tableAge, tableLocation);
+      tableRow.append(tableName, tableAge, tableLocation, tableDelete);
       $("#table-body").append(tableRow);
 
       deleteBadge.on("click", function () {
@@ -298,19 +312,6 @@ $(document).ready(function () {
         } else {
           alert("need to build individual delete");
         }
-      });
-
-      libraryDelete1.on("click", function () {
-        console.log("clicked library delete");
-        libraryDelete1.removeClass("button is-warning");
-        libraryDelete1.addClass("hide");
-        libraryDelete2.removeClass("hide");
-        libraryDelete2.addClass("button is-danger");
-      });
-
-      libraryDelete2.on("click", function () {
-        console.log("need to build library delete");
-        resetState();
       });
     }
   }
@@ -335,7 +336,6 @@ $(document).ready(function () {
     libraryIconContainer.removeClass("active");
   }
 
-
   function clearStorage() {
     // localStorage.clear();
     console.log("storage cleared");
@@ -353,106 +353,23 @@ $(document).ready(function () {
   function formCall() {
     console.log("FORM GENERATION, CALLED");
 
-    
     // AGE RANGE
-    var personaLabelAgeLow = $("<label for='age-low-input'>").text("Age Low");
-    var personaInputAgeLow = $(
-      "<input type='number' id='age-low-input' name='age-low-input' min='18' max='65'>"
-    );
-    var personaLabelAgeHigh = $("<label for='age-high-input'>").text(
-      "Age High"
-    );
-    var personaInputAgeHigh = $(
-      "<input type='number' id='age-high-input' name='age-high-input' min='18' max='65'>"
-    );
+    var personaInputAgeLow = $("#age-low-input");
+    console.log(personaInputAgeLow.val());
+    var personaInputAgeHigh = $("#age-high-input");
+    console.log(personaInputAgeHigh.val());
     // GENDER SELECT
-    var personaGender = $("<label for='persona-gender-select'>").text(
-      "Persona Gender"
-    );
-    var personaGenderSelect = $(
-      "<select id='persona-gender-select' name='persona-interests'>"
-    );
-    var optionTestGender1 = $("<option>")
-      .val("male")
-      .text("male")
-      .appendTo(personaGenderSelect);
-    var optionTestGender2 = $("<option>")
-      .val("female")
-      .text("female")
-      .appendTo(personaGenderSelect);
-    var optionTestGender3 = $("<option>")
-      .val("nonbinary")
-      .text("nonbinary")
-      .appendTo(personaGenderSelect);
+    var personaGenderSelect = $("#persona-gender-select");
+    console.log(personaGenderSelect.val());
     // PROFESSION INPUT
-    var personaProfessionLabel = $(
-      "<label for='persona-profession-input'>"
-    ).text("Persona Profession");
-    var personaProfessionInput = $(
-      "<input type='text' id='persona-profession-input' name='persona-profession-input' placeholder='if left blank will randomize'>"
-    );
+    var personaProfessionInput = $("#persona-profession-input");
+    console.log(personaProfessionInput.val());
     // INTEREST SELECT
-    var personaInterests = $("<label for='persona-interest-select'>").text(
-      "Persona Interest"
-    );
-    var personaInterestSelect = $(
-      "<select id='persona-interest-select' name='persona-interests'>"
-    );
-    var optionTestInterest1 = $("<option>")
-      .val("interest-test-val-1")
-      .text("interest1")
-      .appendTo(personaInterestSelect);
-    var optionTestInterest2 = $("<option>")
-      .val("interest-test-val-2")
-      .text("interest2")
-      .appendTo(personaInterestSelect);
-    var optionTestInterest3 = $("<option>")
-      .val("interest-test-val-3")
-      .text("interest3")
-      .appendTo(personaInterestSelect);
+    var personaInterestSelect = $("#persona-interest-select");
+    console.log(personaInterestSelect.val());
     // QUOTE SELECT
-    var personaQuote = $("<label for='persona-quote-select'>").text(
-      "Persona Quote"
-    );
-    var personaQuoteSelect = $(
-      "<select id='persona-quote-select' name='persona-quote-select'>"
-    );
-    var optionTestQuote1 = $("<option>")
-      .val("quote-test-val-1")
-      .text("Random Quote")
-      .appendTo(personaQuoteSelect);
-    var optionTestQuote2 = $("<option>")
-      .val("quote-test-val-2")
-      .text("Corporate Theme")
-      .appendTo(personaQuoteSelect);
-    var optionTestQuote3 = $("<option>")
-      .val("quote-test-val-3")
-      .text("Movie Quote")
-      .appendTo(personaQuoteSelect);
-
-    var inputSubmit = $(
-      "<button type='submit' id='submit-generate' class='button' value='Generate New Persona'>"
-    ).text("SUBMIT ME");
-
-    personaForm.append(personaFormTitle);
-    personaForm.append(
-      personaLabelAgeLow,
-      personaInputAgeLow,
-      personaLabelAgeHigh,
-      personaInputAgeHigh,
-      br1
-    );
-    personaForm.append(personaGender, personaGenderSelect, br3);
-    personaForm.append(personaProfessionLabel, personaProfessionInput, br4);
-    personaForm.append(
-      personaInterests,
-      personaInterestSelect,
-      br2,
-      personaQuote,
-      personaQuoteSelect
-    );
-    personaForm.append(br, inputSubmit);
-    formContainer.append(personaForm);
+    var personaQuoteSelect = $("#persona-quote-select");
+    console.log(personaQuoteSelect.val());
 
     //TARGETING FORM VALUES
     var submitGenerate = $("#submit-generate"); //SUBMIT BUTTON
@@ -546,27 +463,22 @@ $(document).ready(function () {
           //   DYNAMICALLY GENERATING NEW PERSONA CONTENT USING ABOVE VARIABLES
           // ===========================================
 
-          //Hide the prompt
-          landingPromptBlock.addClass("hide");
+          //Hide the landing page
+          landingBlock.addClass("hide");
 
-          //Enable the GenNewPsa button
+          //Make home icon able
+          homeIconContainer.removeClass("active");
+          homeIconContainer.addClass("able");
+
+          //Activate the GenNewPsa button
           gnpContainer.removeClass("disabled");
-          gnpContainer.addClass("gnp-able");
+          gnpContainer.addClass("active");
+          gnpContainer.prop("disabled", false);
 
           //Enable save button
           saveIconContainer.prop("disabled", false);
           saveIconContainer.removeClass("disabled");
-          saveIconContainer.addClass("save-able");
-
-          //Enable library button
-          libraryIconContainer.prop("disabled", false);
-          libraryIconContainer.removeClass("disabled");
-          libraryIconContainer.addClass("library-able");
-
-          //Enable trash button
-          trashIconContainer.prop("disabled", false);
-          trashIconContainer.removeClass("disabled");
-          trashIconContainer.addClass("trash-able");
+          saveIconContainer.addClass("able");
 
           var imageContainer = $("#image-container");
           var dataContainer = $("#data-container");
@@ -631,7 +543,15 @@ $(document).ready(function () {
             $.ajax(settingsOne).done(function (responseOne) {
               // INSPIRATIONAL BIO CREATION
               var inspireQuote = responseOne.content;
-              // psabioEl.removeClass("bio-loading")
+              // can't believe I had to write this. A lot of crazy stuff on the internet :/
+              if (
+                inspireQuote.toLowerCase().includes("hitler") ||
+                inspireQuote.toLowerCase().includes("asshole") ||
+                inspireQuote.toLowerCase().includes("fuck")
+              ) {
+                inspireQuote = "live, laugh, love";
+              }
+
               bioEl.text(
                 autoBiography(
                   personaName,
@@ -662,7 +582,6 @@ $(document).ready(function () {
             };
 
             $.ajax(settingsTwo).done(function (responseTwo) {
-              // console.log(responseTwo);
               var corporateQuote = responseTwo.phrase;
 
               bioEl.text(
@@ -696,6 +615,7 @@ $(document).ready(function () {
                 Math.random() * response.taglines.length
               );
               var movieQuote = response.taglines[randomMovie];
+
               bioEl.text(
                 autoBiography(
                   personaName,

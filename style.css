@@ -206,7 +206,7 @@ th {
   color: #344645 !important;
 }
 
-#clear-prompt {
+#library-delete {
   font-size: 14pt;
   position: fixed;
   bottom: 80px;
@@ -214,7 +214,7 @@ th {
   transform: translate(-50%, -50%);
 }
 
-#clear-confirm {
+#library-confirm {
   font-size: 14pt;
   position: fixed;
   bottom: 80px;
