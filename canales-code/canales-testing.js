@@ -1,7 +1,5 @@
-
 // GLOBAL VARIABLES
-// ================
-$(document).ready(function () {
+
 
 // ICONS AND BUTTON VARIABLES
 var randomButton = $("#user-select-random");
@@ -31,15 +29,14 @@ var formBlock = $("#form-block");
 var clearWarning = $("#clear-warning-block");
 
 // JOSEPH HARDCODE VARIABLES
-var specificCategory;
-var userQuoteSelection = "Inspirational";
-
+var userQuoteSelection;
+var randomStatus = false;
 // *******************************************
 // STORAGE VARIABLES AND FUNCTIONS
 // *******************************************
 var personaArray = [];
 
-// displayPersonaKeys();
+// THIS HAS BEEN UPDATED
 displayPersonaKeys()
 
 function displayPersonaKeys() {
@@ -61,12 +58,7 @@ function displayPersonaKeys() {
       var personaGender = $("#gender-msg-body")[0].childNodes[0].data;
       var personaLocation = $("#location-msg-body")[0].childNodes[0].data;
       var personaBio = $("#bio-msg-body")[0].childNodes[0].data;
-      console.log(personaImage);
-      console.log(personaName); 
-      console.log(personaAge);
-      console.log(personaGender);
-      console.log(personaLocation)
-      console.log(personaBio);
+
       var personaKeyItem = {
       name: personaName,
       image: personaImage,
@@ -79,8 +71,6 @@ function displayPersonaKeys() {
 
       storedPersona = localStorage.setItem(personaName, JSON.stringify(personaKeyItem))
     });
-    
-    
 // ==============
 // Text Generation
 function autoBiography(name, location, interests, quote) {
@@ -112,16 +102,19 @@ function autoBiography(name, location, interests, quote) {
     sentenceStructure.quotes[randomWords] +
     quote +
     ".";
-    console.log(finalText)
+  console.log(finalText);
   return finalText;
 }
 
+// FUNCTION
+$(document).ready(function () {
   // =====================================================================
   //  GLOBAL EVENT LISTENERS
   // =====================================================================
-  
+
   // NEW PERSONA PROMPT BUTTONS
   randomButton.on("click", function () {
+    randomStatus = true;
     generateNewPersona();
   });
 
@@ -152,10 +145,16 @@ function autoBiography(name, location, interests, quote) {
   });
 
   genNewIcon.on("click", function () {
+    // generateNewPersona();
+    // personaBlock.addClass("hide");
     landingPromptBlock.removeClass("hide");
     formBlock.addClass("hide");
     gnpContainer.addClass("disabled");
     gnpContainer.removeClass("gnp-able");
+  });
+
+  saveIcon.on("click", function () {
+    saveFunc();
   });
 
   libraryIcon.on("click", function () {
@@ -256,26 +255,34 @@ function autoBiography(name, location, interests, quote) {
 // ======================================
 // GENERATING STORAGE INTO LIBRARY FOLDER
 // ======================================
-  function generateLibrary() {
+function generateLibrary() {
     $("#table-body").empty();
-      for (var i = 0; i < personaArray.length; i ++) {
-        console.log(personaArray[i].name);
-        console.log(personaArray[i].image);
-        console.log(personaArray[i].age);
-        console.log(personaArray[i].gender);
-        console.log(personaArray[i].location);
-        console.log(personaArray[i].bio);
+    for (var i = 0; i < personaArray.length; i ++) {
 
-        tableRow = $("<tr>");
-        tableRow.attr("data-attribute", personaArray[i]);
-        tableName = $("<td>").text(personaArray[i].name);
-        tableAge = $("<td>").text(personaArray[i].age);
-        tableLocation = $("<td>").text(personaArray[i].location);
+      tableRow = $("<tr>");
+      tableRow.attr("data-attribute", personaArray[i].name);
+      tableName = $("<td>").text(personaArray[i].name);
+      tableAge = $("<td>").text(personaArray[i].age);
+      tableLocation = $("<td>").text(personaArray[i].location);
 
-        tableRow.append(tableName, tableAge, tableLocation);
-       $("#table-body").append(tableRow);
+      tableRow.append(tableName, tableAge, tableLocation);
+     $("#table-body").append(tableRow);
+     
+      // CLICK EVENT FOR DISPLAYING SAVED PERSONAS
+      tableRow.on("click", function() {
+      console.log(($(this)[0].attributes[0].nodeValue));
+      personaStorageKey = ($(this)[0].attributes[0].nodeValue);
+      // searchPersonaStorage = JSON.parse(localStorage.getItem(personaStorageKey));
+      console.log(searchPersonaStorage);
+      console.log(personaStorageKey.name);
+      console.log(searchPersonaStorage.image);
+      console.log(searchPersonaStorage.gender);
+      console.log(searchPersonaStorage.age);
+      console.log(searchPersonaStorage.location);
+      console.log(personaStorageKey.bio);
+    })
     }
-  };
+};
 
   function clearStorage() {
     // localStorage.clear();
@@ -283,94 +290,155 @@ function autoBiography(name, location, interests, quote) {
   }
 
   // =====================================================================
+
+  // =====================================================================
   // Traversing the DOM
   // =====================================================================
-  
-  // ===============================
-  // DO NOT TOUCH - FORM CALL
-  // THIS CREATE THE FORM THAT IS DISPLAYED 
-  // DO NOT TOUCH - FORM CALL
+
+ 
+  // THIS CREATE THE FORM THAT IS DISPLAYED
   // ================================
-      function formCall() {
-        console.log("FORM GENERATION, CALLED")
-        var br = document.createElement("br");
-        var br1 = document.createElement("br");
-        var br2 = document.createElement("br");
-        var br3 = document.createElement("br");
-        var br4 = document.createElement("br");
-        
-         var personaForm = $("<form id='persona-form' action='#'>");
-         var personaFormTitle = $("<h2 id='persona-form-tile'>").text("Persona Parameters")
-         // AGE RANGE
-         var personaLabelAgeLow = $("<label for='age-low-input'>").text("Age Low")
-         var personaInputAgeLow = $("<input type='number' id='age-low-input' name='age-low-input' min='18' max='65'>");
-         var personaLabelAgeHigh = $("<label for='age-high-input'>").text("Age High")
-         var personaInputAgeHigh = $("<input type='number' id='age-high-input' name='age-high-input' min='18' max='65'>");
-         // GENDER SELECT
-         var personaGender = $("<label for='persona-gender-select'>").text("Persona Gender")
-         var personaGenderSelect = $("<select id='persona-gender-select' name='persona-interests'>");
-         var optionTestGender1 = $("<option>").val('gender-test-val-1').text('gender1').appendTo(personaGenderSelect);
-         var optionTestGender2 = $("<option>").val('gender-test-val-2').text('gender2').appendTo(personaGenderSelect);
-         var optionTestGender3 = $("<option>").val('gender-test-val-3').text('gender3').appendTo(personaGenderSelect);
-         var optionTestGender4 = $("<option>").val('gender-test-val-4').text('gender4').appendTo(personaGenderSelect);
-         // PROFESSION INPUT
-         var personaProfessionLabel = $("<label for='persona-profession-input'>").text("Persona Profession")
-         var personaProfessionInput = $("<input type='text' id='persona-profession-input' name='persona-profession-input' placeholder='if left blank will randomize'>");
-         // INTEREST SELECT
-         var personaInterests = $("<label for='persona-interest-select'>").text("Persona Interest")
-         var personaInterestSelect = $("<select id='persona-interest-select' name='persona-interests'>");
-         var optionTestInterest1 = $("<option>").val('interest-test-val-1').text('interest1').appendTo(personaInterestSelect);
-         var optionTestInterest2 = $("<option>").val('interest-test-val-2').text('interest2').appendTo(personaInterestSelect);
-         var optionTestInterest3 = $("<option>").val('interest-test-val-3').text('interest3').appendTo(personaInterestSelect);
-         // QUOTE SELECT
-         var personaQuote = $("<label for='persona-quote-select'>").text("Persona Quote")
-         var personaQuoteSelect = $("<select id='persona-quote-select' name='persona-quote'>");
-         var optionTestQuote1 = $("<option>").val('quote-test-val-1').text('quote1').appendTo(personaQuoteSelect);
-         var optionTestQuote2 = $("<option>").val('quote-test-val-2').text('quote2').appendTo(personaQuoteSelect);
-         var optionTestQuote3 = $("<option>").val('quote-test-val-3').text('quote3').appendTo(personaQuoteSelect);
-         
-         var inputSubmit = $("<button type='submit' id='submit-generate' class='button' value='Generate New Persona'>").text("SUBMIT ME");
-   
-         personaForm.append(personaFormTitle);
-         personaForm.append(personaLabelAgeLow, personaInputAgeLow, personaLabelAgeHigh, personaInputAgeHigh, br1);
-         personaForm.append(personaGender, personaGenderSelect, br3);
-         personaForm.append(personaProfessionLabel, personaProfessionInput, br4);
-         personaForm.append(personaInterests, personaInterestSelect, br2, personaQuote, personaQuoteSelect,);
-         personaForm.append(br, inputSubmit);
-         formContainer.append(personaForm);
-         
-         //TARGETING FORM VALUES
-         var submitGenerate = $("#submit-generate"); //SUBMIT BUTTON
-         var personaForm = $("#persona-form");
-   
-         // EVENT LISTENER FOR FORM 
-         submitGenerate.on("click", function(event) {     
-        
-         var personaLowAgeVal = $("#age-low-input").val();
-         var personaHighAgeVal = $("#age-high-input").val();
-         var personaGenderVal = $("#persona-gender-select").val();
-         var personaQuoteVal = $("#persona-quote-select").val();
-         var personaInterestVal = $("#persona-interest-select").val();
-         var personaJobVal = $("#persona-profession-input").val();
-         // CONSOLE LOGGING VALUES OF INPUTS
-         console.log("this click button is working");
-         console.log(personaLowAgeVal);
-         console.log(personaHighAgeVal);
-         console.log(personaGenderVal);
-         console.log(personaQuoteVal);
-         console.log(personaInterestVal);
-         console.log(personaJobVal);
-   
-         
-        generateNewPersona();
-        formContainer.empty();
-        
-        event.preventDefault();
-           }); // END USER FORM FUNCTION
-      };
+  function formCall() {
+    console.log("FORM GENERATION, CALLED");
+    var br = document.createElement("br");
+    var br1 = document.createElement("br");
+    var br2 = document.createElement("br");
+    var br3 = document.createElement("br");
+    var br4 = document.createElement("br");
 
+    var personaForm = $("<form id='persona-form' action='#'>");
+    var personaFormTitle = $("<h2 id='persona-form-tile'>").text(
+      "Persona Parameters"
+    );
+    // AGE RANGE
+    var personaLabelAgeLow = $("<label for='age-low-input'>").text("Age Low");
+    var personaInputAgeLow = $(
+      "<input type='number' id='age-low-input' name='age-low-input' min='18' max='65'>"
+    );
+    var personaLabelAgeHigh = $("<label for='age-high-input'>").text(
+      "Age High"
+    );
+    var personaInputAgeHigh = $(
+      "<input type='number' id='age-high-input' name='age-high-input' min='18' max='65'>"
+    );
+    // GENDER SELECT
+    var personaGender = $("<label for='persona-gender-select'>").text(
+      "Persona Gender"
+    );
+    var personaGenderSelect = $(
+      "<select id='persona-gender-select' name='persona-interests'>"
+    );
+    var optionTestGender1 = $("<option>")
+      .val("male")
+      .text("male")
+      .appendTo(personaGenderSelect);
+    var optionTestGender2 = $("<option>")
+      .val("female")
+      .text("female")
+      .appendTo(personaGenderSelect);
+    var optionTestGender3 = $("<option>")
+      .val("nonbinary")
+      .text("nonbinary")
+      .appendTo(personaGenderSelect);
+    // PROFESSION INPUT
+    var personaProfessionLabel = $(
+      "<label for='persona-profession-input'>"
+    ).text("Persona Profession");
+    var personaProfessionInput = $(
+      "<input type='text' id='persona-profession-input' name='persona-profession-input' placeholder='if left blank will randomize'>"
+    );
+    // INTEREST SELECT
+    var personaInterests = $("<label for='persona-interest-select'>").text(
+      "Persona Interest"
+    );
+    var personaInterestSelect = $(
+      "<select id='persona-interest-select' name='persona-interests'>"
+    );
+    var optionTestInterest1 = $("<option>")
+      .val("interest-test-val-1")
+      .text("interest1")
+      .appendTo(personaInterestSelect);
+    var optionTestInterest2 = $("<option>")
+      .val("interest-test-val-2")
+      .text("interest2")
+      .appendTo(personaInterestSelect);
+    var optionTestInterest3 = $("<option>")
+      .val("interest-test-val-3")
+      .text("interest3")
+      .appendTo(personaInterestSelect);
+    // QUOTE SELECT
+    var personaQuote = $("<label for='persona-quote-select'>").text(
+      "Persona Quote"
+    );
+    var personaQuoteSelect = $(
+      "<select id='persona-quote-select' name='persona-quote-select'>"
+    );
+    var optionTestQuote1 = $("<option>")
+      .val("quote-test-val-1")
+      .text("Random Quote")
+      .appendTo(personaQuoteSelect);
+    var optionTestQuote2 = $("<option>")
+      .val("quote-test-val-2")
+      .text("Corporate Theme")
+      .appendTo(personaQuoteSelect);
+    var optionTestQuote3 = $("<option>")
+      .val("quote-test-val-3")
+      .text("Movie Quote")
+      .appendTo(personaQuoteSelect);
 
-  
+    var inputSubmit = $(
+      "<button type='submit' id='submit-generate' class='button' value='Generate New Persona'>"
+    ).text("SUBMIT ME");
+
+    personaForm.append(personaFormTitle);
+    personaForm.append(
+      personaLabelAgeLow,
+      personaInputAgeLow,
+      personaLabelAgeHigh,
+      personaInputAgeHigh,
+      br1
+    );
+    personaForm.append(personaGender, personaGenderSelect, br3);
+    personaForm.append(personaProfessionLabel, personaProfessionInput, br4);
+    personaForm.append(
+      personaInterests,
+      personaInterestSelect,
+      br2,
+      personaQuote,
+      personaQuoteSelect
+    );
+    personaForm.append(br, inputSubmit);
+    formContainer.append(personaForm);
+
+    //TARGETING FORM VALUES
+    var submitGenerate = $("#submit-generate"); //SUBMIT BUTTON
+    var personaForm = $("#persona-form");
+
+    // EVENT LISTENER FOR FORM
+    submitGenerate.on("click", function (event) {
+      var personaLowAgeVal = $("#age-low-input").val();
+      var personaHighAgeVal = $("#age-high-input").val();
+      var personaGenderVal = $("#persona-gender-select").val();
+      var personaQuoteVal = $("#persona-quote-select").val();
+      //  var personaInterestVal = $("#persona-interest-select").val();
+      //  personaJobVal = $("#persona-profession-input").val();
+      // CONSOLE LOGGING VALUES OF INPUTS
+      console.log("this click button is working");
+      console.log(personaLowAgeVal);
+      console.log(personaHighAgeVal);
+      console.log(personaGenderVal);
+      console.log(personaQuoteVal);
+      console.log(personaInterestVal);
+      console.log(personaJobVal);
+
+      generateNewPersona();
+      formContainer.empty();
+
+      event.preventDefault();
+      //  originalUserCall();
+    });
+  }
+
   // ================================
   // ================================
   //                  NEW USER CALL
@@ -379,9 +447,16 @@ function autoBiography(name, location, interests, quote) {
   // ================================
 
   function generateNewPersona() {
-    console.log("NEW USER CALL, CALLED");
+    // uses api parameters to specify sex
+    var personaGenderSelect = $("#persona-gender-select").val();
+    if (personaGenderSelect === "nonbinary") {
+      var randomMeURL = "https://randomuser.me/api/";
+    } else {
+      var randomMeURL =
+        "https://randomuser.me/api/?gender=" + personaGenderSelect;
+    }
     $.ajax({
-      url: "https://randomuser.me/api/",
+      url: randomMeURL,
       dataType: "json",
       success: function (data) {
         // ===========================================
@@ -395,7 +470,11 @@ function autoBiography(name, location, interests, quote) {
         var personaLocation =
           randomGen.location.city + ", " + randomGen.location.country;
         var personaEmail = randomGen.email;
-        var personaGender = randomGen.gender;
+        personaGender = randomGen.gender;
+        // changes male/female returned gender to nonbinary if selected
+        if (personaGenderSelect === "nonbinary") {
+          personaGender = "nonbinary";
+        }
 
         // ============================================
         // Sends image to facial recognition api to get accurate age
@@ -474,12 +553,24 @@ function autoBiography(name, location, interests, quote) {
           personaBlock.removeClass("hide");
 
           // creates interest/career based on age. No more meteorology!
-          specificCategory = generateProfession(personaAge);
+          // if no input on form the interest is randomly generated
+          personaJobVal = $("#persona-profession-input").val();
+          if (!personaJobVal) {
+            personaJobVal = generateProfession(personaAge);
+          }
+          // var personaInterestVal = $("#persona-interest-select").val();
+          personaQuoteVal = $("#persona-quote-select").val();
 
           // ========================
           // VARIABLE BIO GENERATION
           // ========================
-          if (userQuoteSelection === "Inspirational") {
+          if (randomStatus === true) {
+            // randomizes bio quote
+            var quoteNumber = Math.ceil(Math.random() * 3);
+            personaQuoteVal = "quote-test-val-" + quoteNumber;
+            randomStatus = false;
+          }
+          if (personaQuoteVal === "quote-test-val-1") {
             var settingsOne = {
               async: true,
               crossDomain: true,
@@ -501,14 +592,17 @@ function autoBiography(name, location, interests, quote) {
                 autoBiography(
                   personaName,
                   personaLocation,
-                  specificCategory,
+                  personaJobVal,
                   inspireQuote
                 )
               );
             });
           }
+          // DID THIS TRACK A CHANGE
+          // HOW ABOUT ANOTHER APOLOGY
+          // I'M SORRY, TEAM
           // CORPORATE BIO CREATION
-          else if (userQuoteSelection === "Corporate") {
+          else if (personaQuoteVal === "quote-test-val-2") {
             var settingsTwo = {
               async: true,
               crossDomain: true,
@@ -527,11 +621,44 @@ function autoBiography(name, location, interests, quote) {
               // console.log(responseTwo);
               var corporateQuote = responseTwo.phrase;
 
-              autoBiography(
-                personaName,
-                personaLocation,
-                specificCategory,
-                corporateQuote
+              bioEl.text(
+                autoBiography(
+                  personaName,
+                  personaLocation,
+                  personaJobVal,
+                  corporateQuote
+                )
+              );
+            });
+          } else if (personaQuoteVal === "quote-test-val-3") {
+            movie = movies[Math.floor(Math.random() * movies.length)];
+
+            var settings = {
+              async: true,
+              crossDomain: true,
+              url:
+                "https://imdb8.p.rapidapi.com/title/get-taglines?tconst=" +
+                movie,
+              method: "GET",
+              headers: {
+                "x-rapidapi-host": "imdb8.p.rapidapi.com",
+                "x-rapidapi-key":
+                  "59d0c27c79msh6e6814003e3803ep1e5484jsn5fecf295231f",
+              },
+            };
+
+            $.ajax(settings).done(function (response) {
+              var randomMovie = Math.floor(
+                Math.random() * response.taglines.length
+              );
+              var movieQuote = response.taglines[randomMovie];
+              bioEl.text(
+                autoBiography(
+                  personaName,
+                  personaLocation,
+                  personaJobVal,
+                  movieQuote
+                )
               );
             });
           }
