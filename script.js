@@ -93,14 +93,10 @@ function autoBiography(name, location, interests, quote) {
       ". I live by the phrase ",
     ],
   };
-  location = location.split(",")[0];
   var randomWords = Math.floor(
     Math.random() * sentenceStructure.starter.length
   );
   quote = quote[0].toLowerCase() + quote.slice(1);
-  if (quote[quote.length - 1] === ".") {
-    quote = quote.slice(0, quote.length - 1)
-  }
   var finalText =
     sentenceStructure.starter[randomWords] +
     name +
@@ -111,6 +107,7 @@ function autoBiography(name, location, interests, quote) {
     sentenceStructure.quotes[randomWords] +
     quote +
     ".";
+  console.log(finalText);
   return finalText;
 }
 
@@ -266,12 +263,7 @@ $(document).ready(function () {
 function generateLibrary() {
     $("#table-body").empty();
     for (var i = 0; i < personaArray.length; i ++) {
-      // console.log(personaArray[i].name);
-      // console.log(personaArray[i].image);
-      // console.log(personaArray[i].age);
-      // console.log(personaArray[i].gender);
-      // console.log(personaArray[i].location);
-      // console.log(personaArray[i].bio);
+
 
       tableRow = $("<tr>");
       tableRow.attr("data-attribute", personaArray[i].name);
@@ -286,14 +278,8 @@ function generateLibrary() {
       tableRow.on("click", function() {
       console.log(($(this)[0].attributes[0].nodeValue));
       personaStorageKey = ($(this)[0].attributes[0].nodeValue);
-      // console.log(personaStorageKey);
-      for (var j = 0; j < personaArray.length; j++)
-      if (personaStorageKey = personaArray[j].name) {
-        let personaStorageKey = personaArray[j];
-        console.log(personaStorageKey);
-      }
-      
-      
+      searchPersonaStorage = JSON.parse(localStorage.getItem(personaStorageKey));
+      console.log(searchPersonaStorage)
     })
     }
 };
@@ -601,13 +587,7 @@ function generateLibrary() {
             $.ajax(settingsOne).done(function (responseOne) {
               // INSPIRATIONAL BIO CREATION
               var inspireQuote = responseOne.content;
-              // can't believe I had to write this. A lot of crazy stuff on the internet :/
-              if (inspireQuote.toLowerCase().includes("hitler") ||
-              inspireQuote.toLowerCase().includes("asshole") || 
-              inspireQuote.toLowerCase().includes("fuck")) {
-                inspireQuote = "live, laugh, love";
-              }
-              
+              // psabioEl.removeClass("bio-loading")
               bioEl.text(
                 autoBiography(
                   personaName,
@@ -638,7 +618,7 @@ function generateLibrary() {
             };
 
             $.ajax(settingsTwo).done(function (responseTwo) {
-
+              // console.log(responseTwo);
               var corporateQuote = responseTwo.phrase;
 
               bioEl.text(
@@ -672,7 +652,6 @@ function generateLibrary() {
                 Math.random() * response.taglines.length
               );
               var movieQuote = response.taglines[randomMovie];
-              
               bioEl.text(
                 autoBiography(
                   personaName,
