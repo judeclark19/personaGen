@@ -261,7 +261,7 @@ $(document).ready(function () {
 // GENERATING STORAGE INTO LIBRARY FOLDER
 // ======================================
 function generateLibrary() {
-  $("#table-body").empty();
+    $("#table-body").empty();
     for (var i = 0; i < personaArray.length; i ++) {
       console.log(personaArray[i].name);
       console.log(personaArray[i].image);
@@ -271,14 +271,20 @@ function generateLibrary() {
       console.log(personaArray[i].bio);
 
       tableRow = $("<tr>");
-      tableRow.attr("data-attribute", personaArray[i]);
+      tableRow.attr("data-attribute", personaArray[i].name);
       tableName = $("<td>").text(personaArray[i].name);
       tableAge = $("<td>").text(personaArray[i].age);
       tableLocation = $("<td>").text(personaArray[i].location);
 
       tableRow.append(tableName, tableAge, tableLocation);
      $("#table-body").append(tableRow);
-  }
+     
+      // CLICK EVENT FOR DISPLAYING SAVED PERSONAS
+      tableRow.on("click", function() {
+      console.log(($(this)[0].attributes[0].nodeValue));
+
+    })
+    }
 };
 
   function clearStorage() {
