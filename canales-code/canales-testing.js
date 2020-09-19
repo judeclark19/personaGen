@@ -38,25 +38,32 @@ var userQuoteSelection = "Inspirational";
 // *******************************************
 var personaArray = [];
 
-// displayPersonaKeys();
+libraryIconContainer.on("click",function()  {
+  for (var i = 0; i < personaArray.length; i ++) {
+    console.log(personaArray[i].name)
+    console.log(personaArray[i].image)
+    console.log(personaArray[i].age)
+    console.log(personaArray[i].gender)
+    console.log(personaArray[i].location)
+    console.log(personaArray[i].bio)
+  }
 
+
+});
+// displayPersonaKeys();
 displayPersonaKeys()
 
 function displayPersonaKeys() {
- 
-
-  
     var personaStorageKeys = Object.keys(localStorage);
     if (personaStorageKeys == null) {
     console.log("i'm empty")
     } else{
     for (var i = 0; i < personaStorageKeys.length; i ++) {
-      var personaBio = [];
       var personaKeyItem = (personaStorageKeys[i], JSON.parse(localStorage.getItem(personaStorageKeys[i])));
-      console.log(personaKeyItem);
-
-
-    } } }
+      // console.log(personaKeyItem);
+      personaArray.push(personaKeyItem);
+      console.log(personaArray);
+    } } };
 
     saveIcon.on("click", function() {
       var personaName = $("#name-msg-body")[0].childNodes[0].data;
@@ -65,14 +72,12 @@ function displayPersonaKeys() {
       var personaGender = $("#gender-msg-body")[0].childNodes[0].data;
       var personaLocation = $("#location-msg-body")[0].childNodes[0].data;
       var personaBio = $("#bio-msg-body")[0].childNodes[0].data;
-      
       console.log(personaImage);
       console.log(personaName); 
       console.log(personaAge);
       console.log(personaGender);
       console.log(personaLocation)
       console.log(personaBio);
-
       var personaKeyItem = {
       name: personaName,
       image: personaImage,
@@ -269,17 +274,23 @@ function autoBiography(name, location, interests, quote) {
 
   function generateLibrary() {
     $("#table-body").empty();
-    for (let i = 0; i < judeDummyStorage.length; i++) {
-      console.log("Library generated from storage");
-      tableRow = $("<tr>");
-      tableName = $("<td>").text(judeDummyStorage[i].personaName);
-      tableAge = $("<td>").text(judeDummyStorage[i].personaAge);
-      tableLocation = $("<td>").text(judeDummyStorage[i].personaLocation);
+      for (var i = 0; i < personaArray.length; i ++) {
+        console.log(personaArray[i].name);
+        console.log(personaArray[i].image);
+        console.log(personaArray[i].age);
+        console.log(personaArray[i].gender);
+        console.log(personaArray[i].location);
+        console.log(personaArray[i].bio);
+
+        tableRow = $("<tr>");
+        tableName = $("<td>").text(personaArray[i].name);
+        tableAge = $("<td>").text(personaArray[i].age);
+        tableLocation = $("<td>").text(personaArray[i].location);
 
       tableRow.append(tableName, tableAge, tableLocation);
       $("#table-body").append(tableRow);
     }
-  }
+  };
 
   function clearStorage() {
     // localStorage.clear();
