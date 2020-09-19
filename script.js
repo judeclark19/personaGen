@@ -550,8 +550,8 @@ function showPersonaPage() {
           var genderEl = $("#gender-msg-body");
           genderEl.text(personaGender);
 
-          var genderEl = $("#location-msg-body");
-          genderEl.text(personaLocation);
+          var locationEl = $("#location-msg-body");
+          locationEl.text(personaLocation);
 
           var bioEl = $("#bio-msg-body");
           bioEl.text("Loading Bio..."); //  << we receive this information in  a later API CALL
