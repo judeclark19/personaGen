@@ -338,20 +338,16 @@ $(document).ready(function () {
       "<select id='persona-gender-select' name='persona-interests'>"
     );
     var optionTestGender1 = $("<option>")
-      .val("gender-test-val-1")
-      .text("gender1")
+      .val("male")
+      .text("male")
       .appendTo(personaGenderSelect);
     var optionTestGender2 = $("<option>")
-      .val("gender-test-val-2")
-      .text("gender2")
+      .val("female")
+      .text("female")
       .appendTo(personaGenderSelect);
     var optionTestGender3 = $("<option>")
-      .val("gender-test-val-3")
-      .text("gender3")
-      .appendTo(personaGenderSelect);
-    var optionTestGender4 = $("<option>")
-      .val("gender-test-val-4")
-      .text("gender4")
+      .val("nonbinary")
+      .text("nonbinary")
       .appendTo(personaGenderSelect);
     // PROFESSION INPUT
     var personaProfessionLabel = $(
