@@ -57,42 +57,45 @@ var personaArray = [];
 function displayPersonaKeys() {
   mainContainer.empty();
 
-    var personaStorageKeys = Object.keys(localStorage);
-    if (personaStorageKeys == null) {
-    alert("i'm empty")
-    } else{
-    for (var i = 0; i < personaStorageKeys; i ++) {
-      var personaKeyItem = localStorage.getItem(personaStorageKeys[i])
-      console.log(personaKeyItem)
-    } } }
+  var personaStorageKeys = Object.keys(localStorage);
+  if (personaStorageKeys == null) {
+    alert("i'm empty");
+  } else {
+    for (var i = 0; i < personaStorageKeys; i++) {
+      var personaKeyItem = localStorage.getItem(personaStorageKeys[i]);
+      console.log(personaKeyItem);
+    }
+  }
+}
 
-    saveIcon.on("click", function() {
-      var personaName = $("#name-msg-body")[0].childNodes[0].data;
-      var personaImage = $("#persona-image")[0].currentSrc;
-      var personaAge = $("#age-msg-body")[0].childNodes[0].data;
-      var personaGender = $("#gender-msg-body")[0].childNodes[0].data;
-      var personaLocation = $("#location-msg-body")[0].childNodes[0].data;
-      var personaBio = $("#bio-msg-body")[0].childNodes[0].data;
-      
-      console.log(personaImage);
-      console.log(personaName); 
-      console.log(personaAge);
-      console.log(personaGender);
-      console.log(personaLocation)
-      console.log(personaBio);
+saveIcon.on("click", function () {
+  var personaName = $("#name-msg-body")[0].childNodes[0].data;
+  var personaImage = $("#persona-image")[0].currentSrc;
+  var personaAge = $("#age-msg-body")[0].childNodes[0].data;
+  var personaGender = $("#gender-msg-body")[0].childNodes[0].data;
+  var personaLocation = $("#location-msg-body")[0].childNodes[0].data;
+  var personaBio = $("#bio-msg-body")[0].childNodes[0].data;
 
-      var personaKeyItem = {
-      name: personaName,
-      image: personaImage,
-      age: personaAge,
-      gender: personaGender,
-      location: personaLocation,
-      bio: personaBio  }
+  console.log(personaImage);
+  console.log(personaName);
+  console.log(personaAge);
+  console.log(personaGender);
+  console.log(personaLocation);
+  console.log(personaBio);
 
-      console.log(personaKeyItem)
+  var personaKeyItem = {
+    name: personaName,
+    image: personaImage,
+    age: personaAge,
+    gender: personaGender,
+    location: personaLocation,
+    bio: personaBio,
+  };
 
-      storedPersona = localStorage.setItem(personaName, personaKeyItem)
-    });
+  console.log(personaKeyItem);
+
+  storedPersona = localStorage.setItem(personaName, personaKeyItem);
+});
 // ==============
 // Text Generation
 function autoBiography(name, location, interests, quote) {
@@ -124,11 +127,9 @@ function autoBiography(name, location, interests, quote) {
     sentenceStructure.quotes[randomWords] +
     quote +
     ".";
-    console.log(finalText)
+  console.log(finalText);
   return finalText;
 }
-
-
 
 // FUNCTION
 $(document).ready(function () {
@@ -337,20 +338,16 @@ $(document).ready(function () {
       "<select id='persona-gender-select' name='persona-interests'>"
     );
     var optionTestGender1 = $("<option>")
-      .val("gender-test-val-1")
-      .text("gender1")
+      .val("male")
+      .text("male")
       .appendTo(personaGenderSelect);
     var optionTestGender2 = $("<option>")
-      .val("gender-test-val-2")
-      .text("gender2")
+      .val("female")
+      .text("female")
       .appendTo(personaGenderSelect);
     var optionTestGender3 = $("<option>")
-      .val("gender-test-val-3")
-      .text("gender3")
-      .appendTo(personaGenderSelect);
-    var optionTestGender4 = $("<option>")
-      .val("gender-test-val-4")
-      .text("gender4")
+      .val("nonbinary")
+      .text("nonbinary")
       .appendTo(personaGenderSelect);
     // PROFESSION INPUT
     var personaProfessionLabel = $(
@@ -459,9 +456,16 @@ $(document).ready(function () {
   // ================================
 
   function generateNewPersona() {
-    console.log("NEW USER CALL, CALLED");
+    // uses api parameters to specify sex
+    var personaGenderSelect = $("#persona-gender-select").val();
+    if (personaGenderSelect === "nonbinary") {
+      var randomMeURL = "https://randomuser.me/api/";
+    } else {
+      var randomMeURL =
+        "https://randomuser.me/api/?gender=" + personaGenderSelect;
+    }
     $.ajax({
-      url: "https://randomuser.me/api/",
+      url: randomMeURL,
       dataType: "json",
       success: function (data) {
         // ===========================================
@@ -475,7 +479,11 @@ $(document).ready(function () {
         var personaLocation =
           randomGen.location.city + ", " + randomGen.location.country;
         var personaEmail = randomGen.email;
-        var personaGender = randomGen.gender;
+        personaGender = randomGen.gender;
+        // changes male/female returned gender to nonbinary if selected
+        if (personaGenderSelect === "nonbinary") {
+          personaGender = "nonbinary";
+        }
 
         // ============================================
         // Sends image to facial recognition api to get accurate age
@@ -649,7 +657,9 @@ $(document).ready(function () {
             };
 
             $.ajax(settings).done(function (response) {
-              var randomMovie = Math.floor(Math.random() * response.taglines.length);
+              var randomMovie = Math.floor(
+                Math.random() * response.taglines.length
+              );
               var movieQuote = response.taglines[randomMovie];
               bioEl.text(
                 autoBiography(
