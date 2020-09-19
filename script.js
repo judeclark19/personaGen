@@ -458,6 +458,7 @@ function generateLibrary() {
       url: randomMeURL,
       dataType: "json",
       success: function (data) {
+        console.log(data);
         // ===========================================
         // ASSIGNING PERSONA VARIABLES WITHIN FUNCTION BASED ON RESPONSE FROM API
         // =========================================
