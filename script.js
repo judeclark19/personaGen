@@ -93,10 +93,14 @@ function autoBiography(name, location, interests, quote) {
       ". I live by the phrase ",
     ],
   };
+  location = location.split(",")[0];
   var randomWords = Math.floor(
     Math.random() * sentenceStructure.starter.length
   );
   quote = quote[0].toLowerCase() + quote.slice(1);
+  if (quote[quote.length - 1] === ".") {
+    quote = quote.slice(0, quote.length - 1)
+  }
   var finalText =
     sentenceStructure.starter[randomWords] +
     name +
@@ -107,7 +111,6 @@ function autoBiography(name, location, interests, quote) {
     sentenceStructure.quotes[randomWords] +
     quote +
     ".";
-  console.log(finalText);
   return finalText;
 }
 
@@ -586,7 +589,13 @@ function generateLibrary() {
             $.ajax(settingsOne).done(function (responseOne) {
               // INSPIRATIONAL BIO CREATION
               var inspireQuote = responseOne.content;
-              // psabioEl.removeClass("bio-loading")
+              // can't believe I had to write this. A lot of crazy stuff on the internet :/
+              if (inspireQuote.toLowerCase().includes("hitler") ||
+              inspireQuote.toLowerCase().includes("asshole") || 
+              inspireQuote.toLowerCase().includes("fuck")) {
+                inspireQuote = "live, laugh, love";
+              }
+              
               bioEl.text(
                 autoBiography(
                   personaName,
@@ -617,7 +626,7 @@ function generateLibrary() {
             };
 
             $.ajax(settingsTwo).done(function (responseTwo) {
-              // console.log(responseTwo);
+
               var corporateQuote = responseTwo.phrase;
 
               bioEl.text(
@@ -651,6 +660,7 @@ function generateLibrary() {
                 Math.random() * response.taglines.length
               );
               var movieQuote = response.taglines[randomMovie];
+              
               bioEl.text(
                 autoBiography(
                   personaName,
