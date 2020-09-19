@@ -586,10 +586,11 @@ function generateLibrary() {
             $.ajax(settingsOne).done(function (responseOne) {
               // INSPIRATIONAL BIO CREATION
               var inspireQuote = responseOne.content;
+              // can't believe I had to write this. A lot of crazy stuff on the internet :/
               if (inspireQuote.toLowerCase().includes("hitler") ||
               inspireQuote.toLowerCase().includes("asshole") || 
               inspireQuote.toLowerCase().includes("fuck")) {
-                inspireQuote = "";
+                inspireQuote = "live, laugh, love";
               }
               
               bioEl.text(
