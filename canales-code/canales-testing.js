@@ -265,6 +265,7 @@ function autoBiography(name, location, interests, quote) {
         console.log(personaArray[i].bio);
 
         tableRow = $("<tr>");
+        tableRow.attr("data-attribute", personaArray[i];)
         tableName = $("<td>").text(personaArray[i].name);
         tableAge = $("<td>").text(personaArray[i].age);
         tableLocation = $("<td>").text(personaArray[i].location);
@@ -272,6 +273,8 @@ function autoBiography(name, location, interests, quote) {
         tableRow.append(tableName, tableAge, tableLocation);
        $("#table-body").append(tableRow);
     }
+
+    
   };
 
   function clearStorage() {
