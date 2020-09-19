@@ -34,7 +34,6 @@ var trashIconContainer = $("#trash-icon-container");
 var formSubmitBtn = $("#form-submit-btn");
 var librarySwitch = false;
 var saveSwitch = false;
-var confirmSwitch = false;
 
 // TEMPORARY FORM CONTAINER TARGET
 var formContainer = $("#form-container");
@@ -158,6 +157,8 @@ $(document).ready(function () {
   homeIcon.on("click", function () {
     if (homeIconContainer.prop("disabled") === true) {
       console.log("home button is disabled");
+    } else if (homeIconContainer.hasClass("active")){
+      console.log("home button is already active")
     } else {
       homeIconContainer.addClass("active");
       personaBlock.addClass("hide");
@@ -165,7 +166,6 @@ $(document).ready(function () {
       viewPsaContainer.removeClass("active");
       viewPsaContainer.addClass("able")
       libraryIconContainer.removeClass("active")
-      libraryIconContainer.addClass("able")
       console.log("clicked home button");
     }
   });
@@ -183,6 +183,10 @@ $(document).ready(function () {
       libraryIconContainer.addClass("able")
       landingBlock.addClass("hide");
       personaBlock.removeClass("hide");
+      libraryDelete1.removeClass("button is-warning");
+      libraryDelete1.addClass("hide")
+      libraryDelete2.removeClass("button is-danger");
+      libraryDelete2.addClass("hide")
     }
   });
 
@@ -303,36 +307,49 @@ $(document).ready(function () {
       tableName = $("<td>").text(judeDummyStorage[i].personaName);
       tableAge = $("<td>").text(judeDummyStorage[i].personaAge);
       tableLocation = $("<td>").text(judeDummyStorage[i].personaLocation);
-      deleteBadge = $("<span class='button tag is-warning'>").text("DELETE");
+      deleteBadge = $("<span class='button tag is-warning' data-confirm-switch='delete'>").text("DELETE");
       tableDelete = $("<td>");
       tableDelete.append(deleteBadge);
+
+      var libraryDelete1 = $("#clear-prompt");
+      var libraryDelete2 = $("#clear-confirm");
 
       tableRow.append(tableName, tableAge, tableLocation, tableDelete);
       $("#table-body").append(tableRow);
 
       //Delete validation, ask user to confirm
       deleteBadge.on("click", function () {
-        
-        console.log("switch before: "+ confirmSwitch);
-
-        if (confirmSwitch===false){
+        console.log($(this).attr("data-confirm-switch"));
+        if ($(this).attr("data-confirm-switch")==="delete"){
         $(this).removeClass("is-warning");
         $(this).addClass("is-danger");
         $(this).text("CONFIRM");
-        confirmSwitch = true;
-        console.log("Switch after: "+confirmSwitch);
+        
+        $(this).attr("data-confirm-switch", "confirm")
+
         } else {
-          alert("need to build this functionality");
+          alert("need to build individual delete");
         }
-
-
       })
+
+      libraryDelete1.on("click", function () {
+        console.log("clicked library delete");
+        libraryDelete1.removeClass("button is-warning")
+        libraryDelete1.addClass("hide")
+        libraryDelete2.removeClass("hide")
+        libraryDelete2.addClass("button is-danger")
+      })
+
+      libraryDelete2.on("click", function () {
+        alert("need to build library delete");
+      })
+
     }
   }
 
   function clearStorage() {
     // localStorage.clear();
-    console.log("storage cleared");
+    console.log("turned off at the moment");
   }
 
   // =====================================================================

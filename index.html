@@ -98,7 +98,7 @@
 </p><br/>
           </form>
 
-          <button class="button is-info is-outlined is-large" id="user-select-parameters">Custom</button>
+          <button class="button is-outlined is-large" id="user-select-parameters">Custom</button>
 
         </div>
       </div>
@@ -124,6 +124,37 @@
             <!-- <img id="persona-image" src="https://via.placeholder.com/200x200.png"> -->
           </div>
           <div class="column" id="data-container">
+
+<!-- TEST; BULMA COMPONENT -->
+<div class="card">
+  <header class="card-header">
+    <p class="card-header-title">
+      Component
+    </p>
+    <a href="#" class="card-header-icon" aria-label="more options">
+      <span class="icon">
+        <i class="fas fa-angle-down" aria-hidden="true"></i>
+      </span>
+    </a>
+  </header>
+  <div class="card-content">
+    <div class="content">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
+      <a href="#">@bulmaio</a>. <a href="#">#css</a> <a href="#">#responsive</a>
+      <br>
+      <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+    </div>
+  </div>
+  <footer class="card-footer">
+    <a href="#" class="card-footer-item">Save</a>
+    <a href="#" class="card-footer-item">Edit</a>
+    <a href="#" class="card-footer-item">Delete</a>
+  </footer>
+</div>
+
+<!-- END TEST OF BULMA COMPONENT -->
+
+
             <div class="message" id="name-msg">
               <div class="message-header" id="name-msg-header">Name</div>
               <div class="message-body" id="name-msg-body">
@@ -173,7 +204,7 @@
 
       <div class="block hide" id="library-table-block">
         
-        <div class="title is-3" id="library-title">My Persona Library   <button class="delete" id="close-library-btn"></button></div>
+        <div class="title is-3" id="library-title">My Persona Library   </div>
         <table class="table is-striped">
           <thead>
             <tr id="table-labels">
@@ -192,6 +223,8 @@
             </tr> -->
           </tbody>
         </table>
+        <span class="button is-warning" id="clear-prompt">Click to clear the entire library</span>
+        <span class="hide" id="clear-confirm">CONFIRM DELETE</span>
       </main>
 
        <!-- ./main container -->

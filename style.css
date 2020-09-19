@@ -15,7 +15,7 @@
 /* Nav/title bar */
 /* ================================================================================ */
 nav{
-  background-color: #2D6261!important;
+  background-color: #0CA3A5!important;
   position:fixed!important;
   top:0;
   left:0;
@@ -172,6 +172,22 @@ th{
   color: #344645!important;
 }
 
+#clear-prompt{
+  font-size: 14pt;
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#clear-confirm{
+  font-size: 14pt;
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 /* ================================================================================ */
 
 /* Footer/action bar and the icons */
@@ -209,7 +225,15 @@ th{
 .active{
   background-color: #0CA4A5;
 
-    border-color: transparent;
+    border-color: #0CA4A5;
+    color: #EFFAFA;
+    border: 2px inset;
+}
+
+.active:hover{
+  background-color: #0CA4A5;
+
+    border-color: #0CA4A5;
     color: #EFFAFA;
     border: 2px inset;
 }
