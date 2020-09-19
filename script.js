@@ -263,12 +263,12 @@ $(document).ready(function () {
 function generateLibrary() {
     $("#table-body").empty();
     for (var i = 0; i < personaArray.length; i ++) {
-      console.log(personaArray[i].name);
-      console.log(personaArray[i].image);
-      console.log(personaArray[i].age);
-      console.log(personaArray[i].gender);
-      console.log(personaArray[i].location);
-      console.log(personaArray[i].bio);
+      // console.log(personaArray[i].name);
+      // console.log(personaArray[i].image);
+      // console.log(personaArray[i].age);
+      // console.log(personaArray[i].gender);
+      // console.log(personaArray[i].location);
+      // console.log(personaArray[i].bio);
 
       tableRow = $("<tr>");
       tableRow.attr("data-attribute", personaArray[i].name);
@@ -282,7 +282,15 @@ function generateLibrary() {
       // CLICK EVENT FOR DISPLAYING SAVED PERSONAS
       tableRow.on("click", function() {
       console.log(($(this)[0].attributes[0].nodeValue));
-
+      personaStorageKey = ($(this)[0].attributes[0].nodeValue);
+      // console.log(personaStorageKey);
+      for (var j = 0; j < personaArray.length; j++)
+      if (personaStorageKey = personaArray[j].name) {
+        let personaStorageKey = personaArray[j];
+        console.log(personaStorageKey);
+      }
+      
+      
     })
     }
 };
