@@ -1,3 +1,4 @@
+
 // GLOBAL VARIABLES
 // ================
 $(document).ready(function () {
@@ -78,6 +79,7 @@ function displayPersonaKeys() {
 
       storedPersona = localStorage.setItem(personaName, JSON.stringify(personaKeyItem))
     });
+    
     
 // ==============
 // Text Generation
@@ -265,6 +267,7 @@ function autoBiography(name, location, interests, quote) {
         console.log(personaArray[i].bio);
 
         tableRow = $("<tr>");
+        tableRow.attr("data-attribute", personaArray[i]);
         tableName = $("<td>").text(personaArray[i].name);
         tableAge = $("<td>").text(personaArray[i].age);
         tableLocation = $("<td>").text(personaArray[i].location);
