@@ -93,6 +93,7 @@ function autoBiography(name, location, interests, quote) {
       ". I live by the phrase ",
     ],
   };
+  location = location.split(",")[0];
   var randomWords = Math.floor(
     Math.random() * sentenceStructure.starter.length
   );
@@ -469,7 +470,6 @@ function generateLibrary() {
         // var personaAge = randomGen.dob.age; // PERSONA AGE
         var personaLocation =
           randomGen.location.city + ", " + randomGen.location.country;
-        var personaState = randomGen.location.state;
         var personaEmail = randomGen.email;
         personaGender = randomGen.gender;
         // changes male/female returned gender to nonbinary if selected
@@ -600,8 +600,7 @@ function generateLibrary() {
                   personaName,
                   personaLocation,
                   personaJobVal,
-                  inspireQuote,
-                  personaState
+                  inspireQuote
                 )
               );
             });
@@ -634,8 +633,7 @@ function generateLibrary() {
                   personaName,
                   personaLocation,
                   personaJobVal,
-                  corporateQuote,
-                  personaState
+                  corporateQuote
                 )
               );
             });
@@ -667,8 +665,7 @@ function generateLibrary() {
                   personaName,
                   personaLocation,
                   personaJobVal,
-                  movieQuote,
-                  personaState
+                  movieQuote
                 )
               );
             });
