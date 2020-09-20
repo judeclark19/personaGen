@@ -410,14 +410,12 @@ function autoBiography(name, location, interests, quote) {
           console.log(personaStorageKeys)
           console.log("targetting key values to equal sibling attributes")};
           $("#table-body").empty();
-          localStorage.clear();
+          // localStorage.clear();
           
-          for (var z = 0; z < personaStorageKeys.length; z++) {
-            var personaKeyItem = (personaStorageKeys[z], JSON.parse(localStorage.getItem(personaStorageKeys[z])));
-            personaStorageKeys.push(personaKeyItem);
-            
-
-          }
+          // for (var z = 0; z < personaStorageKeys.length; z++) {
+          //   var personaKeyItem = (personaStorageKeys[z], JSON.parse(localStorage.getItem(personaStorageKeys[z])));
+          //   personaStorageKeys.push(personaKeyItem);
+          // }
 
 
           }
