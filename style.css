@@ -59,12 +59,21 @@ main {
 #landing-notification {
   padding: 0px;
   /* display: flex; */
-  justify-content: center;
+  background-image: URL("pexels-naveen-annam-1722072.jpg");
+  background-size: cover;
+  /* justify-content: center; */
   align-items: center;
   height: 100%;
   width: 100%;
   position: relative;
 }
+
+h3 {
+  color: white!important;
+  padding: 30px!important;
+  backdrop-filter: blur(30px);
+}
+
 #landing-container {
   /* border:3px solid orange; */
   width: 100%;
@@ -98,12 +107,13 @@ main {
 /* Persona Block */
 /* ================================================================================ */
 #persona-image {
-  padding: 20px;
+  /* padding: 20px; */
+  border-radius: 30px;
   display: block;
   margin-left: auto;
   margin-right: auto;
   max-width: 350px;
-  border: 5px solid #577574;
+  /* border: 5px solid #577574; */
   background-color: #e9edec;
 }
 

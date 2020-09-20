@@ -455,8 +455,8 @@ $(document).ready(function () {
     var personaProfessionInput = $("#persona-profession-input");
     console.log(personaProfessionInput.val());
     // INTEREST SELECT
-    var personaInterestSelect = $("#persona-interest-select");
-    console.log(personaInterestSelect.val());
+    var personaNationSelect = $("#persona-nation-select");
+    console.log(personaNationSelect.val());
     // QUOTE SELECT
     var personaQuoteSelect = $("#persona-quote-select");
     console.log(personaQuoteSelect.val());
@@ -507,6 +507,12 @@ $(document).ready(function () {
       var randomMeURL =
         "https://randomuser.me/api/?gender=" + personaGenderSelect;
     }
+    // api parameter selects nationality
+    var personaNationSelect = $("#persona-nation-select").val();
+    if (personaNationSelect !== "interest-test-val-0") {
+      randomMeURL = randomMeURL + "&nat=" + personaNationSelect
+    }
+
     $.ajax({
       url: randomMeURL,
       dataType: "json",
@@ -606,7 +612,7 @@ $(document).ready(function () {
           // ========================
           // VARIABLE BIO GENERATION
           // ========================
-          if (randomStatus === true) {
+          if (randomStatus === true || personaQuoteVal === "quote-test-val-0") {
             // randomizes bio quote
             var quoteNumber = Math.ceil(Math.random() * 3);
             personaQuoteVal = "quote-test-val-" + quoteNumber;
