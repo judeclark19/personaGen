@@ -352,11 +352,8 @@ function autoBiography(name, location, interests, quote) {
       tableDiv = $("<div>");
       tableRow = $("<tr>");
       tableRow.attr("data-attribute", personaArray[i].name);
-      
       tableName = $("<td>").text(personaArray[i].name);
-    
       tableAge = $("<td>").text(personaArray[i].age);
-
       tableLocation = $("<td>").text(personaArray[i].location);
 
       tableDelete = $("<div class='button tag is-warning'>"
@@ -365,7 +362,6 @@ function autoBiography(name, location, interests, quote) {
       tableRow.append(tableName, tableAge, tableLocation);
       tableDiv.append(tableRow, tableDelete);
       $("#table-body").append(tableDiv);
-
       tableRow.on("click", function () {
       console.log($(this)[0].attributes[0].nodeValue)
       if (personaStorageKey = $(this)[0].attributes[0].nodeValue) {
@@ -405,23 +401,23 @@ function autoBiography(name, location, interests, quote) {
 
           var personaStorageKeys = Object.keys(localStorage)
           for (var m = 0; m < personaStorageKeys.length; m++)
-          if (personaStorageKeys[m] === personaDeleteName)  { 
-          personaStorageKeys.splice(personaStorageKeys[m], 1)
-          console.log(personaStorageKeys)
-          console.log("targetting key values to equal sibling attributes")};
-          $("#table-body").empty();
-          // localStorage.clear();
-          
-          // for (var z = 0; z < personaStorageKeys.length; z++) {
-          //   var personaKeyItem = (personaStorageKeys[z], JSON.parse(localStorage.getItem(personaStorageKeys[z])));
-          //   personaStorageKeys.push(personaKeyItem);
-          // }
-
-
+          {
+          if (personaArray[m].name === personaDeleteName)  { 
+          localStorage.removeItem(personaDeleteName)
+          personaArray.splice(personaStorageKeys[m], 1)
+          console.log(personaArray)
           }
-        });
+          
+          }
+          generateLibrary()
         }
+      })
+
     }
+  };
+       
+  
+    
 
   function resetState() {
     //hide library, show landing page
