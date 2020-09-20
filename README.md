@@ -10,8 +10,9 @@ A personaGen user can choose to generate random personae, or control custom para
 ***
 
 ## Links
-github repository
-depoloyed site
+[GitHub Repository](https://github.com/modern-sapien/bootcamp-project-one)
+
+[Depoloyed Site](https://modern-sapien.github.io/bootcamp-project-one/)
 ***
 
 ## ReadMe Table of Contents
@@ -34,3 +35,5 @@ depoloyed site
 https://www.w3schools.com/howto/howto_js_collapsible.asp)
 
 * [Bulma CSS Framework Crash Course](https://www.youtube.com/watch?v=IiPQYQT2-wg) by Traversy Media
+
+## License
