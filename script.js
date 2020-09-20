@@ -612,7 +612,7 @@ $(document).ready(function () {
           // ========================
           // VARIABLE BIO GENERATION
           // ========================
-          if (randomStatus === true) {
+          if (randomStatus === true || personaQuoteVal === "quote-test-val-0") {
             // randomizes bio quote
             var quoteNumber = Math.ceil(Math.random() * 3);
             personaQuoteVal = "quote-test-val-" + quoteNumber;
