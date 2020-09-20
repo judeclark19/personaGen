@@ -359,7 +359,6 @@ function autoBiography(name, location, interests, quote) {
 
       tableLocation = $("<td>").text(personaArray[i].location);
 
-
       tableDelete = $("<div class='button tag is-warning'>"
       ).text("DELETE").attr("data-attribute", personaArray[i].name).attr("data-confirm-switch", "delete");
 
@@ -395,19 +394,32 @@ function autoBiography(name, location, interests, quote) {
         tableDelete.on("click", function () {
         console.log($(this)[0].previousSibling.attributes[0].nodeValue)
         console.log($(this)[0].attributes[2].nodeValue);
-
         if (($(this)[0].attributes[2].nodeValue) === 'delete')  {
+          var personaDeleteName = (($(this)[0].previousSibling.attributes[0].nodeValue))
           console.log(($(this)[0].previousSibling.attributes[0].nodeValue))
+          console.log(personaDeleteName + "   YOU'RE ON YOUR WAY!");
           console.log($(this));
           $(this).removeClass("is-warning");
           $(this).addClass("is-danger");
           $(this).text("CONFIRM");
-           for (var m = 0; m < personaArray.length; m++)  {
-            console.log(personaArray[m]);
-            if ($(this)[0].previousSibling.attributes[0].nodeValue === personaArray[m].name) {
-              console.log("WE ARE ABOUT TO DELETE YOU")
-            }
-            }
+
+          var personaStorageKeys = Object.keys(localStorage)
+          for (var m = 0; m < personaStorageKeys.length; m++)
+          if (personaStorageKeys[m] === personaDeleteName)  { 
+          personaStorageKeys.splice(personaStorageKeys[m], 1)
+          console.log(personaStorageKeys)
+          console.log("targetting key values to equal sibling attributes")};
+          $("#table-body").empty();
+          localStorage.clear();
+          
+          for (var z = 0; z < personaStorageKeys.length; z++) {
+            var personaKeyItem = (personaStorageKeys[z], JSON.parse(localStorage.getItem(personaStorageKeys[z])));
+            personaStorageKeys.push(personaKeyItem);
+            
+
+          }
+
+
           }
         });
         }
