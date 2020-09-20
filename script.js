@@ -231,10 +231,12 @@ $(document).ready(function () {
 
   libraryDelete1.on("click", function () {
     console.log("Hello world");
-    libraryDelete1.addClass("hide");
-    libraryDelete1.removeClass("button is-warning");
-    libraryDelete2.addClass("button is-danger");
-    libraryDelete2.removeClass("hide");
+    $("#table-body").empty();
+    localStorage.clear();
+    // libraryDelete1.addClass("hide");
+    // libraryDelete1.removeClass("button is-warning");
+    // libraryDelete2.addClass("button is-danger");
+    // libraryDelete2.removeClass("hide");
   });
 
   libraryDelete2.on("click", function () {
