@@ -507,6 +507,11 @@ $(document).ready(function () {
       var randomMeURL =
         "https://randomuser.me/api/?gender=" + personaGenderSelect;
     }
+    // api parameter selects nationality
+    var personaNationSelect = $("#persona-nation-select").val();
+    if (personaNationSelect !== "interest-test-val-0") {
+      randomMeURL = randomMeURL + "&nat=" + personaNationSelect
+    }
 
     $.ajax({
       url: randomMeURL,
