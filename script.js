@@ -16,6 +16,10 @@ for (i = 0; i < coll.length; i++) {
   });
 }
 
+// $(".collapsible").on("click", function() {
+//   $(this).next().slideToggle();
+// })
+
 // ICONS AND BUTTON VARIABLES
 var randomButton = $("#user-select-random");
 var userParamsButton = $("#user-select-parameters");

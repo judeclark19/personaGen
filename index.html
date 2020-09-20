@@ -56,17 +56,20 @@
           <div id="landing-container">
             <h3 class="title is-2">Generate a new persona:</h3>
             <button class="button is-primary is-large" id="user-select-random">
-              Random<i class="fas fa-user"></i>
+              <span>Random</span>
+              <span class="icon is-small">
+                <i class="fas fa-user main-icon"></i>
+              </span>
             </button>
             <header id="custom-settings" class="card-header collapsible">
               <p class="card-header-title">Generate Custom</p>
               <a href="#" class="card-header-icon" aria-label="more options">
                 <span class="icon">
-                  <i class="fas fa-users-cog" aria-hidden="true"></i>
+                  <i class="fas fa-users-cog main-icon" aria-hidden="true"></i>
                 </span>
               </a>
             </header>
-            <div class="card-content">
+            <div id="form-card" class="card-content">
               <form id="persona-form" action="#">
                 <p>
                   <label for="age-low-input">Age</label>
