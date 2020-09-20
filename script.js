@@ -520,7 +520,7 @@ function autoBiography(name, location, interests, quote) {
   function generateNewPersona() {
     // uses api parameters to specify sex
     var personaGenderSelect = $("#persona-gender-select").val();
-    if (personaGenderSelect === "nonbinary") {
+    if (personaGenderSelect === "nonbinary" || randomStatus === true) {
       var randomMeURL = "https://randomuser.me/api/";
     } else {
       var randomMeURL =
@@ -528,7 +528,7 @@ function autoBiography(name, location, interests, quote) {
     }
     // api parameter selects nationality
     var personaNationSelect = $("#persona-nation-select").val();
-    if (personaNationSelect !== "interest-test-val-0") {
+    if (personaNationSelect !== "interest-test-val-0" && randomStatus === false) {
       if (randomMeURL.includes("?")) {
         randomMeURL = randomMeURL + "&nat=" + personaNationSelect;
       } else {
@@ -553,7 +553,7 @@ function autoBiography(name, location, interests, quote) {
         var personaEmail = randomGen.email;
         personaGender = randomGen.gender;
         // changes male/female returned gender to nonbinary if selected
-        if (personaGenderSelect === "nonbinary") {
+        if (personaGenderSelect === "nonbinary" && randomStatus === false) {
           personaGender = "nonbinary";
         }
 
@@ -626,7 +626,7 @@ function autoBiography(name, location, interests, quote) {
           // creates interest/career based on age. No more meteorology!
           // if no input on form the interest is randomly generated
           personaJobVal = $("#persona-profession-input").val();
-          if (!personaJobVal) {
+          if (!personaJobVal || randomStatus === true) {
             personaJobVal = generateProfession(personaAge);
           }
           // var personaInterestVal = $("#persona-interest-select").val();
