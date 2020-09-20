@@ -39,8 +39,8 @@ A list of all saved personae. A user may click on any individual entry to bring 
 ### This app accesses the following APIs:
 * [randomapi.com](https://randomapi.com/)
 * [Face++ Detect API](https://console.faceplusplus.com/documents/5679127)
-Quotes by martin.svoboda
-Corporate bs Generator by sameer.kumar
+* [Quotes](https://rapidapi.com/martin.svoboda/api/quotes15) by martin.svoboda
+* [Corporate bs Generator](https://rapidapi.com/sameer.kumar/api/corporate-bs-generator) by sameer.kumar
 IMDb by apidojo
 
 ### Thanks to these informational sources for helping us learn:
