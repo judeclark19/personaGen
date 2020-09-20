@@ -349,25 +349,19 @@ function autoBiography(name, location, interests, quote) {
   function generateLibrary() {
     $("#table-body").empty();
     for (var i = 0; i < personaArray.length; i++) {
-      storedPersonaHolder = $("<div>")  //this holds the table row & button
-      storedPersonaHolder.addClass('columns')
-      tableDiv = $("<div>");        // this holds the tableRow
-      tableDiv.addClass("column is-three-quarters");
+      tableDiv = $("<div>");
       tableRow = $("<tr>");
       tableRow.attr("data-attribute", personaArray[i].name);
       tableName = $("<td>").text(personaArray[i].name);
       tableAge = $("<td>").text(personaArray[i].age);
       tableLocation = $("<td>").text(personaArray[i].location);
-      
-      tableDelete = $("<div>"
+
+      tableDelete = $("<div class='button tag is-warning'>"
       ).text("DELETE").attr("data-attribute", personaArray[i].name).attr("data-confirm-switch", "delete");
-      tableDelete.addClass("column button is-warning");
 
       tableRow.append(tableName, tableAge, tableLocation);
-      tableDiv.append(tableRow);
-      storedPersonaHolder.append(tableDiv, tableDelete)
-
-      $("#table-body").append(storedPersonaHolder);
+      tableDiv.append(tableRow, tableDelete);
+      $("#table-body").append(tableDiv);
       tableRow.on("click", function () {
       console.log($(this)[0].attributes[0].nodeValue)
       if (personaStorageKey = $(this)[0].attributes[0].nodeValue) {
@@ -413,6 +407,7 @@ function autoBiography(name, location, interests, quote) {
           personaArray.splice(personaStorageKeys[m], 1)
           console.log(personaArray)
           }
+
           }
           generateLibrary()
         }
