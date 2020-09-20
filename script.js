@@ -1,3 +1,4 @@
+$(document).ready(function () {
 // GLOBAL VARIABLES
 // This controls the collapsibles on the persona page
 var coll = document.getElementsByClassName("collapsible");
@@ -132,7 +133,7 @@ function autoBiography(name, location, interests, quote) {
 }
 
 // FUNCTION
-$(document).ready(function () {
+
   // =====================================================================
   //  GLOBAL EVENT LISTENERS
   // =====================================================================
@@ -246,6 +247,13 @@ $(document).ready(function () {
     console.log("need to build library delete");
     $("#table-body").empty();
     localStorage.clear();
+    personaArray = [];
+    console.log(personaArray);
+    libraryDelete2.addClass("hide")
+    libraryDelete2.removeClass("button is-danger");
+    libraryDelete1.addClass("button is-warning")
+    libraryDelete1.removeClass("hide");
+    
   });
 
   // =====================================================================
