@@ -1,3 +1,4 @@
+$(document).ready(function () {
 // GLOBAL VARIABLES
 // This controls the collapsibles on the persona page
 var coll = document.getElementsByClassName("collapsible");
@@ -95,6 +96,7 @@ saveIcon.on("click", function () {
     personaName,
     JSON.stringify(personaKeyItem)
   );
+    personaArray.push(personaKeyItem);
 });
 // ==============
 // Text Generation
@@ -135,7 +137,7 @@ function autoBiography(name, location, interests, quote) {
 }
 
 // FUNCTION
-$(document).ready(function () {
+
   // =====================================================================
   //  GLOBAL EVENT LISTENERS
   // =====================================================================
@@ -213,6 +215,9 @@ $(document).ready(function () {
   });
 
   libraryIcon.on("click", function () {
+    $("#table-body").empty();
+    console.log(personaArray);
+    generateLibrary();
     librarySwitchFunc();
     homeIconContainer.removeClass("active");
     homeIconContainer.addClass("able");
@@ -239,11 +244,19 @@ $(document).ready(function () {
     libraryDelete1.removeClass("button is-warning");
     libraryDelete2.addClass("button is-danger");
     libraryDelete2.removeClass("hide");
+
   });
 
   libraryDelete2.on("click", function () {
     console.log("need to build library delete");
-    resetState();
+    $("#table-body").empty();
+    localStorage.clear();
+    personaArray = [];
+    console.log(personaArray);
+    libraryDelete2.addClass("hide")
+    libraryDelete2.removeClass("button is-danger");
+    libraryDelete1.addClass("button is-warning")
+    libraryDelete1.removeClass("hide");
   });
 
   // =====================================================================
@@ -322,7 +335,7 @@ $(document).ready(function () {
       personaBlock.addClass("hide");
       libraryBlock.removeClass("hide");
       librarySwitch = true;
-      generateLibrary();
+
     } else {
       personaBlock.removeClass("hide");
       libraryBlock.addClass("hide");
@@ -330,54 +343,33 @@ $(document).ready(function () {
     }
   }
 
-  // ======================================
+  // ==========================================================================================================================================================================
   // GENERATING STORAGE INTO LIBRARY FOLDER
-  // ======================================
+  // ==========================================================================================================================================================================
   function generateLibrary() {
     $("#table-body").empty();
     for (var i = 0; i < personaArray.length; i++) {
+      tableDiv = $("<div>");
       tableRow = $("<tr>");
       tableRow.attr("data-attribute", personaArray[i].name);
+      
       tableName = $("<td>").text(personaArray[i].name);
+    
       tableAge = $("<td>").text(personaArray[i].age);
+
       tableLocation = $("<td>").text(personaArray[i].location);
-      //the delete button on each row
-      deleteBadge = $(
-        "<span class='button tag is-warning' data-confirm-switch='delete'>"
-      ).text("DELETE");
-      tableDelete = $("<td>");
-      tableDelete.append(deleteBadge);
 
-      tableRow.append(tableName, tableAge, tableLocation, tableDelete);
-      $("#table-body").append(tableRow);
+      tableDelete = $("<div class='button tag is-warning'>"
+      ).text("DELETE").attr("data-attribute", personaArray[i].name).attr("data-confirm-switch", "delete");
 
-      deleteBadge.on("click", function () {
-        console.log($(this).attr("data-confirm-switch"));
-        if ($(this).attr("data-confirm-switch") === "delete") {
-          $(this).removeClass("is-warning");
-          $(this).addClass("is-danger");
-          $(this).text("CONFIRM");
+      tableRow.append(tableName, tableAge, tableLocation);
+      tableDiv.append(tableRow, tableDelete);
+      $("#table-body").append(tableDiv);
 
-          $(this).attr("data-confirm-switch", "confirm");
-        } else {
-          alert("need to build individual delete");
-        }
-      });
-      // THIS IS A NESTED ON CLICK EVENT FOR THE DISPLAY OF THE LOCAL STORAGE ITEMS
-      // BASED ON TABLE ROW CLICKED
       tableRow.on("click", function () {
-        console.log($(this)[0].attributes[0].nodeValue);
-        personaStorageKey = $(this)[0].attributes[0].nodeValue;
-        searchPersonaStorage = JSON.parse(
-          localStorage.getItem(personaStorageKey)
-        );
-        console.log(searchPersonaStorage); // this is logging the targetted object's values
-        console.log(searchPersonaStorage.name);
-        console.log(searchPersonaStorage.image);
-        console.log(searchPersonaStorage.gender);
-        console.log(searchPersonaStorage.age);
-        console.log(searchPersonaStorage.location);
-        console.log(searchPersonaStorage.bio);
+      console.log($(this)[0].attributes[0].nodeValue)
+      if (personaStorageKey = $(this)[0].attributes[0].nodeValue) {
+      searchPersonaStorage = JSON.parse(localStorage.getItem(personaStorageKey));
 
         libraryBlock.addClass("hide");
         libraryIconContainer.removeClass("active");
@@ -396,13 +388,40 @@ $(document).ready(function () {
         $("#location-msg-body").text(searchPersonaStorage.location);
         $("#bio-msg-body").text(searchPersonaStorage.bio);
         $("#persona-image").attr("src", searchPersonaStorage.image);
-        // var personaImageEl = $("<img id='persona-image'>").attr(
-        //   "src",
-        //   searchPersonaStorage.image
-        // );
-      });
+        }
+      })
+
+        tableDelete.on("click", function () {
+        console.log($(this)[0].previousSibling.attributes[0].nodeValue)
+        console.log($(this)[0].attributes[2].nodeValue);
+        if (($(this)[0].attributes[2].nodeValue) === 'delete')  {
+          var personaDeleteName = (($(this)[0].previousSibling.attributes[0].nodeValue))
+          console.log(($(this)[0].previousSibling.attributes[0].nodeValue))
+          console.log(personaDeleteName + "   YOU'RE ON YOUR WAY!");
+          console.log($(this));
+          $(this).removeClass("is-warning");
+          $(this).addClass("is-danger");
+          $(this).text("CONFIRM");
+
+          var personaStorageKeys = Object.keys(localStorage)
+          for (var m = 0; m < personaStorageKeys.length; m++)
+          if (personaStorageKeys[m] === personaDeleteName)  { 
+          personaStorageKeys.splice(personaStorageKeys[m], 1)
+          console.log(personaStorageKeys)
+          console.log("targetting key values to equal sibling attributes")};
+          $("#table-body").empty();
+          // localStorage.clear();
+          
+          // for (var z = 0; z < personaStorageKeys.length; z++) {
+          //   var personaKeyItem = (personaStorageKeys[z], JSON.parse(localStorage.getItem(personaStorageKeys[z])));
+          //   personaStorageKeys.push(personaKeyItem);
+          // }
+
+
+          }
+        });
+        }
     }
-  }
 
   function resetState() {
     //hide library, show landing page
