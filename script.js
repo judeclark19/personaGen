@@ -380,7 +380,11 @@ $(document).ready(function () {
         libraryIconContainer.addClass("able");
         personaBlock.removeClass("hide");
         gnpContainer.removeClass("able");
+        gnpContainer.removeClass("disabled");
+        gnpContainer.prop("disabled", false);
         gnpContainer.addClass("active");
+
+        personaExistsSwitch = true;
 
         $("#name-msg-body").text(searchPersonaStorage.name);
         $("#age-msg-body").text(searchPersonaStorage.age);
@@ -388,6 +392,10 @@ $(document).ready(function () {
         $("#location-msg-body").text(searchPersonaStorage.location);
         $("#bio-msg-body").text(searchPersonaStorage.bio);
         $("#persona-image").attr("src", searchPersonaStorage.image);
+        // var personaImageEl = $("<img id='persona-image'>").attr(
+        //   "src",
+        //   searchPersonaStorage.image
+        // );
       });
     }
   }
@@ -412,11 +420,10 @@ $(document).ready(function () {
     libraryIconContainer.removeClass("active");
 
     //reset library delete button
-    $("library-delete").removeClass("hide")
-    $("library-delete").addClass("button is-warning")
-    $("library-confirm").removeClass("button is-danger")
-    $("library-confirm").addClass("hide")
-
+    $("library-delete").removeClass("hide");
+    $("library-delete").addClass("button is-warning");
+    $("library-confirm").removeClass("button is-danger");
+    $("library-confirm").addClass("hide");
   }
 
   function clearStorage() {
