@@ -253,7 +253,6 @@ function autoBiography(name, location, interests, quote) {
     libraryDelete2.removeClass("button is-danger");
     libraryDelete1.addClass("button is-warning")
     libraryDelete1.removeClass("hide");
-    
   });
 
   // =====================================================================
@@ -352,42 +351,39 @@ function autoBiography(name, location, interests, quote) {
       tableAge = $("<td>").text(personaArray[i].age);
       tableLocation = $("<td>").text(personaArray[i].location);
       //the delete button on each row
-      deleteBadge = $(
-        "<span class='button tag is-warning' data-confirm-switch='delete'>"
-      ).text("DELETE");
-      tableDelete = $("<td>");
-      tableDelete.append(deleteBadge);
+      // deleteBadge = $(
+      //   "<span class='button tag is-warning' data-confirm-switch='delete'>"
+      // ).text("DELETE");
+      tableDelete = $("<div class='button tag is-warning'>"
+      ).text("DELETE").attr("data-attribute", personaArray[i].name).attr("data-confirm-switch", "delete");
 
       tableRow.append(tableName, tableAge, tableLocation, tableDelete);
       $("#table-body").append(tableRow);
 
-      deleteBadge.on("click", function () {
-        console.log($(this).attr("data-confirm-switch"));
-        if ($(this).attr("data-confirm-switch") === "delete") {
-          $(this).removeClass("is-warning");
-          $(this).addClass("is-danger");
-          $(this).text("CONFIRM");
+        tableDelete.on("click", function () {
+        console.log($(this));
+        console.log($(this)[0].attributes[2].nodeValue);
+        })
+          //     $(this).removeClass("is-warning");
+      //     $(this).addClass("is-danger");
+      //     $(this).text("CONFIRM");
+      //     $(this).attr("data-confirm-switch", "confirm");
+      //   } else {
+      //     console.log($(this));
+      //   }
+      //   // return generateLibrary();});
+      // }
+      
+      
 
-          $(this).attr("data-confirm-switch", "confirm");
-        } else {
-          alert("need to build individual delete");
-        }
-      });
       // THIS IS A NESTED ON CLICK EVENT FOR THE DISPLAY OF THE LOCAL STORAGE ITEMS
       // BASED ON TABLE ROW CLICKED
-      tableRow.on("click", function () {
+        tableRow.on("click", function () {
         console.log($(this)[0].attributes[0].nodeValue);
         personaStorageKey = $(this)[0].attributes[0].nodeValue;
         searchPersonaStorage = JSON.parse(
           localStorage.getItem(personaStorageKey)
         );
-        console.log(searchPersonaStorage); // this is logging the targetted object's values
-        console.log(searchPersonaStorage.name);
-        console.log(searchPersonaStorage.image);
-        console.log(searchPersonaStorage.gender);
-        console.log(searchPersonaStorage.age);
-        console.log(searchPersonaStorage.location);
-        console.log(searchPersonaStorage.bio);
 
         libraryBlock.addClass("hide");
         libraryIconContainer.removeClass("active");
