@@ -91,6 +91,7 @@ saveIcon.on("click", function () {
     personaName,
     JSON.stringify(personaKeyItem)
   );
+    personaArray.push(personaKeyItem);
 });
 // ==============
 // Text Generation
@@ -209,6 +210,9 @@ $(document).ready(function () {
   });
 
   libraryIcon.on("click", function () {
+    $("#table-body").empty();
+    console.log(personaArray);
+    generateLibrary();
     librarySwitchFunc();
     homeIconContainer.removeClass("active");
     homeIconContainer.addClass("able");
@@ -231,17 +235,17 @@ $(document).ready(function () {
 
   libraryDelete1.on("click", function () {
     console.log("Hello world");
-    $("#table-body").empty();
-    localStorage.clear();
-    // libraryDelete1.addClass("hide");
-    // libraryDelete1.removeClass("button is-warning");
-    // libraryDelete2.addClass("button is-danger");
-    // libraryDelete2.removeClass("hide");
+    libraryDelete1.addClass("hide");
+    libraryDelete1.removeClass("button is-warning");
+    libraryDelete2.addClass("button is-danger");
+    libraryDelete2.removeClass("hide");
   });
 
   libraryDelete2.on("click", function () {
     console.log("need to build library delete");
-    resetState();
+    
+    generateLibrary();
+    localStorage.clear();
   });
 
   // =====================================================================
@@ -320,7 +324,9 @@ $(document).ready(function () {
       personaBlock.addClass("hide");
       libraryBlock.removeClass("hide");
       librarySwitch = true;
-      generateLibrary();
+      // $("#table-body").empty();
+      // 
+      // generateLibrary();
     } else {
       personaBlock.removeClass("hide");
       libraryBlock.addClass("hide");
@@ -328,11 +334,12 @@ $(document).ready(function () {
     }
   }
 
-  // ======================================
+  // ==========================================================================================================================================================================
   // GENERATING STORAGE INTO LIBRARY FOLDER
-  // ======================================
+  // ==========================================================================================================================================================================
   function generateLibrary() {
     $("#table-body").empty();
+    // $("#table-body").empty();
     for (var i = 0; i < personaArray.length; i++) {
       tableRow = $("<tr>");
       tableRow.attr("data-attribute", personaArray[i].name);
