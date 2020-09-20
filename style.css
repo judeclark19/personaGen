@@ -23,7 +23,7 @@ body {
 /* Nav/title bar */
 /* ================================================================================ */
 nav {
-  background-color: lightslategrey !important;
+  background-color: #d3d3d3 !important;
   position: relative !important;
   top: 0;
   left: 0;
@@ -32,7 +32,7 @@ nav {
 }
 
 h1 {
-  color: #41393a !important;
+  color: #0ca4a5 !important;
   font-weight: 600 !important;
 }
 /* ================================================================================ */
