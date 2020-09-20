@@ -13,8 +13,7 @@
 }
 
 body {
-  /* background-color: lightslategrey; */
-  background-image: URL("pexels-akwice-3094799.jpg");
+  background-image: URL("./images/pexels-akwice-3094799.jpg");
   background-size: cover;
   overflow: auto;
   height: 900px;
@@ -23,27 +22,21 @@ body {
 /* Nav/title bar */
 /* ================================================================================ */
 nav {
-  background-color: lightslategrey !important;
+  background-color: #d3d3d3 !important;
   position: relative !important;
   top: 0;
   left: 0;
   width: 100%;
-  /* border-bottom: 2px solid gray; */
 }
 
 h1 {
-  color: #41393a !important;
+  color: #0ca4a5 !important;
   font-weight: 600 !important;
 }
 /* ================================================================================ */
 
 /* Main */
 /* ================================================================================ */
-
-/* main { */
-  /* border: 2px dashed hotpink; */
-  /* margin-top: 52px; */
-/* } */
 
 .is-primary {
   background-color: #0ca4a5 !important;
@@ -67,10 +60,6 @@ h1 {
 #landing-notification {
   padding: 0px;
   background-color: transparent;
-  /* display: flex; */
-  /* background-image: URL("pexels-akwice-3094799.jpg");
-  background-size: cover; */
-  /* justify-content: center; */
   align-items: center;
   height: 100%;
   width: 100%;
@@ -78,13 +67,12 @@ h1 {
 }
 
 h3 {
-  color: white!important;
-  padding: 30px!important;
+  color: white !important;
+  padding: 30px !important;
   /* backdrop-filter: blur(30px); */
 }
 
 #landing-container {
-  /* border:3px solid orange; */
   width: 100%;
   margin: 0;
   position: relative;
@@ -121,14 +109,11 @@ h3 {
 /* Persona Block */
 /* ================================================================================ */
 #persona-image {
-  /* padding: 20px; */
   border-radius: 30px;
   display: block;
-  /* margin-left: auto;
-  margin-right: auto; */
+
   width: 100%;
   height: 100%;
-  /* border: 5px solid #577574; */
   background-color: #e9edec;
 }
 
@@ -137,14 +122,11 @@ h3 {
 }
 
 #persona-block {
-  /* border: 2px solid greenyellow; */
   margin: 0px;
-  /* height: max-content; */
   margin-bottom: 20px;
 }
 
 #persona-box {
-  /* border: 2px solid red; */
   background-color: transparent;
   position: relative;
   height: 100%;
@@ -175,18 +157,13 @@ h3 {
 }
 
 .collapsible {
-  /* border:2px solid red; */
   padding: 0px;
 }
 
 /* Style the collapsible content. Note: hidden by default */
 .card-content {
-  /* border:2px solid red; */
-  /* width: 300px; */
-
   padding: 10px !important;
   display: none;
-  /* overflow: auto; */
   color: black;
   background-color: #e9edec;
 }
@@ -264,7 +241,6 @@ th {
 }
 
 .action-icon {
-  /* border: 1px dashed blue; */
   margin: 0;
 }
 
@@ -278,9 +254,6 @@ th {
 
 .able {
   background-color: #0ca3a5;
-  /* background-color: #0a8585; */
-  /* color: #0a8585; */
-  /* color: #0CA4A5; */
   color: #374b4a;
   border-color: transparent;
   border: 2px outset;
@@ -288,7 +261,6 @@ th {
 
 .able:hover {
   background-color: #0ebebe;
-  /* background-color: #0a8585; */
   border-color: transparent;
   color: lightgray;
 }
@@ -324,9 +296,6 @@ footer {
   left: 0;
   width: 100%;
   margin: 0px !important;
-  /* margin-bottom:0px!important;
- margin-left:0px!important;
- margin-right:0px!important; */
   height: 80px;
 }
 
@@ -406,9 +375,7 @@ footer {
 }
 
 #custom-settings {
-  /* margin-top: 20px; */
   margin: auto;
-  /* margin-left: 28px; */
   max-width: 300px;
   font-family: "Poppins", sans-serif;
 }

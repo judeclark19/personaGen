@@ -17,15 +17,19 @@ A personaGen user can choose to generate random personae, or control custom para
 
 ## Usage
 ### Home page
+![Home page](./assets/images/landing_page_ss.png)
 From the home screen, a user can either click to generate a random persona or put in custom parameters of their choice.
 
 ### Persona page
+![Persona page](./assets/images/random_persona.png)
 This page displays the most recently generated person OR a persona that the user has recalled from storage.
 
 ## Save button
+![Save button snackbar](./assets/images/snackbar_ss.png)
 When the user clicks the save button, a snackbar appears confirming that the person has been saved to the Library.
 
 ## Library page
+![Library](./assets/images/library_ss.png)
 A list of all saved personae. A user may click on any individual entry to bring up that persona again on the Persona page. User may a also clear entries from the library.
 
 ********************************
