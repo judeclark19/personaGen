@@ -77,3 +77,20 @@ movies = [
   "tt1979376",
 ];
 
+// var nationalities = [{code: AU, country: Australia},
+//   {code: BR, country: Brazil},
+//   {code: CA, country: Canada},
+//   {code: CH, country: Switzerland},
+//   {code: DE, country: Germany},
+//   {code: DK, country: Denmark},
+//   {code: ES, country: Spain},
+//   {code: FI, country: Finland},
+//   {code: FR, country: France},
+//   {code: GB, country: United Kingdom},
+//   {code: IE, country: Ireland},
+//   {code: IR, country: Iran},
+//   {code: NO, country: Norway},
+//   {code: NL, country: Netherlands},
+//   {code: NZ, country: New Zealand},
+//   {code: TR, country: Turkey},
+//   {code: US, country: United States}];
