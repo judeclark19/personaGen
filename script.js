@@ -29,6 +29,7 @@ var libraryIconContainer = $("#library-icon-container");
 var formSubmitBtn = $("#form-submit-btn");
 var librarySwitch = false;
 var saveSwitch = false;
+var personaExistsSwitch = false;
 
 // TEMPORARY FORM CONTAINER TARGET
 // var formContainer = $("#form-container");
@@ -139,11 +140,11 @@ $(document).ready(function () {
   randomButton.on("click", function () {
     randomStatus = true;
     generateNewPersona();
+    personaExistsSwitch = true;
   });
 
   userParamsButton.on("click", function () {
-
-    console.log("form call called")
+    console.log("form call called");
     //Hide landing page
     hideLandingPage();
 
@@ -153,22 +154,26 @@ $(document).ready(function () {
     // //Hide the Library page
     libraryBlock.addClass("hide");
 
+    personaExistsSwitch = true;
+
     formCall();
   });
 
   homeIcon.on("click", function () {
-    // if (homeIconContainer.prop("disabled") === true) {
-    //   console.log("home button is disabled");
-    // } else 
-    
+    if (personaExistsSwitch) {
+      //change persona icon from active to Able
+      gnpContainer.removeClass("active");
+      gnpContainer.addClass("able");
+    }
+
     if (homeIconContainer.hasClass("active")) {
       console.log("home button is already active");
     } else {
       homeIconActive();
       hidePersonaPage();
       landingBlock.removeClass("hide");
-      gnpContainer.removeClass("active");
-      gnpContainer.addClass("able");
+      // gnpContainer.removeClass("active");
+      // gnpContainer.addClass("able");
       libraryBlock.addClass("hide");
       console.log("clicked home button");
       if (libraryIconContainer.hasClass("active")) {
@@ -204,19 +209,19 @@ $(document).ready(function () {
   });
 
   libraryIcon.on("click", function () {
-    if (libraryIconContainer.prop("disabled") === false) {
-      librarySwitchFunc();
+    librarySwitchFunc();
+    homeIconContainer.removeClass("active");
+    homeIconContainer.addClass("able");
+    libraryIconContainer.removeClass("able");
+    libraryIconContainer.addClass("active");
+    personaBlock.addClass("hide");
+    landingBlock.addClass("hide");
+    libraryBlock.removeClass("hide");
+
+    if (personaExistsSwitch) {
+      //change persona icon from active to Able
       gnpContainer.removeClass("active");
       gnpContainer.addClass("able");
-      homeIconContainer.removeClass("active");
-      homeIconContainer.addClass("able");
-      libraryIconContainer.removeClass("able");
-      libraryIconContainer.addClass("active");
-      personaBlock.addClass("hide");
-      landingBlock.addClass("hide");
-      libraryBlock.removeClass("hide");
-    } else {
-      console.log("library is disabled");
     }
   });
 
@@ -251,13 +256,13 @@ $(document).ready(function () {
     personaBlock.addClass("hide");
   }
 
-//Show the persona page
-function showPersonaPage() {
-  personaBlock.removeClass("hide");
-}
+  //Show the persona page
+  function showPersonaPage() {
+    personaBlock.removeClass("hide");
+  }
 
-   //Hide library page
-   function hideLibraryPage() {
+  //Hide library page
+  function hideLibraryPage() {
     libraryBlock.addClass("hide");
   }
 
@@ -268,7 +273,7 @@ function showPersonaPage() {
   }
 
   //Change home icon to "active"
-  function homeIconActive(){
+  function homeIconActive() {
     homeIconContainer.addClass("active");
   }
 
@@ -356,18 +361,20 @@ function showPersonaPage() {
       });
       // THIS IS A NESTED ON CLICK EVENT FOR THE DISPLAY OF THE LOCAL STORAGE ITEMS
       // BASED ON TABLE ROW CLICKED
-      tableRow.on("click", function() {
-        console.log(($(this)[0].attributes[0].nodeValue));
-        personaStorageKey = ($(this)[0].attributes[0].nodeValue);
-        searchPersonaStorage = JSON.parse(localStorage.getItem(personaStorageKey));
+      tableRow.on("click", function () {
+        console.log($(this)[0].attributes[0].nodeValue);
+        personaStorageKey = $(this)[0].attributes[0].nodeValue;
+        searchPersonaStorage = JSON.parse(
+          localStorage.getItem(personaStorageKey)
+        );
         console.log(searchPersonaStorage); // this is logging the targetted object's values
         console.log(searchPersonaStorage.name);
-        console.log(searchPersonaStorage.image);    
-        console.log(searchPersonaStorage.gender);   
-        console.log(searchPersonaStorage.age);    
-        console.log(searchPersonaStorage.location); 
+        console.log(searchPersonaStorage.image);
+        console.log(searchPersonaStorage.gender);
+        console.log(searchPersonaStorage.age);
+        console.log(searchPersonaStorage.location);
         console.log(searchPersonaStorage.bio);
-        
+
         libraryBlock.addClass("hide");
         libraryIconContainer.removeClass("active");
         libraryIconContainer.addClass("able");
@@ -379,19 +386,20 @@ function showPersonaPage() {
         $("#age-msg-body").text(searchPersonaStorage.age);
         $("#gender-msg-body").text(searchPersonaStorage.gender);
         $("#location-msg-body").text(searchPersonaStorage.location);
-        $("#bio-msg-body").text(searchPersonaStorage.bio)
+        $("#bio-msg-body").text(searchPersonaStorage.bio);
         $("#persona-image").attr("src", searchPersonaStorage.image);
       });
     }
   }
 
   function resetState() {
+    //hide library, show landing page
     libraryBlock.addClass("hide");
     landingBlock.removeClass("hide");
     //activate home button
     homeIconContainer.removeClass("able");
     homeIconContainer.addClass("active");
-    //disable viewpsa
+    //disable view psa
     gnpContainer.prop("disabled", true);
     gnpContainer.addClass("disabled");
     gnpContainer.removeClass("able");
@@ -399,10 +407,16 @@ function showPersonaPage() {
     saveIconContainer.prop("disabled", true);
     saveIconContainer.addClass("disabled");
     saveIconContainer.removeClass("able");
-    //disable library
-    libraryIconContainer.prop("disabled", true);
-    libraryIconContainer.addClass("disabled");
+    //able library
+    libraryIconContainer.addClass("able");
     libraryIconContainer.removeClass("active");
+
+    //reset library delete button
+    $("library-delete").removeClass("hide")
+    $("library-delete").addClass("button is-warning")
+    $("library-confirm").removeClass("button is-danger")
+    $("library-confirm").addClass("hide")
+
   }
 
   function clearStorage() {
@@ -446,27 +460,27 @@ function showPersonaPage() {
 
     // EVENT LISTENER FOR FORM
     // submitGenerate.on("click", function (event) {
-      console.log("this button is working");
-      var personaLowAgeVal = $("#age-low-input").val();
-      var personaHighAgeVal = $("#age-high-input").val();
-      var personaGenderVal = $("#persona-gender-select").val();
-      var personaQuoteVal = $("#persona-quote-select").val();
-      //  var personaInterestVal = $("#persona-interest-select").val();
-      //  personaJobVal = $("#persona-profession-input").val();
-      // CONSOLE LOGGING VALUES OF INPUTS
-      console.log("this click button is working");
-      console.log(personaLowAgeVal);
-      console.log(personaHighAgeVal);
-      console.log(personaGenderVal);
-      console.log(personaQuoteVal);
-      // console.log(personaInterestVal);
-      // console.log(personaJobVal);
+    console.log("this button is working");
+    var personaLowAgeVal = $("#age-low-input").val();
+    var personaHighAgeVal = $("#age-high-input").val();
+    var personaGenderVal = $("#persona-gender-select").val();
+    var personaQuoteVal = $("#persona-quote-select").val();
+    //  var personaInterestVal = $("#persona-interest-select").val();
+    //  personaJobVal = $("#persona-profession-input").val();
+    // CONSOLE LOGGING VALUES OF INPUTS
+    console.log("this click button is working");
+    console.log(personaLowAgeVal);
+    console.log(personaHighAgeVal);
+    console.log(personaGenderVal);
+    console.log(personaQuoteVal);
+    // console.log(personaInterestVal);
+    // console.log(personaJobVal);
 
-      generateNewPersona();
-      // formContainer.empty();
+    generateNewPersona();
+    // formContainer.empty();
 
-      // event.preventDefault();
-      //  originalUserCall();
+    // event.preventDefault();
+    //  originalUserCall();
     // });
   }
 
