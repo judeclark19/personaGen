@@ -15,11 +15,19 @@ A personaGen user can choose to generate random personae, or control custom para
 [Depoloyed Site](https://modern-sapien.github.io/bootcamp-project-one/)
 ***
 
-## ReadMe Table of Contents
-* [Installation](#installation)
-* [Usage](#usage)
-* [Credits](#credits)
-* [License](#license)
+## Usage
+### Home page
+From the home screen, a user can either click to generate a random persona or put in custom parameters of their choice.
+
+### Persona page
+This page displays the most recently generated person OR a persona that the user has recalled from storage.
+
+## Save button
+When the user clicks the save button, a snackbar appears confirming that the person has been saved to the Library.
+
+## Library page
+A list of all saved personae. A user may click on any individual entry to bring up that persona again on the Persona page. User may a also clear entries from the library.
+
 ********************************
 ## Credits
 
@@ -28,6 +36,13 @@ A personaGen user can choose to generate random personae, or control custom para
 * Jude Clark [judeclark19](https://github.com/judeclark19)
 * Joseph Perry [dgtlctzn](https://github.com/dgtlctzn)
 
+### This app accesses the following APIs:
+* [randomapi.com](https://randomapi.com/)
+* [Face++ Detect API](https://console.faceplusplus.com/documents/5679127)
+Quotes by martin.svoboda
+Corporate bs Generator by sameer.kumar
+IMDb by apidojo
+
 ### Thanks to these informational sources for helping us learn:
 
 * w3schools [How TO - Snackbar / Toast](w3schools.com/howto/howto_js_snackbar.asp)
@@ -35,5 +50,17 @@ A personaGen user can choose to generate random personae, or control custom para
 https://www.w3schools.com/howto/howto_js_collapsible.asp)
 
 * [Bulma CSS Framework Crash Course](https://www.youtube.com/watch?v=IiPQYQT2-wg) by Traversy Media
+***
 
 ## License
+
+MIT License
+
+Copyright (c) 2020 Jonathan Canales, Jude Clark, and Joseph Perry
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
