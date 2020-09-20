@@ -240,7 +240,7 @@ function autoBiography(name, location, interests, quote) {
     libraryDelete1.removeClass("button is-warning");
     libraryDelete2.addClass("button is-danger");
     libraryDelete2.removeClass("hide");
-    
+
   });
 
   libraryDelete2.on("click", function () {
@@ -345,45 +345,28 @@ function autoBiography(name, location, interests, quote) {
   function generateLibrary() {
     $("#table-body").empty();
     for (var i = 0; i < personaArray.length; i++) {
+      tableDiv = $("<div>");
       tableRow = $("<tr>");
       tableRow.attr("data-attribute", personaArray[i].name);
+      
       tableName = $("<td>").text(personaArray[i].name);
+    
       tableAge = $("<td>").text(personaArray[i].age);
+
       tableLocation = $("<td>").text(personaArray[i].location);
-      //the delete button on each row
-      // deleteBadge = $(
-      //   "<span class='button tag is-warning' data-confirm-switch='delete'>"
-      // ).text("DELETE");
+
+
       tableDelete = $("<div class='button tag is-warning'>"
       ).text("DELETE").attr("data-attribute", personaArray[i].name).attr("data-confirm-switch", "delete");
 
-      tableRow.append(tableName, tableAge, tableLocation, tableDelete);
-      $("#table-body").append(tableRow);
+      tableRow.append(tableName, tableAge, tableLocation);
+      tableDiv.append(tableRow, tableDelete);
+      $("#table-body").append(tableDiv);
 
-        tableDelete.on("click", function () {
-        console.log($(this));
-        console.log($(this)[0].attributes[2].nodeValue);
-        })
-          //     $(this).removeClass("is-warning");
-      //     $(this).addClass("is-danger");
-      //     $(this).text("CONFIRM");
-      //     $(this).attr("data-confirm-switch", "confirm");
-      //   } else {
-      //     console.log($(this));
-      //   }
-      //   // return generateLibrary();});
-      // }
-      
-      
-
-      // THIS IS A NESTED ON CLICK EVENT FOR THE DISPLAY OF THE LOCAL STORAGE ITEMS
-      // BASED ON TABLE ROW CLICKED
-        tableRow.on("click", function () {
-        console.log($(this)[0].attributes[0].nodeValue);
-        personaStorageKey = $(this)[0].attributes[0].nodeValue;
-        searchPersonaStorage = JSON.parse(
-          localStorage.getItem(personaStorageKey)
-        );
+      tableRow.on("click", function () {
+      console.log($(this)[0].attributes[0].nodeValue)
+      if (personaStorageKey = $(this)[0].attributes[0].nodeValue) {
+      searchPersonaStorage = JSON.parse(localStorage.getItem(personaStorageKey));
 
         libraryBlock.addClass("hide");
         libraryIconContainer.removeClass("active");
@@ -402,13 +385,29 @@ function autoBiography(name, location, interests, quote) {
         $("#location-msg-body").text(searchPersonaStorage.location);
         $("#bio-msg-body").text(searchPersonaStorage.bio);
         $("#persona-image").attr("src", searchPersonaStorage.image);
-        // var personaImageEl = $("<img id='persona-image'>").attr(
-        //   "src",
-        //   searchPersonaStorage.image
-        // );
-      });
+        }
+      })
+
+        tableDelete.on("click", function () {
+        console.log($(this)[0].previousSibling.attributes[0].nodeValue)
+        console.log($(this)[0].attributes[2].nodeValue);
+
+        if (($(this)[0].attributes[2].nodeValue) === 'delete')  {
+          console.log(($(this)[0].previousSibling.attributes[0].nodeValue))
+          console.log($(this));
+          $(this).removeClass("is-warning");
+          $(this).addClass("is-danger");
+          $(this).text("CONFIRM");
+           for (var m = 0; m < personaArray.length; m++)  {
+            console.log(personaArray[m]);
+            if ($(this)[0].previousSibling.attributes[0].nodeValue === personaArray[m].name) {
+              console.log("WE ARE ABOUT TO DELETE YOU")
+            }
+            }
+          }
+        });
+        }
     }
-  }
 
   function resetState() {
     //hide library, show landing page
