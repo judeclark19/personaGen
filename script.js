@@ -514,7 +514,11 @@ $(document).ready(function () {
     // api parameter selects nationality
     var personaNationSelect = $("#persona-nation-select").val();
     if (personaNationSelect !== "interest-test-val-0") {
-      randomMeURL = randomMeURL + "&nat=" + personaNationSelect
+      if (randomMeURL.includes("?")) {
+        randomMeURL = randomMeURL + "&nat=" + personaNationSelect;
+      } else {
+        randomMeURL = randomMeURL + "?nat=" + personaNationSelect;
+      }
     }
 
     $.ajax({
