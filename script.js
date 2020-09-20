@@ -455,8 +455,8 @@ $(document).ready(function () {
     var personaProfessionInput = $("#persona-profession-input");
     console.log(personaProfessionInput.val());
     // INTEREST SELECT
-    var personaInterestSelect = $("#persona-interest-select");
-    console.log(personaInterestSelect.val());
+    var personaNationSelect = $("#persona-nation-select");
+    console.log(personaNationSelect.val());
     // QUOTE SELECT
     var personaQuoteSelect = $("#persona-quote-select");
     console.log(personaQuoteSelect.val());
@@ -507,6 +507,7 @@ $(document).ready(function () {
       var randomMeURL =
         "https://randomuser.me/api/?gender=" + personaGenderSelect;
     }
+
     $.ajax({
       url: randomMeURL,
       dataType: "json",
