@@ -239,12 +239,12 @@ $(document).ready(function () {
     libraryDelete1.removeClass("button is-warning");
     libraryDelete2.addClass("button is-danger");
     libraryDelete2.removeClass("hide");
+    
   });
 
   libraryDelete2.on("click", function () {
     console.log("need to build library delete");
-    
-    generateLibrary();
+    $("#table-body").empty();
     localStorage.clear();
   });
 
@@ -324,9 +324,7 @@ $(document).ready(function () {
       personaBlock.addClass("hide");
       libraryBlock.removeClass("hide");
       librarySwitch = true;
-      // $("#table-body").empty();
-      // 
-      // generateLibrary();
+
     } else {
       personaBlock.removeClass("hide");
       libraryBlock.addClass("hide");
@@ -339,7 +337,6 @@ $(document).ready(function () {
   // ==========================================================================================================================================================================
   function generateLibrary() {
     $("#table-body").empty();
-    // $("#table-body").empty();
     for (var i = 0; i < personaArray.length; i++) {
       tableRow = $("<tr>");
       tableRow.attr("data-attribute", personaArray[i].name);
