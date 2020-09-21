@@ -12,7 +12,7 @@ A personaGen user can choose to generate random personae, or control custom para
 ## Links
 [GitHub Repository](https://github.com/modern-sapien/bootcamp-project-one)
 
-[Depoloyed Site](https://modern-sapien.github.io/bootcamp-project-one/)
+[Deployed Site](https://modern-sapien.github.io/bootcamp-project-one/)
 ***
 
 ## Usage
@@ -31,6 +31,12 @@ When the user clicks the save button, a snackbar appears confirming that the per
 ## Library page
 ![Library](./assets/images/library_ss.png)
 A list of all saved personae. A user may click on any individual entry to bring up that persona again on the Persona page. User may a also clear entries from the library.
+***
+
+## Known Issues
+* Individual delete doesn't work
+* Custom age input doesn't work
+* No validation to stop the user from saving the same persona multiple times
 
 ********************************
 ## Credits
