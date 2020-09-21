@@ -10,9 +10,9 @@ A personaGen user can choose to generate random personae, or control custom para
 ***
 
 ## Links
-[GitHub Repository](https://github.com/modern-sapien/bootcamp-project-one)
+[GitHub Repository](https://github.com/judeclark19/personaGen)
 
-[Deployed Site](https://modern-sapien.github.io/bootcamp-project-one/)
+[Deployed Site](https://judeclark19.github.io/personaGen/)
 ***
 
 ## Usage
